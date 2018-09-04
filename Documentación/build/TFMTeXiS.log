@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.7.5)  10 JUL 2018 18:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.7.5)  22 JUL 2018 19:47
 entering extended mode
 **./TFMTeXiS.tex
 (TFMTeXiS.tex
@@ -626,8 +626,8 @@ LaTeX Info: Redefining \% on input line 33.
 d\Capitulos/Introduction.aux")
 ("C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Documentación\buil
 d\Capitulos/Introduccion.aux")
-LaTeX Info: Redefining \. on input line 38.
-LaTeX Info: Redefining \% on input line 38.
+LaTeX Info: Redefining \. on input line 37.
+LaTeX Info: Redefining \% on input line 37.
 
 ("C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Documentación\buil
 d\Capitulos/EstadoDeLaCuestion.aux")
@@ -637,8 +637,8 @@ d\Capitulos/ConclusionesTrabajoFuturo.aux")
 d\Capitulos/ConclusionsFutureWork.aux")
 ("C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Documentación\buil
 d\Apendices/appendixA.aux")
-LaTeX Info: Redefining \. on input line 44.
-LaTeX Info: Redefining \% on input line 44.
+LaTeX Info: Redefining \. on input line 43.
+LaTeX Info: Redefining \% on input line 43.
 
 ("C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Documentación\buil
 d\Apendices/appendixB.aux")
@@ -755,7 +755,7 @@ Package babel Info: Redefining spanish shorthand "?
 \evensidemarginOriginal=\skip79
 \oddsidemarginOriginal=\skip80
 \longTitulo=\skip81
-<Imagenes/Vectorial/escudoUCM.pdf, id=37, 597.23125pt x 844.15375pt>
+<Imagenes/Vectorial/escudoUCM.pdf, id=71, 597.23125pt x 844.15375pt>
 File: Imagenes/Vectorial/escudoUCM.pdf Graphic file (type pdf)
 <use Imagenes/Vectorial/escudoUCM.pdf>
 Package pdftex.def Info: Imagenes/Vectorial/escudoUCM.pdf  used on input line 1
@@ -1021,8 +1021,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 7.
 LaTeX Info: Redefining \. on input line 10.
 LaTeX Info: Redefining \% on input line 10.
-LaTeX Info: Redefining \. on input line 16.
-LaTeX Info: Redefining \% on input line 16.
+LaTeX Info: Redefining \. on input line 18.
+LaTeX Info: Redefining \% on input line 18.
 )
 \tf@toc=\write6
 \openout6 = `TFMTeXiS.toc'.
@@ -1390,7 +1390,46 @@ ne 14.
 Package natbib Warning: Citation `texKnuth' on page 9 undefined on input line 1
 4.
 
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 29.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 29.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 29.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 29.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 29.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 29.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 38.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 38.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 38.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 38.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 38.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 38.
+[9]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 49.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 49.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 49.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 49.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 49.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 49.
 )
+LaTeX Info: Redefining \. on input line 149.
+LaTeX Info: Redefining \% on input line 149.
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 149.
 Package babel Info: Redefining spanish shorthand >>
@@ -1403,27 +1442,10 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 149.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 149.
- [9]
+ [10]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
  (Capitulos/ConclusionesTrabajoFuturo.tex
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 3.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 3.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 3.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 3.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 3.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 3.
- [10
-
-
-
-]
 Cap\'itulo 3.
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 3.
@@ -1450,7 +1472,11 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 153.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 153.
- [11]
+ [11
+
+
+
+]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
  (Capitulos/ConclusionsFutureWork.tex [12
@@ -1676,75 +1702,46 @@ d\Cascaras/bibliografia.aux")
 d\Cascaras/fin.aux"))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 216.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 216.
-
-
-Package rerunfilecheck Warning: File `TFMTeXiS.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `TFMTeXiS.out':
-(rerunfilecheck)             Before: 3AEAAE010F1370A45290A2FD33D53301;526
-(rerunfilecheck)             After:  82C00E7363DE822484B8E7488F4B549D;888.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
+(rerunfilecheck)             Checksum: 07BC9FD60F990624F3A9275098994A35;999.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 216.
  ) 
 Here is how much of TeX's memory you used:
- 12723 strings out of 492973
- 198150 string characters out of 3124033
- 411891 words of memory out of 3000000
- 15943 multiletter control sequences out of 15000+200000
- 22031 words of font info for 44 fonts, out of 3000000 for 9000
+ 12736 strings out of 492973
+ 198314 string characters out of 3124033
+ 411972 words of memory out of 3000000
+ 15957 multiletter control sequences out of 15000+200000
+ 23496 words of font info for 46 fonts, out of 3000000 for 9000
  1379 hyphenation exceptions out of 8191
  55i,12n,47p,972b,606s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{appendix.Alph2} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{appendix.Alph1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter.3} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter.2} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.1.1.1} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.1.1} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter.1} has been referenced but does not exist, 
-replaced by a fixed one
-
- <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
-600\ecti1000.pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour
-\jknappen\ec\dpi600\ecrm0800.pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9
-\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk> <C:\Users\Chema Lopez\AppData\
-Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk>{C:/Users/Chema
- Lopez/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc} <C:\Users
-\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx10
-95.pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\eccc1095.pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\
-ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Chema Lopez\AppData\Local\MiKT
-eX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\Chema Lopez\Ap
-pData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1200.pk> <C:\User
-s\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2
-488.pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen
-\ec\dpi600\ecbx1200.pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk
-\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C:\Users\Chema Lopez\AppData\Local\MiK
-TeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk><C:/Users/Chema Lopez/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/U
-sers/Chema Lopez/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr10.pfb><C:/Users/Chema Lopez/AppData/Local/Programs/MiKTeX 2.9/fonts/type
-1/urw/helvetic/uhvr8a.pfb><C:/Users/Chema Lopez/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/urw/times/utmr8a.pfb>
+ <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
+pi600\ecti1000.pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfo
+ur\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2
+.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecxc1000.pk> <C:\Users\Chema Lopez\AppDat
+a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk> <C:\Users\Ch
+ema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.
+pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\
+dpi600\ecti1095.pk>{C:/Users/Chema Lopez/AppData/Local/Programs/MiKTeX 2.9/font
+s/enc/dvips/base/8r.enc} <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\p
+k\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Chema Lopez\AppData\Local\Mi
+KTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1095.pk> <C:\Users\Chema Lopez\
+AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Us
+ers\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecr
+m1095.pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknapp
+en\ec\dpi600\ecti1200.pk> <C:\Users\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\
+pk\ljfour\jknappen\ec\dpi600\ecrm2488.pk> <C:\Users\Chema Lopez\AppData\Local\M
+iKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\Chema Lopez
+\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C:\U
+sers\Chema Lopez\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ec
+bx2074.pk><C:/Users/Chema Lopez/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmmi10.pfb><C:/Users/Chema Lopez/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Chema Lopez/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Chema Lop
+ez/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
 Output written on "C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Do
-cumentación\build\TFMTeXiS.pdf" (40 pages, 553655 bytes).
+cumentación\build\TFMTeXiS.pdf" (40 pages, 570393 bytes).
 PDF statistics:
- 724 PDF objects out of 1000 (max. 8388607)
- 72 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 787 PDF objects out of 1000 (max. 8388607)
+ 69 named destinations out of 1000 (max. 500000)
+ 142 words of extra memory for PDF output out of 10000 (max. 10000000)
 
