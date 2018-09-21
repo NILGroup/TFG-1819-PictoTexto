@@ -3,27 +3,11 @@
 \chapter{Estado de la Cuestión}
 \label{cap:estadoDeLaCuestion}
 
-En el estado de la cuestión es donde aparecen gran parte de las referencias bibliográficas del trabajo. Una de las formas más cómodas de gestionar la bibliografía en {\LaTeX} es utilizando \textbf{bibtex}. Las entradas bibliográficas deben estar en un fichero con extensión \textit{.bib} (con esta plantilla se proporcionan 3, dos de los cuales están vacíos). Cada entrada bibliográfica tiene una clave que permite referenciarla desde cualquier parte del texto con los siguiente comandos:
-
-\begin{itemize}
-\item Referencia bibliografica con cite: \cite{ldesc2e}
-\item Referencia bibliográfica con citep: \citep{notsoshort}
-\item Referencia bibliográfica con citet: \citet{latexAPrimer}
-\end{itemize}
-
-Es posible citar más de una fuente, como por ejemplo \citep{latexCompanion,LaTeXLamport,texKnuth}
-
-Después, latex se ocupa de rellenar la sección de bibliografía con las entradas \textbf{que hayan sido citadas} (es decir, no con todas las entradas que hay en el .bib, sino sólo con aquellas que se hayan citado en alguna parte del texto).
-
-Bibtex es un programa separado de latex, pdflatex o cualquier otra cosa que se use para compilar los .tex, de manera que para que se rellene correctamente la sección de bibliografía es necesario compilar primero el trabajo (a veces es necesario compilarlo dos veces), compilar después con bibtex, y volver a compilar otra vez el trabajo (de nuevo, puede ser necesario compilarlo dos veces). 
-
 
 \begin{resumen}
 	A lo largo de este capítulo trataremos los aspectos más importantes que han sido necesarios o forman parte de la base de este trabajo como los SAAC, pictogramas y tecnologías que hemos utilizado para la realización del mismo.
 
 \end{resumen}
-
-
 
 %------------------------------------------------------------------
 \section{SAAC}
@@ -31,28 +15,57 @@ Bibtex es un programa separado de latex, pdflatex o cualquier otra cosa que se u
 \label{cap2:sec:SAAC}
 
 
-Los Sistemas Aumentativos y Alternativos de comunicación son distintas formas de expresar el lenguaje hablado, que tienen como objetivo aumentar y/o compensar las dificultades de muchas personas con dificultades para conseguir una comunicación verbal funcional. 
+Los Sistemas Aumentativos y Alternativos de Comunicación (SAAC) son distintas formas de expresar el lenguaje oral, que tienen como objetivo aumentar y/o compensar los problemas de comunicación de muchas personas con dificultades para conseguir una expresión verbal funcional.
+\\ \\
+El término comunicación aumentativa describe las formas en las que se comunica el individuo cuando el uso del lenguaje natural no es suficiente, por el contrario la comunicación alternativa hace referencia a diferentes métodos o vías de comunicación que sustituyen completamente el lenguaje oral.
+\\ \\
 La comunicación es una necesidad, y en casos de autismo o parálisis cerebral donde el lenguaje oral está gravemente limitado, la utilización de sistemas de comunicación de lenguaje no verbales, como los pictogramas, sustituyen o sirven de apoyo al lenguaje verbal. 
-Lo que se pretende con los SAAC es conseguir una comunicación funcional, adecuada y generalizable, que permita al individuo expresarse y alcanzar una mayor integración en su entorno social. Los SAAC son una herramienta de calidad de vida al otorgar al individuo de una vía para comunicarse.
-Cabe destacar que los SAAC no son de uso exclusivo de las personas con desórdenes en la comunicación, sino que son utilizados por todos a diario por ejemplo gestos, señales de trafico, etc.
+Lo que se pretende con los SAAC es conseguir una comunicación funcional, adecuada y generalizable, que permita al individuo expresarse y alcanzar una mayor integración en su entorno social. Los SAAC son una herramienta de calidad de vida al otorgar al individuo una vía para comunicarse.
+Cabe destacar que los SAAC no son de uso exclusivo de las personas con alteraciones en la comunicación, sino que son utilizados por todos a diario, por ejemplo cuando empleamos gestos, señales de trafico, etc.
+\\\\
+Según A.S.H.A. (American SpeechLanguage-Hearing Association, 1981), por Lloyd y Karlan (1984) y C. Basil(1988)los SAAC se pueden clasificar en dos grandes grupos:
 
-Existen dos tipos de SAAC.
 \begin{enumerate}
-\item Sin ayuda, aquellos sistemas que carecen de soporte físico, ejemplo el lenguaje de signos.
-\item Con ayuda, aquellos sistemas que necesitan de un soporte físico, ejemplo los pictogramas.
+\item Sistemas sin ayuda, son aquellos sistemas que carecen de soporte físico, por ejemplo el lenguaje de signos. Abarca desde des el uso de mímica y gestos hasta el uso signos manuales, las lenguas de signos no son consideradas SAAC.
+\item Sistemas con ayuda,son aquellos sistemas que necesitan un soporte físico independiente del emisor. Este tipo abarca desde sistemas sencillos basados en dibujos o imágenes como los pictogramas, el Sistema Bliss, fotografías... hasta objetos reales en miniatura o los sistemas de comunicación escritos como el Braile. Están orientados a personas con problemas en el habla o con dificultades cognitivas o de aprendizaje.
 
 \end{enumerate}
  
-A principio de los años 80 se empiezan a dar mayor rigor a los SAAC y aparecen los primeros programas informáticos, con predicción de palabras o de pictogramas.
+Se ha demostrado que la utilización de los sistemas aumentativos y alternativos de comunicación tiene múltiples ventajas y son indispensables para aquellas personas que por algún trastorno, en mayor o menor medida, tienen impedido el uso de lenguaje, patologías como autismo, deficiencia mental, parálisis cerebral así como  personas que por causa de enfermedad o lesión cerebral, están impedidos de manera temporal para expresarse de manera adecuada o correcta. Además de ser un recurso necesario para estas personas se ha demostrado que tienen múltiples beneficios:
+ 
+ \begin{enumerate}
+ 
+ \item Ayuda al desarrollo de la comunicación,proporciona estrategias para la misma y para el lenguaje del individuo.
+ \item Posibilita el desarrollo personal y social ademas de fomentar las relaciones interpersonales.
+ \item Evitan el aislamiento, fomentando habilidades afectivo-sociales.
+ 
+ \end{enumerate}
+
+  Cabe destacar que la complejidad de los SAAC depende del nivel cognitivo del usuario, cada persona es diferente, y por ejemplo en el uso de imágenes, el nivel de abstracción y complejidad deben adecuarse a las necesidades de cada uno.
  
 %------------------------------------------------------------------
 \section{Pictogramas}
 %-------------------------------------------------------------------
 \label{cap2:sec:Pictogramas}
 
-Desarrollado en 1981 por Mayer y Johnson se caracteriza por una facilidad de interpretación. Se define pictograma como un signo icónico dibujado y no lingüístico, que representa, un objeto real o un significado.
-Sistema de lenguaje con ayuda o asistida requiere un apoyo físico 
+La utilización de pictogramas para la escritura o pictografía se remonta al neolítico, donde se utilizaban piedras talladas para la representación de signos de cierta semejanza con el objeto que representan. 
+\\ \\
 
+El origen de los sistemas pictogáficos actuales se sitúa en 1981 con Mayer y Johnson y se caracteriza por una facilidad de interpretación. Se define pictograma como un signo icónico dibujado y no lingüístico, que representa un objeto real o un significado.
+Se engloban dentro de los sistemas de lenguaje con ayuda o asistido que requieren un apoyo físico, y se aplican a personas que no están alfabetizadas ya sea por causa de la edad o de una discapacidad. 
+
+
+Características de los pictogramas:
+
+ Referente: aquello que representa, a lo que hace referencia el pictograma.
+
+ Ítems gráficos: formas gráficas que combinadas representan el objeto tomado como referente.
+
+ Comprensión: debe ser comprendido por el mayor número de personas, independientemente de la formación, idioma o discapacidad.
+
+ Legibilidad: el pictograma se debe construir siguiendo unas reglas que permitan mantener la coherencia visual.
+
+Sencillez: tiene que representar únicamente los elementos más importantes, evitando posibles estímulos distractores o información irrelevante.
 %------------------------------------------------------------------
 \section{ARASAAC}
 %-------------------------------------------------------------------
@@ -61,6 +74,17 @@ Sistema de lenguaje con ayuda o asistida requiere un apoyo físico
 
 
 Información relativa al uso de la base de datos ARASAAC
+
+
+
+%-------------------------------------------------------------
+\section{Creación de lenguaje escrito}
+%-------------------------------------------------------------
+\label{cap2:sec:CreaciónLenguaje}
+
+
+Información relativa a la formación de lenguaje natural.
+
 
 %-------------------------------------------------------------
 \section{Servicios Web}
@@ -79,3 +103,4 @@ El WC3 (World Wide Web Consortium) define un servicio Web como:
 }
 
 Los servicios Web fueron  creados para solucionar el problema de la interoperabilidad entre las aplicaciones. Al principio de los 90, apareció el gran problema de integrar aplicaciones diferentes. Una aplicación podía haber sido desarrollada en C++ o Java, y ejecutarse bajo Unix, un PC, o un computador mainframe. No había una forma fácil de intercomunicar dichas aplicaciones. Fué el desarrollo de XML el que hizo posible compartir datos entre aplicaciones con diferentes plataformas hardware a través de la red, o incluso a través de Internet. 
+
