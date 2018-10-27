@@ -105,3 +105,45 @@ El WC3 (World Wide Web Consortium) define un servicio Web como:
 
 Los servicios Web fueron  creados para solucionar el problema de la interoperabilidad entre las aplicaciones. Al principio de los 90, apareció el gran problema de integrar aplicaciones diferentes. Una aplicación podía haber sido desarrollada en C++ o Java, y ejecutarse bajo Unix, un PC, o un computador mainframe. No había una forma fácil de intercomunicar dichas aplicaciones. Fué el desarrollo de XML el que hizo posible compartir datos entre aplicaciones con diferentes plataformas hardware a través de la red, o incluso a través de Internet. 
 
+\subsection{Tipos de servicios Web}
+A nivel técnico, los servicios Web pueden implementarse de varias formas. En este sentido se pueden distinguir dos tipos, también denominados como servicios Web "grandes".
+
+\begin{itemize}
+ \item Servicios Web SOAP. Estos servicios utilizan el lenguaje XML para poder comunicarse utilizando el protocolo SOAP (Simple Object Access Protocol), este lenguaje es usado tanto para definir la arquitectura como el formato de los mensajes. Estos tipos de servicios deben contener un lenguaje legible para la máquina con la descripción de operaciones ofrecidas pos el servicio escrito en WSDL (Web Services Description Language), el cuál está basado también en XML con el fin de definir interfaces sintácticamente.
+ 
+  \item Servicios Web Restfull (Representational State Transfer Web Services). Los  servicios Restfull son más adecuados para integraciones báscicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
+  Los servicios Web Restfull utilizan muy conocidos como SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura la cuál podríamos llamar "ligera", ya que consiguen utilizar herramientas mínimas para formar estos servicios. Por ello, el desarrollo de este tipo de servicios son baratos y su adaptación es poco costosa.  
+\end{itemize}
+
+\subsection{Arquitectura servicios Web}
+En una arquitectura de Servicios Web se pueden distinguir tres partes fundamentales para el establecimiento de la comunicación.
+
+\begin{itemize}
+  \item Proveedor de servicios web. Es el encargado de enviar al \textbf{Publicador del servicio} un fichero WSDL con la información báscica de dicho servicio.
+   \item Publicador del servicio. Una vez la información llega al publicador este descubre quien es el \textbf{Proveedor} (protocolo WSDL), y se pone en contacto con él (protocolo SOAP).
+   \item Proveedor del servicio. Acepta la petición del servicio y envía los datos estructurados en formato XML usando SOAP.  
+\end{itemize}
+
+\subsection{Ventajas de los servicios Web}
+Las tres principales ventajas para usar estos servicios son:
+\begin{itemize}
+  \item Ayudan a mejorar la conexión y operabilidad entre dos aplicaciones software sin importar sus propiedades o sino comparten plataforma de instalación.
+  \item Favorecen los protocolos y estándares basados en texto, ya que estos facilitan acceder y comprender su contenido.
+  \item Permiten y facilitan que software y servicios de diferentes compañías puedan combinar formando un servicio funcional.      
+\end{itemize}
+
+\subsection{Inconvenientes de los servicios Web}
+En cambio las tres desventajas de los servicios serían:
+\begin{itemize}
+  \item Las transacciones que llevan consigo estos servicios están mucho menos desarrolladas que otros estándares abiertos.
+  \item Su rendimiento es bajo comparado con otros modelos de computación distribuida, debido sobre todo a adoptar un formato basado en texto.
+  \item Al estar muy ligados con HTTP, las medidas de seguridad que tratan de bloquear la comunicación entre programas se pueden burlar fácilmente.
+\end{itemize} 
+
+\subsection{Razones para crear servicios Web}
+El motivo más importante y principal para usar los servicios web es que se pueden utilizar HTTP sobre sobre Transmission Control Protocol (TCP)en el puerto 80, recordemos que este puerto es muy importante ya que es el único que no ser encuentra cerrado por firewalls, por tanto no son bloqueados.
+
+Una segunda razón también muy importante fue la llegada de SOAP, ya que anteriormente no existían buenas interfaces para acceder a las funcionalidades de otras computadoras de red.
+
+Por último, los servicios Web son muy prácticos ya que añaden una gran independencia entre las aplicaciones del propio servicio y de las que se usan de él. Este hecho es fundamental, ya que los cambios que se produzcan sobre uno de ellos no tienen porque afectar al otro.
+ 
