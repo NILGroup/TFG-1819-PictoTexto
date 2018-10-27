@@ -15,3 +15,24 @@
 
 Información sobre la biblioteca SimpleNLG-ES.  
 
+
+
+%-------------------------------------------------------------
+\section{Django}
+%-------------------------------------------------------------
+\label{cap3:sec:Django}
+
+\subsection{¿Qué es Django?}
+Es un framework de desarrollo web \footnote{conjunto de componentes que ayudan a desarrollar sitios web más rápido y cómodo} de código abierto escrito en python en su totalidad, además respetando el patrón de diseño conocido como modelo-vista-controlador. La meta principal de esta aplicación es facilitar la creación de sitios web, para Django es muy importante el re-uso de código, la conectividad y el desarrollo rápido.\newline  
+Django da soporte de base de datos permitiendo crear los modelos de datos necesarios y a través de su API administrar y gestionar dicha base de datos. Además concede al usuario la posibilidad de poder ejecutar sus propias consultas SQL.\newline
+En la parte de servicios Web, Django incluye un servidor ligero que ofrece la posibilidad de realizar pruebas y trabajar en una etapa de desarrollo. Para una etapa más de producción sería más conveniente contar con otra aplicación como puede ser Apache.
+
+\subsection{¿Por qué elegimos Django?}
+Debido a las características enumeradas en el apartado anterior y al elegir python como nuestro lenguaje de programación toda la implementación del trabajo se realizará con Django.  \newline
+El framework ofrece un servidor web en el que se podrá crear y gestionar una base de datos. En dicha base de datos estarán contenidas las imágenes de cada pictograma y su correspondiente expresión, es decir permitirá asociar cada palabra con el pictograma que represente su mismo significado.\newline
+Para llevar a cabo todas las consultas necesarias de la base de datos se implementarán los tres métodos de servicio web de tipo Restful: GET, POST, DELETE. El método GET será el más utilizado ya que con él se podrá obtener la mayor información sobre las imágenes y las palabras, dependiendo de la información que se requiera obtener se llamarán a los diferentes métodos.\newline
+Todos estos resultados serán volcados en el servicio web creado a partir de Django, donde mediante un pictograma se conseguirá obtener su significado sintáctico. 
+
+  
+
+
