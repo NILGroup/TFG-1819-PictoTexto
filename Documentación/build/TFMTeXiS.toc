@@ -6,7 +6,7 @@
 \contentsline {chapter}{\numberline {1}Introducci\'on}{3}{chapter.10}
 \contentsline {section}{\numberline {1.1}Motivaci\'on}{3}{section.11}
 \contentsline {subsection}{\numberline {1.1.1}Objetivos}{4}{subsection.12}
-\contentsline {subsubsection}{\numberline {1.1.1.1}Texto de prueba}{4}{subsubsection.13}
+\contentsline {subsection}{\numberline {1.1.2}Estructura del trabajo}{4}{subsection.13}
 \babel@toc {spanish}{}
 \contentsline {chapter}{\numberline {2}Estado de la Cuesti\'on}{5}{chapter.14}
 \contentsline {section}{\numberline {2.1}Sistemas Aumentativos y Alternativos de Comunicaci\'on}{5}{section.15}
