@@ -10,7 +10,7 @@
 \babel@toc {spanish}{}
 \contentsline {chapter}{\numberline {2}Estado de la Cuesti\'on}{5}{chapter.14}
 \contentsline {section}{\numberline {2.1}Sistemas Aumentativos y Alternativos de Comunicaci\'on}{5}{section.15}
-\contentsline {section}{\numberline {2.2}Pictogramas}{6}{section.22}
+\contentsline {section}{\numberline {2.2}Pictogramas}{7}{section.22}
 \contentsline {subsection}{\numberline {2.2.1}ARASAAC}{7}{subsection.28}
 \contentsline {subsection}{\numberline {2.2.2}Lenguaje a trav\'es de pictogramas}{8}{subsection.32}
 \contentsline {section}{\numberline {2.3}Creaci\'on de lenguaje escrito}{8}{section.33}
