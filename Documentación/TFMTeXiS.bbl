@@ -1,0 +1,34 @@
+\begin{thebibliography}{5}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{\'{A}lvarez(2013)}]{LorenzoAlvarezTFG2013}
+{\sc \'{A}lvarez, L.~L.}
+\newblock {\em Los sistemas Alternativos y/o Aumentativos de Comunicaci\'{o}n:
+  la Comunicación Bimodal como recurso en el aula de Audici\'{o}n y
+  Lenguaje\/}.
+\newblock Tfg, Universidad de Valladolid, 2013.
+
+\bibitem[{Dolores Abril~Abad\'{i}n(2010)}]{DoloresAbril2010}
+{\sc Dolores Abril~Abad\'{i}n, A. V.~C., Clara I. Delgado~Santos}.
+\newblock {\em Comunicaci\'{o}n Aumentativa y Alternativa\/}.
+\newblock CEAPAT, 3 edici\'on, 2010.
+
+\bibitem[{Mart\'{i}n~Guerrero(2018)}]{MartinGuerrero2018}
+{\sc Mart\'{i}n~Guerrero, A.}
+\newblock {\em PICTAR: una herramienta de elaboración de contenido para
+  personas con TEA basada en la traducción de texto a pictogramas\/}.
+\newblock Phd, Universidad Complutense de Madrid, 2018.
+
+\bibitem[{McDonald(1985)}]{Eugene1985}
+{\sc McDonald, E.~T.}
+\newblock {\em Sistema Bliss enseñanza y uso\/}.
+\newblock Ministerio de educacion y ciencia, 3 edici\'on, 1985.
+\newblock ISBN 84-369-1176-8.
+
+\bibitem[{Warrick(2010)}]{WarrickAnneCSH2010}
+{\sc Warrick, A.}
+\newblock {\em Comunicaci\'{o}n sin habla\/}.
+\newblock CEAPAT, 3 edici\'on, 2010.
+\newblock ISBN 0-9684186-0-0.
+
+\end{thebibliography}
