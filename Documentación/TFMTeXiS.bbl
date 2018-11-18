@@ -1,4 +1,4 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{8}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{\'{A}lvarez(2013)}]{LorenzoAlvarezTFG2013}
@@ -7,6 +7,12 @@
   la Comunicación Bimodal como recurso en el aula de Audici\'{o}n y
   Lenguaje\/}.
 \newblock Tfg, Universidad de Valladolid, 2013.
+
+\bibitem[{Carlos García~Ibáñez(2004)}]{CarlosGarcia2004}
+{\sc Carlos García~Ibáñez, P.~G., Raquel Hervás~Ballesteros}.
+\newblock Una arquitectura software para el desarrollo de aplicaciones de
+  generación de lenguaje natural.
+\newblock 2004.
 
 \bibitem[{Dolores Abril~Abad\'{i}n(2010)}]{DoloresAbril2010}
 {\sc Dolores Abril~Abad\'{i}n, A. V.~C., Clara I. Delgado~Santos}.
@@ -24,6 +30,22 @@
 \newblock {\em Sistema Bliss enseñanza y uso\/}.
 \newblock Ministerio de educacion y ciencia, 3 edici\'on, 1985.
 \newblock ISBN 84-369-1176-8.
+
+\bibitem[{Robert~Dale(2000)}]{Robert2000}
+{\sc Robert~Dale, H.~S., Herman~Moisl}.
+\newblock {\em Handbook of Natual Language Processing\/}.
+\newblock Ministerio de educacion y ciencia, 2000.
+\newblock ISBN 0-8247-9000-6.
+
+\bibitem[{Vicente et\ al.(2015)Vicente, Barros, Peregrino, Agull\'{a} y
+  Lloret}]{VICENTE2015}
+{\sc Vicente, M.}, {\sc Barros, C.}, {\sc Peregrino, F.~S.}, {\sc Agull\'{a},
+  F.} y {\sc Lloret, E.}
+\newblock {La generaci\'{o}n de lenguaje natural: an\~A!`lisis del estado
+  actual}.
+\newblock {\em {Computaci\'{o}n y Sistemas}\/}, vol.\ 19, p\'aginas 721 -- 756,
+  2015.
+\newblock ISSN 1405-5546.
 
 \bibitem[{Warrick(2010)}]{WarrickAnneCSH2010}
 {\sc Warrick, A.}
