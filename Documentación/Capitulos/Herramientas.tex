@@ -9,11 +9,68 @@
 \end{resumen}
 
 %-------------------------------------------------------------
-\section{SimpleNLG-ES}
+\section{SimpleNLG}
 %-------------------------------------------------------------
-\label{cap3:sec:SimpleNLG-ES}
+\label{cap3:sec:SimpleNLG}
 
-Información sobre la biblioteca SimpleNLG-ES.  
+La herramienta SimpleNLG es una biblioteca Java que proporciona el control directo sobre la en como se construyen y se forman las frases, define un conjunto léxico cubriendo la mayoría de las categorías gramaticales y sus formas de combinarlas.\\
+
+Para la construcción de una estructura sintáctica se ha de tener en cuenta los siguientes aspectos:
+\begin{itemize}
+  \item Inicializar los componentes necesarios y sus elementos léxicos adecuados.
+  \item Utilizar las propiedades de la API.
+  \item Combinar los componentes con las propiedades de la API para fabricar estructuras sintácticas más complejas.
+  \item  Pasa la estructura realizada aplicando las inflexiones necesarias, y los ordena, función de las características, para después devolverlo como un texto ya formado.
+\end{itemize}
+
+Una característica muy importante es la robustez de la herramienta, formas sintácticas no completas o mal formadas no darán fallo, aunque el resultado que obtenga no será muy correcto.\\
+Otra propiedad fue conseguir una separación entre la forma de constituir operaciones morfológicas y las operaciones sintácticas. La biblioteca léxica integrada ofrece un generador con amplia cobertura morfológica y diferente a los componentes sintácticos. Esto lo hace muy eficaz para operaciones que no requieran de una gran dificultad sintáctica.
+
+\subsection{Objetivos de la comunicación SimpleNLG}
+La herramienta NLG tiene como fin producir texto un comprensible para el usuario. La mayoría de estos sistemas siguen un proceso para la formación de frases similar compuesto por tres componentes conectadas entre sí. Estas tres fases son (Figura \ref{fig:picto}):
+\figura{Bitmap/Herramientas/NLG}{width=300px}{fig:picto}{Sistema GLN definido por Raiter y Dale.} 
+
+\textbf {Planificador del documento}
+\begin{itemize}
+  \item \underline {Determinación del contenido}: Elige que tipo de información saldrá como resultado, dependiendo del tipo de de público objetivo, la información que se le propondrá como entrada y de otras restricciones posibles.
+  \item \underline {Estructura del documento}: Toma la decisión de como deben agruparse los trozos que se han introducido en la entrada, y el orden en el que saldrán.
+\end{itemize}
+\textbf {Microplanificación}
+\begin{itemize} 
+  \item \underline {Lexicalización}: Deciden las palabras específicas para expresar el contenido. En este apartado se encargan de elegir los nombres, verbos, adjetivos... que aparecerán en el texto.
+  \item \underline { Expresiones de referencia}: Decide las expresiones que se deben utilizar para hacer referencia a determinadas palabras, es decir, existen algunas expresiones que pueden ser denominadas de diferentes maneras, por ejemplo:
+  \begin{itemize}
+    \item 11/2018
+    \item Noviembre
+    \item Noviembre del año 2018.
+  \end{itemize} 
+  \item \underline {Agregación}: Decide cómo las estructuras obtenidas del planificador del documento deben ser clasificadas dentro de un párrafo u oración.
+\end{itemize}
+\textbf {Realización}
+\begin{itemize}
+  \item \underline {lingüística}: Utiliza las reglas gramaticales para convertir las representaciones abstractas en un texto real.
+  \item \underline {estructural}: Convierte frases y párrafos en elementos marcados cuando se mostrará el texto. 
+\end{itemize}
+
+\subsection{Generación de textos SimpleNLG}
+Como hemos mencionado anteriormente SimpleNLG es una librería de java por tanto es un fichero ".jar" que tiene que ser importado dentro del proyecto donde se va a utilizar.\\
+Una vez importando dentro del proyecto se puede empezar a escribir código de la aplicación utilizando la API que proporciona SimpleNLG. Ofrece diferentes opciones de crear frases desde las más simples hasta las más elaboradas.  
+
+\subsection{Generación de frases sencillas} 
+La forma más sencilla en la que la herramienta SimpleNLG es una cadena de salida igual que la cadena que le entra de entrada. Por ejemplo \footnote{https://github.com/citiususc/SimpleNLG-ES/wiki/SecciC3B3n-III-E28093-Primeros-pasos}:
+El código SimpleNLG para conseguirlo será el siguiente:
+\begin{itemize}
+  \item NLGElement s1 = nlgFactory.createSentence("mi perro es feliz");
+\end{itemize}
+Ahora necesitamos usar el Realiser para generar la salida de la cadena:
+\begin{itemize}
+  \item String output = realiser.realiseSentence(s1);
+  \item System.out.println(output);
+\end{itemize}
+El resultado es:
+\begin{itemize}
+  \item mi perro es feliz
+\end{itemize} 
 
 
 

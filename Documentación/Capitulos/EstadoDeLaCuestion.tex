@@ -169,21 +169,22 @@ Información relativa a la formación de lenguaje natural.
 %-------------------------------------------------------------
 \label{cap2:sec:ServiciosWeb}
 
-
-	Un servicio web es un componente accesible mediante peticiones Web estándar tales como GET o POST. Normalmente se denomina servicio web a una colección de procedimientos accesibles desde Internet. La gran ventaja de los servicios web es que al acceder desde el navegador a un servicio web este nos devuelve una pagina web con un formato estándar como puede ser XML.
-\\	
-El WC3 (World Wide Web Consortium) define un servicio Web como:
+El WC3 (World Wide Web Consortium) define un servicio Web como \footnote{http://www.jtech.ua.es/j2ee/publico/servc-web-2012-13/sesion01-apuntes.html}:
 \\
 \\
 \textit{
-	Un servicio web es un sistema software diseñado para soportar la interacción máquina-a-máquina, a través de una red, de forma interoperable. Cuenta con una interfaz descrita en un formato procesable por un equipo informático (específicamente en WSDL), a través de la que es posible interactuar con el mismo mediante el intercambio de mensajes SOAP, típicamente transmitidos usando serialización XML sobre HTTP conjuntamente con otros estándares web.
+	Un sistema software diseñado para soportar la interacción máquina-a-máquina, a través de una red, de forma interoperable. Cuenta con una interfaz descrita en un formato procesable por un equipo informático (específicamente en WSDL), a través de la que es posible interactuar con el mismo mediante el intercambio de mensajes SOAP, típicamente transmitidos usando serialización XML sobre HTTP conjuntamente con otros estándares web.
 \\	
 }
 
+	Un servicio web es un componente accesible mediante peticiones Web estándar tales como GET o POST. Normalmente se denomina servicio web a una colección de procedimientos accesibles desde Internet. La gran ventaja de los servicios web es que al acceder desde el navegador a un servicio web este nos devuelve una pagina web con un formato estándar como puede ser XML.	
+
 Los servicios Web fueron  creados para solucionar el problema de la interoperabilidad entre las aplicaciones. Al principio de los 90, apareció el gran problema de integrar aplicaciones diferentes. Una aplicación podía haber sido desarrollada en C++ o Java, y ejecutarse bajo Unix, un PC, o un computador mainframe. No había una forma fácil de intercomunicar dichas aplicaciones. Fué el desarrollo de XML el que hizo posible compartir datos entre aplicaciones con diferentes plataformas hardware a través de la red, o incluso a través de Internet. 
 
-\subsection{Tipos de servicios Web}
-A nivel técnico, los servicios Web pueden implementarse de varias formas. En este sentido se pueden distinguir dos tipos, también denominados como servicios Web "grandes".
+\figura{Bitmap/EstadoDeLaCuestion/serviciosWeb}{width=300px}{fig:picto}{Estructura servicios Web.}
+
+
+A nivel técnico, los servicios Web pueden implementarse de varias formas. En este sentido se pueden distinguir dos tipos.
 
 \begin{itemize}
  \item Servicios Web SOAP. Estos servicios utilizan el lenguaje XML para poder comunicarse utilizando el protocolo SOAP (Simple Object Access Protocol), este lenguaje es usado tanto para definir la arquitectura como el formato de los mensajes. Estos tipos de servicios deben contener un lenguaje legible para la máquina con la descripción de operaciones ofrecidas pos el servicio escrito en WSDL (Web Services Description Language), el cuál está basado también en XML con el fin de definir interfaces sintácticamente.
@@ -192,8 +193,7 @@ A nivel técnico, los servicios Web pueden implementarse de varias formas. En est
   Los servicios Web Restfull utilizan muy conocidos como SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura la cuál podríamos llamar "ligera", ya que consiguen utilizar herramientas mínimas para formar estos servicios. Por ello, el desarrollo de este tipo de servicios son baratos y su adaptación es poco costosa.  
 \end{itemize}
 
-\subsection{Arquitectura servicios Web}
-En una arquitectura de Servicios Web se pueden distinguir tres partes fundamentales para el establecimiento de la comunicación.
+En una arquitectura de Servicios Web se pueden distinguir tres partes fundamentales para el establecimiento de la comunicación \footnote{http://www.jtech.ua.es/j2ee/publico/servc-web-2012-13/sesion01-apuntes.html}: 
 
 \begin{itemize}
   \item Proveedor de servicios web. Es el encargado de enviar al \textbf{Publicador del servicio} un fichero WSDL con la información báscica de dicho servicio.
@@ -202,25 +202,46 @@ En una arquitectura de Servicios Web se pueden distinguir tres partes fundamenta
 \end{itemize}
 
 \subsection{Ventajas de los servicios Web}
-Las tres principales ventajas para usar estos servicios son:
+Las tres principales ventajas para usar estos servicios son \footnote{https://sites.google.com/site/preyectodetics/home/servicios-web}:
 \begin{itemize}
   \item Ayudan a mejorar la conexión y operabilidad entre dos aplicaciones software sin importar sus propiedades o sino comparten plataforma de instalación.
   \item Favorecen los protocolos y estándares basados en texto, ya que estos facilitan acceder y comprender su contenido.
-  \item Permiten y facilitan que software y servicios de diferentes compañías puedan combinar formando un servicio funcional.      
+  \item Permiten y facilitan que software y servicios de diferentes compañías se puedan combinar formando un servicio funcional.      
 \end{itemize}
 
 \subsection{Inconvenientes de los servicios Web}
-En cambio las tres desventajas de los servicios serían:
+Las tres principales desventajas de los servicios serían  \footnote{http://fabioalfarocc.blogspot.com/}:
 \begin{itemize}
   \item Las transacciones que llevan consigo estos servicios están mucho menos desarrolladas que otros estándares abiertos.
   \item Su rendimiento es bajo comparado con otros modelos de computación distribuida, debido sobre todo a adoptar un formato basado en texto.
   \item Al estar muy ligados con HTTP, las medidas de seguridad que tratan de bloquear la comunicación entre programas se pueden burlar fácilmente.
 \end{itemize} 
 
-\subsection{Razones para crear servicios Web}
-El motivo más importante y principal para usar los servicios web es que se pueden utilizar HTTP sobre sobre Transmission Control Protocol (TCP)en el puerto 80, recordemos que este puerto es muy importante ya que es el único que no ser encuentra cerrado por firewalls, por tanto no son bloqueados.
+%-------------------------------------------------------------
+\section{Sistema de traducción texto-picto}
+%-------------------------------------------------------------
+\label{cap2:sec:Sistema de traducción texto-picto}
+Nos centraremos en los sistemas de traducción texto a picto, ya que de los sistemas contrarios, de picto a texto no hemos logrado encontrar ninguna información. Por lo que entendemos que actualmente no se dispone de una tecnología capaz de procesar la realización de frases sintácticas partiendo de pictogramas.  
 
-Una segunda razón también muy importante fue la llegada de SOAP, ya que anteriormente no existían buenas interfaces para acceder a las funcionalidades de otras computadoras de red.
+A continuación trataremos los principales sistemas de este tipo de traducción:
+\subsection{Araword}
+Araword es una aplicación gratuita realizada por Arasacc(Portal Aragonés de la Comunicación Aumentativa y Alternativa), que consiste que permite la escritura simultanea de texto a pictograma \footnote{http://www.arasaac.org/software.php}.
 
-Por último, los servicios Web son muy prácticos ya que añaden una gran independencia entre las aplicaciones del propio servicio y de las que se usan de él. Este hecho es fundamental, ya que los cambios que se produzcan sobre uno de ellos no tienen porque afectar al otro.
- 
+Esta herramienta tiene como objetivo principal crear un procesador de textos, para facilitar la elaboración de materiales y adaptación de textos para aquellas personas con dificultades para comunicarse con otras. Se podría parecer a un word, el cuál presenta un documento en blanco donde se va escribiendo frases y se van traduciendo a pictogramas (Figura \ref{fig:picto}).
+\figura{Bitmap/EstadoDeLaCuestion/Araword}{width=300px}{fig:picto}{Ejemplo Araword.}
+
+\subsection{PictoTraductor}
+PictoTraductor es una herramienta pensada y desarrollada para facilitar la comunicación con personas que poseen dificultades mediante el lenguaje oral y que se comunican más correctamente mediante el uso de imágenes.Principalmente está pensado y dirigido para padres y profesionales, para poder comunicarse de una manera rápida y fácil.\\
+
+La interfaz que presenta la página web consta de una barra de búsqueda en la que se introduce el texto que se quiere traducir a imagen. A medida que se va escribiendo una palabra se va mostrando el pictograma que representa esa frase.\\
+
+En cuanto a la funcionalidad esta herramienta es una de las más desarrolladas, destacando la posibilidad para un usuario de registrarse, pudiendo de esta manera personalizar la aplicación como por ejemplo: guardar pictogramas favoritos del usuario, fotografías o imágenes favoritas y compartir algunas de sus traducciones en las redes sociales.
+Pero, hay algunas funcionalidades de esta herramienta que todavía se podrían complementar. La conjunción de tiempos verbales y la búsqueda de algunas palabras las cuales no encuentran una traducción precisa (Figura \ref{fig:picto}). \figura{Bitmap/EstadoDeLaCuestion/pictoTraductor}{width=300px}{fig:picto}{Frase en pictoTraductor}
+
+\subsection{Pictar}
+Pictar(mencionar citep) es una aplicación web en la que se puede diferenciar dos funcionalidades diferentes para ayudarnos en la formación de frases mediante pictogramas.
+\begin{itemize}
+  \item Un primer apartado funcional en el que la aplicación se parece mucho a las mencionadas anteriormente, en la que el usuario introduce el texto que desea traducir y al pulsar el botón de buscar 
+se le genera los pictogramas adecuados para la frase introducida.
+  \item El segundo apartado funcional es el que hace más diferente a esta herramienta de las otras, esta parte se compone por un buscador de pictogramas, donde el usuario introduce una palabra para encontrar su traducción en imagen. Y una segunda parte compuesta por un tablero en el cual se van poniendo los pictogramas encontrados en el buscador mencionado anteriormente. Con el fin de conseguir mediante la sucesión de pictogramas traducirlo a lenguaje de texto.   
+\end{itemize}
