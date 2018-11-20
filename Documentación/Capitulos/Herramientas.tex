@@ -13,7 +13,7 @@
 %-------------------------------------------------------------
 \label{cap3:sec:SimpleNLG}
 
-La herramienta SimpleNLG es una biblioteca Java que proporciona el control directo sobre la en como se construyen y se forman las frases, define un conjunto léxico cubriendo la mayoría de las categorías gramaticales y sus formas de combinarlas.\\
+La herramienta SimpleNLG es una biblioteca Java que proporciona el control directo sobre la en como se construyen y se forman las frases, define un conjunto léxico cubriendo la mayoría de las categorías gramaticales y sus formas de combinarlas \citep{JozefTrzpis2015}.\\
 
 Para la construcción de una estructura sintáctica se ha de tener en cuenta los siguientes aspectos:
 \begin{itemize}
@@ -60,7 +60,7 @@ Una vez importando dentro del proyecto se puede empezar a escribir código de la 
 La forma más sencilla en la que la herramienta SimpleNLG es una cadena de salida igual que la cadena que le entra de entrada. Por ejemplo \footnote{https://github.com/citiususc/SimpleNLG-ES/wiki/SecciC3B3n-III-E28093-Primeros-pasos}:
 El código SimpleNLG para conseguirlo será el siguiente:
 \begin{itemize}
-  \item NLGElement s1 = nlgFactory.createSentence("mi perro es feliz");
+  \item NLGElement s1 = nlgFactory.createSentence(''mi perro es feliz'');
 \end{itemize}
 Ahora necesitamos usar el Realiser para generar la salida de la cadena:
 \begin{itemize}
@@ -72,6 +72,42 @@ El resultado es:
   \item mi perro es feliz
 \end{itemize} 
 
+\subsection{Generación de frases complejas}
+En el apartado anterior hemos visto la manera de fabricar frases sencillas en la que es necesaria una mayor carga de trabajo por parte del usuario. Pero se puede conseguir que sea la propia librería quien se ocupe de ello. SimpleNLG es una herramienta muy flexible, y por esta razón existen diferentes maneras para generar la misma frase.
+Además, también es capaz de entender lo que es una frase utilizando la clase llamada SPhraseSpec. Ésta es accesible a través de NLGFactory, utilizando el método createClause.\\ Los conceptos de 'frase verbal', 'frase nominal', 'frase preposicional', 'frase adjetiva' y 'frase adverbial' también se pueden acceder a través de NLGFactory, usando createVerbPhrase, createNounPhrase, createPrepositionPhrase , etc \footnote{https://github.com/citiususc/SimpleNLG-ES/wiki/SecciC3B3n-III-E28093-Primeros-pasos}.\\
+Para construir las oraciones utilizando SimpleNLG, se podrían seguir estos pasos:
+\begin{itemize}
+  \item Crear una instancia de NLGFactory.
+  \item Crear la oración utilizando el método createClause de NLGFactory.
+  \item Crear un verbo, sujeto y complemento directo usando los métodos createVerbPhrase y createNounPhrase de NLGFactory.
+  \item Si se necesita, se pueden crear frases preposicionales, frases adjetivas y adverbios utilizando los métodos createPrepositionPhrase, createAdjectivePhrase y createAdverbPhrase de NLGFactory. 
+  \item Indicar el papel que las partes del discurso desempeñarán en la frase. Por ejemplo, especificar que una frase sustantiva es el sujeto de la oración y otra frase nominal es el complemento directo, utilizando setSubject y setObject.
+  \item Crear un objeto SimpleNLG llamado Realizador.
+  \item Pedir al Realizador que transforme la instancia de SPhraseSpec en una cadena sintácticamente correcta.
+\end{itemize}
+Una vez seguidos todos estos pasos, se obtiene como resultado una cadena de texto compuesta por una frase u oración, además de poder ser tratada como cualquier otra cadena de texto de Java.
+Cabe mencionar que a no ser de que se quieran construir frases más elaboradas, no es necesario detallar que un sustantivo es un NPPhraseSpec o que un verbo es una VPPhraseSpe.
+En la siquiente tabla se muestra las partes principales con las que simpleNGL puede generar diferentes tipos de frases sintácticas (Figura \ref{fig:picto}).
+\figura{Bitmap/Herramientas/desgloseNLG}{width=300px}{fig:picto}{Tabla ejemplo composición frase.}\\
+
+A continuación utilizaremos la frase del ejemplo anterior ''mi perro es feliz'' para observar como se combina las diferentes partes de la oración. Como se ha indicado, se hace uso de la construcción SPhraseSpec que permite definir una frase, ya que SimpleNLG reunirá las partes en una estructura gramatical adecuada. 
+Por lo tanto, una frase se podría construir de la siguiente manera:
+\begin{itemize}
+  \item SPhraseSpec p = nlgFactory.createClause();
+  \item p.setSubject (''mi perro'');
+  \item p.setVerb (''es'');
+  \item p.setObject (''feliz'');
+\end{itemize}
+  
+Este conjunto de llamadas a simpleNLG define los componentes de la frase: un sujeto, un verbo, y un objeto de la oración. Por último,se llama al ''realizador'', que se encargará de juntar estos diferentes componentes y devolverá un texto sintáctica y morfológicamente correcto:
+\begin{itemize}
+  \item Cadena salida = realiser.realiseSentence (p);
+  \item System.out.println (salida); 
+\end{itemize}
+Por tanto, la salida resultante será:
+\begin{itemize}
+  \item mi perro es feliz.    
+\end{itemize}
 
 
 %-------------------------------------------------------------
