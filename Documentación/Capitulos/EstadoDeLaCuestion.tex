@@ -154,11 +154,17 @@ Comúnmente la comunicación con pictogramas se realiza a través de tableros, de m
 
 Una palabra puede tener varios pictogramas, como podemos observar en la Figura \ref{fig:traduccion2} la palabra vamos tiene diferentes pictogramas, ya que la elección del pictograma debe de ser adecuado al usuario, teniendo en cuenta: la complejidad del pictograma, la frase en la que se incluye.
 
-Los verbos carecen de conjugación como podemos observar en la Figura \ref{fig:traduccion3}, de manera que los tiempos verbales: presente, pasado o futuro quedan determinados por otros pictogramas, como podemos observar en la Figura \ref{fig:traduccion2} el tiempo verbal queda determinado por el primer pictograma de la frase,    no pasa lo mismo para la determinar genero y numero donde si existen diferentes variaciones del pictograma, como podemos observar en la figura \ref{fig:traduccion4}. Las frases con pictogramas suelen tener una complejidad reducida, limitándose casi siempre a sujeto verbo y objeto, utilizando solo palabras significativas, por ejemplo en la figura \ref{fig:traduccion1}, podemos observar que la preposición  \textit{a} y el determinante \textit{la}, no tienen un pictograma como tal si no una imagen con la palabra \footnote{www.pictotraductor.com}.
+Los verbos carecen de conjugación como podemos observar en la Figura \ref{fig:traduccion3}, de manera que los tiempos verbales: presente, pasado o futuro quedan determinados por otros pictogramas, como podemos observar en la Figura \ref{fig:traduccion5} que representa diferentes conjugaciones verbales del verbo ir: fuimos, vamos, iremos, el tiempo verbal queda determinado por el primer pictograma de la frase, en la Figura \ref{fig:traduccion5} podemos ver los diferentes pictogramas para hoy, mañana y pasado, estos pictogramas son la forma de dar  tiempo verbal a la frase. Cabe destacar que dado que los pictogramas de verbo carecen de  conjugación tanto en tiempo por esa razón la Figura \ref{fig:traduccion5} y la Figura \ref{fig:traduccion2} aportan el mismo significado.
 \figura{Bitmap/EstadoDeLaCuestion/vamos}{width=300px}{fig:traduccion2}{Diferentes pictogramas con el mismo significado}
 \figura{Bitmap/EstadoDeLaCuestion/conjugacion}{width=300px}{fig:traduccion3}{Ejemplo de verbos conjugados}
-\figura{Bitmap/EstadoDeLaCuestion/generoNumero}{width=300px}{fig:traduccion4}{Ejemplo de diferente genero y numero}
-\figura{Bitmap/EstadoDeLaCuestion/vamos}{width=300px}{fig:traduccion5}{Pictogramas de hoy, mañana, y pasado}
+
+Sin embargo no pasa lo mismo para representar el genero y numero donde si existen diferentes variaciones del pictogramas, como podemos observar en la Figura \ref{fig:traduccion4}, los diferentes pictogramas significan profesor, profesora, profesor y profesoras, dándole una mayor riqueza y exactitud a la frase al otorgar esta diferenciación. Aún así las frases con pictogramas suelen tener una complejidad reducida, limitándose casi siempre a sujeto verbo y objeto, utilizando solo palabras significativas, por ejemplo en la figura \ref{fig:traduccion1}, podemos observar que la preposición  \textit{a} y el determinante \textit{la}, no tienen un pictograma como tal si no una imagen con la palabra \footnote{www.pictotraductor.com}.
+\figura{Bitmap/EstadoDeLaCuestion/generoNumero}{width=300px}{fig:traduccion4}{Pictogramas  para diferente numero y genero}
+\figura{Bitmap/EstadoDeLaCuestion/tiempo}{width=300px}{fig:traduccion5}{Pictogramas de hoy, mañana, y pasado}
+\figura{Bitmap/EstadoDeLaCuestion/conjuncionTemporal}{width=150px}{fig:pictoconjugacion}{Ejemplo de frase con conjunción temporal}
+
+Como hemos dicho anteriormente la comunicación con pictogramas se reduce a palabras significativas, es decir palabras que por si mismas poseen significado y es por está razón por la que determinantes, conjunciones, preposiciones no suelen tener cabida dentro de la comunicación con pictogramas, aunque ciertas conjunciones sobretodo conjunciones temporales que sirven para aportar información si existen dentro de los pictogramas tal y como podemos ver en la Figura \ref{fig:pictoconjugacion}, el primer pictograma significa antes y aporta información sobre cuando debe realizarse la acción definida en el segundo pictograma, en este caso la frase representada seria literalmente antes comer.
+
 
 
 %-------------------------------------------------------------
@@ -176,12 +182,12 @@ Falsamente podemos pensar que lo más importante de la generación del lenguaje es
 
 Existe dos maneras de que un programa informático se comunique con un usuario, la primera forma es a través de mensajes estáticos definidos en el código, este acercamiento si bien es valido, es un sistema cerrado y no flexible en el cual no cabe lugar a la interpretación del lenguaje, la segunda vía es generación de  lenguaje basada en conocimiento o \textit{deep generation} donde es el propio sistema el encargado de generar el lenguaje a través de su conocimiento basándose en el conocimiento lingüístico del que dispone \citep{CarlosGarcia2004} .
 
-Los sistemas generadores de lenguaje natural se pueden clasificar siguiendo diferentes criterios. Si tenemos en cuenta la entrada del sistema.
+Los sistemas generadores de lenguaje natural se pueden clasificar siguiendo diferentes criterios. Si tenemos en cuenta la entrada del sistema los sistemas se pueden clasificar en:
 
 \begin{enumerate}
 
-\item Datos a texto (o D2T), este tipo puede ser muy variado dado que parten de datos que pueden desde numéricos como pueden ser aquellos dato provenientes de sensores, hasta corpus de datos como podría ser la respuesta de una base de datos,  
-\item Texto a texto, este tipo puede englobar desde aplicaciones que tienen como entrada desde textos hasta oraciones, ejemplos de este tipo pueden ser aplicaciones de resúmenes como por ejemplo \textit{" https://resoomer.com/es/ "}.
+\item De datos a texto (o D2T). Se parte de datos que pueden ir desde datos numéricos como pueden ser aquellos dato provenientes de sensores, hasta corpus de datos como podría ser la respuesta de una base de datos,  
+\item Texto a texto ( o T2T). Este tipo puede tener como entrada textos u oraciones. Ejemplos de este tipo pueden ser aplicaciones de resúmenes como por ejemplo \textit{" Resoomer \footnote{https://resoomer.com/es/} "}.
 
 \end{enumerate}
 
