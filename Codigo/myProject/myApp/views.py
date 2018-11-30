@@ -1,7 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
+import json
 
+import requests
 # Create your views here.
 
 """
@@ -25,5 +27,17 @@ def login(request):
     context = {
             'message': cadena
     }
-    return render(request,'myApp/index.html', context)
 
+    headers = {'content-type': 'application/json', 'connection': 'keep-alive', 'Accept': 'application/json'}
+
+    data = {"subject":"Julian", "verb":"comer", "object":"croqueta"};
+    r = requests.post("http://localhost:8080/apiNLG/createASimplePhrase", data=json.dumps(data), headers=headers)
+
+    if r.status_code == 200:
+        context = {
+                'message': r.text
+        }
+    else:
+        print(r.status_code)
+
+    return render(request,'myApp/index.html', context)
