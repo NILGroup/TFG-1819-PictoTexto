@@ -1,8 +1,8 @@
 \begin{thebibliography}{13}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
-\bibitem[{Abril Abad\'{i}n~D.(2010)}]{DoloresAbril2010}
-{\sc Abril Abad\'{i}n~D., V. C.~A., I. Delgado Santos~C.}
+\bibitem[{Abril~Abad\'{i}n(2010)}]{DoloresAbril2010}
+{\sc Abril~Abad\'{i}n, V. C.~A., I. Delgado Santos~C.}
 \newblock {\em Comunicaci\'{o}n Aumentativa y Alternativa\/}.
 \newblock CEAPAT, 3º edici\'on, 2010.
 
