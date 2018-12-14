@@ -1,4 +1,4 @@
-\begin{thebibliography}{13}
+\begin{thebibliography}{14}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{Abril~Abad\'{i}n(2010)}]{DoloresAbril2010}
@@ -21,6 +21,12 @@
 \newblock Colecci{\'o}n Rehabilitaci{\'o}n. Instituto Nacional de Servicios
   Sociales, 1990.
 \newblock ISBN 9788486852566.
+
+\bibitem[{Bertola~L{\'o}pez(2018-02-15)}]{Bertola2018}
+{\sc Bertola~L{\'o}pez, E.}
+\newblock {\em An{\'a}lisis emp{\'i}­rico de las caracter{\'a}­sticas formales
+  de los s{\'i}­mbolos pictogr{\'a}ficos Arasaac\/}.
+\newblock Tesis Doctoral, 2018-02-15.
 
 \bibitem[{Carlos García~Ibáñez(2004)}]{CarlosGarcia2004}
 {\sc Carlos García~Ibáñez, P.~G., Raquel Hervás~Ballesteros}.
