@@ -28,17 +28,17 @@
   de los s{\'i}­mbolos pictogr{\'a}ficos Arasaac\/}.
 \newblock Tesis Doctoral, 2018-02-15.
 
-\bibitem[{Carlos García~Ibáñez(2004)}]{CarlosGarcia2004}
-{\sc Carlos García~Ibáñez, P.~G., Raquel Hervás~Ballesteros}.
-\newblock Una arquitectura software para el desarrollo de aplicaciones de
-  generación de lenguaje natural.
-\newblock 2004.
-
 \bibitem[{Dale et\ al.(2000)Dale, Moisl y Somers}]{Robert2000}
 {\sc Dale, R.}, {\sc Moisl, H.} y {\sc Somers, H.}
 \newblock {\em Handbook of Natural Language Processing\/}.
 \newblock Taylor \& Francis, 2000.
 \newblock ISBN 9780824790004.
+
+\bibitem[{García~Ibáñez(2004)}]{CarlosGarcia2004}
+{\sc García~Ibáñez, P.~G., Raquel Hervás~Ballesteros}.
+\newblock Una arquitectura software para el desarrollo de aplicaciones de
+  generación de lenguaje natural.
+\newblock 2004.
 
 \bibitem[{Hehner(1985)}]{hehner1985}
 {\sc Hehner, B.}

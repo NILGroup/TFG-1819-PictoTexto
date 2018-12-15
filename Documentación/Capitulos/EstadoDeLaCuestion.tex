@@ -316,6 +316,54 @@ La búsqueda de artículos y preposiciones es muy parecida a la de PictoTraductor,
 Esta aplicación además ofrece la posibilidad de buscar pictogramas. El usuario introduce una palabra y en la parte inferior aparecen los pictogramas encontrados en el buscador.
 Una vez encontrados los pictogramas deseados, el usuario puede moldearlos a su gusto arrastrando con el ratón el pictograma a la rejilla de edición. En ella se podrá desde cambiar el color del pictograma hasta poder añadir texto debajo de ellos con su significado, como se puede ver en la (Figura\ref{fig:pictar2}) \figura{Bitmap/EstadoDeLaCuestion/pictar2}{width=300px}{fig:pictar2}{Ejemplo buscador y editor pictar}.
 
+%-------------------------------------------------------------
+\section{Metodología de trabajo}
+%-------------------------------------------------------------
+\label{cap3:sec:Metodología de trabajo}
+
+A lo largo de la siguiente sección expondremos como hemos decidido trabajar, organización, realización de pruebas, sistema de control de versiones...
 
 
+\subsection{Metodología ágil}
 
+La mayor limitación que nos hemos encontrado a la hora de aplicar una metodología de trabajo es el numero de personas necesarias para su aplicación, por la metodologías ágiles como Scrum\footnote{https://proyectosagiles.org/que-es-scrum/} necesitan de 5 a 9 personas.
+
+Dada la naturaleza del proyecto, hemos decido escoger ciertas y los impedimentos hemos decidido tener una visión orientada hacía las metodologías ágiles, cogiendo diferentes características de las metodologías ágiles.
+
+\begin{itemize}
+
+\item Abierto al cambio, dada la naturaleza del proyecto, el desconocimiento de su viabilidad y de ser viable el modo de desarrollarlo, por esto la visión debía de estar abierta al cambio.
+\item Comunicación continua, en los procesos ágiles está comunicación se realiza con el cliente, dada la naturaleza del proyecto la comunicación es con los tutores, esta comunicación ha sido constante desde el principio del proyecto con el fin de garantizar un nivel de calidad en el producto y asesoramiento en la realización.
+\item Adaptativa, al ser un proyecto de investigación es necesario que el proyecto se pueda adaptar fácilmente a cambios de requisitos, uso de tecnologías nuevas etc.
+\item Entregas constantes, para intentar asegurar la correcta resolución del proyecto se han realizado entregas constantes tanto de memoria como de código.
+\item Se otorga valor al producto entrega tras entrega,  cada una de las entregas anteriores no solo sirve para revisión de entregas anteriores si no también para añadir valor al proyecto ya sea mediante la adición en la memoria, al código o ambas.
+
+\end{itemize}
+
+Muchas de las metodologías ágiles hacen uso de un tablero, tal y como podemos observar en la Figura \ref{fig:scrumBoard} para representar el estado actual del proyecto, y dado ciertas limitaciones como no trabajar en el mismo sitio, ni con el mismo horario, necesitábamos de un tablero que nos permitiera de una manera rápida saber el estado actual del trabajo, y en que está trabajando cada miembro.
+
+En la Figura\ref{fig:ourBoard} podemos ver nuestro tablero agile, donde aparecen las siguientes columnas:
+\begin{itemize}
+\item To Do: donde están apuntadas todas las cosas que se deben hacer.
+\item In Progress: en esta columna están apuntadas todas las tareas que se están desarrollando además de mostrar quien la está haciendo.
+\item Ready For Revision: todas las tareas finalizadas por un miembro del equipo pasan a está columna para ser revisadas por el otro.
+\item In Revisión: tareas que se están revisando, para validar su corrección antes de la siguiente reunión.
+\item Done: en está columna se agrupan todas aquellas tareas que ya están terminadas y revisadas.
+\end{itemize}
+
+\figura{Bitmap/EstadoDeLaCuestion/taskBoard}{width=150px}{fig:scrumBoard}{Ejemplo de tablero Scrum}.
+\figura{Bitmap/EstadoDeLaCuestion/ourBoard}{width=450px}{fig:ourBoard}{Tablero agile del proyecto}.
+
+El trabajo se organiza de reunión en reunión, haciendo una estimación del tiempo que se tarda en cumplir todas aquellas tareas que han surgido en la reunión como si de Sprint de Scrum se tratase\footnote{https://proyectosagiles.org/ejecucion-iteracion-sprint/}.
+
+\subsection{Control de versiones: GitHub}
+
+Dada la naturaleza cambiante del proyecto, su duración entre otros factores es necesario además de suponer una gran ayuda una modo de mantener un control sobre las diferentes versiones tanto del código como de la documentación.
+
+El sistema elegido ha sido GitHub dado que nos permitia tener el proyecto en privado\footnote{https://help.github.com/articles/making-a-public-repository-private/} algo necesario dado que es un proyecto de final de grado.  GitHub funciona bajo git\footnote{https://git-scm.com/}, un software para el control de versiones creado por Linus Torvalds\footnote{\url{https://es.wikipedia.org/wiki/Linus_Torvalds}}.
+
+Git sirve para mantener un regristro de todos los cambios que sufre un archivo y genera un árbol donde en cada nodo se almacenan los cambios por archivo y las diferentes ramas\footnote{\url{https://git-scm.com/book/en/v1/Git-Branching-What-a-Branch-Is}} en la Figura\ref{fig:gitTree}, 
+podemos ver un ejemplo de árbol de Git.
+\figura{Bitmap/EstadoDeLaCuestion/gitTree}{width=150px}{fig:gitTree}{Ejemplo de árbol de Git} 
+La implementación que hace GitHub de Git nos permite utilizar todos los beneficios de Git, en un entorno amigable, fácil de usar en el que ya tenemos experiencia previa, además hemos decidido utilizar la versión de escritorio\footnote{https://desktop.github.com/}.  por su comodidad y facilidad de uso, tal y como podemos ver en la Figura\ref{fig:gitApp} nos permite ver los cambios, hacer commit, push y pull de una manera rápida y sencilla\footnote{https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html}.
+\figura{Bitmap/EstadoDeLaCuestion/gitApp}{width=400px}{fig:gitTree}{Aplicación GitHub de escritorio} 
