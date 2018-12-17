@@ -22,12 +22,10 @@ def index(request):
     return HttpResponse(template.render(context,request))
 
 def login(request):
-
-
     headers = {'content-type': 'application/json', 'connection': 'keep-alive', 'Accept': 'application/json'}
-
+    context={}
     data = {"subject":request.POST['subject'], "verb":request.POST['verb'], "object":request.POST['object']};
-    r = requests.post("http://localhost:8080/apiNLG/createASimplePhrase", data=json.dumps(data), headers=headers)
+    r = requests.post("http://127.0.0.1:8080/apiNLG/createSimplePhrase", data=json.dumps(data), headers=headers)
 
     if r.status_code == 200:
         context = {
