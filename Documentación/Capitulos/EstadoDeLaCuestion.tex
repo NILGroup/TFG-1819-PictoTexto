@@ -201,33 +201,92 @@ Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo e
 
 \label{cap2:sec:SimpleNLG}
 
-La herramienta SimpleNLG es una biblioteca Java que permite generar y transformar texto al lenguaje natural, tiene como fin producir texto comprensible para el usuario, para ello posee tres componentes conectadas entre sí \citep{JozefTrzpis2015}.\\
+La herramienta SimpleNLG-ES es una biblioteca Java que permite generar y transformar texto. Tiene como fin producir texto comprensible para el usuario, para ello posee tres componentes conectadas entre sí \citep{Trzpis2015}.\\
+Al ser una biblioteca es necesario escribir un programa Java que haga uso de las clases de SimpleNLG-ES. Estas clases permiten especificar tanto el sujeto de una oración, como el verbo, así como el complemento directo y los complementos adicionales. Además los métodos SimpleNLG-ES pueden usarse también para indicar tanto el tiempo pasado como la forma compuesta de los verbos.
 
-\textbf {Planificador del documento}
-Es el primer componente en donde se escoge el tipo de información que se generará en el texto.
-\begin{itemize}
-  \item \underline {Determinación del contenido}: Elige que tipo de información saldrá como resultado, dependiendo del tipo de de público objetivo, la información que se le propondrá como entrada y de otras restricciones posibles, por ejemplo no saldrá el mismo tipo de información si el texto está pensado para niños o para adultos.
-  \item \underline {Estructura del documento}: Toma la decisión de como deben agruparse los trozos que se han introducido en la entrada, y el orden en el que saldrán, para que el texto tenga un sentido la estructura será sujeto, verbo y complementos.
-\end{itemize}
-\textbf {Microplanificador}
-Es la segunda fase en la producción de texto, se encarga  de clasificar las diferentes partes del texto para poder dotarle de un significado completo.
-\begin{itemize} 
-  \item \underline {Lexicalización}: Deciden las palabras específicas para expresar el contenido. En este apartado se encargan de elegir los nombres, verbos, adjetivos... que aparecerán en el texto, es donde se  decide que perro es sustantivo, ir es un verbo, etc.
-  \item \underline { Expresiones de referencia}: Decide las expresiones que se deben utilizar para hacer referencia a determinadas palabras, es decir, existen algunas expresiones que pueden ser denominadas de diferentes maneras, por ejemplo:
-  \begin{itemize}
-    \item 11/2018
-    \item Noviembre
-  \end{itemize} 
-  \item \underline {Agregación}: Establece las combinaciones que se han de realizar entre los elementos para dar lugar a oraciones y, por tanto, completa el orden en el que se deben expresar.
-\end{itemize}
-\textbf {Realización}
-Es el componente final en donde se encarga de realizar la oración final una vez ya clasificada en las otras dos fases anteriores.  
-\begin{itemize}
-  \item \underline {Lingüística}: Utiliza las reglas gramaticales morfológicas y sintácticas para convertir las representaciones abstractas en un texto real.
-  \item \underline {Estructural}: Convierte frases y párrafos en elementos marcados cuando se mostrará el texto. 
-\end{itemize}
+Cuando se ha decidido el contenido de la oración, SimpleNLG-ES juntará las partes de la oración de una forma gramaticalmente correcta y generará una salida. Por ejemplo, su indicamos a SimpleNLG-ES que el sujeto 'mi perro', el verbo 'es' y de complemento 'feliz', el programa sacará como respuesta: 'mi perro es feliz'.
+Como acabamos de ver en el ejemplo SimpleNLG-ES se encarga únicamente de asegurar que la frase creada es correcta gramaticalmente, para eso la herramienta tiene automatizadas algunas tareas para comprobar lo que los sistemas de generación de lenguaje natural necesitan (NLG):
 
+\textbf{''Ortografía:''}:
+\begin{enumerate} 
+\item Insertar espacios en blanco para separar las frases.
+\item Mezclar los signos de puntuación.
+\item Insertar saltos de líneas entre palabras para encajar el texto.
+\item Darle un formato correcto.
+\end{enumerate}
 
+\textbf{''Morfología:''}
+\begin{enumerate}
+\item Genera formas conjugadas, como puede ser el género, número, tiempo verbal o persona.
+\end{enumerate}
+
+\textbf{''Gramática simple:''}
+\begin{enumerate}
+\item Asegura la concordancia entre nombre-verbo.
+\item Crea verbos compuestos bien formados.
+\item SimpleNLG-ES une las partes definidas por el usuario para formar una estructura correcta.
+\end{enumerate}
+
+Es importante recordar que SimpleNLG-ES es una librería y no una aplicación. Esto significa que no se puede ejecutar como un programa Java normal ya que no tiene ni método y módulo principal. Por tanto se necesita crear un programa diferente con clases y métodos.
+
+\subsection{Lexicon}
+Como todos los sistemas de procesamiento del lenguaje natural, SimpleNLG necesita tener información acerca de las palabras que va a utilizar, esta información la proporciona un lexicon, se usa dicho lexicon mediante:
+\begin{enumerate}
+\item Lexicon lexicon = new XMLLexicon();
+\end{enumerate}
+
+Una vez esté creado el lexicon, hay que crear un NLGFactory, objeto que crea la estructura, y un realiser, objeto que transforma las estructuras en texto, se inicializa de la siguiente forma:
+\begin{enumerate}
+\item NLGFactory nlgFactory = new NLGFactory(lexicon);
+\item Realiser realiser = new Realiser(lexicon);
+\end{enumerate}
+
+\subsection{Verbos}
+Por lo general los verbos se deben especificar en infinitivo, pero también aceptará formas conjugadas de los verbos, por ejemplo:
+\begin{enumerate}  
+\item p.setVerb("es");
+\end{enumerate}
+equivale a:  
+\begin{enumerate}  
+\item p.setVerb("ser");
+\end{enumerate}
+
+Sin embargo, en SimpleNLG-ES se pueden conjugar los tiempos verbales: pasado, presente y futuro, por ejemplo partiendo del siguiente código:
+\begin{enumerate}  
+\item SPhraseSpec p = nlgFactory.createClause();
+\item p.setSubject("Mi perro");
+\item p.setVerb("ser");
+\item p.setObject("feliz".);
+\end{enumerate}
+
+Para poder poner el verbo en tiempo pasado, habría que añadir la siguiente linea: 
+\begin{enumerate}  
+\item p.setFeature(Feature.TENSE, Tense.PAST);
+\end{enumerate}
+Esto devolverá la frase:
+\begin{enumerate}  
+\item "Mi perro fue feliz".
+\end{enumerate}
+
+En cambio si queremos indicar un tiempo futuro, sería de esta manera:
+\begin{enumerate}  
+\item p.setFeature(Feature.TENSE, Tense.FUTURE);
+\end{enumerate}
+Devolviendo la frase:
+\begin{enumerate}  
+\item "Mi perro será feliz".
+\end{enumerate}
+
+Además, también se puede añadir la forma negativa al verbo, cogiendo la frase anterior sería:
+\begin{enumerate}  
+\item p.setFeature(Feature.NEGATED, true);
+\end{enumerate}
+Dejando la frase en:
+\begin{enumerate}  
+\item "Mi perro no será feliz".
+\end{enumerate}
+
+Las características TENSE y NEGATED son ejemplos de las caraterísticas que se usan en una SPhraseSpec, pero hay otras más como son: MODAL, PASSIVE, PERFECT, y PROGRESSIVE.
 %-------------------------------------------------------------
 \section{Servicios Web}
 %-------------------------------------------------------------
