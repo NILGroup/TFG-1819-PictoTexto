@@ -18,6 +18,16 @@ Es un framework de desarrollo web\footnote{https://tutorial.djangogirls.org/es/d
 \item En la parte de servicios Web, Django incluye un servidor ligero que ofrece la posibilidad de realizar pruebas y trabajar en una etapa de desarrollo. Para una etapa más de producción sería más conveniente contar con otra aplicación como puede ser Apache.
 \end{enumerate}
 
+\section{GSON}
+%-------------------------------------------------------------
+\label{cap3:sec:GSON}
+GSON es una librería open-source la cuál nos permite convertir nuestros objetos Java en JSON o viceversa, esta librería es muy importante ya que para lenguaje en Java no existen archivos JSON.
+Al haber encapsulado el Servicio web en un formato REST, esto obliga a que nuestro Servicio tenga que recibir obligatoriamente un JSON.
+
+En este momento es donde se utiliza la librería GSON la cuál es un framework que contiene en su interior el método "from JSON", este método es vital para la construcción de nuestro Servicio web,únicamente necesita recibir el dato mandado por el usuario y el tipo de clase al que hace referencia.
+
+Una vez obtenidos los datos mencionados, la propia librería se encarga de realizar el resto de la conversión para que el Servicio web funcione correctamente.    
+
 
   
 
