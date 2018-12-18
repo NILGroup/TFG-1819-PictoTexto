@@ -1,0 +1,17 @@
+% !TeX encoding = ISO-8859-1
+
+\chapter{Servicios Web}
+\label{cap:serviciosWeb}
+
+
+	
+A lo largo de este capitulo trataremos de explicar los diferentes servicios web, que hemos implementado, hablando sobre tecnologías y funciones que desarrollan dentro de nuestro sistema.
+%------------------------------------------------------------------
+\section{Servicio de Generación de Lenguaje Natural}
+%-------------------------------------------------------------------
+\label{cap4:sec:ServicioGLN}
+Como ya hemos hablado anteriormente, hemos utilizado el framework SimpleNLG-ES\footnote{https://github.com/citiususc/SimpleNLG-ES}, para la fase de generación del lenguaje. Este framework está escrito en Java, lo que impide su utilización dentro de nuestro servicio web central desarrollado en Python 3\footnote{https://docs.python.org/3/}.
+
+Este Servicio Web utiliza Apache TomCat\footnote{http://tomcat.apache.org/} como contenedor, para encapsular el framework SimpleNLG-ES, y poder ser accesible desde el servicio web principal o cualquier otro servicio web del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}.  
+
+Este servicio web recibe un JSON con los datos necesarios para formar una frase, el cual gracias a GSON visto en \ref{cap3:sec:GSON} podemos obtener una clase Java con la cual formaremos la frase en lenguaje natural, la cual devolveremos en la respuesta del servicio.
