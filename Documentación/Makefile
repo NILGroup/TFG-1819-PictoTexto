@@ -25,7 +25,7 @@
 #
 #----------------------------------------------------------
 
-NOMBRE_LATEX = TFMTeXiS
+NOMBRE_LATEX = TFGPictos
 FICHEROS_GLOSARIO = acronimos.gdf
 # NO deberia ser igual que NOMBRE_LATEX
 # (es decir, si NOMBRE_LATEX es

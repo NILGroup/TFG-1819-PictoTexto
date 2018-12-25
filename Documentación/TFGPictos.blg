@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: TFMTeXiS.aux
+This is BibTeX, Version 0.99dThe top-level auxiliary file: TFGPictos.aux
 A level-1 auxiliary file: Cascaras/cover.aux
 A level-1 auxiliary file: Cascaras/autorizacion.aux
 A level-1 auxiliary file: Cascaras/dedicatoria.aux
@@ -10,6 +10,8 @@ A level-1 auxiliary file: Capitulos/Introduction.aux
 A level-1 auxiliary file: Capitulos/Introduccion.aux
 A level-1 auxiliary file: Capitulos/EstadoDeLaCuestion.aux
 A level-1 auxiliary file: Capitulos/Herramientas.aux
+A level-1 auxiliary file: Capitulos/ServiciosWeb.aux
+A level-1 auxiliary file: Capitulos/TrabajoIndividual.aux
 A level-1 auxiliary file: Capitulos/ConclusionesTrabajoFuturo.aux
 A level-1 auxiliary file: Capitulos/ConclusionsFutureWork.aux
 A level-1 auxiliary file: Apendices/appendixA.aux
@@ -18,8 +20,6 @@ A level-1 auxiliary file: Cascaras/bibliografia.aux
 The style file: TeXiS/TeXiS.bst
 A level-1 auxiliary file: Cascaras/fin.aux
 Database file #1: citas.bib
-Warning--I didn't find a database entry for "JozefTrzpis2015"
 Warning--missing school in Bertola2018
 Warning--empty journal in CarlosGarcia2004
-Warning--empty year in asha2010; set to ????
-(There were 4 warnings)
+(There were 2 warnings)
