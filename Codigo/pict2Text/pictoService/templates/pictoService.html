@@ -1,0 +1,10 @@
+<div class="container align-middle mt-5">
+<form action="picto/getPicto" method="get">
+      {% csrf_token %}
+        <div class="form-group ">
+            <label >Nombre del picto</label>
+            <input type="text" class="form-control" id="pictoName" placeholder="Introduzca el pictograma que desea buscar" name="pictoName">
+        </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
