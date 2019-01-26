@@ -1,4 +1,4 @@
-<div class="container align-middle mt-5">
+<div class="container">
 <form action="/picto/getPicto" method="get">
         <div class="form-group ">
             <label >Nombre del picto</label>
@@ -6,4 +6,15 @@
         </div>
             <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+
+    {% if pictos %}
+<div class="container">
+    {% for img in pictos %}
+         <img src={{img.url}} alt="">
+        <p>{{img.id}}</p>
+    {% endfor %}
+</div>
+    {% endif %}
+
 </div>

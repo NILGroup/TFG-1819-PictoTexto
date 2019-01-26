@@ -6,8 +6,6 @@ import json
 
 def getPicto(request):
     context={}
-    arrayObject=[]
-    object={}
     result = []
     r = requests.get("https://api.arasaac.org/api/pictograms/es/search/"+request.GET.get('pictoName', 'name'))
     if r.status_code == 200:
@@ -15,7 +13,7 @@ def getPicto(request):
         for object in arrayObject:
            result.append({'id':object['idPictogram'],'url':"https://api.arasaac.org/api/pictograms/"+str(object['idPictogram'])})
         context = {
-                'message': result
+                'pictos': result
         }
     else:
         print(r.status_code)

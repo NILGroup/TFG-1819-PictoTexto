@@ -14,22 +14,17 @@
 </head>
 
 <body>
+<div class="container">
+<div class="row">
+  <div class="col-sm">
+      {% include "translateForm.html" %}
+  </div>
 
-{% include "translateForm.html" %}
-{% include "pictoService.html" %}
-
-
-{% if message %}
-
-<div class="container align-middle mt-5">
-    {% for img in message %}
-         <img src={{img.url}} alt="">
-        <p>{{img.id}}</p>
-    {% endfor %}
+    <div class="col-sm">
+        {% include "pictoService.html" %}
+    </div>
 </div>
-    {% endif %}
-
-
+</div>
 </body>
 
 </html>

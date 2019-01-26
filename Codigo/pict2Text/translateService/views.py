@@ -13,7 +13,7 @@ def getTranslate(request):
     r = requests.post("http://127.0.0.1:8080/apiNLG/createSimplePhrase", data=json.dumps(data), headers=headers)
     if r.status_code == 200:
         context = {
-                'message': r.text
+                'translateResult': r.text
         }
     else:
         print(r.status_code)
