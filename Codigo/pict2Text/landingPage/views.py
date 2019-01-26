@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from landingPage.models.models import Model
 from django.template import loader
 import json
 
@@ -18,6 +18,6 @@ import requests
 
 def index(request):
     template = loader.get_template('index.html')
-    context= {}
+    context= {'pictos':Model.pictos}
     return HttpResponse(template.render(context,request))
 
