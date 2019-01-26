@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="/translate/getTranslate" method="post">
+    <form action="/getTranslate" method="post">
             {% csrf_token %}
         <div class="form-group ">
             <label >Sujeto</label>
@@ -19,7 +19,6 @@
 <div class="container">
       {% if translateResult %}
         <p>{{translateResult}}</p>
-
       {% endif %}
 </div>
 

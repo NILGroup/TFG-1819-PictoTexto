@@ -17,7 +17,8 @@
 <div class="container">
 <div class="row">
   <div class="col-sm">
-      {% include "translateForm.html" %}
+                  {% csrf_token %}
+      {% include "translateForm.html" with csrf_token=csrf_token  %}
   </div>
 
     <div class="col-sm">
