@@ -13,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pict2Text/pictoService/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+            <state relative-caret-position="255">
+              <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -25,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pict2Text/landingPage/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+            <state relative-caret-position="442">
+              <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -105,8 +105,8 @@
         <option value="$PROJECT_DIR$/pict2Text/translateService/templates/translateForm.html" />
         <option value="$PROJECT_DIR$/pict2Text/pictoService/urls.py" />
         <option value="$PROJECT_DIR$/pict2Text/pictoService/templates/pictoService.html" />
-        <option value="$PROJECT_DIR$/pict2Text/landingPage/templates/index.html" />
         <option value="$PROJECT_DIR$/pict2Text/pictoService/views.py" />
+        <option value="$PROJECT_DIR$/pict2Text/landingPage/templates/index.html" />
       </list>
     </option>
   </component>
@@ -150,31 +150,6 @@
               <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
               <item name="Codigo" type="462c0819:PsiDirectoryNode" />
               <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Codigo" type="462c0819:PsiDirectoryNode" />
-              <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
-              <item name="landingPage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Codigo" type="462c0819:PsiDirectoryNode" />
-              <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
-              <item name="landingPage" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Codigo" type="462c0819:PsiDirectoryNode" />
-              <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
-              <item name="pictoService" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Codigo" type="462c0819:PsiDirectoryNode" />
-              <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
-              <item name="translateService" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -281,6 +256,25 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.14963119" />
+      <window_info id="Structure" order="1" sideWeight="0.50080776" side_tool="true" weight="0.2528978" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49894625" visible="true" weight="0.3206934" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50105375" side_tool="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32936078" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/myProject/.gitignore" />
@@ -485,20 +479,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pict2Text/landingPage/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pict2Text/pictoService/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+        <state relative-caret-position="255">
+          <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pict2Text/landingPage/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
         </state>
       </provider>
     </entry>

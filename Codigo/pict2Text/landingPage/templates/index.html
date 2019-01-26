@@ -23,7 +23,8 @@
 
 <div class="container align-middle mt-5">
     {% for img in message %}
-         <img src={{img}} alt="">
+         <img src={{img.url}} alt="">
+        <p>{{img.id}}</p>
     {% endfor %}
 </div>
     {% endif %}
