@@ -1,4 +1,6 @@
-from django.http import JsonResponse
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
 import json
 
 import requests
@@ -6,15 +8,14 @@ import requests
 
 def getTranslate(request):
     headers = {'content-type': 'application/json', 'connection': 'keep-alive', 'Accept': 'application/json'}
-    response={}
-    print(request.POST)
+    context={}
     data = {"subject":request.POST['subject'], "verb":request.POST['verb'], "object":request.POST['object']};
     r = requests.post("http://127.0.0.1:8080/apiNLG/createSimplePhrase", data=json.dumps(data), headers=headers)
     if r.status_code == 200:
-        response = {
+        context = {
                 'translateResult': r.text
         }
     else:
-        response={'status':r.status_code}
+        print(r.status_code)
 
-    return JsonResponse(response)
+    return render(request,'index.html', context)

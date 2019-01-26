@@ -1,24 +1,21 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.http import JsonResponse
+from django.shortcuts import render
 
 import requests
 import json
 # Create your views here.
 
 def getPicto(request):
-    response={}
+    context={}
     result = []
     r = requests.get("https://api.arasaac.org/api/pictograms/es/search/"+request.GET.get('pictoName', 'name'))
     if r.status_code == 200:
         arrayObject= json.loads(r.text)
         for object in arrayObject:
            result.append({'id':object['idPictogram'],'url':"https://api.arasaac.org/api/pictograms/"+str(object['idPictogram'])})
-        response = {
-                'status':200,
+        context = {
                 'pictos': result
         }
     else:
-        response={'status':r.status_code}
+        print(r.status_code)
 
-    return JsonResponse(response)
+    return render(request,'index.html', context)
