@@ -2,7 +2,6 @@ from django.shortcuts import render
 
 import requests
 import json
-from landingPage.models.models import Model
 # Create your views here.
 
 def getPicto(request):
@@ -13,10 +12,11 @@ def getPicto(request):
         arrayObject= json.loads(r.text)
         for object in arrayObject:
            result.append({'id':object['idPictogram'],'url':"https://api.arasaac.org/api/pictograms/"+str(object['idPictogram'])})
-           Model.pictos=result
         context = {
                 'pictos': result
         }
+        request.session['pictos'] = result
+
     else:
         print(r.status_code)
 

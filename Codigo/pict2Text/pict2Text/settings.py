@@ -50,10 +50,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'pict2Text.urls'
-
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE =True
+SESSION_COOKIE_AGE = 300
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
