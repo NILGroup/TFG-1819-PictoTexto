@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landingPage.urls')),
     path('picto/',include('pictoService.urls')),
+    path('pictoTranslate/',include('pictoTranslateService.urls')),
 ]
