@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'landingPage',
-    'translateService',
     'pictoService',
 ]
 
@@ -55,7 +54,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'pict2Text.urls'
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE =True
 SESSION_COOKIE_AGE = 300
 TEMPLATES = [
