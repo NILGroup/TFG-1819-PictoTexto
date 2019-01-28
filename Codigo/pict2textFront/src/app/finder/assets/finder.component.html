@@ -1,0 +1,28 @@
+<div class="container">
+  <form action="/getPicto" method="get">
+      <div class="form-group ">
+          <label>Nombre del picto</label>
+          <input type="text" class="form-control" id="pictoName"
+                 placeholder="Introduzca el pictograma que desea buscar" name="pictoName">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <div id="carouselPicto" class="carousel slide" data-ride="carousel" data-interval="false">
+
+      <div class="carousel-inner">
+          <div class="carousel-item active">
+              <img src={{img.url}} class="ui-draggable ui-draggable-handle" alt="" width="50%">
+              <p>{{img.id}}</p>
+          </div>
+      </div>
+
+<a class="carousel-control-prev" href="#carouselPicto" data-slide="prev">
+  <span class="carousel-control-prev-icon"></span>
+</a>
+<a class="carousel-control-next" href="#carouselPicto" data-slide="next">
+  <span class="carousel-control-next-icon"></span>
+</a>
+  </div>
+
+</div>

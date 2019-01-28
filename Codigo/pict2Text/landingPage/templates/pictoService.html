@@ -14,7 +14,7 @@
         <div class="carousel-inner">
             {% for img in pictos %}
             <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
-                <img src={{img.url}} alt="" width="50%">
+                <img src={{img.url}} class="ui-draggable ui-draggable-handle" alt="" width="50%">
                 <p>{{img.id}}</p>
             </div>
             {% endfor %}
