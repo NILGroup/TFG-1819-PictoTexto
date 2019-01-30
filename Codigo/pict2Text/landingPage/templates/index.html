@@ -1,35 +1,21 @@
-<!DOCTYPE html>
-    {% load static %}
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <!-- Add jquery-->
-    <script src="{% static "bootstrap/js/jquery-3.3.1.min.js" %}"></script>
-    <!--Add bootstrap js-->
-    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
-     <!-- Add bootstrap cs -->
-    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-
+  <meta charset="utf-8">
+  <title>Pict2textFront</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="assets/icon" type="image/x-icon" href="favicon.ico">
 </head>
-
 <body>
-<div class="container">
-<div class="row">
-  <div class="col-sm">
-      {% include "translateForm.html" %}
-  </div>
+  <app-root></app-root>
+  {% load static %}
+<script type="text/javascript" src="{% static "runtime.js" %}"></script>
+  <script type="text/javascript" src="{% static "polyfills.js" %}"></script>
+  <script type="text/javascript" src="{% static "styles.js" %}"></script>
+  <script type="text/javascript" src="{% static "scripts.js" %}"></script>
+  <script type="text/javascript" src="{% static "vendor.js" %}"></script>
+  <script type="text/javascript" src="{% static "main.js" %}"></script>
 
-    <div class="col-sm">
-        {% include "pictoService.html" %}
-    </div>
-
-</div>
-    <div class="row">
-        {% include "pictoTranslateTemplate.html" %}
-    </div>
-</div>
 </body>
-
 </html>

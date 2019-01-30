@@ -1,28 +1,22 @@
 <div class="container">
-  <form action="/getPicto" method="get">
-      <div class="form-group ">
-          <label>Nombre del picto</label>
-          <input type="text" class="form-control" id="pictoName"
-                 placeholder="Introduzca el pictograma que desea buscar" name="pictoName">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <div class="form-group ">
+        <label>Nombre del picto</label>
+        <input type="text" class="form-control" id="pictoName" placeholder="Introduzca el pictograma que desea buscar"
+            name="pictoName" #name>
+    </div>
+    <button class="btn btn-primary" (click)="getPictosByName(name.value)">Submit</button>
 
-  <div id="carouselPicto" class="carousel slide" data-ride="carousel" data-interval="false">
-
-      <div class="carousel-inner">
-          <div class="carousel-item active">
-              <img src={{img.url}} class="ui-draggable ui-draggable-handle" alt="" width="50%">
-              <p>{{img.id}}</p>
-          </div>
-      </div>
-
-<a class="carousel-control-prev" href="#carouselPicto" data-slide="prev">
-  <span class="carousel-control-prev-icon"></span>
-</a>
-<a class="carousel-control-next" href="#carouselPicto" data-slide="next">
-  <span class="carousel-control-next-icon"></span>
-</a>
-  </div>
-
+    <div class="pictoSlider">
+        <ngb-carousel *ngIf="myPicto.length>0" [showNavigationIndicators]="false">
+            <div *ngFor="let img of myPicto">
+                <ng-template ngbSlide>
+                    <img src={{img.url}} class="img-responsive mx-auto d-flex justify-content-center flex-wrap" alt="" width="50%">
+                    <div class="carousel-caption">
+                        <p>{{img.id}}</p>
+                    </div>
+                </ng-template>
+               
+            </div>
+        </ngb-carousel>
+    </div>
 </div>
