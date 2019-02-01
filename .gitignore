@@ -7,3 +7,5 @@
 *.toc
 *.idx
 *.out
+node_modules/
+
