@@ -2,14 +2,12 @@
 
 \chapter{Trabajo Individual}
 \label{cap6:trabajoInd}
-
-
-	
 A lo largo de este capitulo hablaremos del trabajo realizado por cada uno de los miembros del equipo, siguiendo la metodología de trabajo explicado anteriormente en \ref{cap3:sec:Metodologíadetrabajo}
 
 %------------------------------------------------------------------
 \section{Trabajo Individual}
 %-------------------------------------------------------------------
+\subsection{Jose Maria}
 \label{cap6:sec:Jose Maria}
 
 Lo primero que realice fue un estudio del estado del arte, para comenzar con la redacción de este documento. La investigación inicial se centro en en el estudio de los SAACS, poniendo especial atención en los pictogramas y los sistemas pictograficos. 
@@ -18,4 +16,8 @@ La búsqueda de información sobre los sistemas, se analizaron los sistemas pictog
 
 Uno de los requisitos indispensables de este proyecto, era la necesidad de incluir la aplicación dentro de un Servicio Web, por lo cual investigue sobre cuales eran las diferentes opciones para crear un Servicio Web en Python, y dada su potencia, facilidad de uso y la gran comunidad decidimos utilizar Django. Una vez expuesto y estudiado su uso, desarrolle una pequeña demo técnica, para probar su utilidad y como primer acercamiento a la tecnología. 
 
-El siguiente paso necesario, era un estudio sobre los diferentes sistemas de generación de lenguaje parte fundamental del proyecto. Investigue y documente la base teórica de la generación de lenguaje, una vez termino esto pase a la búsqueda de diferentes frameworks de generación de lenguaje en español, tras la cual encontre el framework SimpleNLg-ES, que es el  framework de generación de lenguaje natural en español que encontré. Una vez presentados los resultados desarrolle una demo utilizando dicho framework en un servicio web al cual se llama desde el servicio web de Django.
+El siguiente paso necesario, era un estudio sobre los diferentes sistemas de generación de lenguaje parte fundamental del proyecto. Investigue y documente la base teórica de la generación de lenguaje, una vez termino esto pase a la búsqueda de diferentes frameworks de generación de lenguaje en español, tras la cual encontré el framework SimpleNLg-ES, que es el  framework de generación de lenguaje natural en español que encontré. Una vez presentados los resultados desarrolle una demo utilizando dicho framework en un servicio web al cual se llama desde el servicio web de Django.
+
+Una vez desarrollada la demo y con el aumento de los servicios web implementados, decidí refactorizar el código y diseñe una arquitectura que fomentara la rápida integración de nuevos servicios, que además sean completamente independientes entre ellos siguiendo el principio de responsabilidad única\footnote{https://devexperto.com/principio-responsabilidad-unica/} por el cual cada modulo debe de realizar una única cosa. 
+
+Dado el limite del framework Django para la gestión de aplicaciones web desde el lado del cliente, desarrolle una aplicación web fron-end, que después integre con la aplicación Django, para de esta manera obtener mayor funcionalidad y descargar parte del trabajo en parte del cliente.
