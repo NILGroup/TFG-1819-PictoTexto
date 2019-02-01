@@ -7,7 +7,7 @@
     <button class="btn btn-primary" (click)="getPictosByName(name.value)">Submit</button>
 
     <div class="pictoSlider">
-        <ngb-carousel *ngIf="myPicto.length>0" [showNavigationIndicators]="false">
+        <ngb-carousel *ngIf="myPicto" [showNavigationIndicators]="false">
             <div *ngFor="let img of myPicto">
                 <ng-template ngbSlide>
                     <img src={{img.url}} class="img-responsive mx-auto d-flex justify-content-center flex-wrap" alt="" width="50%">
@@ -15,7 +15,6 @@
                         <p>{{img.id}}</p>
                     </div>
                 </ng-template>
-               
             </div>
         </ngb-carousel>
     </div>

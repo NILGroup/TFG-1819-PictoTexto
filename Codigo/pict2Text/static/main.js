@@ -41,7 +41,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\">\n<div class=\"row\">\n  <div class=\"col-sm\">\n      <app-translator></app-translator>\n  </div>\n    <div class=\"col-sm\">\n      <app-finder></app-finder>\n    </div>\n\n</div>\n    <div class=\"row\">\n      <app-picto-translator></app-picto-translator>\n    </div>\n</div>\n"
+module.exports = "\r\n<div class=\"container\">\r\n<div class=\"row\">\r\n  <div class=\"col-sm\">\r\n      <app-translator></app-translator>\r\n  </div>\r\n    <div class=\"col-sm\">\r\n      <app-finder></app-finder>\r\n    </div>\r\n</div>\r\n    <div class=\"row\">\r\n        <div class=\"col-lg\">\r\n      <app-picto-translator></app-picto-translator>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -92,10 +92,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _finder_finder_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./finder/finder.component */ "./src/app/finder/finder.component.ts");
-/* harmony import */ var _picto_translator_picto_translator_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./picto-translator/picto-translator.component */ "./src/app/picto-translator/picto-translator.component.ts");
-/* harmony import */ var _translator_translator_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./translator/translator.component */ "./src/app/translator/translator.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _finder_finder_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./finder/finder.component */ "./src/app/finder/finder.component.ts");
+/* harmony import */ var _picto_translator_picto_translator_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./picto-translator/picto-translator.component */ "./src/app/picto-translator/picto-translator.component.ts");
+/* harmony import */ var _translator_translator_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./translator/translator.component */ "./src/app/translator/translator.component.ts");
+
 
 
 
@@ -111,21 +113,52 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
-                _finder_finder_component__WEBPACK_IMPORTED_MODULE_6__["FinderComponent"],
-                _picto_translator_picto_translator_component__WEBPACK_IMPORTED_MODULE_7__["PictoTranslatorComponent"],
-                _translator_translator_component__WEBPACK_IMPORTED_MODULE_8__["TranslatorComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
+                _finder_finder_component__WEBPACK_IMPORTED_MODULE_7__["FinderComponent"],
+                _picto_translator_picto_translator_component__WEBPACK_IMPORTED_MODULE_8__["PictoTranslatorComponent"],
+                _translator_translator_component__WEBPACK_IMPORTED_MODULE_9__["TranslatorComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModule"]
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/constants/constant.service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/constants/constant.service.ts ***!
+  \***********************************************/
+/*! exports provided: AppConstants */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppConstants", function() { return AppConstants; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var AppConstants = /** @class */ (function () {
+    function AppConstants() {
+    }
+    AppConstants.pictoFinderURl = '/picto/getPicto?pictoName=';
+    AppConstants.translatorPictoURL = '/pictoTranslate/getPictoTranslate?pictoId=';
+    AppConstants.translatorPhraseURL = 'http://127.0.0.1:8080/apiNLG/createSimplePhrase';
+    AppConstants = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+    ], AppConstants);
+    return AppConstants;
 }());
 
 
@@ -139,7 +172,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".pictoSlider{\r\n    background: rgba(226,226,226,1);\r\n}\r\n\r\n.carousel-caption {\r\n    position: relative;\r\n    left: auto;\r\n    right: auto;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZmluZGVyL2Fzc2V0cy9maW5kZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLCtCQUErQjtBQUNuQzs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsV0FBVztBQUNmIiwiZmlsZSI6InNyYy9hcHAvZmluZGVyL2Fzc2V0cy9maW5kZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5waWN0b1NsaWRlcntcclxuICAgIGJhY2tncm91bmQ6IHJnYmEoMjI2LDIyNiwyMjYsMSk7XHJcbn1cclxuXHJcbi5jYXJvdXNlbC1jYXB0aW9uIHtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIGxlZnQ6IGF1dG87XHJcbiAgICByaWdodDogYXV0bztcclxufSJdfQ== */"
+module.exports = ".pictoSlider{\r\n    background: rgba(226,226,226,1);\r\n}\r\n.carousel-caption {\r\n    position: relative;\r\n    left: auto;\r\n    right: auto;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZmluZGVyL2Fzc2V0cy9maW5kZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLCtCQUErQjtBQUNuQztBQUNBO0lBQ0ksa0JBQWtCO0lBQ2xCLFVBQVU7SUFDVixXQUFXO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC9maW5kZXIvYXNzZXRzL2ZpbmRlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnBpY3RvU2xpZGVye1xyXG4gICAgYmFja2dyb3VuZDogcmdiYSgyMjYsMjI2LDIyNiwxKTtcclxufVxyXG4uY2Fyb3VzZWwtY2FwdGlvbiB7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBsZWZ0OiBhdXRvO1xyXG4gICAgcmlnaHQ6IGF1dG87XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -150,7 +183,7 @@ module.exports = ".pictoSlider{\r\n    background: rgba(226,226,226,1);\r\n}\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <div class=\"form-group \">\n        <label>Nombre del picto</label>\n        <input type=\"text\" class=\"form-control\" id=\"pictoName\" placeholder=\"Introduzca el pictograma que desea buscar\"\n            name=\"pictoName\" #name>\n    </div>\n    <button class=\"btn btn-primary\" (click)=\"getPictosByName(name.value)\">Submit</button>\n\n    <div class=\"pictoSlider\">\n        <ngb-carousel *ngIf=\"myPicto.length>0\" [showNavigationIndicators]=\"false\">\n            <div *ngFor=\"let img of myPicto\">\n                <ng-template ngbSlide>\n                    <img src={{img.url}} class=\"img-responsive mx-auto d-flex justify-content-center flex-wrap\" alt=\"\" width=\"50%\">\n                    <div class=\"carousel-caption\">\n                        <p>{{img.id}}</p>\n                    </div>\n                </ng-template>\n               \n            </div>\n        </ngb-carousel>\n    </div>\n</div>"
+module.exports = "<div class=\"container\">\r\n    <div class=\"form-group \">\r\n        <label>Nombre del picto</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"pictoName\" placeholder=\"Introduzca el pictograma que desea buscar\"\r\n            name=\"pictoName\" #name>\r\n    </div>\r\n    <button class=\"btn btn-primary\" (click)=\"getPictosByName(name.value)\">Submit</button>\r\n\r\n    <div class=\"pictoSlider\">\r\n        <ngb-carousel *ngIf=\"myPicto\" [showNavigationIndicators]=\"false\">\r\n            <div *ngFor=\"let img of myPicto\">\r\n                <ng-template ngbSlide>\r\n                    <img src={{img.url}} class=\"img-responsive mx-auto d-flex justify-content-center flex-wrap\" alt=\"\" width=\"50%\">\r\n                    <div class=\"carousel-caption\">\r\n                        <p>{{img.id}}</p>\r\n                    </div>\r\n                </ng-template>\r\n            </div>\r\n        </ngb-carousel>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -167,7 +200,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_finder_service_finder_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/finder/service/finder-service.service */ "./src/app/finder/service/finder-service.service.ts");
-/* harmony import */ var src_app_finder_transformer_picto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/finder/transformer/picto */ "./src/app/finder/transformer/picto.ts");
+/* harmony import */ var _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
+/* harmony import */ var src_app_finder_transformer_finder_transformer_transformer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/finder/transformer/finder-transformer.transformer */ "./src/app/finder/transformer/finder-transformer.transformer.ts");
+
 
 
 
@@ -175,23 +210,21 @@ __webpack_require__.r(__webpack_exports__);
 var FinderComponent = /** @class */ (function () {
     function FinderComponent(pictoService) {
         this.pictoService = pictoService;
-        this.myPicto = [];
     }
     FinderComponent.prototype.getPictosByName = function (name) {
-        var _this = this;
-        this.pictoService.getPictosByName(name)
-            .subscribe(function (data) {
-            var i = 0;
-            for (i = 0; i < data['pictos'].length; ++i)
-                _this.myPicto.push(new src_app_finder_transformer_picto__WEBPACK_IMPORTED_MODULE_3__["Picto"](data['pictos'][i]));
-        });
-        console.log(this.myPicto);
+        this.pictoService.getPictByName(name).then(this.getPictoSucces.bind(this), this.getPictoError);
+    };
+    FinderComponent.prototype.getPictoSucces = function (data) {
+        this.myPicto = data;
+    };
+    FinderComponent.prototype.getPictoError = function () {
+        console.log("todo mal en el componente");
     };
     FinderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-finder',
             template: __webpack_require__(/*! ./assets/finder.component.html */ "./src/app/finder/assets/finder.component.html"),
-            providers: [src_app_finder_service_finder_service_service__WEBPACK_IMPORTED_MODULE_2__["FinderService"]],
+            providers: [src_app_finder_service_finder_service_service__WEBPACK_IMPORTED_MODULE_2__["FinderService"], src_app_finder_transformer_finder_transformer_transformer__WEBPACK_IMPORTED_MODULE_4__["FinderTransformer"], _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__["ProxyService"]],
             styles: [__webpack_require__(/*! ./assets/finder.component.css */ "./src/app/finder/assets/finder.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_finder_service_finder_service_service__WEBPACK_IMPORTED_MODULE_2__["FinderService"]])
@@ -215,44 +248,74 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FinderService", function() { return FinderService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var src_app_utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
+/* harmony import */ var src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/constants/constant.service */ "./src/app/constants/constant.service.ts");
+/* harmony import */ var src_app_finder_transformer_finder_transformer_transformer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/finder/transformer/finder-transformer.transformer */ "./src/app/finder/transformer/finder-transformer.transformer.ts");
 
 
 
 
 
 var FinderService = /** @class */ (function () {
-    function FinderService(http) {
-        this.http = http;
-        this.configUrl = 'http://127.0.0.1:8000/picto/getPicto?pictoName=';
+    function FinderService(proxyService, finderTransformer) {
+        this.proxyService = proxyService;
+        this.finderTransformer = finderTransformer;
     }
-    FinderService.prototype.getPictosByName = function (name) {
-        return this.http.get("http://127.0.0.1:8000/picto/getPicto?pictoName=" + name)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(5), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    FinderService.prototype.getPictByName = function (name) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.proxyService.getByName(name, src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].pictoFinderURl).subscribe(getPictoSuccess.bind(_this), getPictoError);
+            function getPictoSuccess(data) {
+                //LLAMADA AL TRANSFORMER
+                resolve(this.finderTransformer.getPictoData(data));
+            }
+            function getPictoError(data) {
+                //TRAMAMIENTO DE ERRORES
+                reject(data);
+            }
+        });
     };
-    ;
-    FinderService.prototype.handleError = function (error) {
-        if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-        }
-        else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error("Backend returned code " + error.status + ", " +
-                ("body was: " + error.error));
-        }
-        // return an observable with a user-facing error message
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["throwError"])('Something bad happened; please try again later.');
-    };
-    ;
     FinderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__["ProxyService"], src_app_finder_transformer_finder_transformer_transformer__WEBPACK_IMPORTED_MODULE_4__["FinderTransformer"]])
     ], FinderService);
     return FinderService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/finder/transformer/finder-transformer.transformer.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/finder/transformer/finder-transformer.transformer.ts ***!
+  \**********************************************************************/
+/*! exports provided: FinderTransformer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FinderTransformer", function() { return FinderTransformer; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _picto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./picto */ "./src/app/finder/transformer/picto.ts");
+
+
+
+var FinderTransformer = /** @class */ (function () {
+    function FinderTransformer() {
+    }
+    FinderTransformer.prototype.getPictoData = function (data) {
+        var myPicto = [];
+        var i = 0;
+        for (i = 0; i < data['pictos'].length; ++i)
+            myPicto.push(new _picto__WEBPACK_IMPORTED_MODULE_2__["Picto"](data['pictos'][i].id, data['pictos'][i].url));
+        return myPicto;
+    };
+    FinderTransformer = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+    ], FinderTransformer);
+    return FinderTransformer;
 }());
 
 
@@ -270,9 +333,9 @@ var FinderService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Picto", function() { return Picto; });
 var Picto = /** @class */ (function () {
-    function Picto(data) {
-        this.id = data.id;
-        this.url = data.url;
+    function Picto(id, url) {
+        this.id = id;
+        this.url = url;
     }
     return Picto;
 }());
@@ -299,7 +362,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <form action=\"/getPictoTranslate\" method=\"get\">\n    <div class=\"form-group \">\n      <label>Identificador del picto</label>\n      <input type=\"text\" class=\"form-control\" id=\"pictoId\" placeholder=\"Introduzca el pictograma que desea buscar\" name=\"pictoId\">\n    </div>\n    <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n  </form>\n  <div class=\"container\">\n    <p></p>\n  </div>\n</div>"
+module.exports = "<div class=\"container\">\r\n    <div class=\"form-group \">\r\n      <label>Identificador del picto</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"pictoId\" placeholder=\"Introduzca el pictograma que desea buscar\" name=\"pictoId\" #idPicto>\r\n    </div>\r\n    <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getPictosTranslate(idPicto.value)\">Submit</button>\r\n  <div class=\"container\" *ngIf=\"translates\">\r\n    <p>El picto significa</p>\r\n    <div *ngFor=\"let translate of translates\">\r\n      <p>{{translate}}</p>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -315,22 +378,84 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PictoTranslatorComponent", function() { return PictoTranslatorComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_picto_translator_service_picto_translator_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/picto-translator/service/picto-translator.service */ "./src/app/picto-translator/service/picto-translator.service.ts");
+/* harmony import */ var _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
+
+
 
 
 var PictoTranslatorComponent = /** @class */ (function () {
-    function PictoTranslatorComponent() {
+    function PictoTranslatorComponent(pictoTranslatorService) {
+        this.pictoTranslatorService = pictoTranslatorService;
     }
-    PictoTranslatorComponent.prototype.ngOnInit = function () {
+    PictoTranslatorComponent.prototype.getPictosTranslate = function (name) {
+        this.pictoTranslatorService.getPictogramTranslate(name).then(this.getPictoTranslateSucces.bind(this), this.getPictoTranslateError);
+    };
+    PictoTranslatorComponent.prototype.getPictoTranslateSucces = function (data) {
+        this.translates = data['meanings'];
+    };
+    PictoTranslatorComponent.prototype.getPictoTranslateError = function () {
+        console.log("todo mal en el componente");
     };
     PictoTranslatorComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-picto-translator',
             template: __webpack_require__(/*! ./assets/picto-translator.component.html */ "./src/app/picto-translator/assets/picto-translator.component.html"),
+            providers: [src_app_picto_translator_service_picto_translator_service__WEBPACK_IMPORTED_MODULE_2__["PictoTranslatorService"], _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__["ProxyService"]],
             styles: [__webpack_require__(/*! ./assets/picto-translator.component.css */ "./src/app/picto-translator/assets/picto-translator.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_picto_translator_service_picto_translator_service__WEBPACK_IMPORTED_MODULE_2__["PictoTranslatorService"]])
     ], PictoTranslatorComponent);
     return PictoTranslatorComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/picto-translator/service/picto-translator.service.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/picto-translator/service/picto-translator.service.ts ***!
+  \**********************************************************************/
+/*! exports provided: PictoTranslatorService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PictoTranslatorService", function() { return PictoTranslatorService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
+/* harmony import */ var src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/constants/constant.service */ "./src/app/constants/constant.service.ts");
+
+
+
+
+var PictoTranslatorService = /** @class */ (function () {
+    function PictoTranslatorService(proxyService) {
+        this.proxyService = proxyService;
+    }
+    PictoTranslatorService.prototype.getPictogramTranslate = function (name) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.proxyService.getByName(name, src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPictoURL).subscribe(getPictoTranslateSuccess.bind(_this), getPictoTranslateError);
+            function getPictoTranslateSuccess(data) {
+                //LLAMADA AL TRANSFORMER
+                resolve(data);
+            }
+            function getPictoTranslateError(data) {
+                //TRAMAMIENTO DE ERRORES
+                reject(data);
+            }
+        });
+    };
+    PictoTranslatorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__["ProxyService"]])
+    ], PictoTranslatorService);
+    return PictoTranslatorService;
 }());
 
 
@@ -355,7 +480,77 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <form action=\"/getTranslate\" method=\"post\">\n      <div class=\"form-group \">\n          <label >Sujeto</label>\n          <input type=\"text\" class=\"form-control\" id=\"subject\" placeholder=\"Introduzca un sujeto\" name=\"subject\">\n      </div>\n      <div class=\"form-group\">\n          <label >Verbo</label>\n          <input type=\"text\" class=\"form-control\" id=\"verb\" placeholder=\"Introduzca un verbo\" name=\"verb\">\n      </div>\n        <div class=\"form-group\">\n          <label >Objeto</label>\n          <input type=\"text\" class=\"form-control\" id=\"object\" placeholder=\"Introduzca el complemento directo\" name=\"object\">\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n  </form>\n</div>\n<div class=\"container\">\n      <p></p>\n</div>\n\n"
+module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n          <label >Sujeto</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"subject\" placeholder=\"Introduzca un sujeto\" name=\"subject\"  [(ngModel)]=\"phrase.subject\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n          <label >Verbo</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"verb\" placeholder=\"Introduzca un verbo\" name=\"verb\"  [(ngModel)]=\"phrase.verb\">\r\n      </div>\r\n        <div class=\"form-group\">\r\n          <label >Objeto</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"object\" placeholder=\"Introduzca el complemento directo\" name=\"object\"  [(ngModel)]=\"phrase.object\" >\r\n      </div>\r\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"getTranslate()\">Submit</button>\r\n</div>\r\n<div class=\"container\" *ngIf=\"finalPhrase\">\r\n      <p>{{finalPhrase}}</p>\r\n</div>\r\n\r\n"
+
+/***/ }),
+
+/***/ "./src/app/translator/service/translator.service.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/translator/service/translator.service.ts ***!
+  \**********************************************************/
+/*! exports provided: TranslatorService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TranslatorService", function() { return TranslatorService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
+/* harmony import */ var src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/constants/constant.service */ "./src/app/constants/constant.service.ts");
+
+
+
+
+var TranslatorService = /** @class */ (function () {
+    function TranslatorService(proxyService) {
+        this.proxyService = proxyService;
+    }
+    TranslatorService.prototype.getPictogramTranslate = function (name) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.proxyService.postElement(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPhraseURL, name)
+                .subscribe(getTranslateSuccess, getTranslateError);
+            function getTranslateSuccess(data) {
+                // LLAMADA AL TRANSFORMER
+                resolve(data);
+            }
+            function getTranslateError(data) {
+                // TRAMAMIENTO DE ERRORES
+                reject(data);
+            }
+        });
+    };
+    TranslatorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__["ProxyService"]])
+    ], TranslatorService);
+    return TranslatorService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/translator/transformer/phrase.ts":
+/*!**************************************************!*\
+  !*** ./src/app/translator/transformer/phrase.ts ***!
+  \**************************************************/
+/*! exports provided: Phrase */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Phrase", function() { return Phrase; });
+var Phrase = /** @class */ (function () {
+    function Phrase() {
+    }
+    return Phrase;
+}());
+
+
 
 /***/ }),
 
@@ -371,22 +566,100 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TranslatorComponent", function() { return TranslatorComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _transformer_phrase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./transformer/phrase */ "./src/app/translator/transformer/phrase.ts");
+/* harmony import */ var _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
+/* harmony import */ var src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/translator/service/translator.service */ "./src/app/translator/service/translator.service.ts");
+
+
+
 
 
 var TranslatorComponent = /** @class */ (function () {
-    function TranslatorComponent() {
+    function TranslatorComponent(translatorService) {
+        this.translatorService = translatorService;
+        this.phrase = new _transformer_phrase__WEBPACK_IMPORTED_MODULE_2__["Phrase"]();
     }
-    TranslatorComponent.prototype.ngOnInit = function () {
+    TranslatorComponent.prototype.getTranslate = function () {
+        this.translatorService.getPictogramTranslate(this.phrase).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+    };
+    TranslatorComponent.prototype.getTranslateSucces = function (data) {
+        this.finalPhrase = data;
+    };
+    TranslatorComponent.prototype.getTranslateError = function (data) {
+        console.log(data);
+        console.log('todo mal en el componente');
     };
     TranslatorComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-translator',
             template: __webpack_require__(/*! ./assets/translator.component.html */ "./src/app/translator/assets/translator.component.html"),
+            providers: [src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_4__["TranslatorService"], _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__["ProxyService"]],
             styles: [__webpack_require__(/*! ./assets/translator.component.css */ "./src/app/translator/assets/translator.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_4__["TranslatorService"]])
     ], TranslatorComponent);
     return TranslatorComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/utils/proxy/proxy-service.service.ts":
+/*!******************************************************!*\
+  !*** ./src/app/utils/proxy/proxy-service.service.ts ***!
+  \******************************************************/
+/*! exports provided: ProxyService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProxyService", function() { return ProxyService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
+
+
+
+
+var ProxyService = /** @class */ (function () {
+    function ProxyService(http) {
+        this.http = http;
+    }
+    ProxyService.prototype.getByName = function (name, url) {
+        return this.http.get(url + name)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(5), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    ProxyService.prototype.getAll = function (url) {
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(5), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    ProxyService.prototype.postElement = function (url, object) {
+        return this.http.post(url, JSON.stringify(object))
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    ProxyService.prototype.handleError = function (error) {
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        }
+        else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error("Backend returned code " + error.status + ", " +
+                ("body was: " + error.error));
+        }
+        // return an observable with a user-facing error message
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["throwError"])('Something bad happened; please try again later.');
+    };
+    ProxyService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ProxyService);
+    return ProxyService;
 }());
 
 

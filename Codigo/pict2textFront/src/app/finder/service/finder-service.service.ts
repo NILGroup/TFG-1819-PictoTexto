@@ -1,41 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Picto } from 'src/app/finder/transformer/picto';
-import { catchError, retry } from 'rxjs/operators';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { ProxyService} from 'src/app/utils/proxy/proxy-service.service'
+import {AppConstants} from 'src/app/constants/constant.service'
+import {FinderTransformer} from 'src/app/finder/transformer/finder-transformer.transformer'
 
 @Injectable()
 export class FinderService {
-  configUrl ='http://127.0.0.1:8000/picto/getPicto?pictoName=';
-  
-  constructor(private http: HttpClient) { }
+  constructor(private proxyService: ProxyService, private finderTransformer :FinderTransformer) { }
 
-  public getPictosByName(name){
-    return this.http.get<Picto>("http://127.0.0.1:8000/picto/getPicto?pictoName="+name)
-            .pipe(
-              retry(5),
-              catchError(this.handleError)
-              );
-  };
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
-  };
-
+  getPictByName(name:string) {
+    return new Promise((resolve, reject) => {
+      this.proxyService.getByName(name, AppConstants.pictoFinderURl).subscribe(getPictoSuccess.bind(this),getPictoError)
+      function getPictoSuccess(data){
+        //LLAMADA AL TRANSFORMER
+        resolve(this.finderTransformer.getPictoData(data));
+      }
+      function getPictoError(data){
+        //TRAMAMIENTO DE ERRORES
+        reject(data)
+      }
+  });
+  }
 }
-
 
 

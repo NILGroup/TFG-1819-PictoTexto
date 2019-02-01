@@ -1,21 +1,19 @@
 <div class="container">
-  <form action="/getTranslate" method="post">
       <div class="form-group ">
           <label >Sujeto</label>
-          <input type="text" class="form-control" id="subject" placeholder="Introduzca un sujeto" name="subject">
+          <input type="text" class="form-control" id="subject" placeholder="Introduzca un sujeto" name="subject"  [(ngModel)]="phrase.subject">
       </div>
       <div class="form-group">
           <label >Verbo</label>
-          <input type="text" class="form-control" id="verb" placeholder="Introduzca un verbo" name="verb">
+          <input type="text" class="form-control" id="verb" placeholder="Introduzca un verbo" name="verb"  [(ngModel)]="phrase.verb">
       </div>
         <div class="form-group">
           <label >Objeto</label>
-          <input type="text" class="form-control" id="object" placeholder="Introduzca el complemento directo" name="object">
+          <input type="text" class="form-control" id="object" placeholder="Introduzca el complemento directo" name="object"  [(ngModel)]="phrase.object" >
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+      <button type="submit" class="btn btn-primary" (click)="getTranslate()">Submit</button>
 </div>
-<div class="container">
-      <p></p>
+<div class="container" *ngIf="finalPhrase">
+      <p>{{finalPhrase}}</p>
 </div>
 
