@@ -158,19 +158,23 @@ Por ultimo destacaremos la existencia de pictogramas más complejos que expresan 
 \figura{Bitmap/EstadoDeLaCuestion/traduccion1}{width=300px}{fig:traduccion1}{Traducción en pictogramas de la frase Hoy vamos a la montaña}
 
 Comúnmente la comunicación con pictogramas se realiza a través de tableros, de manera que el usuario señala uno a uno los pictogramas en dicho tablero hasta completar la frase. En la Figura \ref{fig:tableroColegio} podemos observar un tablero de ejemplo con relación a actividades desarrolladas en el colegio. Además podemos ver dos pictogramas uno que representa un pulgar hacía arriba y otro hacía abajo, que sirven para comunicar si o no respectivamente. El resto de los pictogramas guardan relación con acciones que cualquier alumno podría encontrarse en el colegio como pueden ser leer, hacer un examen, dibujar, ejercicios de caligrafía... 
+\figura{Bitmap/EstadoDeLaCuestion/telefono}{width=300px}{fig:telefono}{Ejemplo de palabra con diferentes pictogramas}
 
 Una palabra puede representarse con varios pictogramas, como podemos observar en la Figura \ref{fig:telefono}. La palabra \textit{"teléfono"} tiene diferentes pictogramas asociados, y el uso de un pictograma u otro dependerá del nivel cognitivo del usuario, el contexto de la frase, etc.
-\figura{Bitmap/EstadoDeLaCuestion/telefono}{width=300px}{fig:telefono}{Ejemplo de palabra con diferentes pictogramas}
+\figura{Bitmap/EstadoDeLaCuestion/tiempo}{width=300px}{fig:traduccion5}{Pictogramas de hoy, mañana, y pasado}
 
 Los verbos carecen de conjugación como podemos observar en la Figura \ref{fig:traduccion3} donde se puede ver que no existen conjugaciones. Los tiempos verbales: presente, pasado o futuro quedan determinados por los pictogramas de ayer, hoy o mañana, como podemos observar en la Figura \ref{fig:traduccion5}, que ayudan a dar tiempo verbal a la frase. 
 \figura{Bitmap/EstadoDeLaCuestion/conjugacion}{width=300px}{fig:traduccion3}{Ejemplo de verbos conjugados}
 
+
 El genero y numero si se representa a través de diferentes variaciones de los pictogramas, tal  y como podemos observar en la Figura \ref{fig:traduccion4} que representa los pictogramas asociados a profesor, profesora, profesores y profesoras. Las frases con pictogramas suelen tener una complejidad reducida, limitándose casi siempre a sujeto, verbo y objeto, utilizando solo palabras significativas.
+
 \figura{Bitmap/EstadoDeLaCuestion/generoNumero}{width=300px}{fig:traduccion4}{Pictogramas  para diferente numero y genero}
-\figura{Bitmap/EstadoDeLaCuestion/tiempo}{width=300px}{fig:traduccion5}{Pictogramas de hoy, mañana, y pasado}
-\figura{Bitmap/EstadoDeLaCuestion/conjuncionTemporal}{width=150px}{fig:pictoconjugacion}{Ejemplo de frase con conjunción temporal}
+
 
 Como hemos dicho anteriormente la comunicación con pictogramas se reduce a palabras significativas, es decir palabras que por si mismas poseen significado y es por está razón por la que determinantes, conjunciones,  preposiciones no suelen tener cabida dentro de la comunicación con pictogramas, aunque ciertas conjunciones sobretodo conjunciones temporales que sirven para aportar información si existen dentro de los pictogramas tal y como podemos ver en la Figura \ref{fig:pictoconjugacion}, el primer pictograma significa antes y aporta información sobre cuando debe realizarse la acción definida en el segundo pictograma, en este caso la frase representada seria "Antes comer".
+
+\figura{Bitmap/EstadoDeLaCuestion/conjuncionTemporal}{width=150px}{fig:pictoconjugacion}{Ejemplo de frase con conjunción temporal}
 
 
 
@@ -179,9 +183,9 @@ Como hemos dicho anteriormente la comunicación con pictogramas se reduce a palab
 %-------------------------------------------------------------
 \label{cap2:sec:GeneraciónDeLenguajeNatural}
 
-La Generación de Lenguaje Natural (GLN) es un campo de la Inteligencia Artificial para crear programas informaticos que generan lenguaje natural ya sea hablado o escrito\footnote{https://searchdatacenter.techtarget.com/es/definicion/Generacion-de-lenguaje-natural-o-NLG}. 
+La Generación de Lenguaje Natural (GLN) es un campo de la Inteligencia Artificial orientada para crear programas informaticos que generan lenguaje natural ya sea hablado o escrito\footnote{https://searchdatacenter.techtarget.com/es/definicion/Generacion-de-lenguaje-natural-o-NLG}. 
 
-La GLN se engloba dentro de la lingüística computacional aunque engloba muchas otras áreas de estudio fuera de la informática como la lingüística o la psicología . Se busca que el programa generador se comunique igual que si de una persona se tratarse \citep{Robert2000, VICENTE2015}. 
+La GLN se engloba dentro de la lingüística computacional, aunque engloba muchas otras áreas de estudio fuera de la informática como la lingüística o la psicología . La finalidad de la GLN es que el programa generador del lenguaje se comunique igual que si de una persona se tratarse \citep{Robert2000, VICENTE2015}. 
 
 Para que la generación del lenguaje sea efectiva la inteligencia artificial ademas necesita poder procesar el lenguaje natural, es decir, poder entender y analizar el significado de aquello que se dice.
 Falsamente podemos pensar que lo más importante de la generación del lenguaje es la generación de un texto gramaticalmente correcto, pero lo más importante de la comunicación es que el texto generado explique aquello que se desea transmitir, por eso podemos concluir que el proceso de generación se podría resumir en la construcción de un mensaje en lenguaje natural que transmite un mensaje de manera clara.
@@ -202,7 +206,7 @@ Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo e
 \item Realización. Se parte del resultado de la fase de micro planificación, el objetivo de esta fase es la realización de las oraciones finales que se utilizaran, así como la estructura final que tendrá el texto. La generación o realización del texto se puede dividir en dos partes realización lingüística en la que se determina la representación en palabras del texto de salida es decir se forman las oraciones, y la realización de la estructura en la que se genera el texto en el formato correcto para su visualización en un medio determinado, como puede ser HTML, o un documento Latex.
 
 \end{enumerate}
-
+\subsection{SimpleNLG-ES}
 \label{cap2:sec:SimpleNLG}
 
 La herramienta SimpleNLG-ES es una biblioteca Java que permite generar y transformar texto. Tiene como fin producir texto comprensible para el usuario, para ello posee tres componentes conectadas entre sí \citep{Trzpis2015}.\\
@@ -394,8 +398,6 @@ A lo largo de la siguiente sección presentaremos la metodología de trabajo segui
 
 
 \subsection{Tipo de metodología}
-
-
 
 Dada la naturaleza del proyecto, es decir un trabajo de fin de grado centrado en la investigación, hemos decido adoptar  algunas de las características típicas de las metodologías ágiles, cogiendo diferentes características de las metodologías ágiles.
 
