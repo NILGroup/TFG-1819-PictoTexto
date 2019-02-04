@@ -158,23 +158,19 @@ Por ultimo destacaremos la existencia de pictogramas más complejos que expresan 
 \figura{Bitmap/EstadoDeLaCuestion/traduccion1}{width=300px}{fig:traduccion1}{Traducción en pictogramas de la frase Hoy vamos a la montaña}
 
 Comúnmente la comunicación con pictogramas se realiza a través de tableros, de manera que el usuario señala uno a uno los pictogramas en dicho tablero hasta completar la frase. En la Figura \ref{fig:tableroColegio} podemos observar un tablero de ejemplo con relación a actividades desarrolladas en el colegio. Además podemos ver dos pictogramas uno que representa un pulgar hacía arriba y otro hacía abajo, que sirven para comunicar si o no respectivamente. El resto de los pictogramas guardan relación con acciones que cualquier alumno podría encontrarse en el colegio como pueden ser leer, hacer un examen, dibujar, ejercicios de caligrafía... 
-\figura{Bitmap/EstadoDeLaCuestion/telefono}{width=300px}{fig:telefono}{Ejemplo de palabra con diferentes pictogramas}
 
 Una palabra puede representarse con varios pictogramas, como podemos observar en la Figura \ref{fig:telefono}. La palabra \textit{"teléfono"} tiene diferentes pictogramas asociados, y el uso de un pictograma u otro dependerá del nivel cognitivo del usuario, el contexto de la frase, etc.
-\figura{Bitmap/EstadoDeLaCuestion/tiempo}{width=300px}{fig:traduccion5}{Pictogramas de hoy, mañana, y pasado}
+\figura{Bitmap/EstadoDeLaCuestion/telefono}{width=300px}{fig:telefono}{Ejemplo de palabra con diferentes pictogramas}
 
 Los verbos carecen de conjugación como podemos observar en la Figura \ref{fig:traduccion3} donde se puede ver que no existen conjugaciones. Los tiempos verbales: presente, pasado o futuro quedan determinados por los pictogramas de ayer, hoy o mañana, como podemos observar en la Figura \ref{fig:traduccion5}, que ayudan a dar tiempo verbal a la frase. 
 \figura{Bitmap/EstadoDeLaCuestion/conjugacion}{width=300px}{fig:traduccion3}{Ejemplo de verbos conjugados}
 
-
 El genero y numero si se representa a través de diferentes variaciones de los pictogramas, tal  y como podemos observar en la Figura \ref{fig:traduccion4} que representa los pictogramas asociados a profesor, profesora, profesores y profesoras. Las frases con pictogramas suelen tener una complejidad reducida, limitándose casi siempre a sujeto, verbo y objeto, utilizando solo palabras significativas.
-
 \figura{Bitmap/EstadoDeLaCuestion/generoNumero}{width=300px}{fig:traduccion4}{Pictogramas  para diferente numero y genero}
-
+\figura{Bitmap/EstadoDeLaCuestion/tiempo}{width=300px}{fig:traduccion5}{Pictogramas de hoy, mañana, y pasado}
+\figura{Bitmap/EstadoDeLaCuestion/conjuncionTemporal}{width=150px}{fig:pictoconjugacion}{Ejemplo de frase con conjunción temporal}
 
 Como hemos dicho anteriormente la comunicación con pictogramas se reduce a palabras significativas, es decir palabras que por si mismas poseen significado y es por está razón por la que determinantes, conjunciones,  preposiciones no suelen tener cabida dentro de la comunicación con pictogramas, aunque ciertas conjunciones sobretodo conjunciones temporales que sirven para aportar información si existen dentro de los pictogramas tal y como podemos ver en la Figura \ref{fig:pictoconjugacion}, el primer pictograma significa antes y aporta información sobre cuando debe realizarse la acción definida en el segundo pictograma, en este caso la frase representada seria "Antes comer".
-
-\figura{Bitmap/EstadoDeLaCuestion/conjuncionTemporal}{width=150px}{fig:pictoconjugacion}{Ejemplo de frase con conjunción temporal}
 
 
 
@@ -183,9 +179,9 @@ Como hemos dicho anteriormente la comunicación con pictogramas se reduce a palab
 %-------------------------------------------------------------
 \label{cap2:sec:GeneraciónDeLenguajeNatural}
 
-La Generación de Lenguaje Natural (GLN) es un campo de la Inteligencia Artificial orientada para crear programas informaticos que generan lenguaje natural ya sea hablado o escrito\footnote{https://searchdatacenter.techtarget.com/es/definicion/Generacion-de-lenguaje-natural-o-NLG}. 
+La Generación de Lenguaje Natural (GLN) es un campo de la Inteligencia Artificial para crear programas informaticos que generan lenguaje natural ya sea hablado o escrito\footnote{https://searchdatacenter.techtarget.com/es/definicion/Generacion-de-lenguaje-natural-o-NLG}. 
 
-La GLN se engloba dentro de la lingüística computacional, aunque engloba muchas otras áreas de estudio fuera de la informática como la lingüística o la psicología . La finalidad de la GLN es que el programa generador del lenguaje se comunique igual que si de una persona se tratarse \citep{Robert2000, VICENTE2015}. 
+La GLN se engloba dentro de la lingüística computacional aunque engloba muchas otras áreas de estudio fuera de la informática como la lingüística o la psicología . Se busca que el programa generador se comunique igual que si de una persona se tratarse \citep{Robert2000, VICENTE2015}. 
 
 Para que la generación del lenguaje sea efectiva la inteligencia artificial ademas necesita poder procesar el lenguaje natural, es decir, poder entender y analizar el significado de aquello que se dice.
 Falsamente podemos pensar que lo más importante de la generación del lenguaje es la generación de un texto gramaticalmente correcto, pero lo más importante de la comunicación es que el texto generado explique aquello que se desea transmitir, por eso podemos concluir que el proceso de generación se podría resumir en la construcción de un mensaje en lenguaje natural que transmite un mensaje de manera clara.
@@ -206,7 +202,7 @@ Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo e
 \item Realización. Se parte del resultado de la fase de micro planificación, el objetivo de esta fase es la realización de las oraciones finales que se utilizaran, así como la estructura final que tendrá el texto. La generación o realización del texto se puede dividir en dos partes realización lingüística en la que se determina la representación en palabras del texto de salida es decir se forman las oraciones, y la realización de la estructura en la que se genera el texto en el formato correcto para su visualización en un medio determinado, como puede ser HTML, o un documento Latex.
 
 \end{enumerate}
-\subsection{SimpleNLG-ES}
+
 \label{cap2:sec:SimpleNLG}
 
 La herramienta SimpleNLG-ES es una biblioteca Java que permite generar y transformar texto. Tiene como fin producir texto comprensible para el usuario, para ello posee tres componentes conectadas entre sí \citep{Trzpis2015}.\\
@@ -334,7 +330,7 @@ En una arquitectura de Servicios Web se pueden distinguir tres partes fundamenta
 \end{itemize}
 
 \subsection{Ventajas de los servicios Web}
-Las tres principales ventajas de usar  web son\footnote{https://sites.google.com/site/preyectodetics/home/servicios-web}:
+Las tres principales ventajas de usar servicios web son\footnote{https://sites.google.com/site/preyectodetics/home/servicios-web}:
 \begin{itemize}
   \item Ayudan a mejorar la conexión y operabilidad entre dos aplicaciones software sin importar sus propiedades o sino comparten plataforma de instalación.
   \item Favorecen los protocolos y estándares basados en texto, ya que estos facilitan acceder y comprender su contenido.
@@ -353,41 +349,41 @@ Las tres principales desventajas de los servicios son\footnote{http://fabioalfar
 \section{Sistema de traducción texto-picto}
 %-------------------------------------------------------------
 \label{cap2:sec:Sistema de traducción texto-picto}
-En esta sección se presentan los sistemas de traducción texto a picto existentes, ya que no se ha encontrado ningún sistema que haga la traducción de picto-texto, objetivo principal de este trabajo.  
+En esta sección se presentan los sistemas de traducción texto a picto existentes, ya que no se ha encontrado ningún sistema que haga la traducción de picto a texto, objetivo principal de este trabajo.  
 
 \subsection{Araword}
 Araword\footnote{http://www.arasaac.org/software.php} es una aplicación gratuita creada por Arasacc (Portal Aragonés de la Comunicación Aumentativa y Alternativa), que permite la traducción simultanea de texto a pictograma.
 
-Esta herramienta tiene como objetivo principal facilitar la elaboración de materiales con pictogramas. Se  parece a un editor de textos, se comienza con un documento en blanco y se van escribiendo frases en lenguaje natural se van traduciendo a pictogramas. 
-Cada vez que se introduce una palabra en el editor, la propia herramienta es la que se encarga de traducirla a pictograma automáticamente. Cuando Las palabras que tienen varios pictogramas como significado, Araword te muestra una de esas imágenes dando la posibilidad de poder elegir otro pictograma si este no lo consideras adecuado.
-En Araword las preposiciones y los artículos son muy variados, diferenciando el género y número en el caso de los artículos sin traducir literalmente la palabra, como podemos ver en la (Figura \ref{fig:articulosAraword}).
-\figura{Bitmap/EstadoDeLaCuestion/articulosAraword}{width=300px}{fig:articulosAraword}{Ejemplo artículos Araword.}
-Y en las preposiciones teniendo un pictograma para cada una de ellas , como aparece en la \ref{fig:preposicionAraword}).
+Esta herramienta tiene como objetivo principal facilitar la elaboración de materiales con pictogramas. Se  parece a un editor de textos, se comienza con un documento en blanco y se van escribiendo frases en lenguaje natural que se van traduciendo a pictogramas. 
+Cada vez que se introduce una palabra en el editor, la propia herramienta es la que se encarga de traducirla a pictograma automáticamente. Cuando las palabras tienen varios pictogramas asociados, Araword te muestra uno de ellos dando la posibilidad de poder elegir otro pictograma si este no se considera el más adecuado.
+En Araword hay una gran variedad tanto de las preposiciones como de los los artículos, diferenciando el género y número de los artículos sin aparecer la palabra, como podemos ver en la Figura \ref{fig:articulosAraword}.
+\figura{Bitmap/EstadoDeLaCuestion/articulosAraword}{width=300px}{fig:articulosAraword}{Ejemplo traducción artículos en Araword.}
+En cuanto a las preposiciones Araword posee un pictograma para cada una de ellas , como aparece en la Figura \ref{fig:preposicionAraword}.
 \figura{Bitmap/EstadoDeLaCuestion/preposicionAraword}{width=300px}{fig:preposicionAraword}{Ejemplo preposiciones Araword.}\\
-Por último, se puede ver en la (Figura \ref{fig:ejemploAraword}) un ejemplo de la traducción hecha por Araword del texto.
-\figura{Bitmap/EstadoDeLaCuestion/ejemploAraword}{width=300px}{fig:ejemploAraword}{Ejemplo yo quiero comer pizza.}
+En la Figura \ref{fig:ejemploAraword} se muestra un ejemplo de la traducción hecha por Araword del texto.
+\figura{Bitmap/EstadoDeLaCuestion/ejemploAraword}{width=300px}{fig:ejemploAraword}{Ejemplo paseo al perro.}
 
 \subsection{PictoTraductor}
-PictoTraductor\footnote{https://www.pictotraductor.com/} es una aplicación web pensada y desarrollada para facilitar la comunicación con personas que poseen dificultades para expresarse de forma oral y que se comunican mediante pictogramas. Principalmente está dirigido a padres y profesionales, para traducir textos a pictogramas y así poder comunicarse con sus hijos o pacientes que solo entienden pictogramas y no lenguaje natural.\\
+PictoTraductor\footnote{https://www.pictotraductor.com/} es una aplicación web pensada y desarrollada para facilitar la comunicación con personas que poseen dificultades para expresarse de forma oral y que se comunican mediante pictogramas. Principalmente está dirigida a padres y profesionales, para traducir textos a pictogramas y así poder comunicarse con sus hijos o pacientes que solo entienden pictogramas y no lenguaje natural.
 
-La interfaz de la aplicación se puede ver en la (Figura \ref{fig:pictoTraductor}). Consta de una barra de búsqueda en la que se introduce el texto que se quiere traducir a pictogramas. A medida que se va escribiendo una palabra se va mostrando el pictograma que representa el texto introducido en la parte inferior. Las palabras que tengan más de un pictograma para poder ser traducido, la herramienta da la opción de elegir la que más guste al usuario mediante las flechas que aparecen encima del picto traducido.
-Para los artículos PictoTraductor deja por defecto la traducción literal de la palabra, pero como acabamos de mencionar deja la opción de poder cambiarlo a gusto del usuario, como vemos en la \ref{fig:articulosPictoT}).
-\figura{Bitmap/EstadoDeLaCuestion/articulosPictoT}{width=300px}{fig:articulosPictoT}{Ejemplo artículos PictoTraductor.}
-En las preposiciones cada traducción tiene su pictograma, a diferencia de los artículos en PictoTraductor solo hay un pictograma para cada una de las preposiciones. \ref{fig:preposicionPictoT}).
-\figura{Bitmap/EstadoDeLaCuestion/preposicionPictoT}{width=300px}{fig:preposicionPictoT}{Ejemplo preposición PictoTraductor.}\\
+La interfaz de la aplicación se puede ver en la Figura \ref{fig:pictoTraductor}. Consta de una barra de búsqueda en la que se introduce el texto que se quiere traducir a pictogramas. A medida que se va escribiendo una palabra se va mostrando el pictograma que representa el texto introducido en la parte inferior. Para las palabras que tengan más de un pictograma asociado, la herramienta da la opción de elegir el pictograma al usuario mediante las flechas que aparecen encima del picto traducido.
+Para los artículos PictoTraductor deja por defecto la traducción literal de la palabra, pero como acabamos de mencionar deja la opción de poder cambiarlo a gusto del usuario, como vemos en la Figura \ref{fig:articulosPictoT}.
+\figura{Bitmap/EstadoDeLaCuestion/articulosPictoT}{width=300px}{fig:articulosPictoT}{Ejemplo traduccíon de los artículos en PictoTraductor.}
+Por cada preposición se muestra un solo pictograma como parece en la Figura \ref{fig:preposicionPictoT}.
+\figura{Bitmap/EstadoDeLaCuestion/preposicionPictoT}{width=300px}{fig:preposicionPictoT}{Ejemplo traducción de las preposiciones en PictoTraductor.}\\
 
-Esta herramienta permite el registro de usuarios, personalizar la aplicación, por ejemplo, guardando sus pictogramas favoritos, fotografías o imágenes  y compartir algunas de sus traducciones en las redes sociales.(Figura \ref{fig:pictoTraductor}).\figura{Bitmap/EstadoDeLaCuestion/pictoTraductor}{width=300px}{fig:pictoTraductor}{Frase en pictoTraductor}
+Esta herramienta permite el registro de usuarios, personalizar la aplicación, por ejemplo, guardando los pictogramas favoritos, fotografías o imágenes  y compartir algunas de sus traducciones en las redes sociales tal y como se puede ver en la Figura \ref{fig:pictoTraductor}.\figura{Bitmap/EstadoDeLaCuestion/pictoTraductor}{width=300px}{fig:pictoTraductor}{Frase traducida en pictoTraductor}
 
 \subsection{Pictar}
-Pictar \citep{MartinGuerrero2018} es una aplicación web que permite traducir de texto a pictogramas, presentando un aspecto tal y como se muestra en la \ref{fig:pictar}) \figura{Bitmap/EstadoDeLaCuestion/pictar}{width=300px}{fig:pictar}{Presentación pictar}.
+Pictar \citep{MartinGuerrero2018} es una aplicación web que permite traducir de texto a pictogramas, En la Figura \ref{fig:pictar} se muestra el aspecto general de la herramienta \figura{Bitmap/EstadoDeLaCuestion/pictar}{width=300px}{fig:pictar}{Presentación pictar}.
 
 El usuario introduce el texto que desea traducir y al pulsar el botón buscar 
 se generan los pictogramas adecuados para la frase introducida, tal y como se puede ver en la (Figura \ref{fig:pictar1}) \figura{Bitmap/EstadoDeLaCuestion/pictar1}{width=300px}{fig:pictar1}{Texto traducido en pictar}.
 
-La búsqueda de artículos y preposiciones es muy parecida a la de PictoTraductor, poniendo en la barra de texto las palabras deseadas, una vez pinchado el botón de búsqueda aparecen los pictogramas y mediante el uso de flechas se puede ir cambiando hasta encontrar el tipo de pictograma que el usuario considere idóneo.
+La traducción de artículos y preposiciones es muy parecida a la de PictoTraductor, escribiendo la palabra en la barra de búsqueda, aparecen todos los diferentes pictogramas que se asocian a esa palabra, dando la posibilidad al usuario de elegir la que desee.
 
-Esta aplicación además ofrece la posibilidad de buscar pictogramas. El usuario introduce una palabra y en la parte inferior aparecen los pictogramas encontrados en el buscador.
-Una vez encontrados los pictogramas deseados, el usuario puede moldearlos a su gusto arrastrando con el ratón el pictograma a la rejilla de edición. En ella se podrá desde cambiar el color del pictograma hasta poder añadir texto debajo de ellos con su significado, como se puede ver en la (Figura\ref{fig:pictar2}) \figura{Bitmap/EstadoDeLaCuestion/pictar2}{width=300px}{fig:pictar2}{Ejemplo buscador y editor pictar}.
+Esta aplicación además ofrece en la parte derecha un buscador de pictogramas. El usuario introduce la palabra a buscar en la parte inferior aparecen los pictogramas asociados a dicha.
+El usuario puede mover los pictogramas encontrados a la rejilla de traducción. Pudiendo cambiar el color del pictograma, añadir texto debajo de él, etc. Tal y cómo se puede ver en la Figura\ref{fig:pictar2} \figura{Bitmap/EstadoDeLaCuestion/pictar2}{width=300px}{fig:pictar2}{Ejemplo buscador y editor pictar}.
 
 %-------------------------------------------------------------
 \section{Metodología de trabajo}
@@ -398,6 +394,7 @@ A lo largo de la siguiente sección presentaremos la metodología de trabajo segui
 
 
 \subsection{Tipo de metodología}
+
 
 Dada la naturaleza del proyecto, es decir un trabajo de fin de grado centrado en la investigación, hemos decido adoptar  algunas de las características típicas de las metodologías ágiles, cogiendo diferentes características de las metodologías ágiles.
 
