@@ -26,9 +26,18 @@ Al haber encapsulado el Servicio web en un formato REST, esto obliga a que nuest
 
 En este momento es donde se utiliza la librería GSON la cuál es un framework que contiene en su interior el método "from JSON", este método es vital para la construcción de nuestro Servicio web,únicamente necesita recibir el dato mandado por el usuario y el tipo de clase al que hace referencia.
 
-Una vez obtenidos los datos mencionados, la propia librería se encarga de realizar el resto de la conversión para que el Servicio web funcione correctamente.    
+Una vez obtenidos los datos mencionados, la propia librería se encarga de realizar el resto de la conversión para que el Servicio web funcione correctamente.
+
+\section{Apache Tomcat}
+%-------------------------------------------------------------
+\label{cap3:sec:Apache Tomcat} 
+En el lado del servidor se ha decidido utilizar Apache Tomcat, donde se encuentra nuestro servidor web, lo que nos permite realizar la generación de lenguaje natural.
+Una vez el servicio recibe la frase introducida por el usuario, el servidor se encarga de analizar cada palabra de la frase y buscar los pictogramas correspondientes utilizando la API de Arasaac. El resultado obtenido es devuelto por el servidor mediante un GSON que relaciona cada palabra con su picto.\\ 
+La versión de Apache utilizada en el servidor es la 9.0.14,para acceder al servicio de traducción del proyecto hay que introducir la siguiente dirección en el buscador: http://127.0.0.1:8000/127.0.0.1.
 
 
-  
+
+
+ 
 
 
