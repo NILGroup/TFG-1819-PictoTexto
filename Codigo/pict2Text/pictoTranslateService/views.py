@@ -2,12 +2,14 @@ from django.http import JsonResponse
 
 import requests
 import json
+import pict2Text.constants as constants
 # Create your views here.
 
 def getPictoTranslate(request):
     response={}
     result = []
-    r = requests.get("https://api.arasaac.org/api/pictograms/es/"+request.GET.get('pictoId', 'id'))
+    url=constants.PICTO_BASE_DIR+constants.ES_LANGUAGE
+    r = requests.get(url+request.GET.get('pictoId', 'id'))
     if r.status_code == 200:
         object= json.loads(r.text)
         for word in object['keywords']:
@@ -16,5 +18,5 @@ def getPictoTranslate(request):
                 'meanings': result
         }
     else:
-        response = {'status': 'false', 'message': r.message}
+        response = {'status': 'false', 'message': r.text}
     return JsonResponse(response, status=r.status_code)
