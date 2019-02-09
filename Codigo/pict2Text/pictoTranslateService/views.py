@@ -13,10 +13,8 @@ def getPictoTranslate(request):
         for word in object['keywords']:
            result.append(word['keyword'])
         response = {
-                 'status':200,
                 'meanings': result
         }
     else:
-        response={'status':r.status_code}
-
-    return JsonResponse(response)
+        response = {'status': 'false', 'message': r.message}
+    return JsonResponse(response, status=r.status_code)
