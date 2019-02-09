@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="form-group ">
+      <label>Identificador del picto</label>
+      <input type="text" class="form-control" id="pictoId" placeholder="Introduzca el pictograma que desea buscar" name="pictoId" #idPicto>
+    </div>
+    <button type="submit" class="btn btn-primary"  (click)="getPictosTranslate(idPicto.value)">Submit</button>
+  <div class="container" *ngIf="translates">
+    <p>El picto significa</p>
+    <div *ngFor="let translate of translates">
+      <p>{{translate}}</p>
+  </div>
+</div>

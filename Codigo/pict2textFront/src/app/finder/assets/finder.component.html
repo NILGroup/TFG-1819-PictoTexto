@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="form-group ">
+        <label>Nombre del picto</label>
+        <input type="text" class="form-control" id="pictoName" placeholder="Introduzca el pictograma que desea buscar"
+            name="pictoName" #name>
+    </div>
+    <button class="btn btn-primary" (click)="getPictosByName(name.value)">Submit</button>
+
+    <div class="pictoSlider">
+        <ngb-carousel *ngIf="myPicto" [showNavigationIndicators]="false">
+            <div *ngFor="let img of myPicto">
+                <ng-template ngbSlide>
+                    <img src={{img.url}} class="img-responsive mx-auto d-flex justify-content-center flex-wrap" alt="" width="50%">
+                    <div class="carousel-caption">
+                        <p>{{img.id}}</p>
+                    </div>
+                </ng-template>
+            </div>
+        </ngb-carousel>
+    </div>
+</div>
