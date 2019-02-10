@@ -1,23 +1,29 @@
 package NLG;
 
+
 public class SimplePhrase {
 
-	
+
+ private String[] words;
  private String subject;
  private String verb;
  private String object;
 	
 	 
 	 
-	public SimplePhrase(String subject, String verb, String object){
-		
-		this.subject=subject;
-		this.verb=verb;
-		this.object=object;
-		
+	public SimplePhrase(String[] words){
+		this.words=words;
 	}
 	
 
+	public String[] getWords() {
+		return words;
+	}
+	
+	public void setWords(String[] words) {
+		this.words=words;
+	}
+	
 	public String getObject() {
 		return object;
 	}

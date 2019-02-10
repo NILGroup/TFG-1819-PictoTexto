@@ -53,12 +53,13 @@ public class createSimplePhrase extends HttpServlet {
               sb.append(s);
          }
 
-		Gson gson = new Gson();
-		  SimplePhrase p = gson.fromJson(sb.toString(), SimplePhrase.class);
-		  NLG miNlgTest = NLG.getInstance();
-		  miNlgTest.createASimplePhrase(p.getSubject(), p.getVerb(), p.getObject());
-		  response.setStatus(HttpServletResponse.SC_OK);
-		  response.getWriter().append( gson.toJson(miNlgTest.getOutput()));
+         Gson gson = new Gson();
+         String [] words =  gson.fromJson(sb.toString(), String[].class);
+		 SimplePhrase p = new SimplePhrase(words);
+		 NLG miNlgTest = NLG.getInstance();
+		 miNlgTest.createASimplePhrase(words);
+		 response.setStatus(HttpServletResponse.SC_OK);
+		 response.getWriter().append( gson.toJson(miNlgTest.getOutput()));
 
 	}
 	
