@@ -480,7 +480,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n          <label >Sujeto</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"subject\" placeholder=\"Introduzca un sujeto\" name=\"subject\"  [(ngModel)]=\"phrase.subject\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n          <label >Verbo</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"verb\" placeholder=\"Introduzca un verbo\" name=\"verb\"  [(ngModel)]=\"phrase.verb\">\r\n      </div>\r\n        <div class=\"form-group\">\r\n          <label >Objeto</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"object\" placeholder=\"Introduzca el complemento directo\" name=\"object\"  [(ngModel)]=\"phrase.object\" >\r\n      </div>\r\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"getTranslate()\">Submit</button>\r\n</div>\r\n<div class=\"container\" *ngIf=\"finalPhrase\">\r\n      <p>{{finalPhrase}}</p>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n          <label >Frase</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"subject\" placeholder=\"Introduzca un sujeto\" name=\"subject\"  [(ngModel)]=\"phrase\">\r\n      </div>\r\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"getTranslate()\">Submit</button>\r\n</div>\r\n<div class=\"container\" *ngIf=\"finalPhrase\">\r\n      <p>{{finalPhrase}}</p>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -506,10 +506,10 @@ var TranslatorService = /** @class */ (function () {
     function TranslatorService(proxyService) {
         this.proxyService = proxyService;
     }
-    TranslatorService.prototype.getPictogramTranslate = function (name) {
+    TranslatorService.prototype.getPictogramTranslate = function (words) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.proxyService.postElement(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPhraseURL, name)
+            _this.proxyService.postElement(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPhraseURL, words)
                 .subscribe(getTranslateSuccess, getTranslateError);
             function getTranslateSuccess(data) {
                 // LLAMADA AL TRANSFORMER
@@ -534,26 +534,6 @@ var TranslatorService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/translator/transformer/phrase.ts":
-/*!**************************************************!*\
-  !*** ./src/app/translator/transformer/phrase.ts ***!
-  \**************************************************/
-/*! exports provided: Phrase */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Phrase", function() { return Phrase; });
-var Phrase = /** @class */ (function () {
-    function Phrase() {
-    }
-    return Phrase;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/translator/translator.component.ts":
 /*!****************************************************!*\
   !*** ./src/app/translator/translator.component.ts ***!
@@ -566,10 +546,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TranslatorComponent", function() { return TranslatorComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _transformer_phrase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./transformer/phrase */ "./src/app/translator/transformer/phrase.ts");
-/* harmony import */ var _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
-/* harmony import */ var src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/translator/service/translator.service */ "./src/app/translator/service/translator.service.ts");
-
+/* harmony import */ var _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
+/* harmony import */ var src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/translator/service/translator.service */ "./src/app/translator/service/translator.service.ts");
 
 
 
@@ -577,10 +555,11 @@ __webpack_require__.r(__webpack_exports__);
 var TranslatorComponent = /** @class */ (function () {
     function TranslatorComponent(translatorService) {
         this.translatorService = translatorService;
-        this.phrase = new _transformer_phrase__WEBPACK_IMPORTED_MODULE_2__["Phrase"]();
     }
     TranslatorComponent.prototype.getTranslate = function () {
-        this.translatorService.getPictogramTranslate(this.phrase).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+        var words;
+        words = this.phrase.split(' ');
+        this.translatorService.getPictogramTranslate(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
     };
     TranslatorComponent.prototype.getTranslateSucces = function (data) {
         this.finalPhrase = data;
@@ -593,10 +572,10 @@ var TranslatorComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-translator',
             template: __webpack_require__(/*! ./assets/translator.component.html */ "./src/app/translator/assets/translator.component.html"),
-            providers: [src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_4__["TranslatorService"], _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__["ProxyService"]],
+            providers: [src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_3__["TranslatorService"], _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__["ProxyService"]],
             styles: [__webpack_require__(/*! ./assets/translator.component.css */ "./src/app/translator/assets/translator.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_4__["TranslatorService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_3__["TranslatorService"]])
     ], TranslatorComponent);
     return TranslatorComponent;
 }());
