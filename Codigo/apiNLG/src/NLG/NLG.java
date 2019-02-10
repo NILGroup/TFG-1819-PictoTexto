@@ -44,6 +44,7 @@ public static NLG getInstance() {
 	}
 	
 	public void createASimplePhrase(String arrayWords[]) {
+		this.simplePhrase = new SPhraseSpec(factory);
 
 		// READ AND CREATE WORDS
 		ArrayList<NLGElement> wordsList = new ArrayList<NLGElement>();
