@@ -2,9 +2,11 @@ package NLG;
 
 import java.util.Map.Entry;
 
-
+import simplenlg.features.Feature;
+import simplenlg.features.Form;
 import simplenlg.features.Gender;
 import simplenlg.features.LexicalFeature;
+import simplenlg.features.Tense;
 import simplenlg.framework.LexicalCategory;
 import simplenlg.framework.NLGElement;
 import simplenlg.framework.NLGFactory;
@@ -26,6 +28,7 @@ public class NLG {
 	private SPhraseSpec simplePhrase;
 	private String output;
 	private NLGFactory factory;
+	private SPhraseSpec s1;
 
 	public NLG() {
 		this.lexicon = new XMLLexicon();
@@ -51,8 +54,19 @@ public static NLG getInstance() {
 		ArrayList<Integer> verbPosition = new ArrayList<Integer>();
 		for (int i = 0; i < arrayWords.length; ++i) {
 			NLGElement aux = factory.createWord(arrayWords[i], LexicalCategory.ANY);
-			if (aux.getCategory() == LexicalCategory.VERB) {
+		
+			if( aux.getCategory()== LexicalCategory.NOUN){
+			    NLGElement aux2 =factory.createWord(arrayWords[i], LexicalCategory.VERB);
+			    aux2.setFeature(Feature.FORM, Form.BARE_INFINITIVE);
+			    if(aux2.getFeature("imperfect2s")!=null) {
+					verbPosition.add(i);
+					aux=aux2;
+			    }
+
+			}else {
+			if (aux.getCategory() == LexicalCategory.VERB || aux.getCategory() == LexicalCategory.MODAL ) {
 				verbPosition.add(i);
+			}
 			}
 			wordsList.add(aux);
 		}
@@ -65,12 +79,11 @@ public static NLG getInstance() {
 			actual=position;
 			NPPhraseSpec subject = createSubject(subjectWords,words);
 			simplePhrase.setSubject(subject);
-
 		}
 		
 		NPPhraseSpec object = factory.createNounPhrase(arrayWords[arrayWords.length-1]);
 		VPPhraseSpec verb = factory.createVerbPhrase(arrayWords[arrayWords.length-2]);
-		simplePhrase.setVerb(verb);
+		simplePhrase.setVerbPhrase(verb);
 		simplePhrase.setObject(object);
 		output = realiser.realiseSentence(simplePhrase);
 
