@@ -1,0 +1,48 @@
+% !TeX encoding = ISO-8859-1
+
+\chapter{Metodología de trabajo}
+\label{cap:MetodologiaDeTrabajo}
+
+A lo largo de la siguiente sección presentaremos la metodología de trabajo seguida durante el presente TFG.
+
+
+\subsection{Tipo de metodología}
+
+
+Dada la naturaleza del proyecto, es decir un trabajo de fin de grado centrado en la investigación, hemos decido adoptar  algunas de las características típicas de las metodologías ágiles, cogiendo diferentes características de las metodologías ágiles.
+
+\begin{itemize}
+
+\item Abierto al cambio, dada la naturaleza del proyecto, el desconocimiento de su viabilidad y de ser viable el modo de desarrollarlo, por esto la visión debía de estar abierta al cambio.
+\item Comunicación continua. La comunicación ha sido con los tutores y entre nosotros, esta comunicación ha sido constante desde el principio del proyecto con el fin de garantizar un nivel de calidad en el producto y asesoramiento en la realización. Por ello hemos tenido dos o tres reuniones al mes con las tutoras y nosotros, aparte de comunicación continua a través del correo electrónico para resolver dudas puntuales.
+\item Adaptativa, al ser un proyecto de investigación es necesario que el proyecto se pueda adaptar fácilmente a cambios de requisitos, uso de tecnologías nuevas etc.
+\item Entregas constantes. Para intentar asegurar la correcta resolución del proyecto se han realizado entregas constantes tanto de memoria como de código.
+\item Se otorga valor al producto entrega tras entrega,  cada una de las entregas anteriores no solo sirve para su   si no también para añadir valor al producto ya sea mediante la adición en la memoria, al código o ambas.
+\item Visualización del trabajo en curso. Para ello hemos utilizado un tablero tal y como podemos observar en la Figura \ref{fig:ourBoard} para representar el estado actual del proyecto. Esto además nos ha ayudado a la organización, ya que existían ciertas limitaciones como no trabajar en el mismo sitio, ni con el mismo horario, necesitábamos de un tablero que nos permitiera de una manera rápida saber el estado actual del trabajo, y en que está trabajando cada miembro.
+\end{itemize}
+
+\subsection{Visualización del trabajo}
+
+En la Figura\ref{fig:ourBoard} podemos como hemos estructurado nuestro tablero. El tablero posee las siguientes columnas:
+
+\begin{itemize}
+\item To Do: se establecen todas las tareas por hacer.
+\item In Progress: en esta columna aparecen todas las tareas que se están desarrollando. Cada tarea en esta columna debe estar asignada a uno de los miembros del equipo de trabajo. Una misma persona no puede tener más de una asignada, es decir el WIP(Work In Progress)\footnote{https://kanbanize.com/es/recursos-de-kanban/primeros-pasos/que-es-limite-wip/}, de esta columna es dos. 
+\item Test: todas las tareas finalizadas por un miembro del equipo pasan a está columna para ser revisadas por el otro.
+\item Revisión: tareas que se están revisando, para validar su corrección antes de la siguiente reunión.
+\item Done: tareas que ya están terminadas y revisadas.
+\end{itemize}
+
+\figura{Bitmap/EstadoDeLaCuestion/ourBoard}{width=450px}{fig:ourBoard}{Tablero del proyecto}
+
+
+\subsection{Control de versiones: GitHub}
+
+
+El sistema elegido para el control de versiones ha sido GitHub dado que nos permitia tener el proyecto en privado\footnote{https://help.github.com/articles/making-a-public-repository-private/} algo necesario dado que es un proyecto de final de grado.
+
+Git sirve para mantener un regristro de todos los cambios que sufre un archivo y genera un árbol donde en cada nodo se almacenan los cambios por archivo y las diferentes ramas\footnote{\url{https://git-scm.com/book/en/v1/Git-Branching-What-a-Branch-Is}} en la Figura\ref{fig:gitTree}, 
+podemos ver un ejemplo de árbol de Git.
+
+La implementación que hace GitHub de Git nos permite utilizar todos los beneficios de Git, en un entorno amigable, fácil de usar en el que ya tenemos experiencia previa, además hemos decidido utilizar la versión de escritorio\footnote{https://desktop.github.com/}.  por su comodidad y facilidad de uso, tal y como podemos ver en la Figura\ref{fig:gitApp} nos permite ver los cambios, hacer commit, push y pull de una manera rápida y sencilla\footnote{https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html}.
+\figura{Bitmap/EstadoDeLaCuestion/gitApp}{width=400px}{fig:gitTree}{Aplicación GitHub de escritorio} 
