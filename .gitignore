@@ -8,4 +8,5 @@
 *.idx
 *.out
 node_modules/
-
+.idea/
+venvMac/
