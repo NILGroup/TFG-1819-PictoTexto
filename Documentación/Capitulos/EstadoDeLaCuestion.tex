@@ -186,19 +186,21 @@ Existe dos maneras de que un programa informático se comunique con un usuario. L
 
 \subsection{Fases de GLN}
 
-Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo en diferentes fases que describiremos brevemente a continuación \citep{VICENTE2015}:
+Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo en diferentes fases tal y como se puede ver en la Figura\ref{nlg}, dichas frases serán descritas brevemente a continuación: \citep{VICENTE2015}:
 
 \figura{Bitmap/EstadoDeLaCuestion/nlg}{width=300px}{fig:nlg}{Fases de generación del lenguaje.}
 
 \begin{enumerate}
+\item Preprocesado. Esta etapa es opcional y puede no aparecer en un sistema de GNL, dado que solamente es necesaria cuando existen datos que han de ser analizados e interpretados. Tal y como se puede ver en la Figura\ref{fig:preprocesado}, donde podemos ver una entrada de datos meteorologicos que necesitan un tratamiento antes de poder añadirse al texto. El objetivo del preprocesado es la generación de estructuras de datos que permitan que el texto de entrada sea más fácil de tratar en las siguientes fases. El preprocesado pertenece a la rama de la limpieza de datos de la minería de datos.  \citep{Han2005}.
+\figura{Bitmap/EstadoDeLaCuestion/preprocesado}{width=250px}{fig:preprocesado}{Ejemplo de entrada de la fase de preprocesado.}
 
-\item Macro planificación. Etapa donde se debe seleccionar el contenido que se desea convertir a texto. Para que el texto generado sea coherente es preciso estructurar el contenido del mismo en el orden correcto. La salida de esta fase es el denominado plan del documento, una estructura de datos que suele ser un árbol, donde en cada nodo se encapsula la información más importante que debe formar parte de un párrafo o de una frase, además de información de como se relaciona con el resto de nodos. En la Figura \ref{fig:macroplanificacion} podemos ver un ejemplo de la salida de esta etapa.
+\item Macro planificación. Etapa donde se debe seleccionar el contenido que se desea convertir a texto. Para que el texto generado sea coherente es preciso estructurar el contenido del mismo en el orden correcto. La salida de esta fase es el denominado plan del documento, una estructura de datos que suele ser un árbol, donde en cada nodo se encapsula la información más importante que debe formar parte de un párrafo o de una frase, además de información de como se relaciona con el resto de nodos. En la Figura \ref{fig:macroplanificacion} podemos ver un ejemplo de la salida de esta etapa, en la que se puede ver una estructura del párrafo obtenida tras terminar la macro planificación.
 \figura{Bitmap/EstadoDeLaCuestion/macroplanificacion}{width=250px}{fig:macroplanificacion}{Árbol representativo de la fase de macro planificación en GLN.}
 \item Micro planificación. Partiendo de la salida de la macro planificación, se determinan que partes formaran el texto resultado, agregando las estructuras que formaran parte de este, el léxico que se utilizara para expresar los conceptos y los hechos recogidos en la primera etapa y la generación de expresiones que aparecerán en el texto.  
 \item Realización. El objetivo de esta fase es la realización de las oraciones finales que se utilizaran, así como la estructura final que tendrá el texto. La generación o realización del texto se puede dividir en dos partes realización lingüística en la que se determina la representación en palabras del texto de salida es decir se forman las oraciones, y la realización de la estructura en la que se genera el texto en el formato correcto para su visualización en un medio determinado, como puede ser HTML, o un documento Latex.
 
 \end{enumerate}
-
+Estas fases son abstractas ya que cada no existe un consenso sobre las distintas fases que deben participar en la creación de un sistema de GLN ni el cometido que se desarrolla en cada una de ellas esta delimitado.
 
 %-------------------------------------------------------------
 \section{Servicios Web}
