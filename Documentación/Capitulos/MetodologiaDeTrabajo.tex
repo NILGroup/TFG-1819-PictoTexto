@@ -15,6 +15,8 @@ La principales características de nuestra metodología han sido:
 \item Entregas constantes. Para intentar asegurar la correcta resolución del proyecto se han realizado entregas constantes tanto de memoria como de código. 2 o 3 veces al mes la memoria y un prototipo funcional o la aplicación eran revisadas por nuestras tutoras.
 \item Se otorga valor al producto entrega tras entrega. Se revisa y corrige los errores o posibles modificaciones de entregas anteriores y ademas se añade valor al producto ya sea mediante la adición en la memoria, al código o ambas.
 \item Visualización del trabajo en curso. Para ello hemos utilizado un tablero tal y como podemos observar en la Figura \ref{fig:ourBoard} para representar el estado actual del proyecto. Esto además nos ha ayudado a la organización, ya que existían ciertas limitaciones como no trabajar en el mismo sitio, ni con el mismo horario, necesitábamos de un tablero que nos permitiera de una manera rápida saber el estado actual del trabajo, y en que está trabajando cada miembro.
+\item Pool de tareas. El flujo de tiempo es continuo de manera que no existen limitaciones temporales a modo de Sprint, esto permite no cortar el flujo de trabajo. 
+\item Replenishment Meeting. Está reunión surge de la metodología Kanban y aunque a diferencia de como sugiere está metodología, estas reuniones se realizaban con las tutoras cada dos o tres semanas. Su principal objetivo es establecer prioridades de trabajo\footnote{http://giropa832.wpengine.com/kanban/}.
 \end{itemize}
 
 \section{Visualización del trabajo}
@@ -28,17 +30,15 @@ En la Figura \ref{fig:ourBoard} podemos como hemos estructurado nuestro tablero.
 \item Revisión: tareas que las tutoras están revisando, para validar su corrección antes de la siguiente reunión. Las tareas de código no son revisadas a nivel interno por las tutoras, tan solo si cumplen con la funcionalidad definida.
 \item Done: tareas que tras el proceso de revisión se pueden dar por terminadas.
 \end{itemize}
-
-\figura{Bitmap/EstadoDeLaCuestion/ourBoard}{width=450px}{fig:ourBoard}{Tablero del proyecto}
+\figura{Bitmap/EstadoDeLaCuestion/ourBoard}{width=180px}{fig:ourBoard}{Tablero del proyecto}
 
 
 \section{Control de versiones: GitHub}
 
 
-El sistema elegido para el control de versiones ha sido GitHub dado que nos permitia tener el proyecto en privado\footnote{https://help.github.com/articles/making-a-public-repository-private/} algo necesario dado que es un proyecto de final de grado.
-
-Git sirve para mantener un regristro de todos los cambios que sufre un archivo y genera un árbol donde en cada nodo se almacenan los cambios por archivo y las diferentes ramas\footnote{\url{https://git-scm.com/book/en/v1/Git-Branching-What-a-Branch-Is}} en la Figura\ref{fig:gitTree}, 
-podemos ver un ejemplo de árbol de Git.
-
-La implementación que hace GitHub de Git nos permite utilizar todos los beneficios de Git, en un entorno amigable, fácil de usar en el que ya tenemos experiencia previa, además hemos decidido utilizar la versión de escritorio\footnote{https://desktop.github.com/}.  por su comodidad y facilidad de uso, tal y como podemos ver en la Figura\ref{fig:gitApp} nos permite ver los cambios, hacer commit, push y pull de una manera rápida y sencilla\footnote{https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html}.
-\figura{Bitmap/EstadoDeLaCuestion/gitApp}{width=400px}{fig:gitTree}{Aplicación GitHub de escritorio} 
+El sistema elegido para el control de versiones ha sido GitHub dado que nos permitía tener el proyecto en privado\footnote{https://help.github.com/articles/making-a-public-repository-private/}, y tener copias de seguridad de todo el proyecto por las diferentes fases por las que el mismo ha pasado.
+El uso de un sistema de control de versiones es necesario para mantener estas copias de seguridad y ser accesible para todos los miembros del proyecto desde cualquier sitio. Además nos permite trabajar en paralelo sobre el mismo fichero.
+Por ultimo hemos decidido utilizar ramas de funcionalidad\footnote{https://es.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow} a nivel de proyecto, tal y como podemos ver en la Figura \ref{fig:ramasGit}.
+Antes de cada reunión con las tutoras se hace merge de todas las ramas a la rama master, a modo de check-point.
+Esta división en ramas, nos ha permitido poder trabajar en paralelo en las diferentes partes del TFG. En la parte de código esta división nos permitía poder hacer modificaciones y ver la integración de dichas modificaciones con el resto de la aplicación sin necesidad de esperar a que una modificación en cualquiera de las otras aplicaciones supusiera un bloqueo.
+\figura{Bitmap/EstadoDeLaCuestion/ramasGit}{width=450px}{fig:ramasGit}{Ramas del proyecto}

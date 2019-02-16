@@ -5,16 +5,19 @@
 
 
 	
-A lo largo de este capitulo trataremos de explicar los diferentes servicios web, que hemos implementado, hablando sobre tecnologías y funciones que desarrollan dentro de nuestro sistema.
+A lo largo de este capitulo trataremos de explicar los diferentes servicios web, que hemos implementado, para desarrollar cada una de las funcionalidades de nuestra aplicación.
 %------------------------------------------------------------------
 \section{Servicio de Generación de Lenguaje Natural}
 %-------------------------------------------------------------------
 \label{cap4:sec:ServicioGLN}
-Como ya hemos hablado anteriormente, hemos utilizado el framework SimpleNLG-ES\footnote{https://github.com/citiususc/SimpleNLG-ES}, para la fase de generación del lenguaje. Este framework está escrito en Java, lo que impide su utilización dentro de nuestro servicio web central desarrollado en Python 3\footnote{https://docs.python.org/3/}.
+Como ya hemos hablado anteriormente, hemos utilizado el framework SimpleNLG-ES\footnote{https://github.com/citiususc/SimpleNLG-ES}, para la fase de generación del lenguaje. Este framework está escrito en Java, lo que impide su utilización dentro de nuestro servicio web central desarrollado en Python 3.
 
-Este Servicio Web utiliza Apache TomCat\footnote{http://tomcat.apache.org/} como contenedor, para encapsular el framework SimpleNLG-ES, y poder ser accesible desde el servicio web principal o cualquier otro servicio web del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}.  
+Este Servicio Web utiliza Apache TomCat como contenedor, para encapsular el framework SimpleNLG-ES, y poder ser accesible desde el servicio web principal o cualquier otro servicio web del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}.  
 
-Este servicio web recibe un JSON con los datos necesarios para formar una frase, el cual gracias a GSON visto en \ref{cap3:sec:GSON} podemos obtener una clase Java con la cual formaremos la frase en lenguaje natural, la cual devolveremos en la respuesta del servicio.
+Este servicio web recibe un JSON con un  simple array de palabras, tal y como podemos ver en la Figura \ref{fig:nlgRequest}. Esta petición puede ser parseada gracias al framework GSON visto en el Capitulo \ref{cap3:sec:GSON} y podemos obtener una clase Java con la cual formaremos la frase en lenguaje natural, la cual devolveremos en la respuesta del servicio en texto plano tal y como podemos ver en la Figura \ref{fig:nlgResponse}.
+\figura{Bitmap/EstadoDeLaCuestion/nlgRequest}{width=260px}{fig:nlgRequest}{Petición al servicio de creación del lenguaje}
+\figura{Bitmap/EstadoDeLaCuestion/nlgResponse}{width=220px}{fig:nlgResponse}{Respuesta del servicio de creación del lenguaje}
+
 
 %------------------------------------------------------------------
 \section{Micro Servicios de Pictogramas}
@@ -25,7 +28,9 @@ Para la obtención de los pictogramas así como su significado se han implementado
 A continuación pasaremos a desarrollar los microservicios desarrollados:
 \begin{itemize}
 
-\item Servicio de búsqueda: este servicio web recibe una palabra y devuelve un objeto en formato JSON, que contiene una lista de objetos cada uno con el identificador de un pictograma de la base de datos de ARASAAC y la URL al archivo de imagen alojado en los servidores de ARASAAC. 
+\item Servicio de búsqueda: este servicio web, recibe una palabra a traves de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON. Este servicio primero lanza una petición GET a un servicio web externo de ARAASAC, el cual devuelve una lista de pictogramas. Esta respuesta es tratada, para crear un objecto que contendrá una lista de objetos cada uno con el identificador de un pictograma de la base de datos de ARASAAC, la URL al archivo de imagen alojado en los servidores de ARASAAC y el significado de ese pictograma. Una vez toda la información es tratada, se genera un JSON que se devuelve en la respuesta del servicio.
+\figura{Bitmap/EstadoDeLaCuestion/pictoFinderRequest}{width=260px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
+\figura{Bitmap/EstadoDeLaCuestion/pictoFinderResponse}{width=220px}{fig:pictoFinderResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa}
 
 \item Servicio de traducción: el segundo servicio web recibe el identificador de un pictograma y obtiene todos los significados de dicho pictograma utilizando para ello la API de ARASAAC.
 
