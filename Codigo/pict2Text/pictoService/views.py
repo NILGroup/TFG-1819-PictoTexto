@@ -13,8 +13,9 @@ def getPicto(request):
     if r.status_code == 200:
         arrayObject= json.loads(r.text)
         for object in arrayObject:
-            if(object['keywords'][0]['keyword']==request.GET.get('pictoName', 'name')):
-                result.append({'id':object['idPictogram'],'url':constants.PICTO_BASE_DIR+str(object['idPictogram']), 'keyWords':object['keywords'][0]['keyword']})
+            for key in object['keywords']:
+                if(key['keyword']==request.GET.get('pictoName', 'name')):
+                    result.append({'id':object['idPictogram'],'url':constants.PICTO_BASE_DIR+str(object['idPictogram']), 'keyWords':object['keywords'][0]['keyword']})
         response = {
                 'pictos': result
         }
