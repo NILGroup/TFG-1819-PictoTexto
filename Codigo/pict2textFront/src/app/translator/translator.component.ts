@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Phrase } from './transformer/phrase';
 import { ProxyService } from '../utils/proxy/proxy-service.service';
 import { TranslatorService } from 'src/app/translator/service/translator.service';
 
@@ -12,12 +11,14 @@ import { TranslatorService } from 'src/app/translator/service/translator.service
 
 export class TranslatorComponent {
 
-  phrase: Phrase = new Phrase();
+  phrase: string;
   finalPhrase: string;
   constructor(private translatorService: TranslatorService) { }
 
   getTranslate() {
-    this.translatorService.getPictogramTranslate(this.phrase).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+    let words;
+    words = this.phrase.split(' ');
+    this.translatorService.getPictogramTranslate(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
   }
 
 

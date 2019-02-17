@@ -1,15 +1,7 @@
 <div class="container">
       <div class="form-group ">
-          <label >Sujeto</label>
-          <input type="text" class="form-control" id="subject" placeholder="Introduzca un sujeto" name="subject"  [(ngModel)]="phrase.subject">
-      </div>
-      <div class="form-group">
-          <label >Verbo</label>
-          <input type="text" class="form-control" id="verb" placeholder="Introduzca un verbo" name="verb"  [(ngModel)]="phrase.verb">
-      </div>
-        <div class="form-group">
-          <label >Objeto</label>
-          <input type="text" class="form-control" id="object" placeholder="Introduzca el complemento directo" name="object"  [(ngModel)]="phrase.object" >
+          <label >Frase</label>
+          <input type="text" class="form-control" id="subject" placeholder="Introduzca un sujeto" name="subject"  [(ngModel)]="phrase">
       </div>
       <button type="submit" class="btn btn-primary" (click)="getTranslate()">Submit</button>
 </div>
