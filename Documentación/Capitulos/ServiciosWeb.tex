@@ -14,10 +14,41 @@ Como ya hemos hablado anteriormente, hemos utilizado el framework SimpleNLG-ES\f
 
 Este Servicio Web utiliza Apache TomCat como contenedor, para encapsular el framework SimpleNLG-ES, y poder ser accesible desde el servicio web principal o cualquier otro servicio web del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}.  
 
-Este servicio web recibe un JSON con un  simple array de palabras, tal y como podemos ver en la Figura \ref{fig:nlgRequest}. Esta petición puede ser parseada gracias al framework GSON visto en el Capitulo \ref{cap3:sec:GSON} y podemos obtener una clase Java con la cual formaremos la frase en lenguaje natural, la cual devolveremos en la respuesta del servicio en texto plano tal y como podemos ver en la Figura \ref{fig:nlgResponse}.
+Este servicio web recibe un JSON con un simple array de palabras, tal y como podemos ver en la Figura \ref{fig:nlgRequest}. Esta petición puede ser parseada gracias al framework GSON visto en el Capitulo \ref{cap3:sec:GSON} para obtener una clase Java con la cual formaremos la frase en lenguaje natural, la cual se devuelve en la respuesta del servicio, en texto plano tal y como podemos ver en la Figura \ref{fig:nlgResponse}.
 \figura{Bitmap/EstadoDeLaCuestion/nlgRequest}{width=260px}{fig:nlgRequest}{Petición al servicio de creación del lenguaje}
 \figura{Bitmap/EstadoDeLaCuestion/nlgResponse}{width=220px}{fig:nlgResponse}{Respuesta del servicio de creación del lenguaje}
 
+\section{Fases del proceso}
+
+En está sección vamos a explicar, las diferentes fases que transforman la entrada del servicio de generación de lenguaje hasta obtener una frase valida.
+
+\subsection{Preparación}
+Una vez el servidor recibe la petición Post, el frameword GSON se encarga de parsear la entrada para devolver un array de palabras, el cual se enviara al sistema generador de lenguaje.
+Una vez el sistema recibe el array de palabras, lo primero que haces un procesamiento y clasificación de todas las palabras según categoría léxica:
+Diferenciando entre:
+\begin{enumerate}
+\item Adjetivos.
+\item Adverbios.
+\item Determinantes.
+\item Pronombres.
+\item Nombre.
+\item Símbolos.
+\item Conjunciones.
+\item Preposiciones.
+\item Complementos.
+\item Verbos modales.
+\item Complementos
+\end{enumerate}
+Esta clasificación es automática gracias a la función:
+\begin{center}
+ NLGFactory.createWord("palabra", LexicalCategory.ANY)
+\end{center}
+
+Con el resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir el array en aquellas palabras que formaran el sujeto y aquellas que formaran el predicado. Cabe destacar que ARAASAC devuelve los verbos en infinitivo y está función de clasificación detecta los verbos como nombres. Este problema tiene solución gracias a una pequeña lógica que detecta si los nombres al ser configurados como verbos tienen conjugaciones.
+
+\subsection{Sujeto}
+
+Una vez tenemos el subarray de palabras ya clasificadas que formaran el sujeto se pasa a procesar el sujeto de la frase. En este proceso se configura un determinante en caso de que sea necesario, por defecto el determinante es \textit{ el o la}. Además se reconoce el genero y numero del nombre principal del sujeto, para proceder a la configuración de los mismos de todo el sujeto. 
 
 %------------------------------------------------------------------
 \section{Micro Servicios de Pictogramas}
@@ -29,7 +60,7 @@ A continuación pasaremos a desarrollar los microservicios desarrollados:
 \begin{itemize}
 
 \item Servicio de búsqueda: este servicio web, recibe una palabra a traves de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON. Este servicio primero lanza una petición GET a un servicio web externo de ARAASAC, el cual devuelve una lista de pictogramas. Esta respuesta es tratada, para crear un objecto que contendrá una lista de objetos cada uno con el identificador de un pictograma de la base de datos de ARASAAC, la URL al archivo de imagen alojado en los servidores de ARASAAC y el significado de ese pictograma. Una vez toda la información es tratada, se genera un JSON que se devuelve en la respuesta del servicio.
-\figura{Bitmap/EstadoDeLaCuestion/pictoFinderRequest}{width=260px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
+\figura{Bitmap/EstadoDeLaCuestion/pictoFinderRequest}{width=300px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
 \figura{Bitmap/EstadoDeLaCuestion/pictoFinderResponse}{width=220px}{fig:pictoFinderResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa}
 
 \item Servicio de traducción: el segundo servicio web recibe el identificador de un pictograma y obtiene todos los significados de dicho pictograma utilizando para ello la API de ARASAAC.

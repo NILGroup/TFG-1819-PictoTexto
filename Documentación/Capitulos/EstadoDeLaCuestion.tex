@@ -181,7 +181,15 @@ La GLN se engloba dentro de la lingüística computacional aunque engloba muchas o
 
 Para que la generación del lenguaje sea efectiva la inteligencia artificial ademas necesita poder procesar el lenguaje natural, es decir, poder entender y analizar el significado de aquello que se dice.
 Falsamente podemos pensar que lo más importante de la generación del lenguaje es la generación de un texto gramaticalmente correcto, pero lo más importante de la comunicación es que el texto generado explique aquello que se desea transmitir, por eso podemos concluir que el proceso de generación se podría resumir en la construcción de un mensaje en lenguaje natural que transmite un mensaje de manera clara.
-
+Existen diferentes tipos de arquitectura de sistemas de GLN \citep{CarlosGarcia2004}:
+\begin{enumerate}
+	\item Integrada o monolítica: el sistema es un solo bloque sin división clara entre módulos.
+	\item Secuencial: los módulos se encadenan en un flujo unidireccional.
+	\item Interactiva: se permite revisión de las decisiones tomadas. La información puede circular tanto hacía delante como hacía atrás.
+	\item Pizarra: la información no va de modulo a modulo si no que se guarda en una zona común, de manera que cada modulo pueda modificarla.
+	\item Basada  en revisión: la información fluye de forma cíclica entre los módulos hasta alcanzar un estado óptimo.
+\end{enumerate}
+	
 Existe dos maneras de que un programa informático se comunique con un usuario. La primera forma es a través de mensajes estáticos definidos en el código, este acercamiento si bien es valido, genera un sistema cerrado y no flexible en el cual no cabe lugar la interpretación del lenguaje. La segunda vía, es la generación de lenguaje basada en conocimiento o \textit{deep generation} donde es el propio sistema el encargado de generar el lenguaje a través de su conocimiento basándose en el conocimiento lingüístico del que dispone \citep{CarlosGarcia2004}.
 
 \subsection{Fases de GLN}
