@@ -54,9 +54,8 @@ public static NLG getInstance() {
 		ArrayList<Integer> verbPosition = new ArrayList<Integer>();
 		for (int i = 0; i < arrayWords.length; ++i) {
 			NLGElement aux = factory.createWord(arrayWords[i], LexicalCategory.ANY);
-		
-			if( aux.getCategory()== LexicalCategory.NOUN){
-			    NLGElement aux2 =factory.createWord(arrayWords[i], LexicalCategory.VERB);
+			if(aux.getCategory()== LexicalCategory.NOUN){
+				NLGElement aux2 =factory.createWord(arrayWords[i], LexicalCategory.VERB);
 			    aux2.setFeature(Feature.FORM, Form.BARE_INFINITIVE);
 			    if(aux2.getFeature("imperfect2s")!=null) {
 					verbPosition.add(i);
@@ -74,6 +73,7 @@ public static NLG getInstance() {
 		//DEFINE SUBJECT AND THEN CREATE THE SUBJECT PHRASE
 		int actual=0;
 		for(Integer position : verbPosition) {
+			System.out.println(position);
 			List<NLGElement> subjectWords = wordsList.subList(actual, position);
 			String[] words = Arrays.copyOfRange(arrayWords, actual,position);
 			actual=position;
@@ -94,12 +94,11 @@ public static NLG getInstance() {
 		int position=0;
 		for(NLGElement word : subjectWords) {
 			subject =factory.createNounPhrase(words[position]);
-			if(word.getCategory() != LexicalCategory.NOUN) {
+			if(word.getCategory() != LexicalCategory.ANY) {
 				subject=setDeterminer(subject, word, words[position]);
 			}
 			position++;
 		}
-		
 		return subject;
 	}
 
@@ -114,9 +113,6 @@ public static NLG getInstance() {
 				String rules = entry.getKey().toString();
 				if (rules.contains("plural")) {
 					subject.setPlural(true);
-					if (subjectWord.getCategory() != LexicalCategory.NOUN
-							&& subjectWord.getCategory() != LexicalCategory.PRONOUN)
-						subject.setDeterminer("los");
 				}
 				if (rules.contains("feminine")) {
 					subject.setFeature(LexicalFeature.GENDER, Gender.FEMININE);
