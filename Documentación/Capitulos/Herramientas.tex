@@ -95,7 +95,16 @@ Por último es importante destacar la función "realiser" el cuál es el encargado 
 %-------------------------------------------------------------
 \label{cap3:sec:API-Arasaac}
 
+Para conseguir la traducción de cada pictograma hemos utilizado la propia API de Arasaac, centrándonos principalmente en la parte de obtención de pictogramas, como podemos observar en la  Figura \ref{fig:principal}\figura{Bitmap/Herramientas/PrincipalAPI}{width=300px}{fig:principal}{Presentación de la API de Arasaac}.
 
+En el apartado de pictogramas se han utilizado dos de los métodos "GET", por un lado la obtención del pictograma mediante su id (/pictograms/{locale}/{idPictogram}), mirar figura \ref{fig:principal}. 
+Por ejemplo para el id (2517) obtenemos que es el pictograma de la palabra "perro", tal y como se muestra en la Figura \ref{fig:APIperro}
+\figura{Bitmap/Herramientas/APIperro}{width=300px}{fig:APIperro}{Código obtenido del pictograma con la palabra "perro"}.
+
+El otro método "GET" que se ha utilizado para nuestro proyecto es para poder buscar el texto para relacionarlo con el pictograma que deseamos (/pictograms/{locale}/search/{searchText}), mirar figura \ref{fig:principal}. 
+Este método nos devuelve un objeto con todo lo relacionado con el texto buscado, siguiendo el ejemplo anterior con la palabra "perro", obtenemos el objeto que se muestra en la Figura \ref{fig:perroProyecto}\figura{Bitmap/Herramientas/APIperroProyecto}{width=300px}{fig:perroProyecto}{Información del objeto con la palabra "perro"}.\\
+Por tanto, gracias a la API de Arasaac hemos podido conseguir toda la parte de codificación necesaria para poder implementar en nuestro TFG la obtención de pictogramas y la relación entre una palabra y su pictograma.  
+  
 
  
 
