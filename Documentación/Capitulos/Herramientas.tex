@@ -11,7 +11,6 @@ A lo largo de este capítulo analizaremos las diferentes herramientas utilizadas 
 %-------------------------------------------------------------
 \label{cap3:sec:Django}
 
-\subsection{¿Qué es Django?}
 Es un framework de desarrollo web\footnote{https://tutorial.djangogirls.org/es/django/} de código abierto escrito en Python, respetando el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C). La meta principal de esta aplicación es facilitar la creación de sitios web. En Django es muy importante el re-uso de código, la conectividad y el desarrollo rápido.\\  
 \begin{enumerate}
 \item Django da soporte de base de datos permitiendo crear los modelos de datos necesarios y a través de su API administrar y gestionar dicha base de datos. Además concede al usuario la posibilidad de poder ejecutar sus propias consultas SQL.
@@ -21,110 +20,81 @@ Es un framework de desarrollo web\footnote{https://tutorial.djangogirls.org/es/d
 \section{GSON}
 %-------------------------------------------------------------
 \label{cap3:sec:GSON}
-GSON es una librería open-source la cuál nos permite convertir nuestros objetos Java en JSON o viceversa, esta librería es muy importante ya que para lenguaje en Java no existen archivos JSON.
-Al haber encapsulado el Servicio web en un formato REST, esto obliga a que nuestro Servicio tenga que recibir obligatoriamente un JSON.
+GSON es una librería open-source la cuál nos permite convertir nuestros objetos Java en JSON o viceversa, esta librería es muy importante ya que nos permite poder obtener un objeto GSON compatible con el servicio web configurado en lenguaje Java. Al estar nuestro Servicio web configurado en formato REST, este hecho obliga a que este servicio tenga que recibir obligatoriamente un JSON.
 
-En este momento es donde se utiliza la librería GSON la cuál es un framework que contiene en su interior el método "from JSON", este método es vital para la construcción de nuestro Servicio web,únicamente necesita recibir el dato mandado por el usuario y el tipo de clase al que hace referencia.
+Esta librería es un framework que contiene en su interior el método "from JSON", dicho método es vital para la obtención de un objeto compatible con nuestro servicio.
 
-Una vez obtenidos los datos mencionados, la propia librería se encarga de realizar el resto de la conversión para que el Servicio web funcione correctamente.
+Una vez obtenidos el objeto GSON mencionado, la propia librería se encarga de realizar el resto de la conversión y madarlo al Servicio web para que funcione correctamente.
 
 \section{Apache Tomcat}
 %-------------------------------------------------------------
 \label{cap3:sec:Apache Tomcat} 
-En el lado del servidor se ha decidido utilizar Apache Tomcat, donde se encuentra nuestro servidor web, lo que nos permite realizar la generación de lenguaje natural.
-Una vez el servicio recibe la frase introducida por el usuario, el servidor se encarga de analizar cada palabra de la frase y buscar los pictogramas correspondientes utilizando la API de Arasaac. El resultado obtenido es devuelto por el servidor mediante un GSON que relaciona cada palabra con su picto.\\ 
-La versión de Apache utilizada en el servidor es la 9.0.14,para acceder al servicio de traducción del proyecto hay que introducir la siguiente dirección en el buscador: http://127.0.0.1:8000/127.0.0.1.
+En el lado del servidor se ha decidido utilizar Apache Tomcat, el cuál funciona como un entorno que sirve para distribuir aplicaciones servlets\footnote{\url{https://www.oracle.com/technetwork/java/javaee/servlet/index.html}}. El tipo servlets es una clase de lenguaje Java utilizada principalmente para ampliar las capacidades propias de un servidor.
+
+El servidor se encarga de analizar cada palabra de la frase y conecte con la API de Arasaac   con el fin de buscar los pictogramas correspondientes. El resultado obtenido es devuelto al servidor encapsulado en un objeto GSON.\\ 
+La versión de Apache utilizada es la 9.0.14,para acceder al servicio de traducción del proyecto hay que introducir la siguiente dirección en el buscador: http://127.0.0.1:8080.
 
 \section{SimpleNLG-ES}
 %-------------------------------------------------------------
-\label{cap2:sec:SimpleNLG}
+\label{cap3:sec:SimpleNLG}
 
-La herramienta SimpleNLG-ES es una biblioteca Java que permite generar y transformar texto. Tiene como fin producir texto comprensible para el usuario, para ello posee tres componentes conectadas entre sí \citep{Trzpis2015}.\\
-Al ser una biblioteca es necesario escribir un programa Java que haga uso de las clases de SimpleNLG-ES. Estas clases permiten especificar tanto el sujeto de una oración, como el verbo, así como el complemento directo y los complementos adicionales. Además los métodos SimpleNLG-ES pueden usarse también para indicar tanto el tiempo pasado como la forma compuesta de los verbos.
-
-Cuando se ha decidido el contenido de la oración, SimpleNLG-ES juntará las partes de la oración de una forma gramaticalmente correcta y generará una salida. Por ejemplo, su indicamos a SimpleNLG-ES que el sujeto 'mi perro', el verbo 'es' y de complemento 'feliz', el programa sacará como respuesta: 'mi perro es feliz'.
-Como acabamos de ver en el ejemplo SimpleNLG-ES se encarga únicamente de asegurar que la frase creada es correcta gramaticalmente, para eso la herramienta tiene automatizadas algunas tareas para comprobar lo que los sistemas de generación de lenguaje natural necesitan (NLG):
-
-\textbf{''Ortografía:''}:
+La herramienta SimpleNLG-ES es una biblioteca Java que permite generar y transformar texto. Tiene como fin producir texto comprensible para el usuario \citep{Trzpis2015}.\\
+El simpleNLG-ES crea palabras con la función CreateWord, esta función se encuentra integrada dentro de la factoria NLG (NLGFactory nlgFactory), dicha factoria permite crear diferentes tipos de frases. Dependiendo de la complejidad de las oraciones que se quieran crear se utilizarán diferentes procedimientos, en nuestro caso utilizamos el procedimiento NounPhrases (frases nominales).
+Además con la función CreateWord podemos hacer que cada palabra contenga una categorización léxica, es decir el simpleNLG clasifica cada palabra introducida en diferentes categorías. Por ejemplo:
 \begin{enumerate} 
-\item Insertar espacios en blanco para separar las frases.
-\item Mezclar los signos de puntuación.
-\item Insertar saltos de líneas entre palabras para encajar el texto.
-\item Darle un formato correcto.
+\item LexicalCategory.NOUN. Si introducimos la palabra "perro" en la oración, la herramienta lo categoriza como nombre.
+\item LexicalCategory.ANY. Con esta sentencia introducimos una palabra sin especificar su tipo. 
+\end{enumerate} 
+
+SimpleNLG-ES con la sentencia "Features" permite definir las características de cada palabra, esta opción es muy importante ya que la herramienta coge la raíz sintáctica de las palabras que analiza y gracias a las features especifica el género y número de cada palabra. Por ejemplo, "Corredora", SimpleNLG coge su raíz (corredor) y con la terminación "a" especifica el género: femenino y el número: singular de la palabra.
+Una vez especificado el género y número de los sustantivos de las oraciones, utilizamos:  
+\begin{enumerate} 
+\item SetDeterminer(). Para que la herramienta añada automáticamente el determinante que le corresponda al sustantivo.  
 \end{enumerate}
 
-\textbf{''Morfología:''}
-\begin{enumerate}
-\item Genera formas conjugadas, como puede ser el género, número, tiempo verbal o persona.
-\end{enumerate}
-
-\textbf{''Gramática simple:''}
-\begin{enumerate}
-\item Asegura la concordancia entre nombre-verbo.
-\item Crea verbos compuestos bien formados.
-\item SimpleNLG-ES une las partes definidas por el usuario para formar una estructura correcta.
-\end{enumerate}
-
-Es importante recordar que SimpleNLG-ES es una librería y no una aplicación. Esto significa que no se puede ejecutar como un programa Java normal ya que no tiene ni método y módulo principal. Por tanto se necesita crear un programa diferente con clases y métodos.
-
-\subsection{Lexicon}
-Como todos los sistemas de procesamiento del lenguaje natural, SimpleNLG necesita tener información acerca de las palabras que va a utilizar, esta información la proporciona un lexicon, se usa dicho lexicon mediante:
-\begin{enumerate}
-\item Lexicon lexicon = new XMLLexicon();
-\end{enumerate}
-
-Una vez esté creado el lexicon, hay que crear un NLGFactory, objeto que crea la estructura, y un realiser, objeto que transforma las estructuras en texto, se inicializa de la siguiente forma:
-\begin{enumerate}
-\item NLGFactory nlgFactory = new NLGFactory(lexicon);
-\item Realiser realiser = new Realiser(lexicon);
-\end{enumerate}
-
-\subsection{Verbos}
-Por lo general los verbos se deben especificar en infinitivo, pero también aceptará formas conjugadas de los verbos, por ejemplo:
+La sentencia SPhraseSpec, permite diferenciar automáticamente las partes sintácticas de la oración. Por ejemplo , en la frase "mi perro come pan".
+Para comprobar si clasifica correctamente la oración del ejemplo, podemos usar: 
 \begin{enumerate}  
-\item p.setVerb("es");
-\end{enumerate}
-equivale a:  
-\begin{enumerate}  
-\item p.setVerb("ser");
+\item p.setSubject(). Devolverá que el sustantivo es: "mi perro".
+\item p.setVerb(). Devolverá que el verbo es: "come".
+\item p.setObject(). Devolverá que el complemento es: "pan".
 \end{enumerate}
 
-Sin embargo, en SimpleNLG-ES se pueden conjugar los tiempos verbales: pasado, presente y futuro, por ejemplo partiendo del siguiente código:
+Para los verbos, SimpleNLG es capaz de especificar tanto la forma como el tiempo verbal, para todo esto utilizamos la sentencia "feature" aunque al tratarse de verbos las características que especifica son diferentes a la de los sustantivos. Para el ejemplo de a contuniación utilizaremos el verbo "ser".
+Para poder poner el verbo en tiempo pasado, utilizariamos: 
 \begin{enumerate}  
-\item SPhraseSpec p = nlgFactory.createClause();
-\item p.setSubject("Mi perro");
-\item p.setVerb("ser");
-\item p.setObject("feliz".);
+\item p.setFeature(Feature.PAST);
 \end{enumerate}
-
-Para poder poner el verbo en tiempo pasado, habría que añadir la siguiente linea: 
+Devolviendo el verbo:
 \begin{enumerate}  
-\item p.setFeature(Feature.TENSE, Tense.PAST);
-\end{enumerate}
-Esto devolverá la frase:
-\begin{enumerate}  
-\item "Mi perro fue feliz".
+\item "fue".
 \end{enumerate}
 
 En cambio si queremos indicar un tiempo futuro, sería de esta manera:
 \begin{enumerate}  
-\item p.setFeature(Feature.TENSE, Tense.FUTURE);
+\item p.setFeature(Feature.FUTURE);
 \end{enumerate}
-Devolviendo la frase:
+Devolviendo el verbo:
 \begin{enumerate}  
-\item "Mi perro será feliz".
+\item "será".
 \end{enumerate}
 
-Además, también se puede añadir la forma negativa al verbo, cogiendo la frase anterior sería:
+Además, también se puede añadir la forma negativa al verbo, con el ejemplo anterior sería:
 \begin{enumerate}  
 \item p.setFeature(Feature.NEGATED, true);
 \end{enumerate}
-Dejando la frase en:
+Devolviendo el verbo:
 \begin{enumerate}  
-\item "Mi perro no será feliz".
+\item " no será".
 \end{enumerate}
 
-Las características TENSE y NEGATED son ejemplos de las caraterísticas que se usan en una SPhraseSpec, pero hay otras más como son: MODAL, PASSIVE, PERFECT, y PROGRESSIVE.
+Por último es importante destacar la función "realiser" el cuál es el encargado de juntar las diferentes partes sintácticas en un objeto que devolverá la oración analizada. 
+
+
+\section{API-Arasaac}
+%-------------------------------------------------------------
+\label{cap3:sec:API-Arasaac}
+
 
 
  
