@@ -19,10 +19,11 @@ export class TranslatorComponent {
   constructor(private translatorService: TranslatorService) { }
 
   getTranslate() {
-    let words=[], img;
+    let words2=[], i=0;
+
     
-    for(img in this.pictoPhrase ){
-        words.push(img.keyword)
+    for(i=0;i<this.pictoPhrase.length;++i){
+        words2.push(this.pictoPhrase[i].keyword)
     }
     this.translatorService.getPictogramTranslate(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
   }

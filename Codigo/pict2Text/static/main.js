@@ -9217,7 +9217,8 @@ var FinderTransformer = /** @class */ (function () {
         var myPicto = [];
         var i = 0;
         for (i = 0; i < data['pictos'].length; ++i)
-            myPicto.push(new _picto__WEBPACK_IMPORTED_MODULE_2__["Picto"](data['pictos'][i].id, data['pictos'][i].url));
+            myPicto.push(new _picto__WEBPACK_IMPORTED_MODULE_2__["Picto"](data['pictos'][i].id, data['pictos'][i].url, data['pictos'][i].keyWords));
+        console.log(myPicto);
         return myPicto;
     };
     FinderTransformer = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -9241,9 +9242,10 @@ var FinderTransformer = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Picto", function() { return Picto; });
 var Picto = /** @class */ (function () {
-    function Picto(id, url) {
+    function Picto(id, url, keyword) {
         this.id = id;
         this.url = url;
+        this.keyword = keyword;
     }
     return Picto;
 }());
@@ -9467,8 +9469,11 @@ var TranslatorComponent = /** @class */ (function () {
         this.translatorService = translatorService;
     }
     TranslatorComponent.prototype.getTranslate = function () {
-        var words;
-        words = this.phrase.split(' ');
+        var words = [], i = 0;
+        for (i = 0; i < this.pictoPhrase.length; ++i) {
+            console.log(this.pictoPhrase[i]);
+            words.push(this.pictoPhrase[i].keyword);
+        }
         this.translatorService.getPictogramTranslate(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
     };
     TranslatorComponent.prototype.getTranslateSucces = function (data) {
