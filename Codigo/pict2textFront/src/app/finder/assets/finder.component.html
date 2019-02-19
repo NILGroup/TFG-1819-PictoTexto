@@ -1,3 +1,5 @@
+
+
 <div class="container">
     <div class="form-group ">
         <label>Nombre del picto</label>
@@ -10,12 +12,15 @@
         <ngb-carousel *ngIf="myPicto" [showNavigationIndicators]="false">
             <div *ngFor="let img of myPicto">
                 <ng-template ngbSlide>
-                    <img src={{img.url}} class="img-responsive mx-auto d-flex justify-content-center flex-wrap" alt="" width="50%">
+                    <img src={{img.url}} class="img-responsive mx-auto d-flex justify-content-center flex-wrap" alt="" width="25%">
                     <div class="carousel-caption">
                         <p>{{img.id}}</p>
+                        <button class="btn btn-primary" (click)="addPicto(img)">Añadir</button>
                     </div>
+                   
                 </ng-template>
             </div>
         </ngb-carousel>
     </div>
 </div>
+
