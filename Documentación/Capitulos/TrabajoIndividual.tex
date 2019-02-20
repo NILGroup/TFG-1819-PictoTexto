@@ -2,37 +2,38 @@
 
 \chapter{Trabajo Individual}
 \label{cap6:trabajoInd}
-A lo largo de este capitulo hablaremos del trabajo realizado por cada uno de los miembros del equipo, siguiendo la metodología de trabajo explicado anteriormente en \ref{cap3:sec:Metodologíadetrabajo}
+A lo largo de este capitulo hablaremos del trabajo realizado por cada uno de los miembros del equipo, siguiendo la metodología de trabajo explicado anteriormente en \ref{cap4:sec:Metodologíadetrabajo}
 
 %------------------------------------------------------------------
-\section{Trabajo Individual}
+\section{Trabajo Individual de Jose Maria}
 %-------------------------------------------------------------------
-\subsection{Jose Maria}
 \label{cap6:sec:Jose Maria}
 
-Lo primero que realice fue un estudio del estado del arte, para comenzar con la redacción de este documento. La investigación inicial se centro en en el estudio de los SAACS, poniendo especial atención en los pictogramas y los sistemas pictograficos. 
+Lo primero que realice fue un estudio  de aquellas tareas del estado del arte, de las cuales estábamos seguros que tendríamos que tratar para comenzar con la redacción de este documento. La investigación inicial se centro en en el estudio de los SAACS, poniendo especial atención en los pictogramas y los sistemas pictograficos, y de manera general Servicios Web. 
 
-La búsqueda de información sobre los sistemas, se analizaron los sistemas pictograficos más extendidos y la comunicación a través de  pictogramas. La investigación concluyo con el uso de los pictogramas de ARASAAC para el desarrollo de este Trabajo de Fin de Grado.
+En la búsqueda de información sobre los SAACS, analice los sistemas pictograficos más extendidos y la comunicación a través de  pictogramas. Tras esta investigación decidimos que usaríamos los pictogramas de ARASAAC para el desarrollo de este Trabajo de Fin de Grado.
 
-Uno de los requisitos indispensables de este proyecto, era la necesidad de incluir la aplicación dentro de un Servicio Web, por lo cual investigue sobre cuales eran las diferentes opciones para crear un Servicio Web en Python, y dada su potencia, facilidad de uso y la gran comunidad decidimos utilizar Django. Una vez expuesto y estudiado su uso, desarrolle una pequeña demo técnica, para probar su utilidad y como primer acercamiento a la tecnología. 
+Uno de los requisitos indispensables de este proyecto, era la necesidad de incluir la aplicación dentro de un Servicio Web, por lo cual investigue sobre cuales eran las diferentes opciones para crear un Servicio Web en Python, y dada su potencia, facilidad de uso y la gran comunidad decidimos utilizar Django. Una vez expuesto y estudiado su uso, desarrolle una prototipo tecnológico, para probar su utilidad y como primer acercamiento a la tecnología.
 
-El siguiente paso necesario, era un estudio sobre los diferentes sistemas de generación de lenguaje parte fundamental del proyecto. Investigue y documente la base teórica de la generación de lenguaje, una vez termino esto pase a la búsqueda de diferentes frameworks de generación de lenguaje en español, tras la cual encontré el framework SimpleNLg-ES, que es el  framework de generación de lenguaje natural en español que encontré. Una vez presentados los resultados desarrolle una demo utilizando dicho framework en un servicio web al cual se llama desde el servicio web de Django.
+El siguiente paso necesario, era un estudio sobre los diferentes sistemas de generación de lenguaje natural parte fundamental del proyecto. Investigue y documente la base teórica de la generación de lenguaje natural, una vez termine esto pase a la búsqueda de diferentes frameworks de generación de lenguaje natural en español, tras la cual encontré el framework SimpleNLG-ES, que es el unico  framework de generación de lenguaje natural en español que encontré. Una vez presentados los resultados desarrolle un prototipo tecnológico utilizando dicho framework. Este prototipo muy simple permitía enviarle un sujeto, verbo y un complemento directo. Dado que SimpleNLG-ES es un framework Java, y la base de los microservicios web están implementados en Python, decidi encapsular el framework en un servicio web al cual se llamaba desde el servicio web de Django.
+Para generar este servicio web, analice diferentes vías de servicios web Java, y realice dos prototipos uno con WildFly\footnote{http://www.wildfly.org/} y otro con Apache Tomcat\footnote{http://tomcat.apache.org/}, y teniendo en cuenta diferente factores como rendimiento o la comunidad decidí implementar Tomcat. Durante el desarrollo de este prototipo surgió el problema de recibir datos en formatos JSON en un servicio web Java, tras analizar las diferentes posibilidades que encontré decidí optar por usar el framework GSON.
 
-Una vez desarrollada la demo y con el aumento de los servicios web implementados, decidí refactorizar el código y diseñe una arquitectura que fomentara la rápida integración de nuevos servicios, que además sean completamente independientes entre ellos siguiendo el principio de responsabilidad única\footnote{https://devexperto.com/principio-responsabilidad-unica/} por el cual cada modulo debe de realizar una única cosa. 
+Con el aumento de los micro servicios web implementados, decidí refactorizar el código y diseñe una arquitectura que fomentara la rápida integración de nuevos servicios, que además sean completamente independientes entre ellos siguiendo el principio de responsabilidad única\footnote{https://devexperto.com/principio-responsabilidad-unica/} por el cual cada modulo debe de realizar una única cosa. 
 
 Dado el limite del framework Django para la gestión de aplicaciones web desde el lado del cliente, desarrolle una aplicación web fron-end, que después integre con la aplicación Django, para de esta manera obtener mayor funcionalidad y descargar parte del trabajo en parte del cliente.
 
-\subsection{Salvador}
+%------------------------------------------------------------------
+\section{Trabajo Individual de Salvador}
+
+%------------------------------------------------------------------
 \label{cap6:sec:Salvador}
-Cuando comenzamos a realizar este trabajo fin de grado, mis cometidos iniciales se podían dividir en dos tareas diferentes, por un lado junto con mi compañero José María realizar un estudio sobre aquellos aspectos básicos que debíamos conocer para fundamentar las bases de nuestro proyecto. Realizando un estudio sobre los pictogramas y los sistemas pictográficos existentes en la actualidad.
-En la segunda tarea buscaba ponerme en concordancia con mi compañero,sobre cuáles son los motivos que nos mueven para realizar este trabajo con una clara utilidad social y los objetivos que deseamos obtener en el mismo. Una vez llegamos a un punto en común, se redactó los primeros puntos de este documento.
+Cuando comenzamos a realizar este trabajo fin de grado, mi cometido principal junto con mi compañero José María realizar un estudio sobre aquellos aspectos básicos que debíamos conocer para fundamentar las bases de nuestro proyecto. Realizando un estudio sobre los pictogramas y los sistemas pictográficos existentes en la actualidad.
 
-Una vez teníamos asentadas las bases sobre las que enfocaríamos nuestro trabajo, tuve que realizar un análisis sobre que tipo servicios Webs serían los más beneficiosos para nosotros, entendiendo su funcionamiento y todo lo que nos aportaban, como esa independencia funcional entre cada uno de los servicios. Además también empecé a investigar sobre las herramientas que podríamos utilizar para integrar dentro de los mismos, haciendo especial hincapié  en la herramienta Django ya que preveíamos que podría sernos muy útil.
+Una vez teníamos asentadas las bases sobre las que enfocaríamos nuestro trabajo, tuve que realizar un análisis sobre que tipo servicios Web serían los más beneficiosos para nosotros, entendiendo su funcionamiento y todo lo que nos aportaban, como esa independencia funcional entre cada uno de los servicios. Además también empecé a investigar sobre las herramientas que podríamos utilizar para integrar dentro de los mismos, haciendo especial hincapié  en la herramienta Django ya que preveíamos que podría sernos muy útil.
 
-El trabajo iba avanzando, y así con la investigación de mi compañero sobre la generación del lenguaje y la idoneidad del framework SimpleNLg-ES, mi tarea fue realizar un estudio pormenorizado sobre el funcionamiento de dicho framework y su implementación necesaria para un correcto funcionamiento. 
-Además de testear concienzudamente las aplicaciones basadas en pictogramas que existen actualmente, analizando cuales son las características y prestaciones que nuestra aplicación ofrece diferente al resto.
+El trabajo iba avanzando, y así con la investigación de mi compañero sobre la generación del lenguaje natural y la idoneidad del framework SimpleNLg-ES, mi tarea fue realizar un estudio pormenorizado sobre el funcionamiento de dicho framework, además de testear concienzudamente las aplicaciones basadas en pictogramas que existen actualmente.
 
-Debido a ciertas dificultades que encontramos a la hora de integrar nuestro servicio realizado en python, en un Servicio Web codificado en Java. Tuve que investigar la librería GSON la cuál nos permitía justamente lo que necesitábamos, consiguiendo así poder solventar ese problema.
+Debido a ciertas dificultades que encontramos a la hora de integrar nuestro servicio realizado en Python, en un Servicio Web codificado en Java. Tuve que investigar la librería GSON la cuál nos permitía justamente lo que necesitábamos, consiguiendo así poder solventar ese problema.
 
 El siguiente paso fue el desarrollo de la demo y sus primeros servicios webs ya implementados y funcionando. Además de investigar el uso y funcionamiento de los servicios Apache Tomcat, los cuáles serían necesarios en nuestra aplicación.  
 

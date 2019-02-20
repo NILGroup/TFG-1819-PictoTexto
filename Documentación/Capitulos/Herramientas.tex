@@ -11,7 +11,6 @@ A lo largo de este capítulo analizaremos las diferentes herramientas utilizadas 
 %-------------------------------------------------------------
 \label{cap3:sec:Django}
 
-\subsection{¿Qué es Django?}
 Es un framework de desarrollo web\footnote{https://tutorial.djangogirls.org/es/django/} de código abierto escrito en Python, respetando el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C). La meta principal de esta aplicación es facilitar la creación de sitios web. En Django es muy importante el re-uso de código, la conectividad y el desarrollo rápido.\\  
 \begin{enumerate}
 \item Django da soporte de base de datos permitiendo crear los modelos de datos necesarios y a través de su API administrar y gestionar dicha base de datos. Además concede al usuario la posibilidad de poder ejecutar sus propias consultas SQL.
@@ -21,22 +20,91 @@ Es un framework de desarrollo web\footnote{https://tutorial.djangogirls.org/es/d
 \section{GSON}
 %-------------------------------------------------------------
 \label{cap3:sec:GSON}
-GSON es una librería open-source la cuál nos permite convertir nuestros objetos Java en JSON o viceversa, esta librería es muy importante ya que para lenguaje en Java no existen archivos JSON.
-Al haber encapsulado el Servicio web en un formato REST, esto obliga a que nuestro Servicio tenga que recibir obligatoriamente un JSON.
+GSON es una librería open-source la cuál nos permite convertir nuestros objetos Java en JSON o viceversa, esta librería es muy importante ya que nos permite poder obtener un objeto GSON compatible con el servicio web configurado en lenguaje Java. Al estar nuestro Servicio web configurado en formato REST, este hecho obliga a que este servicio tenga que recibir obligatoriamente un JSON.
 
-En este momento es donde se utiliza la librería GSON la cuál es un framework que contiene en su interior el método "from JSON", este método es vital para la construcción de nuestro Servicio web,únicamente necesita recibir el dato mandado por el usuario y el tipo de clase al que hace referencia.
+Esta librería es un framework que contiene en su interior el método "from JSON", dicho método es vital para la obtención de un objeto compatible con nuestro servicio.
 
-Una vez obtenidos los datos mencionados, la propia librería se encarga de realizar el resto de la conversión para que el Servicio web funcione correctamente.
+Una vez obtenidos el objeto GSON mencionado, la propia librería se encarga de realizar el resto de la conversión y madarlo al Servicio web para que funcione correctamente.
 
 \section{Apache Tomcat}
 %-------------------------------------------------------------
 \label{cap3:sec:Apache Tomcat} 
-En el lado del servidor se ha decidido utilizar Apache Tomcat, donde se encuentra nuestro servidor web, lo que nos permite realizar la generación de lenguaje natural.
-Una vez el servicio recibe la frase introducida por el usuario, el servidor se encarga de analizar cada palabra de la frase y buscar los pictogramas correspondientes utilizando la API de Arasaac. El resultado obtenido es devuelto por el servidor mediante un GSON que relaciona cada palabra con su picto.\\ 
-La versión de Apache utilizada en el servidor es la 9.0.14,para acceder al servicio de traducción del proyecto hay que introducir la siguiente dirección en el buscador: http://127.0.0.1:8000/127.0.0.1.
+En el lado del servidor se ha decidido utilizar Apache Tomcat, el cuál funciona como un entorno que sirve para distribuir aplicaciones servlets\footnote{\url{https://www.oracle.com/technetwork/java/javaee/servlet/index.html}}. El tipo servlets es una clase de lenguaje Java utilizada principalmente para ampliar las capacidades propias de un servidor.
+
+El servidor se encarga de analizar cada palabra de la frase y conecte con la API de Arasaac   con el fin de buscar los pictogramas correspondientes. El resultado obtenido es devuelto al servidor encapsulado en un objeto GSON.\\ 
+La versión de Apache utilizada es la 9.0.14,para acceder al servicio de traducción del proyecto hay que introducir la siguiente dirección en el buscador: http://127.0.0.1:8080.
+
+\section{SimpleNLG-ES}
+%-------------------------------------------------------------
+\label{cap3:sec:SimpleNLG}
+
+La herramienta SimpleNLG-ES es una biblioteca Java que permite generar y transformar texto. Tiene como fin producir texto comprensible para el usuario \citep{Trzpis2015}.\\
+El simpleNLG-ES crea palabras con la función CreateWord, esta función se encuentra integrada dentro de la factoria NLG (NLGFactory nlgFactory), dicha factoria permite crear diferentes tipos de frases. Dependiendo de la complejidad de las oraciones que se quieran crear se utilizarán diferentes procedimientos, en nuestro caso utilizamos el procedimiento NounPhrases (frases nominales).
+Además con la función CreateWord podemos hacer que cada palabra contenga una categorización léxica, es decir el simpleNLG clasifica cada palabra introducida en diferentes categorías. Por ejemplo:
+\begin{enumerate} 
+\item LexicalCategory.NOUN. Si introducimos la palabra "perro" en la oración, la herramienta lo categoriza como nombre.
+\item LexicalCategory.ANY. Con esta sentencia introducimos una palabra sin especificar su tipo. 
+\end{enumerate} 
+
+SimpleNLG-ES con la sentencia "Features" permite definir las características de cada palabra, esta opción es muy importante ya que la herramienta coge la raíz sintáctica de las palabras que analiza y gracias a las features especifica el género y número de cada palabra. Por ejemplo, "Corredora", SimpleNLG coge su raíz (corredor) y con la terminación "a" especifica el género: femenino y el número: singular de la palabra.
+Una vez especificado el género y número de los sustantivos de las oraciones, utilizamos:  
+\begin{enumerate} 
+\item SetDeterminer(). Para que la herramienta añada automáticamente el determinante que le corresponda al sustantivo.  
+\end{enumerate}
+
+La sentencia SPhraseSpec, permite diferenciar automáticamente las partes sintácticas de la oración. Por ejemplo , en la frase "mi perro come pan".
+Para comprobar si clasifica correctamente la oración del ejemplo, podemos usar: 
+\begin{enumerate}  
+\item p.setSubject(). Devolverá que el sustantivo es: "mi perro".
+\item p.setVerb(). Devolverá que el verbo es: "come".
+\item p.setObject(). Devolverá que el complemento es: "pan".
+\end{enumerate}
+
+Para los verbos, SimpleNLG es capaz de especificar tanto la forma como el tiempo verbal, para todo esto utilizamos la sentencia "feature" aunque al tratarse de verbos las características que especifica son diferentes a la de los sustantivos. Para el ejemplo de a contuniación utilizaremos el verbo "ser".
+Para poder poner el verbo en tiempo pasado, utilizariamos: 
+\begin{enumerate}  
+\item p.setFeature(Feature.PAST);
+\end{enumerate}
+Devolviendo el verbo:
+\begin{enumerate}  
+\item "fue".
+\end{enumerate}
+
+En cambio si queremos indicar un tiempo futuro, sería de esta manera:
+\begin{enumerate}  
+\item p.setFeature(Feature.FUTURE);
+\end{enumerate}
+Devolviendo el verbo:
+\begin{enumerate}  
+\item "será".
+\end{enumerate}
+
+Además, también se puede añadir la forma negativa al verbo, con el ejemplo anterior sería:
+\begin{enumerate}  
+\item p.setFeature(Feature.NEGATED, true);
+\end{enumerate}
+Devolviendo el verbo:
+\begin{enumerate}  
+\item " no será".
+\end{enumerate}
+
+Por último es importante destacar la función "realiser" el cuál es el encargado de juntar las diferentes partes sintácticas en un objeto que devolverá la oración analizada. 
 
 
+\section{API-Arasaac}
+%-------------------------------------------------------------
+\label{cap3:sec:API-Arasaac}
 
+Para conseguir la traducción de cada pictograma hemos utilizado la propia API de Arasaac, centrándonos principalmente en la parte de obtención de pictogramas, como podemos observar en la  Figura \ref{fig:principal}\figura{Bitmap/Herramientas/PrincipalAPI}{width=300px}{fig:principal}{Presentación de la API de Arasaac}.
+
+En el apartado de pictogramas se han utilizado dos de los métodos "GET", por un lado la obtención del pictograma mediante su id (/pictograms/{locale}/{idPictogram}), mirar figura \ref{fig:principal}. 
+Por ejemplo para el id (2517) obtenemos que es el pictograma de la palabra "perro", tal y como se muestra en la Figura \ref{fig:APIperro}
+\figura{Bitmap/Herramientas/APIperro}{width=300px}{fig:APIperro}{Código obtenido del pictograma con la palabra "perro"}.
+
+El otro método "GET" que se ha utilizado para nuestro proyecto es para poder buscar el texto para relacionarlo con el pictograma que deseamos (/pictograms/{locale}/search/{searchText}), mirar figura \ref{fig:principal}. 
+Este método nos devuelve un objeto con todo lo relacionado con el texto buscado, siguiendo el ejemplo anterior con la palabra "perro", obtenemos el objeto que se muestra en la Figura \ref{fig:perroProyecto}\figura{Bitmap/Herramientas/APIperroProyecto}{width=300px}{fig:perroProyecto}{Información del objeto con la palabra "perro"}.\\
+Por tanto, gracias a la API de Arasaac hemos podido conseguir toda la parte de codificación necesaria para poder implementar en nuestro TFG la obtención de pictogramas y la relación entre una palabra y su pictograma.  
+  
 
  
 
