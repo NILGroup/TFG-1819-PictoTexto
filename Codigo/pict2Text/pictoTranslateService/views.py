@@ -3,6 +3,7 @@ from django.http import JsonResponse
 import requests
 import json
 import pict2Text.constants as constants
+import spacy
 # Create your views here.
 
 def getPictoTranslate(request):
@@ -22,9 +23,22 @@ def getPictoTranslate(request):
 
 
 def getWordAttrs(request):
-
+    nlp = spacy.load('es')
     word= request.GET.get('word', 'word')
-    response={}
+    tokenizer = nlp(word)
+    wordAttrs=''
+    for token in tokenizer:
+            wordAttrs=token.tag_
 
+    wordAttrs = wordAttrs.split('|')
+    auxAttrs = wordAttrs[0].split('__')
+    auxAttrs[0] ="Type="+auxAttrs[0]
+    wordAttrs.remove(wordAttrs[0])
+    wordAttrs+=auxAttrs
+    attrs={}
+    for attr in wordAttrs:
+        key = attr.split('=');
+        attrs[key[0]] = key[1]
 
+    response={'attrs': attrs}
     return JsonResponse(response, status=200)
