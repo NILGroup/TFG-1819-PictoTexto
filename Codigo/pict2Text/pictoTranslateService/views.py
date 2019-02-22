@@ -6,7 +6,6 @@ import pict2Text.constants as constants
 # Create your views here.
 
 def getPictoTranslate(request):
-    response={}
     result = []
     url=constants.PICTO_BASE_DIR+constants.ES_LANGUAGE
     r = requests.get(url+request.GET.get('pictoId', 'id'))
@@ -20,3 +19,12 @@ def getPictoTranslate(request):
     else:
         response = {'status': 'false', 'message': r.text}
     return JsonResponse(response, status=r.status_code)
+
+
+def getWordAttrs(request):
+
+    word= request.GET.get('word', 'word')
+    response={}
+
+
+    return JsonResponse(response, status=200)
