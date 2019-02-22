@@ -3,6 +3,7 @@ import { ProxyService } from '../utils/proxy/proxy-service.service';
 import { TranslatorService } from 'src/app/translator/service/translator.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {Picto} from 'src/app/finder/transformer/picto'
+import { Word } from './transformer/word';
 
 @Component({
   selector: 'app-translator',
@@ -19,11 +20,9 @@ export class TranslatorComponent {
   constructor(private translatorService: TranslatorService) { }
 
   getTranslate() {
-    let words2=[], i=0;
-
-    
+    let words:Word[] =[], i=0;
     for(i=0;i<this.pictoPhrase.length;++i){
-        words2.push(this.pictoPhrase[i].keyword)
+        words.push(new Word(this.pictoPhrase[i].keyword,this.pictoPhrase[i].attrs));
     }
     this.translatorService.getPictogramTranslate(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
   }

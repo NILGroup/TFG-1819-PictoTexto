@@ -3,7 +3,7 @@ export class Picto{
     url:string;
     keyword:string;
     keywords:[]
-    
+    attrs:{}
     constructor(id,url,keyword){
         this.id=id;
         this.url=url;

@@ -38,7 +38,8 @@ def getWordAttrs(request):
     attrs={}
     for attr in wordAttrs:
         key = attr.split('=');
-        attrs[key[0]] = key[1]
+        if(len(key)==2):
+            attrs[key[0]] = key[1]
 
     response={'attrs': attrs}
     return JsonResponse(response, status=200)
