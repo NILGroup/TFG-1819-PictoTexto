@@ -46,27 +46,34 @@ public static NLG getInstance() {
 		return instance;
 	}
 	
-	public void createASimplePhrase(String arrayWords[]) {
+	public void createASimplePhrase(Word[] words) {
 		this.simplePhrase = new SPhraseSpec(factory);
 
 		// READ AND CREATE WORDS
 		ArrayList<NLGElement> wordsList = new ArrayList<NLGElement>();
 		ArrayList<Integer> verbPosition = new ArrayList<Integer>();
-		for (int i = 0; i < arrayWords.length; ++i) {
-			NLGElement aux = factory.createWord(arrayWords[i], LexicalCategory.ANY);
-			if(aux.getCategory()== LexicalCategory.NOUN){
-				NLGElement aux2 =factory.createWord(arrayWords[i], LexicalCategory.VERB);
-			    aux2.setFeature(Feature.FORM, Form.BARE_INFINITIVE);
-			    if(aux2.getFeature("imperfect2s")!=null) {
-					verbPosition.add(i);
-					aux=aux2;
-			    }
-
-			}else {
-			if (aux.getCategory() == LexicalCategory.VERB || aux.getCategory() == LexicalCategory.MODAL ) {
+		
+		for (int i = 0; i < words.length; ++i) {
+			NLGElement aux;
+			switch(words[i].getAttrs().getType()){
+			case("VERB"):
+				factory.createWord(words[i].getkeyword(), LexicalCategory.VERB);
 				verbPosition.add(i);
+				break;
+			case("ADJ"):
+				factory.createWord(words[i].getkeyword(), LexicalCategory.ADJECTIVE);
+				break;
+			case("NOUN"):
+				factory.createWord(words[i].getkeyword(), LexicalCategory.NOUN);
+				break;
+			case("ADV"):
+				factory.createWord(words[i].getkeyword(), LexicalCategory.ADVERB);
+				break;
+			case("ADP"):
+				factory.createWord(words[i].getkeyword(), LexicalCategory.PREPOSITION);
+				break;
 			}
-			}
+			
 			wordsList.add(aux);
 		}
 

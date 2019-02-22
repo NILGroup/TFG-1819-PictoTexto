@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import NLG.NLG;
 import NLG.SimplePhrase;
+import NLG.Word;
 import simplenlg.framework.NLGFactory;
 import simplenlg.phrasespec.SPhraseSpec;
 
@@ -44,22 +45,28 @@ public class createSimplePhrase extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Content-Type","text/plain");
-
-	        StringBuilder sb = new StringBuilder();
+		
+		
+	     StringBuilder sb = new StringBuilder();
          String s;
          while ((s = request.getReader().readLine()) != null) {
               sb.append(s);
          }
-
          Gson gson = new Gson();
-         String [] words =  gson.fromJson(sb.toString(), String[].class);
-		 SimplePhrase p = new SimplePhrase(words);
-		 NLG miNlgTest = NLG.getInstance();
-		 miNlgTest.createASimplePhrase(words);
+         Word [] words =  gson.fromJson(sb.toString(), Word[].class);
+
+         NLG miNlgTest = NLG.getInstance();
+		
+         miNlgTest.createASimplePhrase(words);
+         
+         response.getWriter().append( gson.toJson(miNlgTest.getOutput()));
+         response.setHeader("Access-Control-Allow-Origin", "*");
+ 		 response.setHeader("Content-Type","text/plain");
 		 response.setStatus(HttpServletResponse.SC_OK);
-		 response.getWriter().append( gson.toJson(miNlgTest.getOutput()));
+		 for(int i=0; i<words.length;++i)
+			 System.out.println(words[i].toString());
+		 
+		 response.getWriter().append( gson.toJson("bien"));
 
 	}
 	
