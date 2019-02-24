@@ -17,7 +17,7 @@
 .example-list {
   max-width: 100%;
   border: solid 1px #ccc;
-  min-height: 60px;
+  min-height:200px;
   display: flex;
   flex-direction: row;
   background: white;
@@ -26,19 +26,8 @@
 }
 
 .example-box {
-  padding: 20px 10px;
-  border-right: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  cursor: move;
-  background: white;
-  font-size: 14px;
-  flex-grow: 1;
-  flex-basis: 0;
+ 
+  border: black
 }
 
 .cdk-drag-preview {
@@ -47,4 +36,22 @@
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
               0 8px 10px 1px rgba(0, 0, 0, 0.14),
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.card {
+  display: inline-block;
+}
+
+.dragElement {
+  position:relative;
+}
+
+.removeElement {
+  position: absolute;
+  right: 0px;
 }

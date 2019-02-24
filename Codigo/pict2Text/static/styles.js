@@ -29,7 +29,7 @@ module.exports = [[module.i, "/*!\r\n * Bootstrap v4.1.3 (https://getbootstrap.c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\nhtml, body { height: 100%; }\r\n\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hc3NldHMvc3R5bGVzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSw4RUFBOEU7O0FBRTlFLGFBQWEsWUFBWSxFQUFFOztBQUMzQixPQUFPLFNBQVMsRUFBRSxpREFBaUQsRUFBRSIsImZpbGUiOiJzcmMvYXNzZXRzL3N0eWxlcy5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBZb3UgY2FuIGFkZCBnbG9iYWwgc3R5bGVzIHRvIHRoaXMgZmlsZSwgYW5kIGFsc28gaW1wb3J0IG90aGVyIHN0eWxlIGZpbGVzICovXHJcblxyXG5odG1sLCBib2R5IHsgaGVpZ2h0OiAxMDAlOyB9XHJcbmJvZHkgeyBtYXJnaW46IDA7IGZvbnQtZmFtaWx5OiBSb2JvdG8sIFwiSGVsdmV0aWNhIE5ldWVcIiwgc2Fucy1zZXJpZjsgfVxyXG4iXX0= */", '', '']]
+module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\nhtml, body { height: 100%; }\r\n\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n.carousel-control-next, .carousel-control-prev{\r\n    background-color:rgba(0,0,0,.14);\r\n\r\n}\r\n\r\n.carousel-caption {\r\n    position: unset;\r\n    padding-top:0;\r\n\r\n}\r\n\r\n.carousel-item{\r\n    padding-top: 20px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hc3NldHMvc3R5bGVzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSw4RUFBOEU7O0FBRTlFLGFBQWEsWUFBWSxFQUFFOztBQUMzQixPQUFPLFNBQVMsRUFBRSxpREFBaUQsRUFBRTs7QUFHckU7SUFDSSxnQ0FBZ0M7O0FBRXBDOztBQUVBO0lBQ0ksZUFBZTtJQUNmLGFBQWE7O0FBRWpCOztBQUNBO0lBQ0ksaUJBQWlCO0FBQ3JCIiwiZmlsZSI6InNyYy9hc3NldHMvc3R5bGVzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFlvdSBjYW4gYWRkIGdsb2JhbCBzdHlsZXMgdG8gdGhpcyBmaWxlLCBhbmQgYWxzbyBpbXBvcnQgb3RoZXIgc3R5bGUgZmlsZXMgKi9cclxuXHJcbmh0bWwsIGJvZHkgeyBoZWlnaHQ6IDEwMCU7IH1cclxuYm9keSB7IG1hcmdpbjogMDsgZm9udC1mYW1pbHk6IFJvYm90bywgXCJIZWx2ZXRpY2EgTmV1ZVwiLCBzYW5zLXNlcmlmOyB9XHJcblxyXG5cclxuLmNhcm91c2VsLWNvbnRyb2wtbmV4dCwgLmNhcm91c2VsLWNvbnRyb2wtcHJldntcclxuICAgIGJhY2tncm91bmQtY29sb3I6cmdiYSgwLDAsMCwuMTQpO1xyXG5cclxufVxyXG5cclxuLmNhcm91c2VsLWNhcHRpb24ge1xyXG4gICAgcG9zaXRpb246IHVuc2V0O1xyXG4gICAgcGFkZGluZy10b3A6MDtcclxuXHJcbn1cclxuLmNhcm91c2VsLWl0ZW17XHJcbiAgICBwYWRkaW5nLXRvcDogMjBweDtcclxufSJdfQ== */", '', '']]
 
 /***/ }),
 
@@ -634,14 +634,14 @@ if(false) {}
 
 /***/ 2:
 /*!***************************************************************************************************************************************************!*\
-  !*** multi ./node_modules/@angular/material/prebuilt-themes/indigo-pink.css ./src/assets/styles.css ./src/assets/bootstrap/css/bootstrap.min.css ***!
+  !*** multi ./node_modules/@angular/material/prebuilt-themes/indigo-pink.css ./src/assets/bootstrap/css/bootstrap.min.css ./src/assets/styles.css ***!
   \***************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
-__webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\src\assets\styles.css */"./src/assets/styles.css");
-module.exports = __webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\src\assets\bootstrap\css\bootstrap.min.css */"./src/assets/bootstrap/css/bootstrap.min.css");
+__webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\src\assets\bootstrap\css\bootstrap.min.css */"./src/assets/bootstrap/css/bootstrap.min.css");
+module.exports = __webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\src\assets\styles.css */"./src/assets/styles.css");
 
 
 /***/ })

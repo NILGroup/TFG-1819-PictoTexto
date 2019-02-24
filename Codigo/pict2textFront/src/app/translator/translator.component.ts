@@ -17,7 +17,8 @@ export class TranslatorComponent {
   phrase: string;
   finalPhrase: string;
   @Input() pictoPhrase:Picto[];
-  constructor(private translatorService: TranslatorService) { }
+  constructor(private translatorService: TranslatorService) {  
+}
 
   getTranslate() {
     let words:Word[] =[], i=0;
@@ -28,6 +29,10 @@ export class TranslatorComponent {
   }
 
 
+  remove(i){
+     this.pictoPhrase.splice(i,1);
+  }
+
   getTranslateSucces(data) {
     this.finalPhrase = data;
   }
@@ -37,10 +42,10 @@ export class TranslatorComponent {
     console.log('todo mal en el componente');
   }
 
-
-
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.pictoPhrase, event.previousIndex, event.currentIndex);
   }
+
+
 
 }
