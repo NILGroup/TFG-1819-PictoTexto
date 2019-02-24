@@ -1,4 +1,6 @@
 package NLG;
+import simplenlg.features.Gender;
+
 
 public class Attributes {
 
@@ -19,11 +21,15 @@ public class Attributes {
 	public String getType() {
 		return Type;
 	}
-	public String getGender() {
-		return Gender;
+	public Boolean getGender() {
+		return Gender.compareToIgnoreCase("Masc")==0;
+		
 	}
-	public String getNumber() {
-		return Number;
+	public boolean getNumber() {
+		if(Number.compareToIgnoreCase("Sing")==0) {
+			return false;
+		}
+			return true;
 	}
 	public String getVerbForm() {
 		return VerbForm;

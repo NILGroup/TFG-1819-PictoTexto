@@ -7,6 +7,7 @@ import simplenlg.features.Form;
 import simplenlg.features.Gender;
 import simplenlg.features.LexicalFeature;
 import simplenlg.features.Tense;
+import simplenlg.framework.ElementCategory;
 import simplenlg.framework.LexicalCategory;
 import simplenlg.framework.NLGElement;
 import simplenlg.framework.NLGFactory;
@@ -17,8 +18,10 @@ import simplenlg.realiser.spanish.*;
 import simplenlg.phrasespec.*;
 
 import java.util.List;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import static java.nio.charset.StandardCharsets.*;
 
 public class NLG {
 
@@ -37,81 +40,111 @@ public class NLG {
 		this.simplePhrase = new SPhraseSpec(factory);
 	}
 
-	
-public static NLG getInstance() {
-		
-		if(instance==null)
+	public static NLG getInstance() {
+
+		if (instance == null)
 			instance = new NLG();
-		
+
 		return instance;
 	}
-	
-	public void createASimplePhrase(Word[] words) {
-		this.simplePhrase = new SPhraseSpec(factory);
 
-		// READ AND CREATE WORDS
-		ArrayList<NLGElement> wordsList = new ArrayList<NLGElement>();
-		ArrayList<Integer> verbPosition = new ArrayList<Integer>();
+	public void createASimplePhrase(NPPhraseSpec subject, NLGElement verbWord, NLGElement objectWord) {
+		this.simplePhrase = new SPhraseSpec(factory);
+ 
+		NPPhraseSpec object = factory.createNounPhrase(objectWord);
+		VPPhraseSpec verb = factory.createVerbPhrase(verbWord);
 		
+		simplePhrase.setSubject(subject);
+		simplePhrase.setVerbPhrase(verb);
+		simplePhrase.setObject(object);
+		
+		output = realiser.realiseSentence(simplePhrase);
+	
+
+	}
+
+	public ArrayList<NLGElement> createNLGWords(Word[] words) {
+		ArrayList<NLGElement> wordsList = new ArrayList<NLGElement>();
 		for (int i = 0; i < words.length; ++i) {
-			NLGElement aux;
-			switch(words[i].getAttrs().getType()){
-			case("VERB"):
-				factory.createWord(words[i].getkeyword(), LexicalCategory.VERB);
-				verbPosition.add(i);
+			NLGElement aux = null;
+			byte ptext[];
+			ptext = words[i].getkeyword().getBytes(ISO_8859_1);
+			words[i].setkeyword(new String(ptext, UTF_8));
+			switch (words[i].getAttrs().getType()) {
+			case ("VERB"):
+				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.VERB);
 				break;
-			case("ADJ"):
-				factory.createWord(words[i].getkeyword(), LexicalCategory.ADJECTIVE);
+			case ("ADJ"):
+				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.ADJECTIVE);
+				aux.setPlural(words[i].getAttrs().getNumber());
 				break;
-			case("NOUN"):
-				factory.createWord(words[i].getkeyword(), LexicalCategory.NOUN);
+			case ("NOUN"):
+				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.NOUN);
+				aux.setPlural(words[i].getAttrs().getNumber());
+				if(words[i].getAttrs().getGender())
+					aux.setFeature(LexicalFeature.GENDER,Gender.MASCULINE);
+				else
+					aux.setFeature(LexicalFeature.GENDER,Gender.FEMININE);
+
 				break;
-			case("ADV"):
-				factory.createWord(words[i].getkeyword(), LexicalCategory.ADVERB);
+			case ("ADV"):
+				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.ADVERB);
 				break;
-			case("ADP"):
-				factory.createWord(words[i].getkeyword(), LexicalCategory.PREPOSITION);
+			case ("ADP"):
+				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.PREPOSITION);
+				break;
+			case("PRON"):
+				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.PRONOUN);
 				break;
 			}
 			
 			wordsList.add(aux);
 		}
-
-		//DEFINE SUBJECT AND THEN CREATE THE SUBJECT PHRASE
-		int actual=0;
-		for(Integer position : verbPosition) {
-			System.out.println(position);
-			List<NLGElement> subjectWords = wordsList.subList(actual, position);
-			String[] words = Arrays.copyOfRange(arrayWords, actual,position);
-			actual=position;
-			NPPhraseSpec subject = createSubject(subjectWords,words);
-			simplePhrase.setSubject(subject);
-		}
-		
-		NPPhraseSpec object = factory.createNounPhrase(arrayWords[arrayWords.length-1]);
-		VPPhraseSpec verb = factory.createVerbPhrase(arrayWords[arrayWords.length-2]);
-		simplePhrase.setVerbPhrase(verb);
-		simplePhrase.setObject(object);
-		output = realiser.realiseSentence(simplePhrase);
-
+		NLGElement aux = factory.createWord("niños", LexicalCategory.NOUN);
+		return wordsList;
 	}
 
-	private NPPhraseSpec createSubject(List<NLGElement> subjectWords, String[] words) {
-		NPPhraseSpec subject = null;
-		int position=0;
-		for(NLGElement word : subjectWords) {
-			subject =factory.createNounPhrase(words[position]);
-			if(word.getCategory() != LexicalCategory.ANY) {
-				subject=setDeterminer(subject, word, words[position]);
+	public int recogniseVerb( ArrayList<NLGElement> words){
+		int verbPosition=words.size()-1;
+		int i=0;
+		boolean found=false;
+		while(!found &&i<words.size()) {
+			if(words.get(i).isA(LexicalCategory.VERB)) {
+				verbPosition=i;
+				found=true;
 			}
+			++i;
+		}
+		return verbPosition;
+	}
+
+	public NPPhraseSpec createSubject(List<NLGElement> subjectWords) {
+		NPPhraseSpec subject = null;
+		int position = 0;
+		subject = factory.createNounPhrase();
+		for (NLGElement word : subjectWords) {
+			if (word.isA(LexicalCategory.NOUN)) {
+				subject.setHead(word);
+				subject.setDeterminer("el");
+				subject.setPlural(word.isPlural());
+				if(word.getFeature(LexicalFeature.GENDER)==Gender.FEMININE){
+					subject.setFeature(LexicalFeature.GENDER, Gender.FEMININE);
+				}
+			}else {
+				subject.addComplement(word);
+
+				}
+			
 			position++;
 		}
 		return subject;
 	}
 
-	private NPPhraseSpec setDeterminer(NPPhraseSpec subject, NLGElement subjectWord, String word) {
+	
+	private NPPhraseSpec setDeterminer(NPPhraseSpec subject, NLGElement subjectWord) {
 
-		if (subjectWord.getCategory() != LexicalCategory.DETERMINER && subjectWord.getCategory() != LexicalCategory.PRONOUN) {
+		if (subjectWord.getCategory() != LexicalCategory.DETERMINER
+				&& subjectWord.getCategory() != LexicalCategory.PRONOUN) {
 			subject.setDeterminer("el");
 		}
 
@@ -132,8 +165,9 @@ public static NLG getInstance() {
 		return subject;
 	}
 
+
 	public String getOutput() {
-		System.out.println(output);
+		System.out.println(output );
 		return output;
 	}
 
