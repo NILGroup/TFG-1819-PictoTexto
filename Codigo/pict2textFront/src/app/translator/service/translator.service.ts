@@ -24,4 +24,21 @@ export class TranslatorService {
           }
   });
   }
+
+
+  
+  getPhraseType(words) {
+    return new Promise((resolve, reject) => {
+      this.proxyService.postElement(AppConstants.typePhraseURL, words)
+      .subscribe(getTranslateSuccess, getTranslateError);
+          function getTranslateSuccess(data) {
+            // LLAMADA AL TRANSFORMER
+            resolve(data);
+          }
+          function getTranslateError(data) {
+            // TRAMAMIENTO DE ERRORES
+            reject(data);
+          }
+  });
+  }
 }

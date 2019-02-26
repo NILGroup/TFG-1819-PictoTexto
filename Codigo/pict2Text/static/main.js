@@ -9053,6 +9053,7 @@ var AppConstants = /** @class */ (function () {
     AppConstants.pictoFinderURl = '/picto/getPicto?pictoName=';
     AppConstants.translatorPhraseURL = 'http://127.0.0.1:8080/apiNLG/createSimplePhrase';
     AppConstants.translatorPictoURL = '/translate/getPictoTranslate?pictoId=';
+    AppConstants.typePhraseURL = '/translate/getTypePhrase';
     AppConstants.wordAttr = '/translate/getWordAttrs?word=';
     AppConstants = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
@@ -9399,7 +9400,7 @@ module.exports = ".cdk-drag-placeholder {\r\n    opacity: 0;\r\n  }\r\n  \r\n  .
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n            <label>Pictogramas</label>\r\n      </div>\r\n      <div cdkDropList cdkDropListOrientation=\"horizontal\" class=\"example-list scrolling-wrapper\"\r\n            (cdkDropListDropped)=\"drop($event)\">\r\n            <div class=\"example-box dragElement\" *ngFor=\"let img of pictoPhrase; index as i\" cdkDrag>\r\n                  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"remove(i)\">\r\n                        <span aria-hidden=\"true\">&times;</span>\r\n                  </button>\r\n                  <img src={{img.url}} class=\"img-responsive mx-auto finder\" alt=\"\" width=\"200px\">\r\n            </div>\r\n      </div>\r\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"getTranslate()\">Traducir</button>\r\n\r\n</div>\r\n\r\n<div class=\"container\" *ngIf=\"finalPhrase\">\r\n      <p>{{finalPhrase}}</p>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n            <label>Pictogramas</label>\r\n      </div>\r\n      <div cdkDropList cdkDropListOrientation=\"horizontal\" class=\"example-list scrolling-wrapper\"\r\n            (cdkDropListDropped)=\"drop($event)\">\r\n            <div class=\"example-box dragElement\" *ngFor=\"let img of pictoPhrase; index as i\" cdkDrag>\r\n                  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"remove(i)\">\r\n                        <span aria-hidden=\"true\">&times;</span>\r\n                  </button>\r\n                  <img src={{img.url}} class=\"img-responsive mx-auto finder\" alt=\"\" width=\"200px\">\r\n            </div>\r\n      </div>\r\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"getTranslate()\">Traducir</button>\r\n</div>\r\n\r\n<div class=\"container\" *ngIf=\"finalPhrase\">\r\n      <p>{{finalPhrase}}</p>\r\n</div>"
 
 /***/ }),
 
@@ -9429,6 +9430,21 @@ var TranslatorService = /** @class */ (function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             _this.proxyService.postElement(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPhraseURL, words)
+                .subscribe(getTranslateSuccess, getTranslateError);
+            function getTranslateSuccess(data) {
+                // LLAMADA AL TRANSFORMER
+                resolve(data);
+            }
+            function getTranslateError(data) {
+                // TRAMAMIENTO DE ERRORES
+                reject(data);
+            }
+        });
+    };
+    TranslatorService.prototype.getPhraseType = function (words) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.proxyService.postElement(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].typePhraseURL, words)
                 .subscribe(getTranslateSuccess, getTranslateError);
             function getTranslateSuccess(data) {
                 // LLAMADA AL TRANSFORMER
@@ -9506,7 +9522,8 @@ var TranslatorComponent = /** @class */ (function () {
         for (i = 0; i < this.pictoPhrase.length; ++i) {
             words.push(new _transformer_word__WEBPACK_IMPORTED_MODULE_5__["Word"](this.pictoPhrase[i].keyword, this.pictoPhrase[i].attrs));
         }
-        this.translatorService.getPictogramTranslate(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+        this.translatorService.getPictogramTranslate(words).then(this.getPhraseTypeSuccess, this.getTranslateError);
+        this.translatorService.getPhraseType({ 'Pictos': words }).then(this.getTranslateSucces.bind(this), this.getTranslateError);
     };
     TranslatorComponent.prototype.remove = function (i) {
         this.pictoPhrase.splice(i, 1);
@@ -9517,6 +9534,9 @@ var TranslatorComponent = /** @class */ (function () {
     TranslatorComponent.prototype.getTranslateError = function (data) {
         console.log(data);
         console.log('todo mal en el componente');
+    };
+    TranslatorComponent.prototype.getPhraseTypeSuccess = function (data) {
+        console.log(data);
     };
     TranslatorComponent.prototype.drop = function (event) {
         Object(_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__["moveItemInArray"])(this.pictoPhrase, event.previousIndex, event.currentIndex);

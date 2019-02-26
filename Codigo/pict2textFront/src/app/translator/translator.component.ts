@@ -25,7 +25,8 @@ export class TranslatorComponent {
     for(i=0;i<this.pictoPhrase.length;++i){
         words.push(new Word(this.pictoPhrase[i].keyword,this.pictoPhrase[i].attrs));
     }
-    this.translatorService.getPictogramTranslate(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+    this.translatorService.getPictogramTranslate(words).then(this.getPhraseTypeSuccess, this.getTranslateError);
+    this.translatorService.getPhraseType({'Pictos':words}).then(this.getTranslateSucces.bind(this), this.getTranslateError);
   }
 
 
@@ -40,6 +41,11 @@ export class TranslatorComponent {
   getTranslateError(data) {
     console.log(data);
     console.log('todo mal en el componente');
+  }
+
+
+  getPhraseTypeSuccess(data){
+    console.log(data)
   }
 
   drop(event: CdkDragDrop<string[]>) {
