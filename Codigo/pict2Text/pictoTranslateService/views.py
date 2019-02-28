@@ -4,6 +4,8 @@ import requests
 import json
 import pict2Text.constants as constants
 import spacy
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 # Create your views here.
 
 def getPictoTranslate(request):

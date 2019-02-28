@@ -11,6 +11,7 @@ import { FinderComponent } from './finder/finder.component';
 import { PictoTranslatorComponent } from './picto-translator/picto-translator.component';
 import { TranslatorComponent } from './translator/translator.component';
 import {MaterialModule} from './utils/material-module';
+import { CookieModule } from 'ngx-cookie';
 
 import '../polyfills';
 
@@ -30,7 +31,8 @@ import '../polyfills';
     NgbModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    CookieModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8984,7 +8984,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _picto_translator_picto_translator_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./picto-translator/picto-translator.component */ "./src/app/picto-translator/picto-translator.component.ts");
 /* harmony import */ var _translator_translator_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./translator/translator.component */ "./src/app/translator/translator.component.ts");
 /* harmony import */ var _utils_material_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./utils/material-module */ "./src/app/utils/material-module.ts");
-/* harmony import */ var _polyfills__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../polyfills */ "./src/polyfills.ts");
+/* harmony import */ var ngx_cookie__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ngx-cookie */ "./node_modules/ngx-cookie/fesm5/ngx-cookie.js");
+/* harmony import */ var _polyfills__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../polyfills */ "./src/polyfills.ts");
+
 
 
 
@@ -9019,7 +9021,8 @@ var AppModule = /** @class */ (function () {
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
-                _utils_material_module__WEBPACK_IMPORTED_MODULE_13__["MaterialModule"]
+                _utils_material_module__WEBPACK_IMPORTED_MODULE_13__["MaterialModule"],
+                ngx_cookie__WEBPACK_IMPORTED_MODULE_14__["CookieModule"].forRoot()
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
@@ -9664,14 +9667,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var ngx_cookie__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-cookie */ "./node_modules/ngx-cookie/fesm5/ngx-cookie.js");
+
+
 
 
 
 
 
 var ProxyService = /** @class */ (function () {
-    function ProxyService(http) {
+    function ProxyService(http, _cookieService) {
         this.http = http;
+        this._cookieService = _cookieService;
+        // CSRF token is needed to make API calls work when logged in
+        var csrf = this._cookieService.get("csrftoken");
+        // the Angular HttpHeaders class throws an exception if any of the values are undefined
+        if (typeof (csrf) === 'undefined') {
+            csrf = '';
+        }
+        this.httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'application/json', 'X-CSRFToken': csrf })
+        };
     }
     ProxyService.prototype.getByName = function (name, url) {
         return this.http.get(url + name)
@@ -9682,7 +9698,7 @@ var ProxyService = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(5), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
     };
     ProxyService.prototype.postElement = function (url, object) {
-        return this.http.post(url, JSON.stringify(object))
+        return this.http.post(url, JSON.stringify(object), this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
     };
     ProxyService.prototype.handleError = function (error) {
@@ -9701,7 +9717,7 @@ var ProxyService = /** @class */ (function () {
     };
     ProxyService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], ngx_cookie__WEBPACK_IMPORTED_MODULE_5__["CookieService"]])
     ], ProxyService);
     return ProxyService;
 }());
