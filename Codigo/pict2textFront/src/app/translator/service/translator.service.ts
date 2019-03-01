@@ -12,7 +12,7 @@ export class TranslatorService {
 
   getPictogramTranslate(words: Word[]) {
     return new Promise((resolve, reject) => {
-      this.proxyService.postElement(AppConstants.translatorPhraseURL, words)
+      this.proxyService.postElementWithOutCors(AppConstants.translatorPhraseURL, words)
       .subscribe(getTranslateSuccess, getTranslateError);
           function getTranslateSuccess(data) {
             // LLAMADA AL TRANSFORMER

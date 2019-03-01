@@ -9432,7 +9432,7 @@ var TranslatorService = /** @class */ (function () {
     TranslatorService.prototype.getPictogramTranslate = function (words) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.proxyService.postElement(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPhraseURL, words)
+            _this.proxyService.postElementWithOutCors(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPhraseURL, words)
                 .subscribe(getTranslateSuccess, getTranslateError);
             function getTranslateSuccess(data) {
                 // LLAMADA AL TRANSFORMER
@@ -9699,6 +9699,10 @@ var ProxyService = /** @class */ (function () {
     };
     ProxyService.prototype.postElement = function (url, object) {
         return this.http.post(url, JSON.stringify(object), this.httpOptions)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    ProxyService.prototype.postElementWithOutCors = function (url, object) {
+        return this.http.post(url, JSON.stringify(object))
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
     };
     ProxyService.prototype.handleError = function (error) {

@@ -12,4 +12,5 @@ def index(request):
     context ={}
     request.META["CSRF_COOKIE_USED"] = True
     csrf_token = get_token(request)
+
     return HttpResponse(template.render(context,request))

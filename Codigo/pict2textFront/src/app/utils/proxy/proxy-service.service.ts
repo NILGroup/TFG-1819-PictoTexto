@@ -42,6 +42,11 @@ export class ProxyService {
             .pipe(catchError(this.handleError));
   }
 
+  public postElementWithOutCors(url, object) {
+    return this.http.post(url, JSON.stringify(object))
+            .pipe(catchError(this.handleError));
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

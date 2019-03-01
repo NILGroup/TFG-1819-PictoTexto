@@ -33,8 +33,7 @@ def getWordAttrs(request):
         tokenizer = nlp(word)
         wordAttrs=''
         for token in tokenizer:
-                wordAttrs=token.tag_
-
+            wordAttrs=token.tag_
         wordAttrs = wordAttrs.split('|')
         auxAttrs = wordAttrs[0].split('__')
         auxAttrs[0] = "Type=" + auxAttrs[0]
@@ -53,10 +52,16 @@ def getWordAttrs(request):
 
 
 def getTypePhrase(request):
-    response = {'mensaje':"Todo bien"}
+    response = {'type':"present"}
     if request.method == "POST":
-        data = json.dumps(request.POST)
-        print(request.body)
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        content = body['Pictos']
+        for picto in content:
+            if picto['keyword'] == "ayer":
+                response['type'] = "past"
+            elif picto['keyword'] == "mañana":
+                response['type'] = "future"
         return JsonResponse(response, status=200)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)
