@@ -25,14 +25,14 @@ import simplenlg.phrasespec.SPhraseSpec;
 /**
  * Servlet implementation class createSimplePhrase
  */
-@WebServlet("/createSimplePhrase")
-public class createSimplePhrase extends HttpServlet {
+@WebServlet("/createPastPhrase")
+public class createSimplePastPhrase extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public createSimplePhrase() {
+    public createSimplePastPhrase() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,26 +52,24 @@ public class createSimplePhrase extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 	     StringBuilder sb = new StringBuilder();
-        String s;
-        while ((s = request.getReader().readLine()) != null) {
-             sb.append(s);
-        }
-        Gson gson = new Gson();
-        Word [] words =  gson.fromJson(sb.toString(), Word[].class);
+         String s;
+         while ((s = request.getReader().readLine()) != null) {
+              sb.append(s);
+         }
+         Gson gson = new Gson();
+         Word [] words =  gson.fromJson(sb.toString(), Word[].class);
 
-        NLG miNlgTest = NLG.getInstance();
+         NLG miNlgTest = NLG.getInstance();
 		         
-        ArrayList<NLGElement> wordsList = miNlgTest.createNLGWords(words);
-        int i= miNlgTest.recogniseVerb(wordsList);
-        //DEFINE subject
-        List<NLGElement> subjectWords = wordsList.subList(0, i);
-        NPPhraseSpec subject = miNlgTest.createSubject(subjectWords);
-       
-        List<NLGElement> objectWords = wordsList.subList(i+1, wordsList.size());
-        NPPhraseSpec object = miNlgTest.createObject(objectWords);
+         ArrayList<NLGElement> wordsList = miNlgTest.createNLGWords(words);
+         int i= miNlgTest.recogniseVerb(wordsList);
+         //DEFINE subject
+         List<NLGElement> subjectWords = wordsList.subList(0, i);
+         NPPhraseSpec subject = miNlgTest.createSubject(subjectWords);
         
-        miNlgTest.createASimplePastPhrase(subject, wordsList.get(i), object);
-         
+         List<NLGElement> objectWords = wordsList.subList(i+1, wordsList.size());
+         NPPhraseSpec object = miNlgTest.createObject(objectWords);
+         miNlgTest.createASimplePastPhrase(subject, wordsList.get(i), object);
          response.getWriter().append( gson.toJson(miNlgTest.getOutput()));
          response.setHeader("Access-Control-Allow-Origin", "*");
  		 response.setHeader("Content-Type","text/plain");

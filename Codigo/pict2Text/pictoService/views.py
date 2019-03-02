@@ -16,7 +16,7 @@ def getPicto(request):
         for object in arrayObject:
             for key in object['keywords']:
                 if(clearString(key['keyword'])==clearString(request.GET.get('pictoName', 'name'))):
-                    result.append({'id':object['idPictogram'],'url':constants.PICTO_BASE_DIR+str(object['idPictogram']), 'keyWords':object['keywords'][0]['keyword']})
+                    result.append({'id':object['idPictogram'],'url':constants.PICTO_BASE_DIR+str(object['idPictogram']), 'keyWords':key['keyword']})
         response = {
                 'pictos': result
         }
