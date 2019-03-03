@@ -9055,6 +9055,8 @@ var AppConstants = /** @class */ (function () {
     }
     AppConstants.pictoFinderURl = '/picto/getPicto?pictoName=';
     AppConstants.translatorPhraseURL = 'http://127.0.0.1:8080/apiNLG/createSimplePhrase';
+    AppConstants.translatorPastPhraseURL = 'http://127.0.0.1:8080/apiNLG/createPastPhrase';
+    AppConstants.translatorFuturePhraseURL = 'http://127.0.0.1:8080/apiNLG/createFuturePhrase';
     AppConstants.translatorPictoURL = '/translate/getPictoTranslate?pictoId=';
     AppConstants.typePhraseURL = '/translate/getTypePhrase';
     AppConstants.wordAttr = '/translate/getWordAttrs?word=';
@@ -9429,26 +9431,23 @@ var TranslatorService = /** @class */ (function () {
     function TranslatorService(proxyService) {
         this.proxyService = proxyService;
     }
-    TranslatorService.prototype.getPictogramTranslate = function (words) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.proxyService.postElementWithOutCors(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPhraseURL, words)
-                .subscribe(getTranslateSuccess, getTranslateError);
-            function getTranslateSuccess(data) {
-                // LLAMADA AL TRANSFORMER
-                resolve(data);
-            }
-            function getTranslateError(data) {
-                // TRAMAMIENTO DE ERRORES
-                reject(data);
-            }
-        });
-    };
     TranslatorService.prototype.getPhraseType = function (words) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.proxyService.postElement(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].typePhraseURL, words)
-                .subscribe(getTranslateSuccess, getTranslateError);
+            _this.proxyService.postElement(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].typePhraseURL, words).subscribe(getPictogramTranslate.bind(_this), getTranslateError);
+            function getPictogramTranslate(data) {
+                switch (data.type) {
+                    case ('present'):
+                        this.proxyService.postElementWithOutCors(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPhraseURL, words).subscribe(getTranslateSuccess, getTranslateError);
+                        break;
+                    case ('past'):
+                        this.proxyService.postElementWithOutCors(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPastPhraseURL, words).subscribe(getTranslateSuccess, getTranslateError);
+                        break;
+                    case ('future'):
+                        this.proxyService.postElementWithOutCors(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorFuturePhraseURL, words).subscribe(getTranslateSuccess, getTranslateError);
+                        break;
+                }
+            }
             function getTranslateSuccess(data) {
                 // LLAMADA AL TRANSFORMER
                 resolve(data);
@@ -9525,8 +9524,7 @@ var TranslatorComponent = /** @class */ (function () {
         for (i = 0; i < this.pictoPhrase.length; ++i) {
             words.push(new _transformer_word__WEBPACK_IMPORTED_MODULE_5__["Word"](this.pictoPhrase[i].keyword, this.pictoPhrase[i].attrs));
         }
-        this.translatorService.getPictogramTranslate(words).then(this.getPhraseTypeSuccess, this.getTranslateError);
-        this.translatorService.getPhraseType({ 'Pictos': words }).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+        this.translatorService.getPhraseType(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
     };
     TranslatorComponent.prototype.remove = function (i) {
         this.pictoPhrase.splice(i, 1);

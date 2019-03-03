@@ -25,8 +25,7 @@ export class TranslatorComponent {
     for(i=0;i<this.pictoPhrase.length;++i){
         words.push(new Word(this.pictoPhrase[i].keyword,this.pictoPhrase[i].attrs));
     }
-    this.translatorService.getPictogramTranslate(words).then(this.getPhraseTypeSuccess, this.getTranslateError);
-    this.translatorService.getPhraseType({'Pictos':words}).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+    this.translatorService.getPhraseType(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
   }
 
 

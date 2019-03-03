@@ -53,15 +53,19 @@ def getWordAttrs(request):
 
 def getTypePhrase(request):
     response = {'type':"present"}
+    verb=False;
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        content = body['Pictos']
-        for picto in content:
+        for picto in body:
+            if picto['attrs']['Type'] == 'verb':
+                verb=True;
             if picto['keyword'] == "ayer":
                 response['type'] = "past"
             elif picto['keyword'] == "mañana":
                 response['type'] = "future"
+        if verb == False:
+            response = {'type': "present"}
         return JsonResponse(response, status=200)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)
