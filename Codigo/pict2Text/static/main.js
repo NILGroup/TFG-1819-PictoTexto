@@ -9895,7 +9895,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\chema\Documents\GitHub\TFG-1819-PictoTexto\Codigo\pict2textFront\src\main.ts */"./src/main.ts");
 
 
 /***/ })

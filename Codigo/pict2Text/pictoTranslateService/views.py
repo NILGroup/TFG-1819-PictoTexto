@@ -58,12 +58,14 @@ def getTypePhrase(request):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         for picto in body:
-            if picto['attrs']['Type'] == 'verb':
+            if picto['attrs']['Type'] == 'VERB':
                 verb=True;
             if picto['keyword'] == "ayer":
                 response['type'] = "past"
-            elif picto['keyword'] == "mañana":
+            if picto['keyword'] == "mañana":
                 response['type'] = "future"
+        print(verb)
+        print(response)
         if verb == False:
             response = {'type': "present"}
         return JsonResponse(response, status=200)

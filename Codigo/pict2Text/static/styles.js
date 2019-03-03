@@ -639,9 +639,9 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
-__webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\src\assets\bootstrap\css\bootstrap.min.css */"./src/assets/bootstrap/css/bootstrap.min.css");
-module.exports = __webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\src\assets\styles.css */"./src/assets/styles.css");
+__webpack_require__(/*! C:\Users\chema\Documents\GitHub\TFG-1819-PictoTexto\Codigo\pict2textFront\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
+__webpack_require__(/*! C:\Users\chema\Documents\GitHub\TFG-1819-PictoTexto\Codigo\pict2textFront\src\assets\bootstrap\css\bootstrap.min.css */"./src/assets/bootstrap/css/bootstrap.min.css");
+module.exports = __webpack_require__(/*! C:\Users\chema\Documents\GitHub\TFG-1819-PictoTexto\Codigo\pict2textFront\src\assets\styles.css */"./src/assets/styles.css");
 
 
 /***/ })
