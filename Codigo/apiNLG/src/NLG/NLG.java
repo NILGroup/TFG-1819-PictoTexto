@@ -55,47 +55,14 @@ public class NLG {
 		VPPhraseSpec verb = factory.createVerbPhrase(verbWord);
 		
 		simplePhrase.setSubject(subject);
-		if(verb!=null) {
-			simplePhrase.setVerbPhrase(verb);
-			if(object!=null)
-			simplePhrase.setObject(object);
-		}
+		simplePhrase.setVerbPhrase(verb);
+		simplePhrase.setObject(object);
+		
 		output = realiser.realiseSentence(simplePhrase);
 	
 
 	}
 
-	public void createASimplePastPhrase(NPPhraseSpec subject, NLGElement verbWord, NLGElement objectWord) {
-		this.simplePhrase = new SPhraseSpec(factory);
- 
-		NPPhraseSpec object = factory.createNounPhrase(objectWord);
-		VPPhraseSpec verb = factory.createVerbPhrase(verbWord);
-		simplePhrase.setSubject(subject);
-		if(verb!=null) {
-			simplePhrase.setVerbPhrase(verb);
-			if(object!=null)
-			simplePhrase.setObject(object);
-		simplePhrase.setFeature(Feature.TENSE, Tense.PAST);
-		}
-		output = realiser.realiseSentence(simplePhrase);
-	
-	}
-
-	public void createASimpleFuturePhrase(NPPhraseSpec subject, NLGElement verbWord, NLGElement objectWord) {
-		this.simplePhrase = new SPhraseSpec(factory);
- 
-		NPPhraseSpec object = factory.createNounPhrase(objectWord);
-		VPPhraseSpec verb = factory.createVerbPhrase(verbWord);
-		simplePhrase.setSubject(subject);
-		if(verb!=null) {
-			simplePhrase.setVerbPhrase(verb);
-			if(object!=null)
-			simplePhrase.setObject(object);
-		simplePhrase.setFeature(Feature.TENSE, Tense.FUTURE);
-		}
-		output = realiser.realiseSentence(simplePhrase);
-	
-	}
 	public ArrayList<NLGElement> createNLGWords(Word[] words) {
 		ArrayList<NLGElement> wordsList = new ArrayList<NLGElement>();
 		for (int i = 0; i < words.length; ++i) {
@@ -129,9 +96,11 @@ public class NLG {
 			case("PRON"):
 				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.PRONOUN);
 				break;
-			}		
+			}
+			
 			wordsList.add(aux);
 		}
+		NLGElement aux = factory.createWord("niños", LexicalCategory.NOUN);
 		return wordsList;
 	}
 
@@ -171,18 +140,34 @@ public class NLG {
 		return subject;
 	}
 
+	
+	private NPPhraseSpec setDeterminer(NPPhraseSpec subject, NLGElement subjectWord) {
 
-	public NPPhraseSpec createObject(List<NLGElement> subjectWords) {
-		NPPhraseSpec object = null;
-		object = factory.createNounPhrase();
-		for (NLGElement word : subjectWords) {
-			object.addComplement(word);
+		if (subjectWord.getCategory() != LexicalCategory.DETERMINER
+				&& subjectWord.getCategory() != LexicalCategory.PRONOUN) {
+			subject.setDeterminer("el");
 		}
-		return object;
+
+		for (Entry<String, Object> entry : subjectWord.getAllFeatures().entrySet()) {
+			if (entry.getValue().toString().compareToIgnoreCase(word) == 0) {
+				String rules = entry.getKey().toString();
+				if (rules.contains("plural")) {
+					subject.setPlural(true);
+				}
+				if (rules.contains("feminine")) {
+					subject.setFeature(LexicalFeature.GENDER, Gender.FEMININE);
+					if (subjectWord.getCategory() != LexicalCategory.NOUN
+							&& subjectWord.getCategory() != LexicalCategory.PRONOUN)
+						subject.setDeterminer("la");
+				}
+			}
+		}
+		return subject;
 	}
 
-	
+
 	public String getOutput() {
+		System.out.println(output );
 		return output;
 	}
 

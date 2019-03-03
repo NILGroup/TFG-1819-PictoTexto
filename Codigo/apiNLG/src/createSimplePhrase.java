@@ -51,26 +51,23 @@ public class createSimplePhrase extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		
 	     StringBuilder sb = new StringBuilder();
-        String s;
-        while ((s = request.getReader().readLine()) != null) {
-             sb.append(s);
-        }
-        Gson gson = new Gson();
-        Word [] words =  gson.fromJson(sb.toString(), Word[].class);
+         String s;
+         while ((s = request.getReader().readLine()) != null) {
+              sb.append(s);
+         }
+         Gson gson = new Gson();
+         Word [] words =  gson.fromJson(sb.toString(), Word[].class);
 
-        NLG miNlgTest = NLG.getInstance();
+         NLG miNlgTest = NLG.getInstance();
 		         
-        ArrayList<NLGElement> wordsList = miNlgTest.createNLGWords(words);
-        int i= miNlgTest.recogniseVerb(wordsList);
-        //DEFINE subject
-        List<NLGElement> subjectWords = wordsList.subList(0, i);
-        NPPhraseSpec subject = miNlgTest.createSubject(subjectWords);
-       
-        List<NLGElement> objectWords = wordsList.subList(i+1, wordsList.size());
-        NPPhraseSpec object = miNlgTest.createObject(objectWords);
-        
-        miNlgTest.createASimplePastPhrase(subject, wordsList.get(i), object);
+         ArrayList<NLGElement> wordsList = miNlgTest.createNLGWords(words);
+         int i= miNlgTest.recogniseVerb(wordsList);
+         //DEFINE subject
+         List<NLGElement> subjectWords = wordsList.subList(0, i);
+         NPPhraseSpec subject = miNlgTest.createSubject(subjectWords);
+         miNlgTest.createASimplePhrase(subject, wordsList.get(wordsList.size()-2), wordsList.get(wordsList.size()-1));
          
          response.getWriter().append( gson.toJson(miNlgTest.getOutput()));
          response.setHeader("Access-Control-Allow-Origin", "*");
@@ -89,7 +86,7 @@ public class createSimplePhrase extends HttpServlet {
 
 	  private void setAccessControlHeaders(HttpServletResponse resp) {
 	        resp.setHeader("Access-Control-Allow-Origin", "*");
-	        resp.setHeader("Access-Control-Request-Headers", "Origin, X-Requested-With, X-CSRFToken, Content-Type, accept");
+	        resp.setHeader("Access-Control-Request-Headers", "Origin, X-Requested-With, Content-Type, accept");
 	        resp.setHeader("Access-Control-Allow-Methods", "GET,POST");
 	        resp.setHeader("Content-Type","application/json");
 	        resp.setHeader("Response-Type","text/plain");
