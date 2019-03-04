@@ -24,31 +24,20 @@ En está sección vamos a explicar, las diferentes fases que transforman la entrad
 
 \subsection{Preparación}
 Una vez el servidor recibe la petición Post, el frameword GSON se encarga de parsear la entrada para devolver un array de palabras, el cual se enviara al sistema generador de lenguaje.
-Una vez el sistema recibe el array de palabras, lo primero que haces un procesamiento y clasificación de todas las palabras según categoría léxica:
-Diferenciando entre:
-\begin{enumerate}
-\item Adjetivos.
-\item Adverbios.
-\item Determinantes.
-\item Pronombres.
-\item Nombre.
-\item Símbolos.
-\item Conjunciones.
-\item Preposiciones.
-\item Complementos.
-\item Verbos modales.
-\item Complementos
-\end{enumerate}
-Esta clasificación es automática gracias a la función:
-\begin{center}
- NLGFactory.createWord("palabra", LexicalCategory.ANY)
-\end{center}
-
-Con el resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir el array en aquellas palabras que formaran el sujeto y aquellas que formaran el predicado. Cabe destacar que ARAASAC devuelve los verbos en infinitivo y está función de clasificación detecta los verbos como nombres. Este problema tiene solución gracias a una pequeña lógica que detecta si los nombres al ser configurados como verbos tienen conjugaciones.
+Una vez el sistema recibe el array de palabras, se preparan están palabras para su posterior tratamiento organizandolas según la categoría léxica, que se recibe en el JSON gracias al sistema de procesamiento de lenguaje natural, del cual hablaremos más adelante.
+Con el resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir la lista de palabras en aquellas que formaran el sujeto y aquellas que formaran el objecto y el verbo. Cabe destacar que SimpleNLG, al generar los objectos palabras, desecha tanto el genero como el numero, los cuales se añaden a posteriori. 
 
 \subsection{Sujeto}
 
 Una vez tenemos el subarray de palabras ya clasificadas que formaran el sujeto se pasa a procesar el sujeto de la frase. En este proceso se configura un determinante en caso de que sea necesario, por defecto el determinante es \textit{ el o la}. Además se reconoce el genero y numero del nombre principal del sujeto, para proceder a la configuración de los mismos de todo el sujeto. 
+
+\subsection{Objecto}
+
+De la misma manera que con el sujeto, se recorre el sujeto añadiendo una a una las palabras como complemento, del objeto de la frase.
+
+\subsection{Realización y envió}
+
+Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase se guarda en una variable la cual se devolverá en la respuesta del servicio.
 
 %------------------------------------------------------------------
 \section{Micro Servicios de Pictogramas}
