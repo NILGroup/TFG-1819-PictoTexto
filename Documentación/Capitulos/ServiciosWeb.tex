@@ -36,8 +36,8 @@ Como ya hemos hablado anteriormente, hemos utilizado el framework SimpleNLG-ES\f
 Este Servicio Web utiliza Apache TomCat como contenedor, para encapsular el framework SimpleNLG-ES, y poder ser accesible desde el servicio web principal o cualquier otro servicio web del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}.  
 
 Este servicio web recibe un JSON con un simple array de palabras, tal y como podemos ver en la Figura \ref{fig:nlgRequest}. Esta petición puede ser parseada gracias al framework GSON visto en el Capitulo \ref{cap3:sec:GSON} para obtener una clase Java con la cual formaremos la frase en lenguaje natural, la cual se devuelve en la respuesta del servicio, en texto plano tal y como podemos ver en la Figura \ref{fig:nlgResponse}.
-\figura{Bitmap/EstadoDeLaCuestion/nlgRequest}{width=260px}{fig:nlgRequest}{Petición al servicio de creación del lenguaje}
-\figura{Bitmap/EstadoDeLaCuestion/nlgResponse}{width=220px}{fig:nlgResponse}{Respuesta del servicio de creación del lenguaje}
+\figura{Bitmap/EstadoDeLaCuestion/nlgRequest}{width=300px}{fig:nlgRequest}{Petición al servicio de creación del lenguaje}
+\figura{Bitmap/EstadoDeLaCuestion/nlgResponse}{width=300px}{fig:nlgResponse}{Respuesta del servicio de creación del lenguaje}
 
 \section{Fases del proceso}
 
@@ -52,9 +52,17 @@ Con el resultado de esta clasificación podemos determinar la posición del verbo,
 
 Una vez tenemos el subarray de palabras ya clasificadas que formaran el sujeto se pasa a procesar el sujeto de la frase. En este proceso se configura un determinante en caso de que sea necesario, por defecto el determinante es \textit{ el o la}. Además se reconoce el genero y numero del nombre principal del sujeto, para proceder a la configuración de los mismos de todo el sujeto. 
 
-\subsection{Objecto}
+\subsection{Objeto}
 
-De la misma manera que con el sujeto, se recorre el sujeto añadiendo una a una las palabras como complemento, del objeto de la frase.
+De la misma manera que con el sujeto, se recorre el sujeto añadiendo una a una las palabras como complemento del objeto, para después añadirlo a la frase.
+
+\subsection{Tiempo verbal}
+
+El tiempo verbal de la frase se escoge, dependiendo de la llamada que  reciba el servicio. Existen tres end-points :  /createSimplePhrase en la Figura \ref{fig:simplePhrase} podemos ver una petición para generar una  frase en presente, /createFuturePhrase en la Figura \ref{fig:futurePhrase} una llamada para frases en futuro y por ultimo la llamada a /createPastPhrase para crear una frase en pasado, en la Figura  \ref{fig:simplePhrase} podemos ver un ejemplo de esta.
+
+\figura{Bitmap/ServiciosWeb/presentPhrase}{width=400px}{fig:simplePhrase}{Petición de creación de frase simple en presente}
+\figura{Bitmap/ServiciosWeb/FuturePhrase}{width=400px}{fig:futurePhrase}{Petición de creación de frase simple en futuro}
+\figura{Bitmap/ServiciosWeb/pastPhrase}{width=400px}{fig:pastPhrase}{Petición de creación de frase simple en pasado}
 
 \subsection{Realización y envió}
 
@@ -70,8 +78,8 @@ A continuación pasaremos a desarrollar los microservicios desarrollados:
 \begin{itemize}
 
 \item Servicio de búsqueda: este servicio web, recibe una palabra a traves de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON. Este servicio primero lanza una petición GET a un servicio web externo de ARAASAC, el cual devuelve una lista de pictogramas. Esta respuesta es tratada, para crear un objecto que contendrá una lista de objetos cada uno con el identificador de un pictograma de la base de datos de ARASAAC, la URL al archivo de imagen alojado en los servidores de ARASAAC y el significado de ese pictograma. Una vez toda la información es tratada, se genera un JSON que se devuelve en la respuesta del servicio.
-\figura{Bitmap/EstadoDeLaCuestion/pictoFinderRequest}{width=300px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
-\figura{Bitmap/EstadoDeLaCuestion/pictoFinderResponse}{width=220px}{fig:pictoFinderResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa}
+\figura{Bitmap/ServiciosWeb/pictoFinderRequest}{width=300px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
+\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{width=220px}{fig:pictoFinderResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa}
 
 \item Servicio de traducción: el segundo servicio web recibe el identificador de un pictograma y obtiene todos los significados de dicho pictograma utilizando para ello la API de ARASAAC.
 

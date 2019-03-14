@@ -64,8 +64,6 @@ def getTypePhrase(request):
                 response['type'] = "past"
             if picto['keyword'] == "mañana":
                 response['type'] = "future"
-        print(verb)
-        print(response)
         if verb == False:
             response = {'type': "present"}
         return JsonResponse(response, status=200)
