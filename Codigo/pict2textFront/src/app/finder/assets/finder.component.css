@@ -1,8 +1,4 @@
-.pictoSlider{
-    background: rgba(226,226,226,1);
-}
-.carousel-caption {
-    position: relative;
-    left: auto;
-    right: auto;
+.finder-opa{
+    background-color:rgba(0,0,0,.14);
+    padding: 5px;
 }

@@ -1,0 +1,57 @@
+.cdk-drag-placeholder {
+    opacity: 0;
+  }
+  
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .example-box:last-child {
+    border: none;
+  }
+  
+  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+.example-list {
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height:200px;
+  display: flex;
+  flex-direction: row;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.example-box {
+ 
+  border: black
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.card {
+  display: inline-block;
+}
+
+.dragElement {
+  position:relative;
+}
+
+.removeElement {
+  position: absolute;
+  right: 0px;
+}

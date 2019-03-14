@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{17}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{Abril~Abad\'{i}n(2010)}]{DoloresAbril2010}
@@ -63,6 +63,13 @@
   comunicaci{\'o}n\/}.
 \newblock Colecci{\'o}n Logopedia e Intervenci{\'o}n Series. Nau Llibres, 2003.
 \newblock ISBN 9788476426821.
+
+\bibitem[{Martin(2013)}]{martin2013agile}
+{\sc Martin, R.}
+\newblock {\em Agile Software Development: Principles, Patterns, and
+  Practices\/}.
+\newblock Always learning. Pearson, 2013.
+\newblock ISBN 9781292025940.
 
 \bibitem[{Mart\'{i}n~Guerrero(2018)}]{MartinGuerrero2018}
 {\sc Mart\'{i}n~Guerrero, A.}

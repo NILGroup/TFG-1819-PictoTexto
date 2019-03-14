@@ -2,10 +2,31 @@
 
 \chapter{Servicios Web}
 \label{cap:serviciosWeb}
-
-
 	
 A lo largo de este capitulo trataremos de explicar los diferentes servicios web, que hemos implementado, para desarrollar cada una de las funcionalidades de nuestra aplicación.
+
+%------------------------------------------------------------------
+\section{Principios de la arquitectura}
+%-------------------------------------------------------------------
+\label{cap4:sec:PrincipiosArquitectura}
+
+Debido a que el proyecto está orientado a fusionarse dentro del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}, (proyecto que busca facilitar la inclusión digital, para aquellas personas que por diversidad   funcional, pueden tener problemas usando el lenguaje natural), el diseño de la arquitectura exigía un muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte back-end, y a componentes en la parte front-end, ambas partes serán explicadas en este capitulo más adelante, en ambos casos aplicando, el Principio de responsabilidad única(Single Responsability Principle)\footnote{https://devexperto.com/principio-responsabilidad-unica/}, Principio de segregación de la interfaz (Interface Segregation Principle)\footnote{https://hackernoon.com/interface-segregation-principle-bdf3f94f1d11}, y el Principio de inversión de dependencias (Dependency inversion principle).
+Estos tres principios forman parte de SOLID (Single responsibility, Open-closed, Liskov substitution, Interface segregation and Dependency inversion), descritos por Robert C. Martin\citep{martin2013agile} y buscan una alta modularidad y bajo acoplamiento entre los diferentes componentes de un producto software. 
+
+\subsection{Principio de responsabilidad única}
+
+El principio de responsabilidad única, promueve la separación de las clases para promover que cada clase haga una sola cosa, y no dependa de un tercero. Cada clase debe de ser responsable únicamente de su comportamiento y no tener dependencia de un tercero. Un ejemplo de violación de este principio es cuando en una misma clase, están involucradas dos capas diferentes de la arquitectura. Además este principio promueve la creación de múltiples clases muy simples, con lógica mínima, en contra de una clase con una lógica mayor, ya que está ultima produce un fuerte acoplamiento y disminuye la sostenibilidad del código. 
+
+\subsection{Principio de segregación de la interfaz}
+
+Es muy parecido al principio de responsabilidad única, ya que este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es la interfaz de peticiones de la aplicación angular donde todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
+
+\subsection{ Principio de inversión de dependencias}
+
+Este principio busca, evitar dependencias externas dentro del código, y que el código central de las aplicaciones no dependa de frameworks, de bases de datos, el como se conecten los diferentes servicios entre ellos. Normalmente se habla de que las clases de alto nivel no deben de depender de las clases de bajo nivel\footnote{https://devexperto.com/principio-de-inversion-de-dependencias/}.
+
+
+
 %------------------------------------------------------------------
 \section{Servicio de Generación de Lenguaje Natural}
 %-------------------------------------------------------------------
