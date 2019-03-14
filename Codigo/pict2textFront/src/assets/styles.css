@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.carousel-control-next, .carousel-control-prev{
+    background-color:rgba(0,0,0,.14);
+
+}
+
+.carousel-caption {
+    position: unset;
+    padding-top:0;
+
+}
+.carousel-item{
+    padding-top: 20px;
+}

@@ -1,21 +1,37 @@
-<div class="container">
-    <div class="form-group ">
+<div class="  col-12">
+    <div class="container">
         <label>Nombre del picto</label>
-        <input type="text" class="form-control" id="pictoName" placeholder="Introduzca el pictograma que desea buscar"
-            name="pictoName" #name>
-    </div>
-    <button class="btn btn-primary" (click)="getPictosByName(name.value)">Submit</button>
-
-    <div class="pictoSlider">
-        <ngb-carousel *ngIf="myPicto" [showNavigationIndicators]="false">
-            <div *ngFor="let img of myPicto">
-                <ng-template ngbSlide>
-                    <img src={{img.url}} class="img-responsive mx-auto d-flex justify-content-center flex-wrap" alt="" width="50%">
-                    <div class="carousel-caption">
-                        <p>{{img.id}}</p>
-                    </div>
-                </ng-template>
+        <form class="card card-sm">
+            <div class="card-body row no-gutters align-items-center">
+                <div class="col-auto">
+                    <i class="fas fa-search h4 text-body"></i>
+                </div>
+                <div class="col">
+                    <input class="form-control  form-control-borderless" id="pictoName" type="search"
+                        placeholder="Introduzca el nombre" name="pictoName" #name>
+                </div>
+                <div class="col-auto">
+                    <button class="btn  btn-submit" type="submit" (click)="getPictosByName(name.value)">Buscar</button>
+                </div>
             </div>
-        </ngb-carousel>
+        </form>
+        <!--end of col-->
+
+        <div>
+            <ngb-carousel *ngIf="myPicto" [showNavigationIndicators]="false">
+                <div *ngFor="let img of myPicto">
+                    <ng-template ngbSlide>
+                        <img src={{img.url}} class="img-responsive mx-auto d-flex justify-content-center flex-wrap"
+                            alt="" width="30%">
+                        <div class="carousel-caption">
+                            <p ><span class="finder-opa">Id de pictograma: {{img.id}}</span></p>
+                            <button class="btn btn-primary" (click)="addPicto(img)">Añadir</button>
+                        </div>
+
+                    </ng-template>
+                </div>
+            </ngb-carousel>
+        </div>
+
     </div>
 </div>

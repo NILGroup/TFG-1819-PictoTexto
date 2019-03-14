@@ -56,7 +56,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'pict2Text.urls'
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_EXPIRE_AT_BROWSER_CLOSE =True
-SESSION_COOKIE_AGE = 300
+SESSION_COOKIE_AGE = 200
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Picto } from './finder/transformer/picto';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pict2textFront';
+  pictoPhrase: Picto[] =[];
 }
