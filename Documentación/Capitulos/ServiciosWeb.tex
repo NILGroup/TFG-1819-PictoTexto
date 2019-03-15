@@ -69,21 +69,44 @@ El tiempo verbal de la frase se escoge, dependiendo de la llamada que  reciba el
 Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase se guarda en una variable la cual se devolverá en la respuesta del servicio.
 
 %------------------------------------------------------------------
-\section{Micro Servicios de Pictogramas}
+\section{Servicios Web en Django}
 %-------------------------------------------------------------------
-\label{cap4:sec:MicroServicios}
+\label{cap4:sec:ServiciosDjango}
 
-Para la obtención de los pictogramas así como su significado se han implementado una serie de micro servicios que hacen uso de la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Estos servicios se han desarrollado usando el FrameWork DJango, del cual ya hemos hablado anteriormente.
-A continuación pasaremos a desarrollar los microservicios desarrollados:
-\begin{itemize}
+Para la obtención de los pictogramas, así como su significado se han implementado una serie de servicios web que hacen uso de la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Estos servicios se han desarrollado usando el FrameWork Django, del cual ya hemos hablado anteriormente.
+A continuación pasaremos a desarrollar los diferentes servicios web desarrollados:
 
-\item Servicio de búsqueda: este servicio web, recibe una palabra a traves de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON. Este servicio primero lanza una petición GET a un servicio web externo de ARAASAC, el cual devuelve una lista de pictogramas. Esta respuesta es tratada, para crear un objecto que contendrá una lista de objetos cada uno con el identificador de un pictograma de la base de datos de ARASAAC, la URL al archivo de imagen alojado en los servidores de ARASAAC y el significado de ese pictograma. Una vez toda la información es tratada, se genera un JSON que se devuelve en la respuesta del servicio.
-\figura{Bitmap/ServiciosWeb/pictoFinderRequest}{width=300px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
-\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{width=220px}{fig:pictoFinderResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa}
+\subsection{Servicio web de búsqueda}
 
-\item Servicio de traducción: el segundo servicio web recibe el identificador de un pictograma y obtiene todos los significados de dicho pictograma utilizando para ello la API de ARASAAC.
+Este servicio web (/picto/getPicto?pictoName='NombrePictograma'), recibe una palabra a través de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON.
+\figura{Bitmap/ServiciosWeb/pictoFinderRequest}{width=400px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
+Este servicio lanza una petición GET a un servicio web externo de la API de ARAASAC, el cual devuelve una lista de pictogramas. Esta respuesta es tratada, filtrando y obteniendo aquellos datos que son realmente necesarios, para crear una lista de objetos. Cada objeto tendrá un identificador de un pictograma, asociado a la palabra recibida, de la base de datos de ARASAAC, la URL al archivo de imagen alojado en los servidores de ARASAAC y el significado de ese pictograma. Una vez toda la información es tratada y se crea la lista de objetos, se genera un JSON que se devuelve en la respuesta del servicio.
 
-\item Servicio de landing: este servicio sirve para cargar la aplicación web, recibe la petición y carga la aplicación front-end, desde la que el usuario podrá acceder a toda la funcionalidad. 
+\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{width=300px}{fig:pictoFinderResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa}
 
-\end{itemize} 
+\subsection{Servicio web de traducción}
+
+Este segundo servicio web tiene diferentes end-points, accesibles desde /translate:
+\begin{enumerate}
+
+\item Servicio de traducción de pictogramas (/translate/getPictoTranslate?pictoId='XXXX'): recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
+\figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:translateResponse}{Llamada al servicio web de traducción de pictogramas, para el pictograma 2317}
+\figura{Bitmap/ServiciosWeb/responsetranslateService}{width=300px}{fig:responsetranslateService}{Respuesta del servicio de traducciones de pictogramas}
+
+\item Servicio de clasificación de palabras (/translate/getWordAttrs?word='PalabraAClasificar'): este servicio web recibe a través de una petición GET una palabra tal y como podemos ver en la Figura \ref{fig:attrsRequest}.
+Una vez se lee la palabra de entrada, se carga el modulo de Spacy del cual ya hemos hablado en el capitulo \ref{cap3:sec:SpaCy}, se carga su modelo de palabras en español, y obtenemos el token de la palabra recibida. Tratamos los dados devueltos por el token y creamos un objeto que devolverá la clasificación sintética de la palabra además de otras características como pueden ser el genero y el número, tal y como podemos ver en la Figura \ref{fig:attrsResponse}, que muestra una respuesta del servicio para la palabra ``Casa''.  
+\figura{Bitmap/ServiciosWeb/attrsRequest}{width=300px}{fig:attrsRequest}{Llamada al servicio web de clasificación de palabras}
+\figura{Bitmap/ServiciosWeb/attrsResponse}{width=300px}{fig:attrsResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
+
+\item Servicio de tiempo verbal ( /translate/getTypePhrase ): recibe una petición POST, con una lista de palabras ya clasificadas, tal y como podemos observar en la Figura \ref{fig:getTypeRequest}. Después de recibir la petición busca palabras clave en la lista de palabras recibida. Si detecta alguna palabra clave y un verbo, devuelve en una variable el tipo de frase que se debe de generar, tal y como podemos ver en la Figura \ref{fig:getTypeResponse}.  
+  
+\figura{Bitmap/ServiciosWeb/getTypeRequest}{width=400px}{fig:getTypeRequest}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
+\figura{Bitmap/ServiciosWeb/getTypeResponse}{width=220px}{fig:getTypeResponse}{Llamada al servicio web de clasificación de palabras}
+
+\end{enumerate}
+
+\subsection{Servicio web de lanzamiento}
+
+Este servicio sirve para cargar la aplicación web, es decir es el punto de entrada, recibe la petición y carga la aplicación front-end Angular, desde la que el usuario podrá acceder a toda la funcionalidad. Este servicio además genera una cookie de sesión que enviara a la aplicación Angular en la primera petición. 
+
 
