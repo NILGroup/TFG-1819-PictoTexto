@@ -42,7 +42,9 @@ Además es una librería relativamente nueva sobresaliendo por su facilidad de uso
 
 Gracias a esta velocidad de procesamiento permite obtener la información de cada palabra de forma más ágil y rápida, que otras herramientas de análisis del lenguaje.
 
-Para nuestro proyecto la función principal que realizará spaCy será la de analizador de los pictogramas que conforman la oración a traducir, dando como resultado un objeto con todas las características de cada palabra. Dicho objeto será utilizado posteriormente por nuestro generador del lenguaje (Simple-NLG) para reproducir el texto resultante.
+Para nuestro proyecto la función principal que realizará spaCy será la de analizador de los pictogramas que conforman la oración a traducir, de la herramienta obtenemos los "tokens" o atributos de las palabras recibidas. Una vez se analizan los datos obtenidos de los tokens se crea un objeto con todas las características sintácticas, así como otras características tan importantes como son el género y número de cada palabra.
+Además si entre las palabras recibidas se encuentra un verbo también se obtendrá información propia de los verbos como el tiempo verbal del mismo. 
+Todo esto será utilizado posteriormente por nuestro generador del lenguaje (Simple-NLG) para reproducir el texto resultante.
 
 \section{SimpleNLG-ES}
 %-------------------------------------------------------------
@@ -97,8 +99,10 @@ Angular es un framework de desarrollo creado y desarrollado por google, cuya fin
 
 Es importante mencionar que Angular solo tratará la parte del frontend la cuál estará conectada con la parte backend, esto ayudará a poder hacer cada parte de la página web independiente una de la otra.
 
-Además Angular está formado por diferentes módulos diferentes unos de otros y cada módulo a su vez por diferentes componentes, permitiendo una mayor personalización e independencia en framework.
+Además Angular está formado por diferentes módulos diferentes unos de otros y cada módulo a su vez por diferentes componentes, esto ofrece una división automática de códigos para que los usuarios solo carguen aquellos que necesitan.
+Otra característica importante de Angular es que realiza una rápida conversión del código escrito en código optimizado para máquinas de Javascript ofreciendo una productividad muy alta.
 
+Por último, hay que destacar la posibilidad que ofrece Angular de realizar pruebas de testing, tanto para realizar pruebas unitarias como pruebas end-to-end. 
 
  
 
