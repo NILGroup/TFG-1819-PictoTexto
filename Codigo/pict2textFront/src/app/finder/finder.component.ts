@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import {FinderService} from 'src/app/finder/service/finder-service.service'
 import {Picto} from 'src/app/finder/transformer/picto'
 import { ProxyService } from '../utils/proxy/proxy-service.service';
+import { NgbdModalOptions } from '../utils/modals/modal-component'
 import {FinderTransformer} from 'src/app/finder/transformer/finder-transformer.transformer'
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
@@ -9,7 +10,7 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-finder',
   templateUrl: './assets/finder.component.html',
-  providers: [FinderService,FinderTransformer, ProxyService,NgbCarouselConfig],
+  providers: [FinderService,FinderTransformer,NgbCarouselConfig, ProxyService, NgbdModalOptions],
   styleUrls: ['./assets/finder.component.css']
 })
 export class FinderComponent {
@@ -17,7 +18,7 @@ export class FinderComponent {
   @Input() pictoPhrase:Picto[];
   
   
-  constructor( private pictoService : FinderService, config: NgbCarouselConfig) {
+  constructor( private pictoService : FinderService, config: NgbCarouselConfig, private modalService: NgbdModalOptions) {
     config.interval=0;
   }
 
@@ -34,6 +35,10 @@ export class FinderComponent {
     }
 
    getPictoError(){
+
+    const modalRef = this.modalService.openGeneralModalError(FinderComponent);
+    modalRef.componentInstance.name = 'pipo';
+    this.modalService.openGeneralModalError(Window);
     console.log("todo mal en el componente")
   }
 
