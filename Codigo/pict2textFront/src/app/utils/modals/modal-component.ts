@@ -1,18 +1,16 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
+import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'ngbd-modal-options',
   templateUrl: './assets/error-modal.html',
-  encapsulation: ViewEncapsulation.None,
-  styles: []
 })
-export class NgbdModalOptions {
-  closeResult: string;
+export class ModalComponent  implements OnInit {
+ 
+ 
+  constructor( public activeModal: NgbActiveModal ) {}
 
-  constructor(private modalService: NgbModal) {}
-
-  openGeneralModalError(content) {
-    this.modalService.open(content, { centered: true });
+  ngOnInit() {
   }
+
+
 }
