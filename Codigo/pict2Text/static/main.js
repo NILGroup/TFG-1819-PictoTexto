@@ -9060,9 +9060,9 @@ var AppConstants = /** @class */ (function () {
     function AppConstants() {
     }
     AppConstants.pictoFinderURl = '/picto/getPicto?pictoName=';
-    AppConstants.translatorPhraseURL = 'http://127.0.0.1:8080/apiNLG/createSimplePhrase';
-    AppConstants.translatorPastPhraseURL = 'http://127.0.0.1:8080/apiNLG/createPastPhrase';
-    AppConstants.translatorFuturePhraseURL = 'http://127.0.0.1:8080/apiNLG/createFuturePhrase';
+    AppConstants.translatorPhraseURL = 'http://127.0.0.1:8080/NLGWebService/createSimplePhrase';
+    AppConstants.translatorPastPhraseURL = 'http://127.0.0.1:8080/NLGWebService/createPastPhrase';
+    AppConstants.translatorFuturePhraseURL = 'http://127.0.0.1:8080/NLGWebService/createFuturePhrase';
     AppConstants.translatorPictoURL = '/translate/getPictoTranslate?pictoId=';
     AppConstants.typePhraseURL = '/translate/getTypePhrase';
     AppConstants.wordAttr = '/translate/getWordAttrs?word=';
@@ -9953,7 +9953,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\chema\Documents\GitHub\TFG-1819-PictoTexto\Codigo\pict2textFront\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\src\main.ts */"./src/main.ts");
 
 
 /***/ })

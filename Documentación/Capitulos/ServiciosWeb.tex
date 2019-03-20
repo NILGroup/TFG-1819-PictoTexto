@@ -2,21 +2,42 @@
 
 \chapter{Servicios Web}
 \label{cap:serviciosWeb}
-
-
 	
 A lo largo de este capitulo trataremos de explicar los diferentes servicios web, que hemos implementado, para desarrollar cada una de las funcionalidades de nuestra aplicación.
+
+%------------------------------------------------------------------
+\section{Principios de la arquitectura}
+%-------------------------------------------------------------------
+\label{cap5:sec:PrincipiosArquitectura}
+
+Debido a que el proyecto está orientado a fusionarse dentro del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}, (proyecto que busca facilitar la inclusión digital, para aquellas personas que por diversidad   funcional, pueden tener problemas usando el lenguaje natural), el diseño de la arquitectura exigía un muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte back-end, y a componentes en la parte front-end, ambas partes serán explicadas en este capitulo más adelante, en ambos casos aplicando, el Principio de responsabilidad única(Single Responsability Principle)\footnote{https://devexperto.com/principio-responsabilidad-unica/}, Principio de segregación de la interfaz (Interface Segregation Principle)\footnote{https://hackernoon.com/interface-segregation-principle-bdf3f94f1d11}, y el Principio de inversión de dependencias (Dependency inversion principle).
+Estos tres principios forman parte de SOLID (Single responsibility, Open-closed, Liskov substitution, Interface segregation and Dependency inversion), descritos por Robert C. Martin\citep{martin2013agile} y buscan una alta modularidad y bajo acoplamiento entre los diferentes componentes de un producto software. 
+
+\subsection{Principio de responsabilidad única}
+
+El principio de responsabilidad única, promueve la separación de las clases para promover que cada clase haga una sola cosa, y no dependa de un tercero. Cada clase debe de ser responsable únicamente de su comportamiento y no tener dependencia de un tercero. Un ejemplo de violación de este principio es cuando en una misma clase, están involucradas dos capas diferentes de la arquitectura. Además este principio promueve la creación de múltiples clases muy simples, con lógica mínima, en contra de una clase con una lógica mayor, ya que está ultima produce un fuerte acoplamiento y disminuye la sostenibilidad del código. 
+
+\subsection{Principio de segregación de la interfaz}
+
+Es muy parecido al principio de responsabilidad única, ya que este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es la interfaz de peticiones de la aplicación angular donde todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
+
+\subsection{ Principio de inversión de dependencias}
+
+Este principio busca, evitar dependencias externas dentro del código, y que el código central de las aplicaciones no dependa de frameworks, de bases de datos, el como se conecten los diferentes servicios entre ellos. Normalmente se habla de que las clases de alto nivel no deben de depender de las clases de bajo nivel\footnote{https://devexperto.com/principio-de-inversion-de-dependencias/}.
+
+
+
 %------------------------------------------------------------------
 \section{Servicio de Generación de Lenguaje Natural}
 %-------------------------------------------------------------------
-\label{cap4:sec:ServicioGLN}
+\label{cap5:sec:ServicioGLN}
 Como ya hemos hablado anteriormente, hemos utilizado el framework SimpleNLG-ES\footnote{https://github.com/citiususc/SimpleNLG-ES}, para la fase de generación del lenguaje. Este framework está escrito en Java, lo que impide su utilización dentro de nuestro servicio web central desarrollado en Python 3.
 
 Este Servicio Web utiliza Apache TomCat como contenedor, para encapsular el framework SimpleNLG-ES, y poder ser accesible desde el servicio web principal o cualquier otro servicio web del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}.  
 
 Este servicio web recibe un JSON con un simple array de palabras, tal y como podemos ver en la Figura \ref{fig:nlgRequest}. Esta petición puede ser parseada gracias al framework GSON visto en el Capitulo \ref{cap3:sec:GSON} para obtener una clase Java con la cual formaremos la frase en lenguaje natural, la cual se devuelve en la respuesta del servicio, en texto plano tal y como podemos ver en la Figura \ref{fig:nlgResponse}.
-\figura{Bitmap/EstadoDeLaCuestion/nlgRequest}{width=260px}{fig:nlgRequest}{Petición al servicio de creación del lenguaje}
-\figura{Bitmap/EstadoDeLaCuestion/nlgResponse}{width=220px}{fig:nlgResponse}{Respuesta del servicio de creación del lenguaje}
+\figura{Bitmap/EstadoDeLaCuestion/nlgRequest}{width=300px}{fig:nlgRequest}{Petición al servicio de creación del lenguaje}
+\figura{Bitmap/EstadoDeLaCuestion/nlgResponse}{width=300px}{fig:nlgResponse}{Respuesta del servicio de creación del lenguaje}
 
 \section{Fases del proceso}
 
@@ -24,48 +45,68 @@ En está sección vamos a explicar, las diferentes fases que transforman la entrad
 
 \subsection{Preparación}
 Una vez el servidor recibe la petición Post, el frameword GSON se encarga de parsear la entrada para devolver un array de palabras, el cual se enviara al sistema generador de lenguaje.
-Una vez el sistema recibe el array de palabras, lo primero que haces un procesamiento y clasificación de todas las palabras según categoría léxica:
-Diferenciando entre:
-\begin{enumerate}
-\item Adjetivos.
-\item Adverbios.
-\item Determinantes.
-\item Pronombres.
-\item Nombre.
-\item Símbolos.
-\item Conjunciones.
-\item Preposiciones.
-\item Complementos.
-\item Verbos modales.
-\item Complementos
-\end{enumerate}
-Esta clasificación es automática gracias a la función:
-\begin{center}
- NLGFactory.createWord("palabra", LexicalCategory.ANY)
-\end{center}
-
-Con el resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir el array en aquellas palabras que formaran el sujeto y aquellas que formaran el predicado. Cabe destacar que ARAASAC devuelve los verbos en infinitivo y está función de clasificación detecta los verbos como nombres. Este problema tiene solución gracias a una pequeña lógica que detecta si los nombres al ser configurados como verbos tienen conjugaciones.
+Una vez el sistema recibe el array de palabras, se preparan están palabras para su posterior tratamiento organizandolas según la categoría léxica, que se recibe en el JSON gracias al sistema de procesamiento de lenguaje natural, del cual hablaremos más adelante.
+Con el resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir la lista de palabras en aquellas que formaran el sujeto y aquellas que formaran el objecto y el verbo. Cabe destacar que SimpleNLG, al generar los objectos palabras, desecha tanto el genero como el numero, los cuales se añaden a posteriori. 
 
 \subsection{Sujeto}
 
 Una vez tenemos el subarray de palabras ya clasificadas que formaran el sujeto se pasa a procesar el sujeto de la frase. En este proceso se configura un determinante en caso de que sea necesario, por defecto el determinante es \textit{ el o la}. Además se reconoce el genero y numero del nombre principal del sujeto, para proceder a la configuración de los mismos de todo el sujeto. 
 
+\subsection{Objeto}
+
+De la misma manera que con el sujeto, se recorre el sujeto añadiendo una a una las palabras como complemento del objeto, para después añadirlo a la frase.
+
+\subsection{Tiempo verbal}
+
+El tiempo verbal de la frase se escoge, dependiendo de la llamada que  reciba el servicio. Existen tres end-points :  /createSimplePhrase en la Figura \ref{fig:simplePhrase} podemos ver una petición para generar una  frase en presente, /createFuturePhrase en la Figura \ref{fig:futurePhrase} una llamada para frases en futuro y por ultimo la llamada a /createPastPhrase para crear una frase en pasado, en la Figura  \ref{fig:simplePhrase} podemos ver un ejemplo de esta.
+
+\figura{Bitmap/ServiciosWeb/presentPhrase}{width=400px}{fig:simplePhrase}{Petición de creación de frase simple en presente}
+\figura{Bitmap/ServiciosWeb/FuturePhrase}{width=400px}{fig:futurePhrase}{Petición de creación de frase simple en futuro}
+\figura{Bitmap/ServiciosWeb/pastPhrase}{width=400px}{fig:pastPhrase}{Petición de creación de frase simple en pasado}
+
+\subsection{Realización y envió}
+
+Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase se guarda en una variable la cual se devolverá en la respuesta del servicio.
+
 %------------------------------------------------------------------
-\section{Micro Servicios de Pictogramas}
+\section{Servicios Web en Django}
 %-------------------------------------------------------------------
-\label{cap4:sec:MicroServicios}
+\label{cap5:sec:ServiciosDjango}
 
-Para la obtención de los pictogramas así como su significado se han implementado una serie de micro servicios que hacen uso de la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Estos servicios se han desarrollado usando el FrameWork DJango, del cual ya hemos hablado anteriormente.
-A continuación pasaremos a desarrollar los microservicios desarrollados:
-\begin{itemize}
+Para la obtención de los pictogramas, así como su significado se han implementado una serie de servicios web que hacen uso de la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Estos servicios se han desarrollado usando el FrameWork Django, del cual ya hemos hablado anteriormente.
+A continuación pasaremos a desarrollar los diferentes servicios web desarrollados:
 
-\item Servicio de búsqueda: este servicio web, recibe una palabra a traves de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON. Este servicio primero lanza una petición GET a un servicio web externo de ARAASAC, el cual devuelve una lista de pictogramas. Esta respuesta es tratada, para crear un objecto que contendrá una lista de objetos cada uno con el identificador de un pictograma de la base de datos de ARASAAC, la URL al archivo de imagen alojado en los servidores de ARASAAC y el significado de ese pictograma. Una vez toda la información es tratada, se genera un JSON que se devuelve en la respuesta del servicio.
-\figura{Bitmap/EstadoDeLaCuestion/pictoFinderRequest}{width=300px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
-\figura{Bitmap/EstadoDeLaCuestion/pictoFinderResponse}{width=220px}{fig:pictoFinderResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa}
+\subsection{Servicio web de búsqueda}
 
-\item Servicio de traducción: el segundo servicio web recibe el identificador de un pictograma y obtiene todos los significados de dicho pictograma utilizando para ello la API de ARASAAC.
+Este servicio web (/picto/getPicto?pictoName='NombrePictograma'), recibe una palabra a través de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON.
+\figura{Bitmap/ServiciosWeb/pictoFinderRequest}{width=400px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
+Este servicio lanza una petición GET a un servicio web externo de la API de ARAASAC, el cual devuelve una lista de pictogramas. Esta respuesta es tratada, filtrando y obteniendo aquellos datos que son realmente necesarios, para crear una lista de objetos. Cada objeto tendrá un identificador de un pictograma, asociado a la palabra recibida, de la base de datos de ARASAAC, la URL al archivo de imagen alojado en los servidores de ARASAAC y el significado de ese pictograma. Una vez toda la información es tratada y se crea la lista de objetos, se genera un JSON que se devuelve en la respuesta del servicio.
 
-\item Servicio de landing: este servicio sirve para cargar la aplicación web, recibe la petición y carga la aplicación front-end, desde la que el usuario podrá acceder a toda la funcionalidad. 
+\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{width=300px}{fig:pictoFinderResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa}
 
-\end{itemize} 
+\subsection{Servicio web de traducción}
+
+Este segundo servicio web tiene diferentes end-points, accesibles desde /translate:
+\begin{enumerate}
+
+\item Servicio de traducción de pictogramas (/translate/getPictoTranslate?pictoId='XXXX'): recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
+\figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:translateResponse}{Llamada al servicio web de traducción de pictogramas, para el pictograma 2317}
+\figura{Bitmap/ServiciosWeb/responsetranslateService}{width=300px}{fig:responsetranslateService}{Respuesta del servicio de traducciones de pictogramas}
+
+\item Servicio de clasificación de palabras (/translate/getWordAttrs?word='PalabraAClasificar'): este servicio web recibe a través de una petición GET una palabra tal y como podemos ver en la Figura \ref{fig:attrsRequest}.
+Una vez se lee la palabra de entrada, se carga el modulo de SpaCy del cual ya hemos hablado en el capitulo \ref{cap3:sec:SpaCy}, se carga su modelo de palabras en español, y obtenemos el token de la palabra recibida. Tratamos los dados devueltos por el token y creamos un objeto que devolverá la clasificación sintética de la palabra además de otras características como pueden ser el genero y el número, tal y como podemos ver en la Figura \ref{fig:attrsResponse}, que muestra una respuesta del servicio para la palabra ``Casa''.  
+\figura{Bitmap/ServiciosWeb/attrsRequest}{width=300px}{fig:attrsRequest}{Llamada al servicio web de clasificación de palabras}
+\figura{Bitmap/ServiciosWeb/attrsResponse}{width=300px}{fig:attrsResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
+
+\item Servicio de tiempo verbal ( /translate/getTypePhrase ): recibe una petición POST, con una lista de palabras ya clasificadas, tal y como podemos observar en la Figura \ref{fig:getTypeRequest}. Después de recibir la petición busca palabras clave en la lista de palabras recibida. Si detecta alguna palabra clave y un verbo, devuelve en una variable el tipo de frase que se debe de generar, tal y como podemos ver en la Figura \ref{fig:getTypeResponse}.  
+  
+\figura{Bitmap/ServiciosWeb/getTypeRequest}{width=400px}{fig:getTypeRequest}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
+\figura{Bitmap/ServiciosWeb/getTypeResponse}{width=220px}{fig:getTypeResponse}{Llamada al servicio web de clasificación de palabras}
+
+\end{enumerate}
+
+\subsection{Servicio web de lanzamiento}
+
+Este servicio sirve para cargar la aplicación web, es decir es el punto de entrada, recibe la petición y carga la aplicación front-end Angular, desde la que el usuario podrá acceder a toda la funcionalidad. Este servicio además genera una cookie de sesión que enviara a la aplicación Angular en la primera petición. 
+
 

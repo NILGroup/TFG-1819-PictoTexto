@@ -34,59 +34,46 @@ En el lado del servidor se ha decidido utilizar Apache Tomcat, el cuál funciona 
 El servidor se encarga de analizar cada palabra de la frase y conecte con la API de Arasaac   con el fin de buscar los pictogramas correspondientes. El resultado obtenido es devuelto al servidor encapsulado en un objeto GSON.\\ 
 La versión de Apache utilizada es la 9.0.14,para acceder al servicio de traducción del proyecto hay que introducir la siguiente dirección en el buscador: http://127.0.0.1:8080.
 
+\section{SpaCy}
+%-------------------------------------------------------------
+\label{cap3:sec:SpaCy}
+SpaCy es una biblioteca de procesamiento del lenguaje natural diseñado en Python diseñada específicamente con el objetivo de ser una biblioteca útil para implementar sistemas listos para producción\footnote{\url{https://medium.com/datos-y-ciencia/comenzando-con-spacy-para-procesamiento-de-lenguaje-natural-e8cf24a18a5a}}.
+Además es una librería relativamente nueva sobresaliendo por su facilidad de uso y su velocidad a la hora de realizar el procesamiento del texto.
+
+Gracias a esta velocidad de procesamiento permite obtener la información de cada palabra de forma más ágil y rápida, que otras herramientas de análisis del lenguaje.
+
+Para nuestro proyecto la función principal que realizará spaCy será la de analizador de los pictogramas que conforman la oración a traducir, de la herramienta obtenemos los "tokens" o atributos de las palabras recibidas. Una vez se analizan los datos obtenidos de los tokens se crea un objeto con todas las características sintácticas, así como otras características tan importantes como son el género y número de cada palabra.
+Además si entre las palabras recibidas se encuentra un verbo también se obtendrá información propia de los verbos como el tiempo verbal del mismo. 
+Todo esto será utilizado posteriormente por nuestro generador del lenguaje (Simple-NLG) para reproducir el texto resultante.
+
 \section{SimpleNLG-ES}
 %-------------------------------------------------------------
 \label{cap3:sec:SimpleNLG}
 
 La herramienta SimpleNLG-ES es una biblioteca Java que permite generar y transformar texto. Tiene como fin producir texto comprensible para el usuario \citep{Trzpis2015}.\\
-El simpleNLG-ES crea palabras con la función CreateWord, esta función se encuentra integrada dentro de la factoria NLG (NLGFactory nlgFactory), dicha factoria permite crear diferentes tipos de frases. Dependiendo de la complejidad de las oraciones que se quieran crear se utilizarán diferentes procedimientos, en nuestro caso utilizamos el procedimiento NounPhrases (frases nominales).
-Además con la función CreateWord podemos hacer que cada palabra contenga una categorización léxica, es decir el simpleNLG clasifica cada palabra introducida en diferentes categorías. Por ejemplo:
+El simpleNLG-ES crea palabras añadiendoles distintas características con la función CreateWord, la cual se encuentra integrada dentro de la factoria NLG, dicha factoria permite crear diferentes tipos de frases. 
+Dependiendo de la complejidad de las oraciones que se quieran crear se utilizarán diferentes procedimientos, en nuestro caso utilizamos el procedimiento NounPhrases (frases nominales).
+Además con la función mencionada anteriormente, podemos hacer que cada palabra contenga una categorización léxica, es decir el simpleNLG clasifica cada palabra introducida en diferentes categorías. Por ejemplo:
 \begin{enumerate} 
-\item LexicalCategory.NOUN. Si introducimos la palabra "perro" en la oración, la herramienta lo categoriza como nombre.
-\item LexicalCategory.ANY. Con esta sentencia introducimos una palabra sin especificar su tipo. 
+\item Con la característica léxica "NOUN". Si introducimos la palabra "perro" en la oración, la herramienta lo categoriza como nombre.
+\item Sin embargo, con la característica léxica "ANY". Introducimos una palabra sin especificar su tipo. 
 \end{enumerate} 
 
-SimpleNLG-ES con la sentencia "Features" permite definir las características de cada palabra, esta opción es muy importante ya que la herramienta coge la raíz sintáctica de las palabras que analiza y gracias a las features especifica el género y número de cada palabra. Por ejemplo, "Corredora", SimpleNLG coge su raíz (corredor) y con la terminación "a" especifica el género: femenino y el número: singular de la palabra.
-Una vez especificado el género y número de los sustantivos de las oraciones, utilizamos:  
-\begin{enumerate} 
-\item SetDeterminer(). Para que la herramienta añada automáticamente el determinante que le corresponda al sustantivo.  
-\end{enumerate}
+La sentencia "Features" del SimpleNLG-ES permite definir las características de cada palabra, esta opción es muy importante ya que la herramienta coge la raíz sintáctica de las palabras que analiza y gracias a estas features la propia herramienta especifica el género y número de cada palabra.
+Por ejemplo, "Corredora", SimpleNLG coge su raíz (corredor) y con la terminación "a" especifica el género: femenino y el número: singular de la palabra.
+Una vez especificado el género y número de los sustantivos de las oraciones, una vez conocido tanto el genero y el número de la palabra la herramienta es capaz de añadirle el determinante que le corresponda al sustantivo.  
 
-La sentencia SPhraseSpec, permite diferenciar automáticamente las partes sintácticas de la oración. Por ejemplo , en la frase "mi perro come pan".
+La sentencia SPhraseSpec, permite diferenciar automáticamente las partes sintácticas de la oración. Así , en la frase "mi perro come pan" la clasificación resultante sería.
 Para comprobar si clasifica correctamente la oración del ejemplo, podemos usar: 
 \begin{enumerate}  
-\item p.setSubject(). Devolverá que el sustantivo es: "mi perro".
-\item p.setVerb(). Devolverá que el verbo es: "come".
-\item p.setObject(). Devolverá que el complemento es: "pan".
+\item  Devolverá "mi perro" como el sujeto de la oración.
+\item  "Come" será el verbo de la  misma.
+\item  Y "pan" como el complemento.
 \end{enumerate}
 
-Para los verbos, SimpleNLG es capaz de especificar tanto la forma como el tiempo verbal, para todo esto utilizamos la sentencia "feature" aunque al tratarse de verbos las características que especifica son diferentes a la de los sustantivos. Para el ejemplo de a contuniación utilizaremos el verbo "ser".
-Para poder poner el verbo en tiempo pasado, utilizariamos: 
-\begin{enumerate}  
-\item p.setFeature(Feature.PAST);
-\end{enumerate}
-Devolviendo el verbo:
-\begin{enumerate}  
-\item "fue".
-\end{enumerate}
-
-En cambio si queremos indicar un tiempo futuro, sería de esta manera:
-\begin{enumerate}  
-\item p.setFeature(Feature.FUTURE);
-\end{enumerate}
-Devolviendo el verbo:
-\begin{enumerate}  
-\item "será".
-\end{enumerate}
-
-Además, también se puede añadir la forma negativa al verbo, con el ejemplo anterior sería:
-\begin{enumerate}  
-\item p.setFeature(Feature.NEGATED, true);
-\end{enumerate}
-Devolviendo el verbo:
-\begin{enumerate}  
-\item " no será".
-\end{enumerate}
+En lo referente a los verbos, SimpleNLG es capaz de especificar tanto la forma como el tiempo verbal, para todo esto utilizamos como antes la sentencia "feature", aunque al tratarse de verbos las características que especifica son diferentes a la de los sustantivos.
+Una de estas características es la de obtener el tiempo del verbo, es decir, podemos obtener si su tiempo esta en \underline {pasado}, \underline {presente} o \underline {futuro}, entre otros.
+Otra de las características que permite la herramienta es la de añadirle al verbo su forma negativa, para poder formar así oración negativas.
 
 Por último es importante destacar la función "realiser" el cuál es el encargado de juntar las diferentes partes sintácticas en un objeto que devolverá la oración analizada. 
 
@@ -95,7 +82,7 @@ Por último es importante destacar la función "realiser" el cuál es el encargado 
 %-------------------------------------------------------------
 \label{cap3:sec:API-Arasaac}
 
-Para conseguir la traducción de cada pictograma hemos utilizado la propia API de Arasaac, centrándonos principalmente en la parte de obtención de pictogramas, como podemos observar en la  Figura \ref{fig:principal}\figura{Bitmap/Herramientas/PrincipalAPI}{width=300px}{fig:principal}{Presentación de la API de Arasaac}.
+Para conseguir la traducción de cada pictograma hemos utilizado la propia API de Arasaac \footnote{https://beta.arasaac.org/developers/api}, centrándonos principalmente en la parte de obtención de pictogramas, como podemos observar en la  Figura \ref{fig:principal}\figura{Bitmap/Herramientas/PrincipalAPI}{width=300px}{fig:principal}{Presentación de la API de Arasaac}.
 
 En el apartado de pictogramas se han utilizado dos de los métodos "GET", por un lado la obtención del pictograma mediante su id (/pictograms/{locale}/{idPictogram}), mirar figura \ref{fig:principal}. 
 Por ejemplo para el id (2517) obtenemos que es el pictograma de la palabra "perro", tal y como se muestra en la Figura \ref{fig:APIperro}
@@ -105,6 +92,17 @@ El otro método "GET" que se ha utilizado para nuestro proyecto es para poder bus
 Este método nos devuelve un objeto con todo lo relacionado con el texto buscado, siguiendo el ejemplo anterior con la palabra "perro", obtenemos el objeto que se muestra en la Figura \ref{fig:perroProyecto}\figura{Bitmap/Herramientas/APIperroProyecto}{width=300px}{fig:perroProyecto}{Información del objeto con la palabra "perro"}.\\
 Por tanto, gracias a la API de Arasaac hemos podido conseguir toda la parte de codificación necesaria para poder implementar en nuestro TFG la obtención de pictogramas y la relación entre una palabra y su pictograma.  
   
+\section{Angular}
+%-------------------------------------------------------------
+\label{cap3:sec:Angular}
+Angular es un framework de desarrollo creado y desarrollado por google, cuya finalidad consiste en el desarrollo de aplicaciones web SPA (Single-Page Applications), es decir, interacción web con una sola página web. Esto es muy útil ya que si la página tiene diferentes secciones nos permite poder acceder a todas ellas usando Javascript, sin necesidad de hacer consultas al servidor tan frecuentemente, haciendo que la propia página sea más rápida, dinámica y fluida.
+
+Es importante mencionar que Angular solo tratará la parte del frontend la cuál estará conectada con la parte backend, esto ayudará a poder hacer cada parte de la página web independiente una de la otra.
+
+Además Angular está formado por diferentes módulos diferentes unos de otros y cada módulo a su vez por diferentes componentes, esto ofrece una división automática de códigos para que los usuarios solo carguen aquellos que necesitan.
+Otra característica importante de Angular es que realiza una rápida conversión del código escrito en código optimizado para máquinas de Javascript ofreciendo una productividad muy alta.
+
+Por último, hay que destacar la posibilidad que ofrece Angular de realizar pruebas de testing, tanto para realizar pruebas unitarias como pruebas end-to-end. 
 
  
 
