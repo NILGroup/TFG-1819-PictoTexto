@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ModalComponent } from './utils/modals/modal-component'
 import { AppComponent } from './app.component';
 import { FinderComponent } from './finder/finder.component';
 import { PictoTranslatorComponent } from './picto-translator/picto-translator.component';
@@ -21,7 +22,7 @@ import '../polyfills';
     FinderComponent,
     PictoTranslatorComponent,
     TranslatorComponent,
-
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -34,8 +35,11 @@ import '../polyfills';
     MaterialModule,
     CookieModule.forRoot()
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [NgbActiveModal],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalComponent
+  ]
 })
 export class AppModule { }
 platformBrowserDynamic().bootstrapModule(AppModule);
