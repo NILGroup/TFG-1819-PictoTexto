@@ -70,7 +70,7 @@ public class createSimplePhrase extends HttpServlet {
         List<NLGElement> objectWords = wordsList.subList(i+1, wordsList.size());
         NPPhraseSpec object = miNlgTest.createObject(objectWords);
         
-        miNlgTest.createASimplePastPhrase(subject, wordsList.get(i), object);
+        miNlgTest.createASimplePhrase(subject, wordsList.get(i), object);
          
          response.getWriter().append( gson.toJson(miNlgTest.getOutput()));
          response.setHeader("Access-Control-Allow-Origin", "*");

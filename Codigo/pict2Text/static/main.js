@@ -8923,7 +8923,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mt-5\">\r\n  <div class=\" row\">\r\n    <div class=\" col-lg-8 col-sm-12\">\r\n      <app-translator [(pictoPhrase)]=\"pictoPhrase\"></app-translator>\r\n    </div>\r\n    <div class=\"col-lg-4 col-sm-12\">\r\n      <app-finder [(pictoPhrase)]=\"pictoPhrase\"></app-finder>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-lg\">\r\n      <app-picto-translator></app-picto-translator>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div  #content class=\"mt-5\">\r\n  <div class=\" row\">\r\n    <div class=\" col-lg-8 col-sm-12\">\r\n      <app-translator [(pictoPhrase)]=\"pictoPhrase\"></app-translator>\r\n    </div>\r\n    <div class=\"col-lg-4 col-sm-12\">\r\n      <app-finder [(pictoPhrase)]=\"pictoPhrase\"></app-finder>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-lg\">\r\n      <app-picto-translator></app-picto-translator>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -8979,13 +8979,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _finder_finder_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./finder/finder.component */ "./src/app/finder/finder.component.ts");
-/* harmony import */ var _picto_translator_picto_translator_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./picto-translator/picto-translator.component */ "./src/app/picto-translator/picto-translator.component.ts");
-/* harmony import */ var _translator_translator_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./translator/translator.component */ "./src/app/translator/translator.component.ts");
-/* harmony import */ var _utils_material_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./utils/material-module */ "./src/app/utils/material-module.ts");
-/* harmony import */ var ngx_cookie__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ngx-cookie */ "./node_modules/ngx-cookie/fesm5/ngx-cookie.js");
-/* harmony import */ var _polyfills__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../polyfills */ "./src/polyfills.ts");
+/* harmony import */ var _utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils/modals/modal-component */ "./src/app/utils/modals/modal-component.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _finder_finder_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./finder/finder.component */ "./src/app/finder/finder.component.ts");
+/* harmony import */ var _picto_translator_picto_translator_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./picto-translator/picto-translator.component */ "./src/app/picto-translator/picto-translator.component.ts");
+/* harmony import */ var _translator_translator_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./translator/translator.component */ "./src/app/translator/translator.component.ts");
+/* harmony import */ var _utils_material_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./utils/material-module */ "./src/app/utils/material-module.ts");
+/* harmony import */ var ngx_cookie__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-cookie */ "./node_modules/ngx-cookie/fesm5/ngx-cookie.js");
+/* harmony import */ var _polyfills__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../polyfills */ "./src/polyfills.ts");
+
 
 
 
@@ -9008,10 +9010,11 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"],
-                _finder_finder_component__WEBPACK_IMPORTED_MODULE_10__["FinderComponent"],
-                _picto_translator_picto_translator_component__WEBPACK_IMPORTED_MODULE_11__["PictoTranslatorComponent"],
-                _translator_translator_component__WEBPACK_IMPORTED_MODULE_12__["TranslatorComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"],
+                _finder_finder_component__WEBPACK_IMPORTED_MODULE_11__["FinderComponent"],
+                _picto_translator_picto_translator_component__WEBPACK_IMPORTED_MODULE_12__["PictoTranslatorComponent"],
+                _translator_translator_component__WEBPACK_IMPORTED_MODULE_13__["TranslatorComponent"],
+                _utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_9__["ModalComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -9021,11 +9024,14 @@ var AppModule = /** @class */ (function () {
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
-                _utils_material_module__WEBPACK_IMPORTED_MODULE_13__["MaterialModule"],
-                ngx_cookie__WEBPACK_IMPORTED_MODULE_14__["CookieModule"].forRoot()
+                _utils_material_module__WEBPACK_IMPORTED_MODULE_14__["MaterialModule"],
+                ngx_cookie__WEBPACK_IMPORTED_MODULE_15__["CookieModule"].forRoot()
             ],
-            providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
+            providers: [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]],
+            entryComponents: [
+                _utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_9__["ModalComponent"]
+            ]
         })
     ], AppModule);
     return AppModule;
@@ -9088,7 +9094,7 @@ module.exports = ".finder-opa{\r\n    background-color:rgba(0,0,0,.14);\r\n    p
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"  col-12\">\r\n    <div class=\"container\">\r\n        <label>Nombre del picto</label>\r\n        <form class=\"card card-sm\">\r\n            <div class=\"card-body row no-gutters align-items-center\">\r\n                <div class=\"col-auto\">\r\n                    <i class=\"fas fa-search h4 text-body\"></i>\r\n                </div>\r\n                <div class=\"col\">\r\n                    <input class=\"form-control  form-control-borderless\" id=\"pictoName\" type=\"search\"\r\n                        placeholder=\"Introduzca el nombre\" name=\"pictoName\" #name>\r\n                </div>\r\n                <div class=\"col-auto\">\r\n                    <button class=\"btn  btn-submit\" type=\"submit\" (click)=\"getPictosByName(name.value)\">Buscar</button>\r\n                </div>\r\n            </div>\r\n        </form>\r\n        <!--end of col-->\r\n\r\n        <div>\r\n            <ngb-carousel *ngIf=\"myPicto\" [showNavigationIndicators]=\"false\">\r\n                <div *ngFor=\"let img of myPicto\">\r\n                    <ng-template ngbSlide>\r\n                        <img src={{img.url}} class=\"img-responsive mx-auto d-flex justify-content-center flex-wrap\"\r\n                            alt=\"\" width=\"30%\">\r\n                        <div class=\"carousel-caption\">\r\n                            <p ><span class=\"finder-opa\">Id de pictograma: {{img.id}}</span></p>\r\n                            <button class=\"btn btn-primary\" (click)=\"addPicto(img)\">Añadir</button>\r\n                        </div>\r\n\r\n                    </ng-template>\r\n                </div>\r\n            </ngb-carousel>\r\n        </div>\r\n\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"  col-12\">\r\n    <div class=\"container\">\r\n        <label>Nombre del picto</label>\r\n        <form class=\"card card-sm\">\r\n            <div class=\"card-body row no-gutters align-items-center\">\r\n                <div class=\"col-auto\">\r\n                    <i class=\"fas fa-search h4 text-body\"></i>\r\n                </div>\r\n                <div class=\"col\">\r\n                    <input class=\"form-control  form-control-borderless\" id=\"pictoName\" type=\"search\"\r\n                        placeholder=\"Introduzca el nombre\" name=\"pictoName\" #name>\r\n                </div>\r\n                <div class=\"col-auto\">\r\n                    <button class=\"btn  btn-submit\" type=\"submit\" (click)=\"getPictosByName(name.value)\">Buscar</button>\r\n                </div>\r\n            </div>\r\n        </form>\r\n        <!--end of col-->\r\n\r\n        <div>\r\n            <ngb-carousel *ngIf=\"myPicto\" [showNavigationIndicators]=\"false\">\r\n                <div *ngFor=\"let img of myPicto\">\r\n                    <ng-template ngbSlide>\r\n                        <img src={{img.url}} class=\"img-responsive mx-auto d-flex justify-content-center flex-wrap\"\r\n                            alt=\"\" width=\"30%\">\r\n                        <div class=\"carousel-caption\">\r\n                            <p ><span class=\"finder-opa\">Id de pictograma: {{img.id}}</span></p>\r\n                            <button class=\"btn btn-primary\" (click)=\"addPicto(img, content)\">Añadir</button>\r\n                        </div>\r\n\r\n                    </ng-template>\r\n                </div>\r\n            </ngb-carousel>\r\n        </div>\r\n\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -9106,8 +9112,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_finder_service_finder_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/finder/service/finder-service.service */ "./src/app/finder/service/finder-service.service.ts");
 /* harmony import */ var _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
-/* harmony import */ var src_app_finder_transformer_finder_transformer_transformer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/finder/transformer/finder-transformer.transformer */ "./src/app/finder/transformer/finder-transformer.transformer.ts");
+/* harmony import */ var _utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/modals/modal-component */ "./src/app/utils/modals/modal-component.ts");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var src_app_finder_transformer_finder_transformer_transformer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/finder/transformer/finder-transformer.transformer */ "./src/app/finder/transformer/finder-transformer.transformer.ts");
+
+
 
 
 
@@ -9115,12 +9124,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var FinderComponent = /** @class */ (function () {
-    function FinderComponent(pictoService, config) {
+    function FinderComponent(pictoService, config, modalService) {
         this.pictoService = pictoService;
+        this.modalService = modalService;
         config.interval = 0;
     }
     FinderComponent.prototype.getPictosByName = function (name) {
-        this.pictoService.getPictByName(name).then(this.getPictoSucces.bind(this), this.getPictoError);
+        this.pictoService.getPictByName(name).then(this.getPictoSucces.bind(this), this.getPictoError.bind(this));
     };
     FinderComponent.prototype.getPictoSucces = function (data) {
         this.myPicto = data;
@@ -9128,7 +9138,9 @@ var FinderComponent = /** @class */ (function () {
     FinderComponent.prototype.addPicto = function (picto) {
         this.pictoPhrase.push(picto);
     };
-    FinderComponent.prototype.getPictoError = function () {
+    FinderComponent.prototype.getPictoError = function (data) {
+        var activeModal = this.modalService.open(_utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_4__["ModalComponent"]);
+        console.log(data);
         console.log("todo mal en el componente");
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -9139,10 +9151,10 @@ var FinderComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-finder',
             template: __webpack_require__(/*! ./assets/finder.component.html */ "./src/app/finder/assets/finder.component.html"),
-            providers: [src_app_finder_service_finder_service_service__WEBPACK_IMPORTED_MODULE_2__["FinderService"], src_app_finder_transformer_finder_transformer_transformer__WEBPACK_IMPORTED_MODULE_4__["FinderTransformer"], _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__["ProxyService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbCarouselConfig"]],
+            providers: [src_app_finder_service_finder_service_service__WEBPACK_IMPORTED_MODULE_2__["FinderService"], src_app_finder_transformer_finder_transformer_transformer__WEBPACK_IMPORTED_MODULE_6__["FinderTransformer"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbCarouselConfig"], _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__["ProxyService"]],
             styles: [__webpack_require__(/*! ./assets/finder.component.css */ "./src/app/finder/assets/finder.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_finder_service_finder_service_service__WEBPACK_IMPORTED_MODULE_2__["FinderService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbCarouselConfig"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_finder_service_finder_service_service__WEBPACK_IMPORTED_MODULE_2__["FinderService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbCarouselConfig"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"]])
     ], FinderComponent);
     return FinderComponent;
 }());
@@ -9650,6 +9662,52 @@ var MaterialModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/utils/modals/assets/error-modal.html":
+/*!******************************************************!*\
+  !*** ./src/app/utils/modals/assets/error-modal.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal-header\">\r\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">Error</h4>\r\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n  </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <p>MENSAJE DE ERROR</p>\r\n</div>\r\n\r\n<div class=\"modal-footer\">\r\n  <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"activeModal.close('Close click')\">Cerrar</button>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/utils/modals/modal-component.ts":
+/*!*************************************************!*\
+  !*** ./src/app/utils/modals/modal-component.ts ***!
+  \*************************************************/
+/*! exports provided: ModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalComponent", function() { return ModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+
+
+
+var ModalComponent = /** @class */ (function () {
+    function ModalComponent(activeModal) {
+        this.activeModal = activeModal;
+    }
+    ModalComponent.prototype.ngOnInit = function () {
+    };
+    ModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            template: __webpack_require__(/*! ./assets/error-modal.html */ "./src/app/utils/modals/assets/error-modal.html"),
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"]])
+    ], ModalComponent);
+    return ModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/utils/proxy/proxy-service.service.ts":
 /*!******************************************************!*\
   !*** ./src/app/utils/proxy/proxy-service.service.ts ***!
@@ -9895,7 +9953,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Chema Lopez\Documents\GitHub\TFG-1718-PictoTexto\Codigo\pict2textFront\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\chema\Documents\GitHub\TFG-1819-PictoTexto\Codigo\pict2textFront\src\main.ts */"./src/main.ts");
 
 
 /***/ })
