@@ -1,46 +1,46 @@
 % !TeX encoding = ISO-8859-1
 
-\chapter{Estado de la Cuestiï¿½n}
+\chapter{Estado de la Cuestión}
 \label{cap:estadoDeLaCuestion}
 
 
-	A lo largo de este capï¿½tulo trataremos los Sistemas Aumentativos y Alternativos de Comunicaciï¿½n y los pictogramas, ademas de exponer diferentes sistemas pictograficos y de comunicaciï¿½n a travï¿½s de los pictogramas. A parte de abordar los SAACS, se expondrï¿½ que es la generaciï¿½n de Lenguaje Natural, y se explicara que son los Servicios Web. Daremos un breve contexto del contexto de los servicios de traducciï¿½n de pictogramas, repasando algunos sistemas de traducciï¿½n de texto a pictogramas. 
+	A lo largo de este capítulo trataremos los Sistemas Aumentativos y Alternativos de Comunicación y los pictogramas, ademas de exponer diferentes sistemas pictograficos y de comunicación a través de los pictogramas. A parte de abordar los SAACS, se expondrá que es la generación de Lenguaje Natural, y se explicara que son los Servicios Web. Daremos un breve contexto del contexto de los servicios de traducción de pictogramas, repasando algunos sistemas de traducción de texto a pictogramas. Todos estos temas son el eje central del proyecto, ya que la finalidad del proyecto es la creación de un servicio web que dado pictogramas sea capaz de generar lenguaje natural, es necesario una breve introducción a su estado del arte.
 
 
 %------------------------------------------------------------------
-\section{Sistemas Aumentativos y Alternativos de Comunicaciï¿½n}
+\section{Sistemas Aumentativos y Alternativos de Comunicación}
 %-------------------------------------------------------------------
-\label{cap2:sec:Sistemas Aumentativos y Alternativos de Comunicaciï¿½n}
+\label{cap2:sec:Sistemas Aumentativos y Alternativos de Comunicación}
 
 
-La comunicaciï¿½n es una necesidad, y en casos de autismo o la parï¿½lisis cerebral donde el lenguaje estï¿½ gravemente limitado, la utilizaciï¿½n de sistemas de comunicaciï¿½n de lenguaje no verbales, sustituyen o sirven de apoyo al lenguaje verbal. 
+La comunicación es una necesidad, y en casos de autismo o la parálisis cerebral donde el lenguaje está gravemente limitado, la utilización de sistemas de comunicación de lenguaje no verbales, sustituyen o sirven de apoyo al lenguaje verbal. 
 
-Los Sistemas Aumentativos y Alternativos de Comunicaciï¿½n\footnote{\url{http://www.arasaac.org/aac.php}} (SAAC) son distintas formas de expresar el lenguaje oral, que tienen como objetivo aumentar y/o compensar los problemas de comunicaciï¿½n de muchas personas con dificultades para conseguir una expresiï¿½n verbal funcional.
+Los Sistemas Aumentativos y Alternativos de Comunicación\footnote{\url{http://www.arasaac.org/aac.php}} (SAAC) son distintas formas de expresar el lenguaje oral, que tienen como objetivo aumentar y/o compensar los problemas de comunicación de muchas personas con dificultades para conseguir una expresión verbal funcional.
 
-El tï¿½rmino Comunicaciï¿½n Aumentativa describe las formas que usa el individuo para comunicarse, cuando el uso del lenguaje natural no es suficiente, mientras que el termino Comunicaciï¿½n Alternativa hace referencia a diferentes mï¿½todos o vï¿½as de comunicaciï¿½n que sustituyen completamente el lenguaje oral, como por ejemplo los pictogramas o el lenguaje de signos\footnote{\url{https://www.researchgate.net/profile/David_Perez-Jorge/publication/273692495_COMUNICACION_AUMENTATIVA_UNA_INTRODUCCION_CONCEPTUAL_Y_PRACTICA/links/557e9abd08ae26eada8dc6f5.pdf}}.
+El término Comunicación Aumentativa describe las formas que usa el individuo para comunicarse, cuando el uso del lenguaje natural no es suficiente, mientras que el termino Comunicación Alternativa hace referencia a diferentes métodos o vías de comunicación que sustituyen completamente el lenguaje oral, como por ejemplo los pictogramas o el lenguaje de signos\footnote{\url{https://www.researchgate.net/profile/David_Perez-Jorge/publication/273692495_COMUNICACION_AUMENTATIVA_UNA_INTRODUCCION_CONCEPTUAL_Y_PRACTICA/links/557e9abd08ae26eada8dc6f5.pdf}}.
 
-Lo que se pretende con los SAAC es conseguir una comunicaciï¿½n funcional, adecuada y generalizable, que permita al individuo expresarse y alcanzar una mayor integraciï¿½n en su entorno social. Los SAAC ayudan a mejorar la calidad de vida de las personas con problemas para comunicarse, al otorgar al individuo una vï¿½a para mejorar su comunicaciï¿½n.
-Cabe destacar que los SAAC no son usados exclusivamente por  personas con alteraciones en la comunicaciï¿½n, los SAACS tambiï¿½n son utilizados a diario, por ejemplo cuando empleamos gestos, seï¿½ales de trafico, etc.
+Lo que se pretende con los SAAC es conseguir una comunicación funcional, adecuada y generalizable, que permita al individuo expresarse y alcanzar una mayor integración en su entorno social. Los SAAC ayudan a mejorar la calidad de vida de las personas con problemas para comunicarse, al otorgar al individuo una vía para mejorar su comunicación.
+Cabe destacar que los SAAC no son usados exclusivamente por  personas con alteraciones en la comunicación, sino que son utilizados por todos a diario, por ejemplo cuando empleamos gestos, señales de trafico, etc.
 
 Los SAAC se pueden clasificar en dos grandes grupos \citep{as2010, basil1990comunicacion, uribe2018apoyo}:
 
 \begin{enumerate}
-\item SAAC sin ayuda: Sistemas que carecen de soporte fï¿½sico. Abarca desde el uso de mï¿½mica y gestos hasta el uso de signos manuales.
-\item SAAC con ayuda: sistemas que necesitan un soporte fï¿½sico independiente del emisor. Este tipo abarca desde sistemas sencillos basados en dibujos o imï¿½genes hasta objetos reales en miniatura o los sistemas de comunicaciï¿½n escritos como el Braile. Estï¿½n orientados a personas con problemas en el habla o con dificultades cognitivas o de aprendizaje. Dentro de los SAAC con ayuda se encuentran los pictogramas de los cuales hablaremos en la siguiente secciï¿½n  \ref{cap2:sec:Pictogramas}.
+\item SAAC sin ayuda: Sistemas que carecen de soporte físico. Abarca desde el uso de mímica y gestos hasta el uso de signos manuales.
+\item SAAC con ayuda: sistemas que necesitan un soporte físico independiente del emisor. Este tipo abarca desde sistemas sencillos basados en dibujos o imágenes hasta objetos reales en miniatura o los sistemas de comunicación escritos como el Braile. Están orientados a personas con problemas en el habla o con dificultades cognitivas o de aprendizaje. Dentro de los SAAC con ayuda se encuentran los pictogramas de los cuales hablaremos en la sección \ref{cap2:sec:Pictogramas}.
 
 \end{enumerate}
  
-Se ha demostrado que la utilizaciï¿½n de los SAAC tiene mï¿½ltiples ventajas \citep{LorenzoAlvarezTFG2013} y son indispensables para aquellas personas que en mayor o menor medida, tienen impedido el uso del lenguaje. Sus usuarios potenciales son aquellas personas que por patologï¿½as como el autismo, la parï¿½lisis cerebral, o lesiones  cerebrales, estï¿½n impedidos para expresarse de manera adecuada o correcta \citep{WarrickAnneCSH2010}. Ademï¿½s de ser un recurso necesario para estas personas se ha demostrado que tienen mï¿½ltiples beneficios siendo los principales:
+Se ha demostrado que la utilización de los SAAC tiene múltiples ventajas \citep{LorenzoAlvarezTFG2013} y son indispensables para aquellas personas que en mayor o menor medida, tienen impedido el uso del lenguaje. Sus usuarios potenciales son aquellas personas que por patologías como el autismo, la parálisis cerebral, o lesiones  cerebrales, están impedidos para expresarse de manera adecuada o correcta \citep{WarrickAnneCSH2010}. Además de ser un recurso necesario para estas personas se ha demostrado que tienen múltiples beneficios siendo los principales:
  
  \begin{enumerate}
  
- \item Ayudan al desarrollo de la comunicaciï¿½n, proporcionando estrategias al usuario.
+ \item Ayudan al desarrollo de la comunicación, proporcionando estrategias al usuario.
  \item Posibilitan el desarrollo personal y social ademas de fomentar las relaciones interpersonales.
  \item Evitan el aislamiento, fomentando habilidades afectivo-sociales.
  
   \end{enumerate}
 
-  Cabe destacar que la complejidad de los SAAC depende del nivel cognitivo del usuario \citep{DoloresAbril2010}. Cada persona es diferente, y por ejemplo en el uso de imï¿½genes, el nivel de abstracciï¿½n y complejidad debe adecuarse a las necesidades de cada individuo. 
+  Cabe destacar que la complejidad de los SAAC depende del nivel cognitivo del usuario \citep{DoloresAbril2010}. Cada persona es diferente, y por ejemplo en el uso de imágenes, el nivel de abstracción y complejidad debe adecuarse a las necesidades de cada individuo. 
 
  
 %------------------------------------------------------------------
@@ -48,53 +48,53 @@ Se ha demostrado que la utilizaciï¿½n de los SAAC tiene mï¿½ltiples ventajas \ci
 %-------------------------------------------------------------------
 \label{cap2:sec:Pictogramas}
 
-Se define pictograma como un signo icï¿½nico dibujado y no lingï¿½ï¿½stico, que representa un objeto real o un significado\footnote{https://es.wikipedia.org/wiki/Pictograma}.
-Se engloban dentro de los SAACS con ayuda, y se aplican a personas que no estï¿½n alfabetizadas ya sea por causa de la edad o de alguna discapacidad. En la Figura \ref{fig:picto} podemos observar un ejemplo de pictograma que representa un smartwatch.
+Se define pictograma como un signo icónico dibujado y no lingüístico, que representa un objeto real o un significado\footnote{\url{https://www.researchgate.net/profile/David_Perez-Jorge/publication/273692495_COMUNICACION_AUMENTATIVA_UNA_INTRODUCCION_CONCEPTUAL_Y_PRACTICA/links/557e9abd08ae26eada8dc6f5.pdf}}.
+Se engloban dentro de los SAACS con ayuda, y se aplican a personas que no están alfabetizadas ya sea por causa de la edad o de alguna discapacidad. En la Figura \ref{fig:picto} podemos observar un ejemplo de pictograma que representa un smartwatch.
 
-La utilizaciï¿½n de pictogramas para la escritura o pictografï¿½a se remonta al neolï¿½tico, donde se utilizaban piedras talladas para la representaciï¿½n de signos de cierta semejanza con el objeto que representan. El origen de los sistemas pictogï¿½ficos actuales se sitï¿½a en 1981 con Mayer y Johnson y se caracteriza por una facilidad de interpretaciï¿½n. 
+La utilización de pictogramas para la escritura o pictografía se remonta al neolítico, donde se utilizaban piedras talladas para la representación de signos de cierta semejanza con el objeto que representan. El origen de los sistemas pictogáficos actuales se sitúa en 1981 con Mayer y Johnson y se caracteriza por una facilidad de interpretación. 
 
 \figura{Bitmap/EstadoDeLaCuestion/picto}{width=100px}{fig:picto}{Pictograma que representa un smarthwatch.}
 
-Las caracterï¿½sticas principales de los pictogramas son los siguientes\footnote{https://smileandlearn.com/que-es-un-pictograma/}:
+Las caracteristicas principales de los pictogramas son los siguientes\footnote{https://smileandlearn.com/que-es-un-pictograma/}
  \begin{enumerate}
 
- \item Guardan relaciï¿½n con aquello que representan, tal y como se puede ver en el pictograma de la Figura \ref{fig:picto} el cual representa un smarthwach.
+ \item Guardan relación con aquello que representan, tal y como se puede ver en el pictograma de la Figura \ref{fig:picto} el cual representa un smarthwach.
 
- \item Son elementos grï¿½ficos que combinados representan el objeto tomado como referente. Por ejemplo en el pictograma de la Figura \ref{fig:pictoAccion} la cara, el lï¿½piz de labios y la mano se juntan en un solo pictograma para representarla acciï¿½n de pintarse los labios.
+ \item Son elementos gráficos que combinados representan el objeto tomado como referente. Por ejemplo en el pictograma de la Figura \ref{fig:pictoAccion} la cara, el lápiz de labios y la mano se juntan en un solo pictograma para representarla acción de pintarse los labios.
  
 \figura{Bitmap/EstadoDeLaCuestion/accion}{width=100px}{fig:pictoAccion}{Pictograma que representa pintarse los labios.}
 
- \item La imagen debe de ser comprensible por el mayor nï¿½mero de personas, independientemente de la formaciï¿½n, idioma o discapacidad. 
+ \item La imagen debe de ser comprensible por el mayor número de personas, independientemente de la formación, idioma o discapacidad. 
  
 \figura{Bitmap/EstadoDeLaCuestion/objeto}{width=100px}{fig:pictoObjeto}{Pictograma que representa una espada.}
 
  \item A la hora de construir un pictograma, se deben de seguir unas reglas que le permitan mantener una coherencia visual, es decir la legibilidad de un pictograma debe de ser inmediata.  
 
-\item Deben de ser sencillos y representar ï¿½nicamente los elementos mï¿½s importantes, evitando posibles estï¿½mulos distractores o informaciï¿½n irrelevante. Por ejemplo, en la Figura \ref{fig:pictoObjeto} el objeto representado es una espada y el pictograma carece de elementos distractores como podrï¿½a ser una mano que agarre la espada o un fondo que sirva de contexto.
+\item Deben de ser sencillos y representar únicamente los elementos más importantes, evitando posibles estímulos distractores o información irrelevante. Por ejemplo, en la Figura \ref{fig:pictoObjeto} el objeto representado es una espada y el pictograma carece de elementos distractores como podría ser una mano que agarre la espada o un fondo que sirva de contexto.
 
 \end{enumerate}
 
-Existen diferentes colecciones de pictogramas que vamos a analizar en la siguiente subsecciï¿½n. 
+Existen diferentes colecciones de pictogramas que vamos a analizar en la siguiente subsección. 
 
-\subsection{Sistemas pictogrï¿½ficos}
+\subsection{Sistemas pictográficos}
 
-En esta secciï¿½n se van analizar algunos de los principales sistemas pictogrï¿½ficos existentes.
+En esta sección se van analizar algunos de los principales sistemas pictográficos existentes.
 %------------------------------------------------------------------
 \subsubsection{Bliss}
 %-------------------------------------------------------------------
 
-Bliss\footnote{https://www.uv.es/bellochc/logopedia/NRTLogo8.wiki?6} fue desarrollado por Charles K. Bliss en 1949 y esta formado por mï¿½s de 2.000 sï¿½mbolos. Tiene la dificultad de que el usuario debe de conocer el sistema ya que no cumple la relaciï¿½n con el objeto representado tal y como se puede ver en la Figura \ref{fig:pictoBlisAnimal}, donde el pictograma animal, no guarda ninguna referencia con aquello que representa y dado solo el pictograma y sin conocer el sistema, no puedes conocer que objeto representa.
+Bliss\footnote{https://www.uv.es/bellochc/logopedia/NRTLogo8.wiki?6} fue desarrollado por Charles K. Bliss en 1949 y esta formado por más de 2.000 símbolos. Tiene la dificultad de que el usuario debe de conocer el sistema ya que no cumple la relación con el objeto representado tal y como se puede ver en la Figura \ref{fig:pictoBlisAnimal}, donde el pictograma animal, no guarda ninguna referencia con aquello que representa y dado solo el pictograma y sin conocer el sistema, no puedes conocer que objeto representa.
 \figura{Bitmap/EstadoDeLaCuestion/blissAnimal}{width=50px}{fig:pictoBlisAnimal}{Picograma Bliss que representa un animal.}
 
-El sistema pictogï¿½fico Bliss\citep{Eugene1985} fue creado con la idea de ser un lenguaje global . Estï¿½ formado por un total de 26 letras en ingles y 28 para el castellano, ademï¿½s de un alfabeto de 26 sï¿½mbolos bï¿½sicos. La combinaciï¿½n de estas letras y estos sï¿½mbolos bï¿½sicos forman las palabras en la Figura \ref{fig:blissCombinacion} podemos ver como el pictograma primo es la combinaciï¿½n de tia y tio mï¿½s otro sï¿½mbolo. La utilizaciï¿½n de este sistema pictogï¿½ficos requiera de cierto nivel cognitivo tal y como explica Hehner en \citep{hehner1985}. Segï¿½n el nivel de representaciï¿½n en Bliss los pictogramas se agrupan en tres grandes grupos:
-\figura{Bitmap/EstadoDeLaCuestion/BlissCombinacion}{width=200px}{fig:blissCombinacion}{Combinaciï¿½n de pictogramas Bliss.}	
+El sistema pictogáfico Bliss\citep{Eugene1985} fue creado con la idea de ser un lenguaje global . Está formado por un total de 26 letras en ingles y 28 para el castellano, además de un alfabeto de 26 símbolos básicos. La combinación de estas letras y estos símbolos básicos forman las palabras en la Figura \ref{fig:blissCombinacion} podemos ver como el pictograma primo es la combinación de tia y tio más otro símbolo. La utilización de este sistema pictogáficos requiera de cierto nivel cognitivo tal y como explica Hehner en \citep{hehner1985}. Según el nivel de representación en Bliss los pictogramas se agrupan en tres grandes grupos:
+\figura{Bitmap/EstadoDeLaCuestion/BlissCombinacion}{width=200px}{fig:blissCombinacion}{Combinación de pictogramas Bliss.}	
 \begin{enumerate}
 	
-	\item Sï¿½mbolos pictogrï¿½ficos: la forma del sï¿½mbolo recuerda las palabras o conceptos que representa, esto lo podemos observar en el sï¿½mbolo que representa una silla en la Figura \ref{fig:pictoBlisSilla}.
+	\item Símbolos pictográficos: la forma del símbolo recuerda las palabras o conceptos que representa, esto lo podemos observar en el símbolo que representa una silla en la Figura \ref{fig:pictoBlisSilla}.
 \figura{Bitmap/EstadoDeLaCuestion/blissSilla}{width=50px}{fig:pictoBlisSilla}{Picograma Bliss que representa una silla.}
-	\item Sï¿½mbolos ideogrï¿½ficos: expresan una idea, no describen el objeto, por ejemplo en la Figura \ref{fig:pictoBlisHogar} podemos ver el sï¿½mbolo de hogar, el cual tiene un corazï¿½n que significa sentimientos y que es no es algo tangible, con una casa.
-	\figura{Bitmap/EstadoDeLaCuestion/blissHogar}{width=100px}{fig:pictoBlisHogar}{Creaciï¿½n de la palabra hogar en el sistema Bliss}
-	\item Sï¿½mbolos arbitrarios: expresan un concepto abstracto y el sï¿½mbolo no guarda ningï¿½n relaciï¿½n con el objeto representado, como podemos observar en la Figura \ref{fig:blissArbitrario},donde aparece el pictograma para la conjunciï¿½n "porque", que es un concepto abstracto.
+	\item Símbolos ideográficos: expresan una idea, no describen el objeto, por ejemplo en la Figura \ref{fig:pictoBlisHogar} podemos ver el símbolo de hogar, el cual tiene un corazón que significa sentimientos y que es no es algo tangible, con una casa.
+	\figura{Bitmap/EstadoDeLaCuestion/blissHogar}{width=100px}{fig:pictoBlisHogar}{Creación de la palabra hogar en el sistema Bliss}
+	\item Símbolos arbitrarios: expresan un concepto abstracto y el símbolo no guarda ningún relación con el objeto representado, como podemos observar en la Figura \ref{fig:blissArbitrario},donde aparece el pictograma para la conjunción "porque", que es un concepto abstracto.
 \figura{Bitmap/EstadoDeLaCuestion/blissPorque}{width=100px}{fig:blissArbitrario}{Pictograma Bliss que significa porque.}
 
 
@@ -105,11 +105,11 @@ El sistema pictogï¿½fico Bliss\citep{Eugene1985} fue creado con la idea de ser u
 \subsubsection{Minspeak}
 %-------------------------------------------------------------------
 
-Minspeak\footnote{https://minspeak.com/} es un sistema pictogrï¿½fico, que creo Bruce Baker en 1982 motivado por las carencias que observï¿½ en personas sin habla. Este sistema no da un significado ï¿½nico a cada pictograma, si no que el significado se define entre el logopeda y el usuario\footnote{http://ares.cnice.mec.es/informes/18/contenidos/94.htm}. De ahï¿½ que para un usuario, el pictograma que representa un arco iris puede significar felicidad pero para otro pueda significar lluvia. Ademï¿½s, existen un conjunto de reglas definidas por el sistema como la agregaciï¿½n de pictogramas para alcanzar diferentes significados.
+Minspeak\footnote{https://minspeak.com/} es un sistema pictográfico, que creo Bruce Baker en 1982 motivado por las carencias que observó en personas sin habla. Este sistema no da un significado único a cada pictograma, si no que el significado se define entre el logopeda y el usuario\footnote{http://ares.cnice.mec.es/informes/18/contenidos/94.htm}. De ahí que para un usuario, el pictograma que representa un arco iris puede significar felicidad pero para otro pueda significar lluvia. Además, existen un conjunto de reglas definidas por el sistema como la agregación de pictogramas para alcanzar diferentes significados.
 
-Bruce Baker se inspiro en el lenguaje chino donde cualquier frase puede tener 12 caracteres o menos, y de esa manera definiï¿½ su sistema que se centra en la combinaciï¿½n de pictogramas\citep{marin2003}. Para representar una palabra o frase se combinan sï¿½mbolos, normalmente  dos o tres, usando un conjunto de reglas y patrones definidos por el sistema Minspeak. Como se puede observar en la Figura \ref{fig:minSpeak}, combinando el sï¿½mbolo que representa una casa con el de una cama se obtiene el significado de habitaciï¿½n. Se considera un sistema muy accesible dado que el usuario debe de aprender un nï¿½mero limitado de pictogramas que suelen ir desde los 40 hasta los 80 pictogramas, variando este numero dependiendo de las capacidades del usuario. Las palabras ademas quedan clasificadas por grupos semï¿½nticos (verbos, adjetivos...).
+Bruce Baker se inspiro en el lenguaje chino donde cualquier frase puede tener 12 caracteres o menos, y de esa manera definió su sistema que se centra en la combinación de pictogramas\citep{marin2003}. Para representar una palabra o frase se combinan símbolos, normalmente  dos o tres, usando un conjunto de reglas y patrones definidos por el sistema Minspeak. Como se puede observar en la Figura \ref{fig:minSpeak}, combinando el símbolo que representa una casa con el de una cama se obtiene el significado de habitación. Se considera un sistema muy accesible dado que el usuario debe de aprender un número limitado de pictogramas que suelen ir desde los 40 hasta los 80 pictogramas, variando este numero dependiendo de las capacidades del usuario. Las palabras ademas quedan clasificadas por grupos semánticos (verbos, adjetivos...).
 
-Minspeak permite desarrollar un lenguaje a travï¿½s de la construcciï¿½n de frases o secuencias que son fï¿½ciles de entender, pero tiene la desventaja de que el usuario necesita recordar la secuencia de sï¿½mbolos necesarios para la generaciï¿½n de la respuesta correcta.
+Minspeak permite desarrollar un lenguaje a través de la construcción de frases o secuencias que son fáciles de entender, pero tiene la desventaja de que el usuario necesita recordar la secuencia de símbolos necesarios para la generación de la respuesta correcta.
 
 
 \figura{Bitmap/EstadoDeLaCuestion/minSpeak}{width=250px}{fig:minSpeak}{Sistema Minspeak.}
@@ -118,9 +118,9 @@ Minspeak permite desarrollar un lenguaje a travï¿½s de la construcciï¿½n de fras
 \subsubsection{SPC}
 %-------------------------------------------------------------------
 
-El Sistema Pictografico de Comunicaciï¿½n (SPC)\footnote{http://masquemayores.com/magazine/psicologia/tipos-de-sistemas-alternativos-y-aumentativos-de-la-comunicacion-sistemas-pictograficos-de-comunicacion/} fue desarrollado por Roxana Mayer-Jhonson en 1981. Busca a travï¿½s de un diseï¿½o de pictrogramas simples, la similitud con aquello que representan. Los pictogramas en SPC estï¿½n catalogados en seis grupos cada uno con un color para ayudar a la clasificaciï¿½n tal y como se puede ver en la Figura \ref{fig:SPC}: personas en amarillo, verbos en verde, pictogramas descriptivos en azul, sustantivos en naranja, letras, nï¿½meros  y miscelï¿½nea con fondo blanco y actos sociales en rosa. En total el sistema SPC lo forman un conjunto de 3.000 pictogramas. Ademï¿½s la comunicaciï¿½n mediante SPC carece de sintaxis lo que simplifica la construcciï¿½n de frases.
+El Sistema Pictografico de Comunicación (SPC)\footnote{http://masquemayores.com/magazine/psicologia/tipos-de-sistemas-alternativos-y-aumentativos-de-la-comunicacion-sistemas-pictograficos-de-comunicacion/} fue desarrollado por Roxana Mayer-Jhonson en 1981. Busca a través de un diseño de pictrogramas simples, la similitud con aquello que representan. Los pictogramas en SPC están catalogados en seis grupos cada uno con un color para ayudar a la clasificación tal y como se puede ver en la Figura \ref{fig:SPC}: personas en amarillo, verbos en verde, pictogramas descriptivos en azul, sustantivos en naranja, letras, números  y miscelánea con fondo blanco y actos sociales en rosa. En total el sistema SPC lo forman un conjunto de 3.000 pictogramas. Además la comunicación mediante SPC carece de sintaxis lo que simplifica la construcción de frases.
 
-\figura{Bitmap/EstadoDeLaCuestion/spc}{width=250px}{fig:SPC}{Clasificaciï¿½n de los pictogramas SPC.}
+\figura{Bitmap/EstadoDeLaCuestion/spc}{width=250px}{fig:SPC}{Clasificación de los pictogramas SPC.}
 
 %------------------------------------------------------------------
 \subsubsection{ARASAAC}
@@ -128,34 +128,34 @@ El Sistema Pictografico de Comunicaciï¿½n (SPC)\footnote{http://masquemayores.co
 
 \label{cap2:sec:Arasaac}
 
-ARASAAC\footnote{\url{http://www.arasaac.org}} surge en el aï¿½o 2007 financiado por el Departamento de Educaciï¿½n Cultura y Deporte del Gobierno de Aragï¿½n y coordinado por la Direcciï¿½n General de Innovaciï¿½n, Equidad y Participaciï¿½n de dicho departamento. Este proyecto nace con el objetivo de romper las barreras en la comunicaciï¿½n.
-ARASAAC cuenta con mï¿½s de 33.000 pictogramas y con traducciones en mï¿½s de quince idiomas entre ellos el castellano.
+ARASAAC\footnote{\url{http://www.arasaac.org}} surge en el año 2007 financiado por el Departamento de Educación Cultura y Deporte del Gobierno de Aragón y coordinado por la Dirección General de Innovación, Equidad y Participación de dicho departamento. Este proyecto nace con el objetivo de romper las barreras en la comunicación.
+ARASAAC cuenta con más de 33.000 pictogramas y con traducciones en más de quince idiomas entre ellos el castellano.
 
-Actualmente, ARASAAC se ha convertido en un sistema de pictogramas reconocido internacionalmente, y sus recursos estï¿½n bajo la licencia Creative Commons. 
+Actualmente, ARASAAC se ha convertido en un sistema de pictogramas reconocido internacionalmente, y sus recursos están bajo la licencia Creative Commons. 
 
-Los pictogramas estï¿½n clasificados en cinco grandes grupos: pictogramas a color, en blanco y negro, fotografï¿½as y por ultimo fotografï¿½as y vï¿½deos en Lengua de Signos Espaï¿½ol ordenados dependiendo de su naturaleza semï¿½ntica\citep{Bertola2018}. Es importante destacar que tambiï¿½n existen pictogramas para algunas conjunciones y determinantes tal y como podemos ver en la Figura \ref{fig:conjunciones}
+Los pictogramas están clasificados en cinco grandes grupos: pictogramas a color, en blanco y negro, fotografías y por ultimo fotografías y vídeos en Lengua de Signos Español ordenados dependiendo de su naturaleza semántica\citep{Bertola2018}. Es importante destacar que también existen pictogramas para algunas conjunciones y determinantes tal y como podemos ver en la Figura \ref{fig:conjunciones}
 \figura{Bitmap/EstadoDeLaCuestion/conjuncionesArasaac}{width=300px}{fig:conjunciones}{Ejemplos de conjunciones en ARASAAC.}.
 
-A diferencia de otros sistemas pictograficos, ARASAAC hace disticiï¿½n de genero y numero tal y como se ve en la Figura \ref{fig:generoNumero}, que muestra los distintos pictogramas para la palabra profesor, segï¿½n el genero y nï¿½mero. 
+A diferencia de otros sistemas pictograficos, ARASAAC hace distición de genero y numero tal y como se ve en la Figura \ref{fig:generoNumero}, que muestra los distintos pictogramas para la palabra profesor, según el genero y número. 
 \figura{Bitmap/EstadoDeLaCuestion/generoNumero}{width=250px}{fig:generoNumero}{Ejemplo del pictograma profesor con diferente genero y numero}
 
 
-Ademï¿½s, ARASAAC permite aï¿½adir un marco al borde del pictograma, dicho marco sirve para clasificar la palabra diferenciando entre sujetos, verbos y objetos tal y como podemos ver en la Figura \ref{fig:bordes}. Los sujetos no llevan borde, las acciones o verbos llevan un borde verde y los objetos o complementos directos llevan un borde amarillo.
+Además, ARASAAC permite añadir un marco al borde del pictograma, dicho marco sirve para clasificar la palabra diferenciando entre sujetos, verbos y objetos tal y como podemos ver en la Figura \ref{fig:bordes}. Los sujetos no llevan borde, las acciones o verbos llevan un borde verde y los objetos o complementos directos llevan un borde amarillo.
 
 \figura{Bitmap/EstadoDeLaCuestion/borde}{width=150px}{fig:bordes}{Ejemplo de bordes de color en pictogramas}
 
-En ARASAAC existen tambiï¿½n pictogramas mï¿½s complejos que expresan frases hechas tal y como podemos observar en el pictograma asociado a la acciï¿½n \textit{"sacar al perro"} en la Figura \ref{fig:fraseHecha}.
+En ARASAAC existen también pictogramas más complejos que expresan frases hechas tal y como podemos observar en el pictograma asociado a la acción \textit{"sacar al perro"} en la Figura \ref{fig:fraseHecha}.
 
 \figura{Bitmap/EstadoDeLaCuestion/sacarAlPerro}{width=150px}{fig:fraseHecha}{Ejemplo de un pictograma complejo}
 
-En ARASAAC hay palabras que pueden tener varios pictogramas asociados, por ejemplo tal y como se puede observar en la Figura \ref{fig:telefono}, la palabra \textit{"telï¿½fono"} tiene diferentes pictogramas asociados, y el uso de un pictograma u otro dependerï¿½ del nivel cognitivo del usuario, el contexto de la frase, etc.
+En ARASAAC hay palabras que pueden tener varios pictogramas asociados, por ejemplo tal y como se puede observar en la Figura \ref{fig:telefono}, la palabra \textit{"teléfono"} tiene diferentes pictogramas asociados, y el uso de un pictograma u otro dependerá del nivel cognitivo del usuario, el contexto de la frase, etc.
 \figura{Bitmap/EstadoDeLaCuestion/telefono}{width=300px}{fig:telefono}{Ejemplo de palabra con diferentes pictogramas}
 
-En ARASAAC los verbos carecen de conjugaciï¿½n como podemos observar en la Figura \ref{fig:traduccion3} donde se puede ver que no existen conjugaciones. Los tiempos verbales: presente, pasado o futuro quedan determinados por los pictogramas de ayer, hoy o maï¿½ana, como podemos observar en la Figura \ref{fig:traduccion5}, que ayudan a dar tiempo verbal a la frase. 
+En ARASAAC los verbos carecen de conjugación como podemos observar en la Figura \ref{fig:traduccion3} donde se puede ver que no existen conjugaciones. Los tiempos verbales: presente, pasado o futuro quedan determinados por los pictogramas de ayer, hoy o mañana, como podemos observar en la Figura \ref{fig:traduccion5}, que ayudan a dar tiempo verbal a la frase. 
 \figura{Bitmap/EstadoDeLaCuestion/conjugacion}{width=300px}{fig:traduccion3}{Ejemplo de verbos conjugados}
  
 %------------------------------------------------------------------
-\subsection{Comunicaciï¿½n a travï¿½s de pictogramas}
+\subsection{Comunicación a través de pictogramas}
 %-------------------------------------------------------------------
 
 \label{cap2:sec:Comunicacionatravesdepictogramas}
@@ -163,55 +163,55 @@ En ARASAAC los verbos carecen de conjugaciï¿½n como podemos observar en la Figur
 
 
 \figura{Bitmap/EstadoDeLaCuestion/tableroColegio}{width=300px}{fig:tableroColegio}{Tablero ARASAAC para actividades escolares.}
-\figura{Bitmap/EstadoDeLaCuestion/traduccion1}{width=300px}{fig:traduccion1}{Traducciï¿½n en pictogramas de la frase Hoy vamos a la montaï¿½a}
+\figura{Bitmap/EstadoDeLaCuestion/traduccion1}{width=300px}{fig:traduccion1}{Traducción en pictogramas de la frase Hoy vamos a la montaña}
 
-Comï¿½nmente la comunicaciï¿½n con pictogramas se realiza a travï¿½s de tableros, de manera que el usuario seï¿½ala uno a uno los pictogramas en dicho tablero hasta completar la frase. En la Figura \ref{fig:tableroColegio} podemos observar un tablero de ejemplo con pictogramas de ARASAAC para las actividades desarrolladas en el colegio. Ademï¿½s podemos ver dos pictogramas uno que representa un pulgar hacï¿½a arriba y otro hacï¿½a abajo, que sirven para comunicar si o no respectivamente. El resto de los pictogramas guardan relaciï¿½n con acciones que cualquier alumno podrï¿½a encontrarse en el colegio como pueden ser leer, hacer un examen, dibujar, ejercicios de caligrafï¿½a... 
+Comúnmente la comunicación con pictogramas se realiza a través de tableros, de manera que el usuario señala uno a uno los pictogramas en dicho tablero hasta completar la frase. En la Figura \ref{fig:tableroColegio} podemos observar un tablero de ejemplo con pictogramas de ARASAAC para las actividades desarrolladas en el colegio. Además podemos ver dos pictogramas uno que representa un pulgar hacía arriba y otro hacía abajo, que sirven para comunicar si o no respectivamente. El resto de los pictogramas guardan relación con acciones que cualquier alumno podría encontrarse en el colegio como pueden ser leer, hacer un examen, dibujar, ejercicios de caligrafía... 
 
-Las frases con pictogramas suelen tener una complejidad reducida, limitï¿½ndose casi siempre a sujeto, verbo y objeto, utilizando solo palabras significativas.
-\figura{Bitmap/EstadoDeLaCuestion/tiempo}{width=300px}{fig:traduccion5}{Pictogramas de hoy, maï¿½ana, y pasado}
- Determinantes, conjunciones y preposiciones no suelen tener cabida dentro de la comunicaciï¿½n con pictogramas, aunque algunos sistemas pictograficos como ARASAAC, si que poseen pictogramas para algunas conjunciones. Aunque dentro de los sistemas pictograficos, si existen conjunciones temporales que sirven para aportar informaciï¿½n, tal y como se puede ver en la Figura\ref{fig:pictoconjugacion}.
-\figura{Bitmap/EstadoDeLaCuestion/conjuncionTemporal}{width=150px}{fig:pictoconjugacion}{Ejemplo de frase con conjunciï¿½n temporal}
+Las frases con pictogramas suelen tener una complejidad reducida, limitándose casi siempre a sujeto, verbo y objeto, utilizando solo palabras significativas.
+\figura{Bitmap/EstadoDeLaCuestion/tiempo}{width=300px}{fig:traduccion5}{Pictogramas de hoy, mañana, y pasado}
+ Determinantes, conjunciones y preposiciones no suelen tener cabida dentro de la comunicación con pictogramas, aunque algunos sistemas pictograficos como ARASAAC, si que poseen pictogramas para algunas conjunciones. Aunque dentro de los sistemas pictograficos, si existen conjunciones temporales que sirven para aportar información, tal y como se puede ver en la Figura\ref{fig:pictoconjugacion}.
+\figura{Bitmap/EstadoDeLaCuestion/conjuncionTemporal}{width=150px}{fig:pictoconjugacion}{Ejemplo de frase con conjunción temporal}
 
 
 %-------------------------------------------------------------
-\section{Generaciï¿½n de lenguaje natural}
+\section{Generación de lenguaje natural}
 %-------------------------------------------------------------
-\label{cap2:sec:Generaciï¿½nDeLenguajeNatural}
+\label{cap2:sec:GeneraciónDeLenguajeNatural}
 
-La Generaciï¿½n de Lenguaje Natural (GLN) es un campo de la Inteligencia Artificial para crear programas informaticos que generan lenguaje natural ya sea hablado o escrito\citep{Socorro2007}. 
+La Generación de Lenguaje Natural (GLN) es un campo de la Inteligencia Artificial para crear programas informaticos que generan lenguaje natural ya sea hablado o escrito\citep{Socorro2007}. 
 
-Se busca que el programa generador se comunique igual que si de una persona se tratarse \citep{Robert2000, VICENTE2015}. La GLN se engloba dentro de la lingï¿½ï¿½stica computacional aunque engloba muchas otras ï¿½reas de estudio fuera de la informï¿½tica como la lingï¿½ï¿½stica o la psicologï¿½a. 
+Se busca que el programa generador se comunique igual que si de una persona se tratarse \citep{Robert2000, VICENTE2015}. La GLN se engloba dentro de la lingüística computacional aunque engloba muchas otras áreas de estudio fuera de la informática como la lingüística o la psicología. 
 
-Falsamente podemos pensar que lo mï¿½s importante de la generaciï¿½n del lenguaje es la generaciï¿½n de un texto gramaticalmente correcto, pero lo mï¿½s importante de la comunicaciï¿½n es que el texto generado explique aquello que se desea transmitir, por eso podemos concluir que el proceso de generaciï¿½n se podrï¿½a resumir en la construcciï¿½n de un mensaje en lenguaje natural que transmite un mensaje de manera clara.
+Falsamente podemos pensar que lo más importante de la generación del lenguaje es la generación de un texto gramaticalmente correcto, pero lo más importante de la comunicación es que el texto generado explique aquello que se desea transmitir, por eso podemos concluir que el proceso de generación se podría resumir en la construcción de un mensaje en lenguaje natural que transmite un mensaje de manera clara.
 
 Existen diferentes tipos de arquitectura de sistemas de GLN \citep{CarlosGarcia2004}:
 \begin{enumerate}
-	\item Integrada o monolï¿½tica: el sistema es un solo bloque sin divisiï¿½n clara entre mï¿½dulos.
-	\item Secuencial: los mï¿½dulos se encadenan en un flujo unidireccional.
-	\item Interactiva: se permite la revisiï¿½n de las decisiones tomadas. La informaciï¿½n puede circular tanto hacï¿½a delante como hacï¿½a atrï¿½s.
-	\item Pizarra: la informaciï¿½n no va de modulo a modulo si no que se guarda en una zona comï¿½n, de manera que cada modulo pueda modificarla.
-	\item Basada  en revisiï¿½n: la informaciï¿½n fluye de forma cï¿½clica entre los mï¿½dulos hasta alcanzar un estado ï¿½ptimo.
+	\item Integrada o monolítica: el sistema es un solo bloque sin división clara entre módulos.
+	\item Secuencial: los módulos se encadenan en un flujo unidireccional.
+	\item Interactiva: se permite la revisión de las decisiones tomadas. La información puede circular tanto hacía delante como hacía atrás.
+	\item Pizarra: la información no va de modulo a modulo si no que se guarda en una zona común, de manera que cada modulo pueda modificarla.
+	\item Basada  en revisión: la información fluye de forma cíclica entre los módulos hasta alcanzar un estado óptimo.
 \end{enumerate}
 	
-Existe dos maneras de que un programa informï¿½tico se comunique con un usuario. La primera forma es a travï¿½s de mensajes estï¿½ticos definidos en el cï¿½digo, este acercamiento si bien es valido, genera un sistema cerrado y no flexible en el cual no cabe lugar la interpretaciï¿½n del lenguaje. La segunda vï¿½a, es la generaciï¿½n de lenguaje basada en conocimiento o \textit{deep generation} donde es el propio sistema el encargado de generar el lenguaje a travï¿½s de su conocimiento basï¿½ndose en el conocimiento lingï¿½ï¿½stico del que dispone \citep{CarlosGarcia2004}.
+Existe dos maneras de que un programa informático se comunique con un usuario. La primera forma es a través de mensajes estáticos definidos en el código, este acercamiento si bien es valido, genera un sistema cerrado y no flexible en el cual no cabe lugar la interpretación del lenguaje. La segunda vía, es la generación de lenguaje basada en conocimiento o \textit{deep generation} donde es el propio sistema el encargado de generar el lenguaje a través de su conocimiento basándose en el conocimiento lingüístico del que dispone \citep{CarlosGarcia2004}.
 
 \subsection{Fases de GLN}
 
-Durante la generaciï¿½n del lenguaje se puede abstraer el proceso y encapsularlo en diferentes fases tal y como se puede ver en la Figura\ref{nlg}, dichas frases serï¿½n descritas brevemente a continuaciï¿½n: \citep{VICENTE2015}:
+Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo en diferentes fases tal y como se puede ver en la Figura\ref{nlg}, dichas frases serán descritas brevemente a continuación: \citep{VICENTE2015}:
 
-\figura{Bitmap/EstadoDeLaCuestion/nlg}{width=300px}{fig:nlg}{Fases de generaciï¿½n del lenguaje.}
+\figura{Bitmap/EstadoDeLaCuestion/nlg}{width=300px}{fig:nlg}{Fases de generación del lenguaje.}
 
 \begin{enumerate}
-\item Preprocesado. Esta etapa es opcional y puede no aparecer en un sistema de GNL, dado que solamente es necesaria cuando existen datos que han de ser analizados e interpretados. Tal y como se puede ver, en la Figura \ref{fig:preprocesado}, donde podemos ver una entrada de datos meteorologicos que necesitan un tratamiento antes de poder aï¿½adirse al texto. El objetivo del preprocesado es la generaciï¿½n de estructuras de datos que permitan que el texto de entrada sea mï¿½s fï¿½cil de tratar en las siguientes fases. El preprocesado pertenece a la rama de la limpieza de datos de la minerï¿½a de datos.  \citep{Han2005}.
+\item Preprocesado. Esta etapa es opcional y puede no aparecer en un sistema de GNL, dado que solamente es necesaria cuando existen datos que han de ser analizados e interpretados. Tal y como se puede ver en la Figura\ref{fig:preprocesado}, donde podemos ver una entrada de datos meteorologicos que necesitan un tratamiento antes de poder añadirse al texto. El objetivo del preprocesado es la generación de estructuras de datos que permitan que el texto de entrada sea más fácil de tratar en las siguientes fases. El preprocesado pertenece a la rama de la limpieza de datos de la minería de datos.  \citep{Han2005}.
 \figura{Bitmap/EstadoDeLaCuestion/preprocesado}{width=250px}{fig:preprocesado}{Ejemplo de entrada de la fase de preprocesado.}
 
-\item Macro planificaciï¿½n. Etapa donde se debe seleccionar el contenido que se desea convertir a texto. Para que el texto generado sea coherente es preciso estructurar el contenido del mismo en el orden correcto. La salida de esta fase es el denominado plan del documento, una estructura de datos que suele ser un ï¿½rbol, donde en cada nodo se encapsula la informaciï¿½n mï¿½s importante que debe formar parte de un pï¿½rrafo o de una frase, ademï¿½s de informaciï¿½n de como se relaciona con el resto de nodos. En la Figura \ref{fig:macroplanificacion} podemos ver un ejemplo de la salida de esta etapa, en la que se puede ver una estructura del pï¿½rrafo obtenida tras terminar la macro planificaciï¿½n.
-\figura{Bitmap/EstadoDeLaCuestion/macroplanificacion}{width=250px}{fig:macroplanificacion}{ï¿½rbol representativo de la fase de macro planificaciï¿½n en GLN.}
-\item Micro planificaciï¿½n. Partiendo de la salida de la macro planificaciï¿½n, se determinan que partes formaran el texto resultado, agregando las estructuras que formaran parte de este, el lï¿½xico que se utilizara para expresar los conceptos y los hechos recogidos en la primera etapa y la generaciï¿½n de expresiones que aparecerï¿½n en el texto.  
-\item Realizaciï¿½n. El objetivo de esta fase es la realizaciï¿½n de las oraciones finales que se utilizaran, asï¿½ como la estructura final que tendrï¿½ el texto. La generaciï¿½n o realizaciï¿½n del texto se puede dividir en dos partes realizaciï¿½n lingï¿½ï¿½stica en la que se determina la representaciï¿½n en palabras del texto de salida es decir se forman las oraciones, y la realizaciï¿½n de la estructura en la que se genera el texto en el formato correcto para su visualizaciï¿½n en un medio determinado, como puede ser HTML, o un documento Latex.
+\item Macro planificación. Etapa donde se debe seleccionar el contenido que se desea convertir a texto. Para que el texto generado sea coherente es preciso estructurar el contenido del mismo en el orden correcto. La salida de esta fase es el denominado plan del documento, una estructura de datos que suele ser un árbol, donde en cada nodo se encapsula la información más importante que debe formar parte de un párrafo o de una frase, además de información de como se relaciona con el resto de nodos. En la Figura \ref{fig:macroplanificacion} podemos ver un ejemplo de la salida de esta etapa, en la que se puede ver una estructura del párrafo obtenida tras terminar la macro planificación.
+\figura{Bitmap/EstadoDeLaCuestion/macroplanificacion}{width=250px}{fig:macroplanificacion}{Árbol representativo de la fase de macro planificación en GLN.}
+\item Micro planificación. Partiendo de la salida de la macro planificación, se determinan que partes formaran el texto resultado, agregando las estructuras que formaran parte de este, el léxico que se utilizara para expresar los conceptos y los hechos recogidos en la primera etapa y la generación de expresiones que aparecerán en el texto.  
+\item Realización. El objetivo de esta fase es la realización de las oraciones finales que se utilizaran, así como la estructura final que tendrá el texto. La generación o realización del texto se puede dividir en dos partes realización lingüística en la que se determina la representación en palabras del texto de salida es decir se forman las oraciones, y la realización de la estructura en la que se genera el texto en el formato correcto para su visualización en un medio determinado, como puede ser HTML, o un documento Latex.
 
 \end{enumerate}
-Estas fases son abstractas ya que cada no existe un consenso sobre las distintas fases que deben participar en la creaciï¿½n de un sistema de GLN ni el cometido que se desarrolla en cada una de ellas esta delimitado.
+Estas fases son abstractas ya que cada no existe un consenso sobre las distintas fases que deben participar en la creación de un sistema de GLN ni el cometido que se desarrolla en cada una de ellas esta delimitado.
 
 %-------------------------------------------------------------
 \section{Servicios Web}
@@ -222,92 +222,93 @@ El WC3 (World Wide Web Consortium) define un Servicio Web como\footnote{https://
 \\
 \\
 \textit{
-	Un sistema software diseï¿½ado para soportar la interacciï¿½n mï¿½quina-a-mï¿½quina, a travï¿½s de una red, de forma interoperable. Cuenta con una interfaz descrita en un formato procesable por un equipo informï¿½tico (especï¿½ficamente en WSDL), a travï¿½s de la que es posible interactuar con el mismo mediante el intercambio de mensajes SOAP, tï¿½picamente transmitidos usando serializaciï¿½n XML sobre HTTP conjuntamente con otros estï¿½ndares web.
+	Un sistema software diseñado para soportar la interacción máquina-a-máquina, a través de una red, de forma interoperable. Cuenta con una interfaz descrita en un formato procesable por un equipo informático (específicamente en WSDL), a través de la que es posible interactuar con el mismo mediante el intercambio de mensajes SOAP, típicamente transmitidos usando serialización XML sobre HTTP conjuntamente con otros estándares web.
 \\	
 }
 
-	Un servicio web es un componente accesible mediante peticiones Web estï¿½ndar tales como GET o POST. Normalmente se denomina servicio web a una colecciï¿½n de procedimientos accesibles desde Internet. La gran ventaja de los servicios web es que al acceder desde el navegador a un servicio web este nos devuelve el contenido con un formato estï¿½ndar como puede ser XML.	
+	Un Servicio Web es un componente accesible mediante peticiones Web estándar tales como GET o POST. Normalmente se denomina servicio web a una colección de procedimientos accesibles desde Internet. La gran ventaja de los servicios web es que al acceder desde el navegador a un servicio web este nos devuelve el contenido con un formato estándar como puede ser XML.	
 
-Los servicios Web fueron creados para solucionar el problema de la interoperabilidad entre las distintas aplicaciones. En los 90, el gran objetivo era poder integrar aplicaciones distintas dentro de un mismo servicio. Estas aplicaciones pueden estar desarrolladas en muchos lenguajes de programaciï¿½n como pueden ser: C++, Java,etc. Y ejecutarse tanto en Unix, en un PC, o un computador mainframe.
-Por estas razones, no existï¿½a una forma fï¿½cil de comunicar todas las aplicaciones entre sï¿½. El desarrollo de XML, propiciï¿½ poder compartir datos entre ellas a travï¿½s de la red, o de Internet. 
+Los servicios Web fueron creados para solucionar el problema de la interoperabilidad entre las distintas aplicaciones. En los 90, el gran objetivo era poder integrar aplicaciones distintas dentro de un mismo servicio. Estas aplicaciones pueden estar desarrolladas en muchos lenguajes de programación como pueden ser: C++, Java,etc. Y ejecutarse tanto en Unix, en un PC, o un computador mainframe.
+Por estas razones, no existía una forma fácil de comunicar todas las aplicaciones entre sí. El desarrollo de XML, propició poder compartir datos entre ellas a través de la red, o de Internet. 
 
 \figura{Bitmap/EstadoDeLaCuestion/serviciosWeb}{width=300px}{fig:servicioWeb}{Estructura servicios Web.}
 
 
-A nivel tï¿½cnico, los servicios Web pueden ser dos tipos.
+A nivel técnico, los servicios Web pueden ser dos tipos.
 
 \begin{itemize}
- \item Servicios Web SOAP. Utilizan el lenguaje XML para poder comunicarse utilizando el protocolo SOAP (Simple Object Access Protocol), este lenguaje es usado tanto para definir la arquitectura como el formato de los mensajes. Estos tipos de servicios deben contener un lenguaje legible para la mï¿½quina con la descripciï¿½n de operaciones ofrecidas por el servicio escrito en WSDL (Web Services Description Language), el cuï¿½l estï¿½ basado tambiï¿½n en XML con el fin de definir interfaces sintï¿½cticamente.
+ \item Servicios Web SOAP. Utilizan el lenguaje XML para poder comunicarse utilizando el protocolo SOAP (Simple Object Access Protocol), este lenguaje es usado tanto para definir la arquitectura como el formato de los mensajes. Estos tipos de servicios deben contener un lenguaje legible para la máquina con la descripción de operaciones ofrecidas por el servicio escrito en WSDL (Web Services Description Language), el cuál está basado también en XML con el fin de definir interfaces sintácticamente.
  
-  \item Servicios Web Restfull (Representational State Transfer Web Services).  Los servicios Web Restfull utilizan lenguajes muy conocidos como SML, URI, MIME, y sobre todo HTML. Ademï¿½s posee una infraestructura la cuï¿½l podrï¿½amos llamar "ligera", ya que consiguen utilizar herramientas mï¿½nimas para formar estos servicios. Por ello, el desarrollo de este tipo de servicios son baratos y su adaptaciï¿½n es poco costosa. Son mï¿½s adecuados para integraciones bï¿½sicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
+  \item Servicios Web Restfull (Representational State Transfer Web Services).  Los servicios Web Restfull utilizan lenguajes muy conocidos como SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura la cuál podríamos llamar "ligera", ya que consiguen utilizar herramientas mínimas para formar estos servicios. Por ello, el desarrollo de este tipo de servicios son baratos y su adaptación es poco costosa. Son más adecuados para integraciones básicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
    
 \end{itemize}
 
-En una arquitectura de Servicios Web se pueden distinguir tres partes fundamentales para el establecimiento de la comunicaciï¿½n\footnote{http://www.jtech.ua.es/j2ee/publico/servc-web-2012-13/sesion01-apuntes.html}: 
+En una arquitectura de Servicios Web se pueden distinguir tres partes fundamentales para el establecimiento de la comunicación\footnote{http://www.jtech.ua.es/j2ee/publico/servc-web-2012-13/sesion01-apuntes.html}: 
 
 \begin{itemize}
-  \item Proveedor de servicios web. Es el encargado de enviar al publicador del servicio un fichero WSDL con la informaciï¿½n bï¿½sica de dicho servicio.
-   \item Publicador del servicio. Una vez la informaciï¿½n llega al publicador este descubre quien es el proveedor (protocolo WSDL), y se pone en contacto con ï¿½l (protocolo SOAP).
-   \item Proveedor del servicio. Acepta la peticiï¿½n del servicio y envï¿½a los datos estructurados en formato XML usando SOAP.  
+  \item Proveedor de servicios web. Es el encargado de enviar al publicador del servicio un fichero WSDL con la información básica de dicho servicio.
+   \item Publicador del servicio. Una vez la información llega al publicador este descubre quien es el proveedor (protocolo WSDL), y se pone en contacto con él (protocolo SOAP).
+   \item Proveedor del servicio. Acepta la petición del servicio y envía los datos estructurados en formato XML usando SOAP.  
 \end{itemize}
 
 \subsection{Ventajas de los servicios Web}
 Las tres principales ventajas de usar servicios web son\footnote{https://sites.google.com/site/preyectodetics/home/servicios-web}:
 \begin{itemize}
-  \item Ayudan a mejorar la conexiï¿½n y operabilidad entre dos aplicaciones software sin importar sus propiedades o sino comparten plataforma de instalaciï¿½n.
-  \item Favorecen los protocolos y estï¿½ndares basados en texto, ya que estos facilitan acceder y comprender su contenido.
-  \item Permiten y facilitan que software y servicios de diferentes compaï¿½ï¿½as se puedan combinar formando un servicio funcional.      
+  \item Ayudan a mejorar la conexión y operabilidad entre dos aplicaciones software sin importar sus propiedades o sino comparten plataforma de instalación.
+  \item Favorecen los protocolos y estándares basados en texto, ya que estos facilitan acceder y comprender su contenido.
+  \item Permiten y facilitan que software y servicios de diferentes compañías se puedan combinar formando un servicio funcional.      
 \end{itemize}
 
 \subsection{Desventajas de los servicios Web}
 Las tres principales desventajas de los servicios web son\footnote{http://fabioalfarocc.blogspot.com/}:
 \begin{itemize}
-  \item Las transacciones que llevan consigo estos servicios estï¿½n mucho menos desarrolladas que otros estï¿½ndares abiertos.
-  \item Su rendimiento es bajo comparado con otros modelos de computaciï¿½n distribuida, debido sobre todo a adoptar un formato basado en texto.
-  \item Al estar muy ligados con HTTP, las medidas de seguridad que tratan de bloquear la comunicaciï¿½n entre programas se pueden burlar fï¿½cilmente.
+  \item Las transacciones que llevan consigo estos servicios están mucho menos desarrolladas que otros estándares abiertos.
+  \item Su rendimiento es bajo comparado con otros modelos de computación distribuida, debido sobre todo a adoptar un formato basado en texto.
+  \item Al estar muy ligados con HTTP, las medidas de seguridad que tratan de bloquear la comunicación entre programas se pueden burlar fácilmente.
 \end{itemize} 
 
 %-------------------------------------------------------------
-\section{Sistema de traducciï¿½n texto-picto}
+\section{Sistema de traducción texto-picto}
 %-------------------------------------------------------------
-\label{cap2:sec:Sistema de traducciï¿½n texto-picto}
-En esta secciï¿½n se presentan los sistemas de traducciï¿½n texto a picto existentes, estos sistemas hacen la traducciï¿½n inversa a lo que se pretende hacer en este TFG y nos ayudarï¿½n tomï¿½ndolos como base para realizar nuestro proyecto. Es muy importante destacar que no se ha encontrado ninguna herramienta que haga la traducciï¿½n de picto a texto que se planea realizar en este trabajo.  
+\label{cap2:sec:Sistema de traducción texto-picto}
+En esta sección se presentan los sistemas de traducción texto a picto existentes, estos sistemas hacen la traducción inversa a lo que se pretende hacer en este TFG y nos ayudarán tomándolos como base para realizar nuestro proyecto. Cabe destacar también que no se ha encontrado ninguna herramienta que haga la traducción de picto a texto que se planea realizar en este trabajo.  
 
 \subsection{Araword}
-Araword\footnote{http://www.arasaac.org/software.php} es una aplicaciï¿½n gratuita creada por Arasacc, que permite la traducciï¿½n simultanea de texto a pictograma.
+Araword\footnote{http://www.arasaac.org/software.php} es una aplicación gratuita creada por Arasacc, que permite la traducción simultanea de texto a pictograma.
 
-Esta herramienta tiene como objetivo principal facilitar la elaboraciï¿½n de materiales con pictogramas. Es similar a un editor de textos tal y como se puede ver en la Figura \ref{fig:articulosAraword}, se comienza con un documento en blanco y se van escribiendo frases en lenguaje natural que se van traduciendo a pictogramas. 
-Cada vez que se introduce una palabra en el editor, la propia herramienta es la que se encarga de traducirla a pictograma automï¿½ticamente. Cuando las palabras tienen varios pictogramas asociados, Araword te muestra uno de ellos dando la posibilidad de poder elegir otro pictograma si este no se considera el mï¿½s adecuado.
-En Araword hay una gran variedad tanto de preposiciones como de artï¿½culos, diferenciando el gï¿½nero y nï¿½mero de los artï¿½culos sin aparecer la palabra, como podemos ver en la Figura \ref{fig:articulosAraword}.
-\figura{Bitmap/EstadoDeLaCuestion/articulosAraword}{width=300px}{fig:articulosAraword}{Ejemplo de traducciï¿½n de artï¿½culos en Araword.}
+Esta herramienta tiene como objetivo principal facilitar la elaboración de materiales con pictogramas. Es similar a un editor de textos tal y como se puede ver en la Figura \ref{fig:articulosAraword}, se comienza con un documento en blanco y se van escribiendo frases en lenguaje natural que se van traduciendo a pictogramas. 
+Cada vez que se introduce una palabra en el editor, la propia herramienta es la que se encarga de traducirla a pictograma automáticamente. Cuando las palabras tienen varios pictogramas asociados, Araword te muestra uno de ellos dando la posibilidad de poder elegir otro pictograma si este no se considera el más adecuado.
+En Araword hay una gran variedad tanto de preposiciones como de artículos, diferenciando el género y número de los artículos sin aparecer la palabra, como podemos ver en la Figura \ref{fig:articulosAraword}.
+\figura{Bitmap/EstadoDeLaCuestion/articulosAraword}{width=300px}{fig:articulosAraword}{Ejemplo de traducción de artículos en Araword.}
 En cuanto a las preposiciones Araword posee un pictograma para cada una de ellas , como aparece en la Figura \ref{fig:preposicionAraword}.
 \figura{Bitmap/EstadoDeLaCuestion/preposicionAraword}{width=300px}{fig:preposicionAraword}{Ejemplo preposiciones Araword.}\\
-Araword se podrï¿½a decir que hace una traducciï¿½n literal cuando nos referimos al tiempo verbal de las frases, ya que no contempla diferentes pictogramas para traducir los diferentes tiempos, por eso traduce todos ellos usando la traducciï¿½n del infinitivo del verbo que se usa. Araword solo contempla el tiempo de las frases cuando la oraciï¿½n posee literalmente un adverbio de tiempo a traducir.
+Araword se podría decir que hace una traducción literal cuando nos referimos al tiempo verbal de las frases, ya que no contempla diferentes pictogramas para traducir los diferentes tiempos, por eso traduce todos ellos usando la traducción del infinitivo del verbo que se usa. Araword solo contempla el tiempo de las frases cuando la oración posee literalmente un adverbio de tiempo a traducir.
 
-En la Figura \ref{fig:ejemploAraword} se muestra un ejemplo de la traducciï¿½n hecha por Araword del texto.
+En la Figura \ref{fig:ejemploAraword} se muestra un ejemplo de la traducción hecha por Araword del texto.
 \figura{Bitmap/EstadoDeLaCuestion/ejemploAraword}{width=300px}{fig:ejemploAraword}{Ejemplo paseo al perro.}
 
 \subsection{PictoTraductor}
-PictoTraductor\footnote{https://www.pictotraductor.com/} es una aplicaciï¿½n web pensada y desarrollada para facilitar la comunicaciï¿½n con personas que poseen dificultades para expresarse de forma oral y que se comunican mediante pictogramas. Principalmente estï¿½ dirigida a padres y profesionales, para traducir textos a pictogramas y asï¿½ poder comunicarse con sus hijos o pacientes que solo entienden pictogramas y no lenguaje natural.
+PictoTraductor\footnote{https://www.pictotraductor.com/} es una aplicación web pensada y desarrollada para facilitar la comunicación con personas que poseen dificultades para expresarse de forma oral y que se comunican mediante pictogramas. Principalmente está dirigida a padres y profesionales, para traducir textos a pictogramas y así poder comunicarse con sus hijos o pacientes que solo entienden pictogramas y no lenguaje natural.
 
-La interfaz de la aplicaciï¿½n se puede ver en la Figura \ref{fig:pictoTraductor}. Consta de una barra de bï¿½squeda en la que se introduce el texto que se quiere traducir a pictogramas. A medida que se va escribiendo una palabra se va mostrando el pictograma que representa el texto introducido en la parte inferior. Para las palabras que tengan mï¿½s de un pictograma asociado, la herramienta da la opciï¿½n de elegir el pictograma al usuario mediante las flechas que aparecen encima del picto traducido.
-Para los artï¿½culos PictoTraductor deja por defecto la traducciï¿½n literal de la palabra, pero como acabamos de mencionar deja la opciï¿½n de poder cambiarlo a gusto del usuario, como vemos en la Figura \ref{fig:articulosPictoT}.
-\figura{Bitmap/EstadoDeLaCuestion/articulosPictoT}{width=300px}{fig:articulosPictoT}{Ejemplo traduccï¿½on de los artï¿½culos en PictoTraductor.}
-Por cada preposiciï¿½n se muestra un solo pictograma como parece en la Figura \ref{fig:preposicionPictoT}.
-\figura{Bitmap/EstadoDeLaCuestion/preposicionPictoT}{width=300px}{fig:preposicionPictoT}{Ejemplo traducciï¿½n de las preposiciones en PictoTraductor.}\\
-PictoTraductor posee un gran nï¿½mero de pictogramas en su base de datos, pero para aquellas palabras que no encuentra su pictograma traducido, se muestra una imagen con la traducciï¿½n literal de la palabra. Por ï¿½ltimo tambiï¿½n hace una traducciï¿½n literal para los diferentes tiempos verbales en la frases, ya que utiliza los mismos pictogramas tanto para utilizar el pasado, el presente o el futuro del verbo, tal y como se puede ver en la Figura \ref{fig:pictoTraductor}.\figura{Bitmap/EstadoDeLaCuestion/pictoTraductor}{width=300px}{fig:pictoTraductor}{Frase traducida en pictoTraductor}.
+La interfaz de la aplicación se puede ver en la Figura \ref{fig:pictoTraductor}. Consta de una barra de búsqueda en la que se introduce el texto que se quiere traducir a pictogramas. A medida que se va escribiendo una palabra se va mostrando el pictograma que representa el texto introducido en la parte inferior. Para las palabras que tengan más de un pictograma asociado, la herramienta da la opción de elegir el pictograma al usuario mediante las flechas que aparecen encima del picto traducido.
+Para los artículos PictoTraductor deja por defecto la traducción literal de la palabra, pero como acabamos de mencionar deja la opción de poder cambiarlo a gusto del usuario, como vemos en la Figura \ref{fig:articulosPictoT}.
+\figura{Bitmap/EstadoDeLaCuestion/articulosPictoT}{width=300px}{fig:articulosPictoT}{Ejemplo traduccíon de los artículos en PictoTraductor.}
+Por cada preposición se muestra un solo pictograma como parece en la Figura \ref{fig:preposicionPictoT}.
+\figura{Bitmap/EstadoDeLaCuestion/preposicionPictoT}{width=300px}{fig:preposicionPictoT}{Ejemplo traducción de las preposiciones en PictoTraductor.}\\
+PictoTraductor posee un gran número de pictogramas en su base de datos, pero para aquellas palabras que no encuentra su pictograma traducido, se muestra una imagen con la traducción literal de la palabra. Por último también hace una traducción literal para los diferentes tiempos verbales en la frases, ya que utiliza los mismos pictogramas tanto para utilizar el pasado, el presente o el futuro del verbo.
 
+Esta herramienta permite el registro de usuarios, personalizar la aplicación, por ejemplo, guardando los pictogramas favoritos, fotografías o imágenes  y compartir algunas de sus traducciones en las redes sociales tal y como se puede ver en la Figura \ref{fig:pictoTraductor}.\figura{Bitmap/EstadoDeLaCuestion/pictoTraductor}{width=300px}{fig:pictoTraductor}{Frase traducida en pictoTraductor}
 
 \subsection{Pictar}
-Pictar \citep{MartinGuerrero2018} es una aplicaciï¿½n web que permite traducir de texto a pictogramas, En la Figura \ref{fig:pictar} se muestra el aspecto general de la herramienta     \figura{Bitmap/EstadoDeLaCuestion/pictar}{width=300px}{fig:pictar}{Presentaciï¿½n pictar}.
+Pictar \citep{MartinGuerrero2018} es una aplicación web que permite traducir de texto a pictogramas, En la Figura \ref{fig:pictar} se muestra el aspecto general de la herramienta \figura{Bitmap/EstadoDeLaCuestion/pictar}{width=300px}{fig:pictar}{Presentación pictar}.
 
-El usuario introduce el texto que desea traducir y al pulsar el botï¿½n buscar 
-se generan los pictogramas adecuados para la frase introducida, tal y como se puede ver en la Figura \ref{fig:pictar1} \figura{Bitmap/EstadoDeLaCuestion/pictar1}{width=300px}{fig:pictar1}{Texto traducido en pictar}.
+El usuario introduce el texto que desea traducir y al pulsar el botón buscar 
+se generan los pictogramas adecuados para la frase introducida, tal y como se puede ver en la (Figura \ref{fig:pictar1}) \figura{Bitmap/EstadoDeLaCuestion/pictar1}{width=300px}{fig:pictar1}{Texto traducido en pictar}.
 
-La traducciï¿½n de artï¿½culos y preposiciones es muy parecida a la de PictoTraductor, escribiendo la palabra en la barra de bï¿½squeda, aparecen todos los diferentes pictogramas que se asocian a esa palabra, dando la posibilidad al usuario de elegir la que desee.
+La traducción de artículos y preposiciones es muy parecida a la de PictoTraductor, escribiendo la palabra en la barra de búsqueda, aparecen todos los diferentes pictogramas que se asocian a esa palabra, dando la posibilidad al usuario de elegir la que desee.
 
-Pictar no traduce de diferente manera las frases en las que se emplean distintos tiempos verbales, es decir en todas las traducciones el pictograma utilizado serï¿½ el mismo tanto para el verbo en infinitivo, pasado, presente o futuro.
+Pictar no traduce de diferente manera las frases en las que se emplean distintos tiempos verbales, es decir en todas las traducciones el pictograma utilizado será el mismo tanto para el verbo en infinitivo, pasado, presente o futuro.
 
-Esta aplicaciï¿½n ademï¿½s ofrece en la parte derecha un buscador de pictogramas. El usuario introduce la palabra a buscar en la parte inferior aparecen los pictogramas asociados a dicha.
-El usuario puede mover los pictogramas encontrados a la rejilla de traducciï¿½n. Pudiendo cambiar el color del pictograma, aï¿½adir texto debajo de ï¿½l, borrar el pictograma, moverlo de posiciï¿½n, etc. Tal y cï¿½mo se puede ver en la Figura\ref{fig:pictar2} \figura{Bitmap/EstadoDeLaCuestion/pictar2}{width=300px}{fig:pictar2}{Ejemplo buscador y editor pictar}.
+Esta aplicación además ofrece en la parte derecha un buscador de pictogramas. El usuario introduce la palabra a buscar en la parte inferior aparecen los pictogramas asociados a dicha.
+El usuario puede mover los pictogramas encontrados a la rejilla de traducción. Pudiendo cambiar el color del pictograma, añadir texto debajo de él, etc. Tal y cómo se puede ver en la Figura\ref{fig:pictar2} \figura{Bitmap/EstadoDeLaCuestion/pictar2}{width=300px}{fig:pictar2}{Ejemplo buscador y editor pictar}.
 
