@@ -1,4 +1,4 @@
-package Proxy;
+package proxy;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -11,8 +11,7 @@ import com.sun.net.ssl.HttpsURLConnection;
 public class Proxy {
 	
 	
-	
-	
+
 	
 	// HTTP GET request
 	public void sendGet(String url) throws Exception {
@@ -43,7 +42,7 @@ public class Proxy {
 	}
 	
 	// HTTP POST request
-	public void sendPost(String url) throws Exception {
+	public void sendPost(String url, String parameters) throws Exception {
 
 		URL obj = new URL(url);
 		
@@ -51,20 +50,19 @@ public class Proxy {
 
 		//add request header
 		con.setRequestMethod("POST");
-		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
 		String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
 		
 		// Send post request
 		con.setDoOutput(true);
 		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-		wr.writeBytes(urlParameters);
+		wr.writeBytes(parameters);
 		wr.flush();
 		wr.close();
 
 		int responseCode = con.getResponseCode();
 		System.out.println("\nSending 'POST' request to URL : " + url);
-		System.out.println("Post parameters : " + urlParameters);
+		System.out.println("Post parameters : " + parameters);
 		System.out.println("Response Code : " + responseCode);
 
 		BufferedReader in = new BufferedReader(

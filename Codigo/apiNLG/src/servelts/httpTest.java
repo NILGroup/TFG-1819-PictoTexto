@@ -17,7 +17,7 @@ import com.google.gson.Gson;
 import NLG.NLG;
 import NLG.SimplePhrase;
 import NLG.Word;
-import Proxy.Proxy;
+import proxy.Proxy;
 import simplenlg.framework.NLGElement;
 import simplenlg.framework.NLGFactory;
 import simplenlg.phrasespec.NPPhraseSpec;
@@ -47,10 +47,17 @@ public class httpTest extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		Proxy myProxy = new Proxy();
+		ArrayList palabras = new ArrayList<String>();
+		palabras.add("rapido");
+		palabras.add("brusco");
+		palabras.add("ser");
 		
+		Gson gson = new Gson();
 		
+		String parameters =gson.toJson(palabras);
+		System.out.println(parameters);
 		try {
-			myProxy.sendGet("http://127.0.0.1:8000/picto/getPicto?pictoName=perro");
+			myProxy.sendPost("http://127.0.0.1:8000/translate/getWordAttrs", parameters);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
