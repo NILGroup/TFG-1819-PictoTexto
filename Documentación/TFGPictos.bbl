@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{17}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{Abril~Abad\'{i}n(2010)}]{DoloresAbril2010}
@@ -12,6 +12,14 @@
   la Comunicación Bimodal como recurso en el aula de Audici\'{o}n y
   Lenguaje\/}.
 \newblock Tfg, Universidad de Valladolid, 2013.
+
+\bibitem[{B.(2007)}]{Socorro2007}
+{\sc B., M. d.~S.}
+\newblock ¿qué es la generación de lenguaje natural? una visión general sobre
+  el proceso de generación.
+\newblock {\em Inteligencia Artificial. Revista Iberoamericana de Inteligencia
+  Artificial\/}, vol.\ 11, p\'aginas 105--128, 2007.
+\newblock ISSN 1137-3601.
 
 \bibitem[{Basil et\ al.(1990)Basil, Almirall y de~la
   Bellacasa}]{basil1990comunicacion}

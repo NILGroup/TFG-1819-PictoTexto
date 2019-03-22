@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import {FinderService} from 'src/app/finder/service/finder-service.service'
 import {Picto} from 'src/app/finder/transformer/picto'
 import { ProxyService } from '../utils/proxy/proxy-service.service';
+import { ModalComponent } from '../utils/modals/modal-component'
+import {NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {FinderTransformer} from 'src/app/finder/transformer/finder-transformer.transformer'
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
@@ -9,7 +11,7 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-finder',
   templateUrl: './assets/finder.component.html',
-  providers: [FinderService,FinderTransformer, ProxyService,NgbCarouselConfig],
+  providers: [FinderService,FinderTransformer,NgbCarouselConfig, ProxyService],
   styleUrls: ['./assets/finder.component.css']
 })
 export class FinderComponent {
@@ -17,12 +19,12 @@ export class FinderComponent {
   @Input() pictoPhrase:Picto[];
   
   
-  constructor( private pictoService : FinderService, config: NgbCarouselConfig) {
+  constructor( private pictoService : FinderService, config: NgbCarouselConfig, private modalService: NgbModal) {
     config.interval=0;
   }
 
    getPictosByName(name:string){
-    this.pictoService.getPictByName(name).then(this.getPictoSucces.bind(this), this.getPictoError);
+    this.pictoService.getPictByName(name).then(this.getPictoSucces.bind(this), this.getPictoError.bind(this));
   }
 
    getPictoSucces(data){
@@ -33,7 +35,9 @@ export class FinderComponent {
       this.pictoPhrase.push(picto);
     }
 
-   getPictoError(){
+   getPictoError(data){
+    const activeModal = this.modalService.open(ModalComponent);
+    console.log(data)
     console.log("todo mal en el componente")
   }
 
