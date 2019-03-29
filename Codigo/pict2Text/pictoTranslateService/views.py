@@ -4,7 +4,6 @@ import requests
 import json
 import pict2Text.constants as constants
 import spacy
-from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 # Create your views here.
@@ -29,25 +28,17 @@ def getPictoTranslate(request):
 
 
 def getWordAttrs(request):
-    if request.method == "GET":
+    if request.method == "POST":
+        response =[]
+        body = readPostBody(request)
         nlp = spacy.load('es')
-        word = request.GET.get('word', 'word')
-        tokenizer = nlp(word)
-        wordAttrs = ''
-        for token in tokenizer:
-            wordAttrs = token.tag_
-        wordAttrs = wordAttrs.split('|')
-        auxAttrs = wordAttrs[0].split('__')
-        auxAttrs[0] = "Type=" + auxAttrs[0]
-        wordAttrs.remove(wordAttrs[0])
-        wordAttrs += auxAttrs
-        attrs = {}
-        for attr in wordAttrs:
-            key = attr.split('=')
-            if len(key) == 2:
-                attrs[key[0]] = key[1]
-
-        response = {'attrs': attrs}
+        for word in body:
+            tokenizer = nlp(word)
+            wordattrs = ''
+            for token in tokenizer:
+                wordattrs = token.tag_
+            attrs = createWordAttr(wordattrs)
+        response.push({'word':word,'attrs': attrs})
         return JsonResponse(response, status=200)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)
@@ -55,10 +46,9 @@ def getWordAttrs(request):
 
 def getTypePhrase(request):
     response = {'type': "present"}
-    verb = False;
+    verb = False
     if request.method == "POST":
-        body_unicode = request.body.decode('utf-8')
-        body = json.loads(body_unicode)
+        body = readPostBody(request)
         for picto in body:
             if picto['attrs']['Type'] == 'VERB':
                 verb = True;
@@ -71,3 +61,22 @@ def getTypePhrase(request):
         return JsonResponse(response, status=200)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)
+
+
+def createWordAttr(word):
+    wordAttrs = word.split('|')
+    auxAttrs = wordAttrs[0].split('__')
+    auxAttrs[0] = "Type=" + auxAttrs[0]
+    wordAttrs.remove(wordAttrs[0])
+    wordAttrs += auxAttrs
+    attrs = {}
+    for attr in wordAttrs:
+        key = attr.split('=')
+        if len(key) == 2:
+            attrs[key[0]] = key[1]
+    return attrs
+
+def readPostBody(request):
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    return body
