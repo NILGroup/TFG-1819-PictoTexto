@@ -100,9 +100,6 @@ public class NLG {
 		ArrayList<NLGElement> wordsList = new ArrayList<NLGElement>();
 		for (int i = 0; i < words.length; ++i) {
 			NLGElement aux = null;
-			byte ptext[];
-			ptext = words[i].getkeyword().getBytes(ISO_8859_1);
-			words[i].setkeyword(new String(ptext, UTF_8));
 			switch (words[i].getAttrs().getType()) {
 			case ("VERB"):
 				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.VERB);

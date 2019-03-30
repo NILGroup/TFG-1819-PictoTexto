@@ -2,6 +2,7 @@ package servelts;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,11 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
 import HttpService.HttpService;
-
+import NLG.Attributes;
+import NLG.NLG;
 import NLG.Word;
 import proxy.Proxy;
+import simplenlg.framework.NLGElement;
+import simplenlg.phrasespec.NPPhraseSpec;
 
 /**
  * Servlet implementation class createSimplePhrase
@@ -51,19 +56,39 @@ public class CreatePhrase extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		NLG miNlgTest = NLG.getInstance();
 		ArrayList<String> wordsList = (ArrayList<String>) gson.fromJson(request.getReader(),ArrayList.class);
-		
+
 		try {
 			Word[] words =service.getWords(wordsList);
-
-			System.out.println(words[0].toString());
-
-			String typePhrase = service.getTypePhrase(wordsList);
 			
-			System.out.println(typePhrase);
+			Attributes type = gson.fromJson(service.getTypePhrase(wordsList),Attributes.class);
+			
+			ArrayList<NLGElement> wordNLG = miNlgTest.createNLGWords(words);
+			int i = miNlgTest.recogniseVerb(wordNLG);
+			// DEFINE subject
+			List<NLGElement> subjectWords = wordNLG.subList(0, i);
+			NPPhraseSpec subject = miNlgTest.createSubject(subjectWords);
 
+			List<NLGElement> objectWords = wordNLG.subList(i + 1, wordsList.size());
+			NPPhraseSpec object = miNlgTest.createObject(objectWords);
+			switch(type.getType()) {
+				case("past"):
+					miNlgTest.createASimplePastPhrase(subject, wordNLG.get(i), object);
+					break;
+				case("future"):
+					miNlgTest.createASimpleFuturePhrase(subject, wordNLG.get(i), object);
+					break;
+				default:
+					miNlgTest.createASimplePhrase(subject, wordNLG.get(i), object);
+					break;
+			}
+			
+			response.getWriter().append(gson.toJson(miNlgTest.getOutput()));
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setHeader("Content-Type", "text/plain");
+			response.setStatus(HttpServletResponse.SC_OK);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

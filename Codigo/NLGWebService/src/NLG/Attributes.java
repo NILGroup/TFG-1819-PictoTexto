@@ -9,7 +9,6 @@ public class Attributes {
 	private String Gender;
 	private String Number;
 	private String VerbForm;
-	
 
 	public Attributes(String type, String gender, String number, String verbForm) {
 		super();

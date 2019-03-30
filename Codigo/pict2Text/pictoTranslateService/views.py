@@ -68,16 +68,16 @@ def getAttrs(nlp,word):
     return attrs;
 
 def getTypePhrase(request):
-    response = {'type': "present"}
+    response = {'Type': "present"}
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         for picto in body:
             if picto == "ayer":
-                response['type'] = "past"
+                response['Type'] = "past"
             if picto == "mañana":
-                response['type'] = "future"
-
+                response['Type'] = "future"
+        print(response)
         return JsonResponse(response, status=200)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)

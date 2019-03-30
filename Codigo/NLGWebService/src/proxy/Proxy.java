@@ -69,7 +69,6 @@ public class Proxy {
 			response.append(inputLine);
 		}
 		reader.close();
-		
 		return response.toString();
 
 	}
