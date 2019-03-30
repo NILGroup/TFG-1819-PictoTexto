@@ -2,6 +2,7 @@ from django.http import JsonResponse
 
 import requests
 import json
+from django.core import serializers
 import pict2Text.constants as constants
 import spacy
 
@@ -41,9 +42,8 @@ def getWordAttrs(request):
             body = json.loads(body_unicode)
             words=[];
             for word in body:
-                words.append(getAttrs(nlp,word))
-            response = {'words': words}
-            return JsonResponse(response, status=200)
+                words.append({'keyword':word, 'attrs': getAttrs(nlp,word)})
+            return JsonResponse(words, status=200, safe=False)
         else:
             response = {'message': "405 Method Not Allowed"}
             return JsonResponse(response, status=405)
@@ -69,19 +69,15 @@ def getAttrs(nlp,word):
 
 def getTypePhrase(request):
     response = {'type': "present"}
-    verb = False;
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         for picto in body:
-            if picto['attrs']['Type'] == 'VERB':
-                verb = True;
-            if picto['keyword'] == "ayer":
+            if picto == "ayer":
                 response['type'] = "past"
-            if picto['keyword'] == "mañana":
+            if picto == "mañana":
                 response['type'] = "future"
-        if verb == False:
-            response = {'type': "present"}
+
         return JsonResponse(response, status=200)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)

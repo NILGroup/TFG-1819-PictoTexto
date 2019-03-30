@@ -10,7 +10,4 @@ import requests
 def index(request):
     template = loader.get_template('index.html')
     context ={}
-    # request.META["CSRF_COOKIE_USED"] = True
-    # csrf_token = get_token(request)
-
     return HttpResponse(template.render(context,request))

@@ -21,11 +21,11 @@ export class TranslatorComponent {
 }
 
   getTranslate() {
-    let words:Word[] =[], i=0;
+    let words:String[] =[], i=0;
     for(i=0;i<this.pictoPhrase.length;++i){
-        words.push(new Word(this.pictoPhrase[i].keyword,this.pictoPhrase[i].attrs));
+        words.push(this.pictoPhrase[i].keyword);
     }
-    this.translatorService.getPhraseType(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+    this.translatorService.getPhrase(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
   }
 
 

@@ -9060,9 +9060,7 @@ var AppConstants = /** @class */ (function () {
     function AppConstants() {
     }
     AppConstants.pictoFinderURl = '/picto/getPicto?pictoName=';
-    AppConstants.translatorPhraseURL = 'http://127.0.0.1:8080/NLGWebService/createSimplePhrase';
-    AppConstants.translatorPastPhraseURL = 'http://127.0.0.1:8080/NLGWebService/createPastPhrase';
-    AppConstants.translatorFuturePhraseURL = 'http://127.0.0.1:8080/NLGWebService/createFuturePhrase';
+    AppConstants.translatorPhraseURL = 'http://127.0.0.1:8080/NLGWebService/createPhrase';
     AppConstants.translatorPictoURL = '/translate/getPictoTranslate?pictoId=';
     AppConstants.typePhraseURL = '/translate/getTypePhrase';
     AppConstants.wordAttr = '/translate/getWordAttrs?word=';
@@ -9443,23 +9441,10 @@ var TranslatorService = /** @class */ (function () {
     function TranslatorService(proxyService) {
         this.proxyService = proxyService;
     }
-    TranslatorService.prototype.getPhraseType = function (words) {
+    TranslatorService.prototype.getPhrase = function (words) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.proxyService.postElement(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].typePhraseURL, words).subscribe(getPictogramTranslate.bind(_this), getTranslateError);
-            function getPictogramTranslate(data) {
-                switch (data.type) {
-                    case ('present'):
-                        this.proxyService.postElementWithOutCors(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPhraseURL, words).subscribe(getTranslateSuccess, getTranslateError);
-                        break;
-                    case ('past'):
-                        this.proxyService.postElementWithOutCors(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPastPhraseURL, words).subscribe(getTranslateSuccess, getTranslateError);
-                        break;
-                    case ('future'):
-                        this.proxyService.postElementWithOutCors(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorFuturePhraseURL, words).subscribe(getTranslateSuccess, getTranslateError);
-                        break;
-                }
-            }
+            _this.proxyService.postElementWithOutCors(src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPhraseURL, words).subscribe(getTranslateSuccess, getTranslateError);
             function getTranslateSuccess(data) {
                 // LLAMADA AL TRANSFORMER
                 resolve(data);
@@ -9483,28 +9468,6 @@ var TranslatorService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/translator/transformer/word.ts":
-/*!************************************************!*\
-  !*** ./src/app/translator/transformer/word.ts ***!
-  \************************************************/
-/*! exports provided: Word */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Word", function() { return Word; });
-var Word = /** @class */ (function () {
-    function Word(keyword, attrs) {
-        this.attrs = attrs;
-        this.keyword = keyword;
-    }
-    return Word;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/translator/translator.component.ts":
 /*!****************************************************!*\
   !*** ./src/app/translator/translator.component.ts ***!
@@ -9520,8 +9483,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
 /* harmony import */ var src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/translator/service/translator.service */ "./src/app/translator/service/translator.service.ts");
 /* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "./node_modules/@angular/cdk/esm5/drag-drop.es5.js");
-/* harmony import */ var _transformer_word__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./transformer/word */ "./src/app/translator/transformer/word.ts");
-
 
 
 
@@ -9534,9 +9495,9 @@ var TranslatorComponent = /** @class */ (function () {
     TranslatorComponent.prototype.getTranslate = function () {
         var words = [], i = 0;
         for (i = 0; i < this.pictoPhrase.length; ++i) {
-            words.push(new _transformer_word__WEBPACK_IMPORTED_MODULE_5__["Word"](this.pictoPhrase[i].keyword, this.pictoPhrase[i].attrs));
+            words.push(this.pictoPhrase[i].keyword);
         }
-        this.translatorService.getPhraseType(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+        this.translatorService.getPhrase(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
     };
     TranslatorComponent.prototype.remove = function (i) {
         this.pictoPhrase.splice(i, 1);

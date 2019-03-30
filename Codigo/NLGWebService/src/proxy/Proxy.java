@@ -42,7 +42,7 @@ public class Proxy {
 	}
 	
 	// HTTP POST request
-	public void sendPost(String url, String parameters) throws Exception {
+	public String sendPost(String url, String parameters) throws Exception {
 
 		URL obj = new URL(url);
 		
@@ -51,8 +51,6 @@ public class Proxy {
 		//add request header
 		con.setRequestMethod("POST");
 
-		String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
-		
 		// Send post request
 		con.setDoOutput(true);
 		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
@@ -61,22 +59,18 @@ public class Proxy {
 		wr.close();
 
 		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'POST' request to URL : " + url);
-		System.out.println("Post parameters : " + parameters);
 		System.out.println("Response Code : " + responseCode);
 
-		BufferedReader in = new BufferedReader(
-		        new InputStreamReader(con.getInputStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
 		StringBuffer response = new StringBuffer();
 
-		while ((inputLine = in.readLine()) != null) {
+		while ((inputLine = reader.readLine()) != null) {
 			response.append(inputLine);
 		}
-		in.close();
+		reader.close();
 		
-		//print result
-		System.out.println(response.toString());
+		return response.toString();
 
 	}
 }

@@ -2,40 +2,36 @@ package servelts;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
-import NLG.NLG;
-import NLG.SimplePhrase;
+import HttpService.HttpService;
+
 import NLG.Word;
 import proxy.Proxy;
-import simplenlg.framework.NLGElement;
-import simplenlg.framework.NLGFactory;
-import simplenlg.phrasespec.NPPhraseSpec;
-import simplenlg.phrasespec.SPhraseSpec;
 
 /**
  * Servlet implementation class createSimplePhrase
  */
-@WebServlet("/httpTest")
-public class httpTest extends HttpServlet {
+@WebServlet("/createPhrase")
+public class CreatePhrase extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private HttpService service;
+	private Gson gson;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public httpTest() {
+	public CreatePhrase() {
 		super();
 		// TODO Auto-generated constructor stub
+		gson = new Gson();
+		service = new HttpService();
 	}
 
 	/**
@@ -46,22 +42,6 @@ public class httpTest extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		Proxy myProxy = new Proxy();
-		ArrayList palabras = new ArrayList<String>();
-		palabras.add("rapido");
-		palabras.add("brusco");
-		palabras.add("ser");
-		
-		Gson gson = new Gson();
-		
-		String parameters =gson.toJson(palabras);
-		System.out.println(parameters);
-		try {
-			myProxy.sendPost("http://127.0.0.1:8000/translate/getWordAttrs", parameters);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -71,7 +51,24 @@ public class httpTest extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		ArrayList<String> wordsList = (ArrayList<String>) gson.fromJson(request.getReader(),ArrayList.class);
+		
+		try {
+			Word[] words =service.getWords(wordsList);
 
+			System.out.println(words[0].toString());
+
+			String typePhrase = service.getTypePhrase(wordsList);
+			
+			System.out.println(typePhrase);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
