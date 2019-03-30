@@ -28,12 +28,10 @@ def getPictoTranslate(request):
 
 
 def getWordAttrs(request):
-    if request.method == "POST":
-        response =[]
-        body = readPostBody(request)
+    if request.method == "GET":
         nlp = spacy.load('es')
         word = request.GET.get('word', 'word')
-        attrs = getAttrs(nlp,word)
+        attrs = getAttrs(nlp,word);
         response = {'attrs': attrs}
         return JsonResponse(response, status=200)
     else:
@@ -67,16 +65,17 @@ def getAttrs(nlp,word):
         if len(key) == 2:
             attrs[key[0]] = key[1]
 
-    return attrs
+    return attrs;
 
 def getTypePhrase(request):
     response = {'type': "present"}
-    verb = False
+    verb = False;
     if request.method == "POST":
-        body = readPostBody(request)
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
         for picto in body:
             if picto['attrs']['Type'] == 'VERB':
-                verb = True
+                verb = True;
             if picto['keyword'] == "ayer":
                 response['type'] = "past"
             if picto['keyword'] == "mañana":
@@ -86,22 +85,3 @@ def getTypePhrase(request):
         return JsonResponse(response, status=200)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)
-
-
-def createWordAttr(word):
-    wordAttrs = word.split('|')
-    auxAttrs = wordAttrs[0].split('__')
-    auxAttrs[0] = "Type=" + auxAttrs[0]
-    wordAttrs.remove(wordAttrs[0])
-    wordAttrs += auxAttrs
-    attrs = {}
-    for attr in wordAttrs:
-        key = attr.split('=')
-        if len(key) == 2:
-            attrs[key[0]] = key[1]
-    return attrs
-
-def readPostBody(request):
-    body_unicode = request.body.decode('utf-8')
-    body = json.loads(body_unicode)
-    return body
