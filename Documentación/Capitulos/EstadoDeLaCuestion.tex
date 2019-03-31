@@ -228,18 +228,18 @@ El WC3 (World Wide Web Consortium) define un Servicio Web como\footnote{https://
 
 	Un Servicio Web es un componente accesible mediante peticiones Web estándar tales como GET o POST. Normalmente se denomina servicio web a una colección de procedimientos accesibles desde Internet. La gran ventaja de los servicios web es que al acceder desde el navegador a un servicio web este nos devuelve el contenido con un formato estándar como puede ser XML.	
 
-Los servicios Web fueron creados para solucionar el problema de la interoperabilidad entre las distintas aplicaciones. En los 90, el gran objetivo era poder integrar aplicaciones distintas dentro de un mismo servicio. Estas aplicaciones pueden estar desarrolladas en muchos lenguajes de programación como pueden ser: C++, Java,etc. Y ejecutarse tanto en Unix, en un PC, o un computador mainframe.
-Por estas razones, no existía una forma fácil de comunicar todas las aplicaciones entre sí. El desarrollo de XML, propició poder compartir datos entre ellas a través de la red, o de Internet. 
+Los servicios web fueron creados para solucionar el problema de la interoperabilidad entre las distintas aplicaciones. En los 90, el gran objetivo era poder integrar diferentes aplicaciones dentro del mismo servicio. Decimos que estas aplicaciones son distintas, ya que pueden estar desarrolladas en muchos lenguajes de programación como son: C++, Java,etc. Y ejecutarse tanto en Unix, en un PC, o un computador mainframe.
+Por todas  estas diferencias, no existía una forma fácil de comunicar todas las aplicaciones entre sí. El desarrollo de XML, propició poder compartir datos entre ellas a través de la red, o de Internet. 
 
 \figura{Bitmap/EstadoDeLaCuestion/serviciosWeb}{width=300px}{fig:servicioWeb}{Estructura servicios Web.}
 
 
-A nivel técnico, los servicios Web pueden ser dos tipos.
+A nivel técnico, los servicios web más usados suelen ser de dos tipos.
 
 \begin{itemize}
- \item Servicios Web SOAP. Utilizan el lenguaje XML para poder comunicarse utilizando el protocolo SOAP (Simple Object Access Protocol), este lenguaje es usado tanto para definir la arquitectura como el formato de los mensajes. Estos tipos de servicios deben contener un lenguaje legible para la máquina con la descripción de operaciones ofrecidas por el servicio escrito en WSDL (Web Services Description Language), el cuál está basado también en XML con el fin de definir interfaces sintácticamente.
+ \item SOAP. Utilizan el lenguaje XML para poder comunicarse utilizando el protocolo SOAP (Simple Object Access Protocol), este lenguaje es usado tanto para definir la arquitectura como el formato de los mensajes. Estos tipos de servicios deben contener un lenguaje legible para la máquina con la descripción de operaciones ofrecidas por el servicio escrito en WSDL (Web Services Description Language), el cuál está basado también en XML con el fin de definir interfaces sintácticamente.
  
-  \item Servicios Web Restfull (Representational State Transfer Web Services).  Los servicios Web Restfull utilizan lenguajes muy conocidos como SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura la cuál podríamos llamar "ligera", ya que consiguen utilizar herramientas mínimas para formar estos servicios. Por ello, el desarrollo de este tipo de servicios son baratos y su adaptación es poco costosa. Son más adecuados para integraciones básicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
+  \item Restfull (Representational State Transfer Web Services).  Los servicios web Restfull utilizan estándares tales como: SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura la cuál podríamos llamar "ligera", ya que utilizan las herramientas mínimas para formar los servicios. Por ello, el desarrollo de este tipo de servicios son baratos y su adaptación es poco costosa. Son más adecuados para integraciones básicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
    
 \end{itemize}
 
@@ -247,8 +247,8 @@ En una arquitectura de Servicios Web se pueden distinguir tres partes fundamenta
 
 \begin{itemize}
   \item Proveedor de servicios web. Es el encargado de enviar al publicador del servicio un fichero WSDL con la información básica de dicho servicio.
-   \item Publicador del servicio. Una vez la información llega al publicador este descubre quien es el proveedor (protocolo WSDL), y se pone en contacto con él (protocolo SOAP).
-   \item Proveedor del servicio. Acepta la petición del servicio y envía los datos estructurados en formato XML usando SOAP.  
+   \item Publicador del servicio. Una vez la información llega al publicador este descubre quien es el proveedor (protocolo WSDL), y se pone en contacto con él (protocolo SOAP y REST).
+   \item Proveedor del servicio. Acepta la petición del servicio y envía los datos estructurados en formato XML usando SOAP, si fuese un servicio REST los datos enviados seriían de tipo JSON.  
 \end{itemize}
 
 \subsection{Ventajas de los servicios Web}
@@ -271,24 +271,25 @@ Las tres principales desventajas de los servicios web son\footnote{http://fabioa
 \section{Sistema de traducción texto-picto}
 %-------------------------------------------------------------
 \label{cap2:sec:Sistema de traducción texto-picto}
-En esta sección se presentan los sistemas de traducción texto a picto existentes, estos sistemas hacen la traducción inversa a lo que se pretende hacer en este TFG y nos ayudarán tomándolos como base para realizar nuestro proyecto. Cabe destacar también que no se ha encontrado ninguna herramienta que haga la traducción de picto a texto que se planea realizar en este trabajo.  
+Es muy importante destacar que no se ha encontrado ninguna herramienta que haga la traducción de picto a texto que se planea realizar en este trabajo. 
+En esta sección se presentan los sistemas de traducción texto a picto existentes, estos sistemas hacen la traducción inversa a lo que se pretende hacer en este TFG y nos ayudarán tomándolos como base para realizar nuestro proyecto. 
 
 \subsection{Araword}
 Araword\footnote{http://www.arasaac.org/software.php} es una aplicación gratuita creada por Arasacc, que permite la traducción simultanea de texto a pictograma.
 
 Esta herramienta tiene como objetivo principal facilitar la elaboración de materiales con pictogramas. Es similar a un editor de textos tal y como se puede ver en la Figura \ref{fig:articulosAraword}, se comienza con un documento en blanco y se van escribiendo frases en lenguaje natural que se van traduciendo a pictogramas. 
 Cada vez que se introduce una palabra en el editor, la propia herramienta es la que se encarga de traducirla a pictograma automáticamente. Cuando las palabras tienen varios pictogramas asociados, Araword te muestra uno de ellos dando la posibilidad de poder elegir otro pictograma si este no se considera el más adecuado.
-En Araword hay una gran variedad tanto de preposiciones como de artículos, diferenciando el género y número de los artículos sin aparecer la palabra, como podemos ver en la Figura \ref{fig:articulosAraword}.
+En Araword utiliza la gran variedad de artículos que le proporciona Arasaac, como podemos ver en la Figura \ref{fig:articulosAraword}.
 \figura{Bitmap/EstadoDeLaCuestion/articulosAraword}{width=300px}{fig:articulosAraword}{Ejemplo de traducción de artículos en Araword.}
-En cuanto a las preposiciones Araword posee un pictograma para cada una de ellas , como aparece en la Figura \ref{fig:preposicionAraword}.
+El caso de las preposiciones es muy parecido al de los artículos en donde gracias a Arasaac la aplicación posee una gran variedad de pictogramas para representarlas, como aparece en la Figura \ref{fig:preposicionAraword}.
 \figura{Bitmap/EstadoDeLaCuestion/preposicionAraword}{width=300px}{fig:preposicionAraword}{Ejemplo preposiciones Araword.}\\
-Araword se podría decir que hace una traducción literal cuando nos referimos al tiempo verbal de las frases, ya que no contempla diferentes pictogramas para traducir los diferentes tiempos, por eso traduce todos ellos usando la traducción del infinitivo del verbo que se usa. Araword solo contempla el tiempo de las frases cuando la oración posee literalmente un adverbio de tiempo a traducir.
+Araword no conjuga los verbos que aparecen en las frases, al no contemplar diferentes pictogramas para traducir los diferentes tiempos verbales, por ello usa siempre el infinitivo del verbo. Araword solo contempla el tiempo de las frases cuando la oración posee literalmente un adverbio de tiempo a traducir.
 
 En la Figura \ref{fig:ejemploAraword} se muestra un ejemplo de la traducción hecha por Araword del texto.
 \figura{Bitmap/EstadoDeLaCuestion/ejemploAraword}{width=300px}{fig:ejemploAraword}{Ejemplo paseo al perro.}
 
 \subsection{PictoTraductor}
-PictoTraductor\footnote{https://www.pictotraductor.com/} es una aplicación web pensada y desarrollada para facilitar la comunicación con personas que poseen dificultades para expresarse de forma oral y que se comunican mediante pictogramas. Principalmente está dirigida a padres y profesionales, para traducir textos a pictogramas y así poder comunicarse con sus hijos o pacientes que solo entienden pictogramas y no lenguaje natural.
+PictoTraductor\footnote{https://www.pictotraductor.com/} es una aplicación web pensada y desarrollada para facilitar la comunicación mediante pictogramas. Principalmente está dirigida a padres y profesionales, para traducir textos a pictogramas y así poder comunicarse con sus hijos o pacientes que solo entienden pictogramas y no lenguaje natural.
 
 La interfaz de la aplicación se puede ver en la Figura \ref{fig:pictoTraductor}. Consta de una barra de búsqueda en la que se introduce el texto que se quiere traducir a pictogramas. A medida que se va escribiendo una palabra se va mostrando el pictograma que representa el texto introducido en la parte inferior. Para las palabras que tengan más de un pictograma asociado, la herramienta da la opción de elegir el pictograma al usuario mediante las flechas que aparecen encima del picto traducido.
 Para los artículos PictoTraductor deja por defecto la traducción literal de la palabra, pero como acabamos de mencionar deja la opción de poder cambiarlo a gusto del usuario, como vemos en la Figura \ref{fig:articulosPictoT}.
