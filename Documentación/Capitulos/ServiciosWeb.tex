@@ -1,32 +1,38 @@
 % !TeX encoding = ISO-8859-1
 
-\chapter{Servicios Web}
+\chapter{Servicio Web para la traducción de pictogramas a texto}
 \label{cap:serviciosWeb}
 	
-A lo largo de este capitulo trataremos de explicar los diferentes servicios web, que hemos implementado, para desarrollar cada una de las funcionalidades de nuestra aplicación.
+A lo largo de este capitulo se presentaran los diferentes servicios web, que hemos implementado, para la traducción de mensajes con pictogramas. En la Sección \ref{cap5:sec:Arquitectura} presentaremos la arquitectura de la aplicación y los diferentes principios en los que nos hemos basado para su implementación.
 
 %------------------------------------------------------------------
-\section{Principios de la arquitectura}
+\section{Arquitectura}
 %-------------------------------------------------------------------
-\label{cap5:sec:PrincipiosArquitectura}
+\label{cap5:sec:Arquitectura}
 
-Debido a que el proyecto está orientado a fusionarse dentro del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}, (proyecto que busca facilitar la inclusión digital, para aquellas personas que por diversidad   funcional, pueden tener problemas usando el lenguaje natural), el diseño de la arquitectura exigía un muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte back-end, y a componentes en la parte front-end, ambas partes serán explicadas en este capitulo más adelante, en ambos casos aplicando, el Principio de responsabilidad única(Single Responsability Principle)\footnote{https://devexperto.com/principio-responsabilidad-unica/}, Principio de segregación de la interfaz (Interface Segregation Principle)\footnote{https://hackernoon.com/interface-segregation-principle-bdf3f94f1d11}, y el Principio de inversión de dependencias (Dependency inversion principle).
-Estos tres principios forman parte de SOLID (Single responsibility, Open-closed, Liskov substitution, Interface segregation and Dependency inversion), descritos por Robert C. Martin\citep{martin2013agile} y buscan una alta modularidad y bajo acoplamiento entre los diferentes componentes de un producto software. 
+El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad   funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debiamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte back-end, y a componentes en la parte front-end. En ambas casos aplicando, hemos seguido los principios de responsabilidad única (Single Responsability Principle)\footnote{https://devexperto.com/principio-responsabilidad-unica/}, segregación de la interfaz (Interface Segregation Principle)\footnote{https://hackernoon.com/interface-segregation-principle-bdf3f94f1d11}, y de inversión de dependencias (Dependency inversion principle).
+Estos tres principios forman parte de SOLID (Single responsibility, Open-closed, Liskov substitution, Interface segregation and Dependency inversion), descritos por Robert C. Martin\citep{martin2013agile} y que buscan una alta modularidad y bajo acoplamiento entre los diferentes componentes de un producto software. Nuestra arquitectura se basa en los siguientes principios de SOLID:
 
-\subsection{Principio de responsabilidad única}
+\begin{itemize}
 
-El principio de responsabilidad única, promueve la separación de las clases para promover que cada clase haga una sola cosa, y no dependa de un tercero. Cada clase debe de ser responsable únicamente de su comportamiento y no tener dependencia de un tercero. Un ejemplo de violación de este principio es cuando en una misma clase, están involucradas dos capas diferentes de la arquitectura. Además este principio promueve la creación de múltiples clases muy simples, con lógica mínima, en contra de una clase con una lógica mayor, ya que está ultima produce un fuerte acoplamiento y disminuye la sostenibilidad del código. 
+\item El principio de responsabilidad única, promueve la separación de las clases para promover que cada clase haga una sola cosa, y no dependa de un tercero. Cada clase debe de ser responsable únicamente de su comportamiento y no tener dependencia de un tercero. Un ejemplo de violación de este principio es cuando en una misma clase, están involucradas dos capas diferentes de la arquitectura. Además este principio promueve la creación de múltiples clases muy simples, con lógica mínima, en contra de una clase con una lógica mayor, ya que está ultima produce un fuerte acoplamiento y disminuye la sostenibilidad del código. Por ejemplo en nuestro proyecto todos los Servicios Web, están organizados por diferentes clases, donde cada Servicio Web es independiente uno del otro.
 
-\subsection{Principio de segregación de la interfaz}
+\item El principio de segregación de la interfaz, es muy parecido al principio de responsabilidad única, ya que este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es la interfaz de peticiones de la aplicación angular donde todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
 
-Es muy parecido al principio de responsabilidad única, ya que este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es la interfaz de peticiones de la aplicación angular donde todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
+\item Principio de inversión de dependencias, consiste en evitar dependencias externas dentro del código, y que el código central de las aplicaciones no dependa de frameworks, de bases de datos o del como se conecten los diferentes servicios entre ellos. Normalmente se habla de que las clases de alto nivel no deben de depender de las clases de bajo nivel\footnote{https://devexperto.com/principio-de-inversion-de-dependencias/}, un ejemplo de esto en nuestra aplicación es el uso de Servicios Web, que reciben tipos básicos y devuelven los resultados en formato JSON.
 
-\subsection{ Principio de inversión de dependencias}
-
-Este principio busca, evitar dependencias externas dentro del código, y que el código central de las aplicaciones no dependa de frameworks, de bases de datos, el como se conecten los diferentes servicios entre ellos. Normalmente se habla de que las clases de alto nivel no deben de depender de las clases de bajo nivel\footnote{https://devexperto.com/principio-de-inversion-de-dependencias/}.
+\end{itemize}
 
 
+%------------------------------------------------------------------
+\section{Servicio de Generación de análisis de palabras}
+%-------------------------------------------------------------------
+\label{cap5:sec:ServicioAnalisis}
 
+Servicio de análisis de palabras (/translate/getWordAttrs?word='PalabraAClasificar'): este servicio web recibe a través de una petición GET una palabra tal y como podemos ver en la Figura \ref{fig:attrsRequest}.
+Una vez se lee la palabra de entrada, se carga el modulo de SpaCy del cual ya hemos hablado en el capitulo \ref{cap3:sec:SpaCy}, se carga su modelo de palabras en español, y obtenemos el token de la palabra recibida. Tratamos los dados devueltos por el token y creamos un objeto que devolverá la clasificación sintética de la palabra además de otras características como pueden ser el genero y el número, tal y como podemos ver en la Figura \ref{fig:attrsResponse}, que muestra una respuesta del servicio para la palabra ``Casa''.  
+\figura{Bitmap/ServiciosWeb/attrsRequest}{width=300px}{fig:attrsRequest}{Llamada al servicio web de clasificación de palabras}
+\figura{Bitmap/ServiciosWeb/attrsResponse}{width=300px}{fig:attrsResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
 %------------------------------------------------------------------
 \section{Servicio de Generación de Lenguaje Natural}
 %-------------------------------------------------------------------
@@ -93,10 +99,6 @@ Este segundo servicio web tiene diferentes end-points, accesibles desde /transla
 \figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:translateResponse}{Llamada al servicio web de traducción de pictogramas, para el pictograma 2317}
 \figura{Bitmap/ServiciosWeb/responsetranslateService}{width=300px}{fig:responsetranslateService}{Respuesta del servicio de traducciones de pictogramas}
 
-\item Servicio de clasificación de palabras (/translate/getWordAttrs?word='PalabraAClasificar'): este servicio web recibe a través de una petición GET una palabra tal y como podemos ver en la Figura \ref{fig:attrsRequest}.
-Una vez se lee la palabra de entrada, se carga el modulo de SpaCy del cual ya hemos hablado en el capitulo \ref{cap3:sec:SpaCy}, se carga su modelo de palabras en español, y obtenemos el token de la palabra recibida. Tratamos los dados devueltos por el token y creamos un objeto que devolverá la clasificación sintética de la palabra además de otras características como pueden ser el genero y el número, tal y como podemos ver en la Figura \ref{fig:attrsResponse}, que muestra una respuesta del servicio para la palabra ``Casa''.  
-\figura{Bitmap/ServiciosWeb/attrsRequest}{width=300px}{fig:attrsRequest}{Llamada al servicio web de clasificación de palabras}
-\figura{Bitmap/ServiciosWeb/attrsResponse}{width=300px}{fig:attrsResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
 
 \item Servicio de tiempo verbal ( /translate/getTypePhrase ): recibe una petición POST, con una lista de palabras ya clasificadas, tal y como podemos observar en la Figura \ref{fig:getTypeRequest}. Después de recibir la petición busca palabras clave en la lista de palabras recibida. Si detecta alguna palabra clave y un verbo, devuelve en una variable el tipo de frase que se debe de generar, tal y como podemos ver en la Figura \ref{fig:getTypeResponse}.  
   
@@ -104,9 +106,3 @@ Una vez se lee la palabra de entrada, se carga el modulo de SpaCy del cual ya he
 \figura{Bitmap/ServiciosWeb/getTypeResponse}{width=220px}{fig:getTypeResponse}{Llamada al servicio web de clasificación de palabras}
 
 \end{enumerate}
-
-\subsection{Servicio web de lanzamiento}
-
-Este servicio sirve para cargar la aplicación web, es decir es el punto de entrada, recibe la petición y carga la aplicación front-end Angular, desde la que el usuario podrá acceder a toda la funcionalidad. Este servicio además genera una cookie de sesión que enviara a la aplicación Angular en la primera petición. 
-
-
