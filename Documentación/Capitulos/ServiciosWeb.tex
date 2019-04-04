@@ -23,35 +23,48 @@ Estos tres principios forman parte de SOLID (Single responsibility, Open-closed,
 
 \end{itemize}
 
+El Servicio Web de Generación de Lenguaje Natural, utiliza Apache TomCat como contenedor, para encapsular la librería SimpleNLG-ES, y poder ser accesible desde el servicio web principal o cualquier otro servicio web del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}.
+
 
 %------------------------------------------------------------------
-\section{Servicio de Generación de análisis de palabras}
+\section{Servicio Clasificación De Palabras}
 %-------------------------------------------------------------------
-\label{cap5:sec:ServicioAnalisis}
+\label{cap5:sec:ServicioClasificaciónDePalabras}
 
-Servicio de análisis de palabras (/translate/getWordAttrs?word='PalabraAClasificar'): este servicio web recibe a través de una petición GET una palabra tal y como podemos ver en la Figura \ref{fig:attrsRequest}.
-Una vez se lee la palabra de entrada, se carga el modulo de SpaCy del cual ya hemos hablado en el capitulo \ref{cap3:sec:SpaCy}, se carga su modelo de palabras en español, y obtenemos el token de la palabra recibida. Tratamos los dados devueltos por el token y creamos un objeto que devolverá la clasificación sintética de la palabra además de otras características como pueden ser el genero y el número, tal y como podemos ver en la Figura \ref{fig:attrsResponse}, que muestra una respuesta del servicio para la palabra ``Casa''.  
+El Servicio Clasificación De Palabras (/translate/getWordAttrs?word), es accesible tanto por el método GET, como por el método POST, en la Figura \ref{fig:attrsRequest} podemos ver una llamada a este servicio con la palabra ``casa´´. Su finalidad es utilizando la librería Spacy, crear un objeto que devuelva la categoría léxica ( nombre, verbo, adjetivo...) y las características que Spacy devuelva, como puede ser el genero o el número, de la palabra o palabras que recibe, tal y como podemos en la Figura \ref{fig:attrsResponse}.
+Una vez se lee la palabra de entrada, en caso de que sea una petición GET, o el array de palabras en caso de una petición POST, se carga el modulo de SpaCy del cual ya hemos hablado en el capitulo \ref{cap3:sec:SpaCy}, posteriormente el modelo de palabras en español, y obtenemos el token de cada una de las palabras recibidas. 
+Tratamos los dados devueltos por el token y creamos el objeto que formara la respuesta, el cual contendrá la palabra con sus características, tal y como se ve en la Figura \ref{fig:attrsResponsePost}
 \figura{Bitmap/ServiciosWeb/attrsRequest}{width=300px}{fig:attrsRequest}{Llamada al servicio web de clasificación de palabras}
 \figura{Bitmap/ServiciosWeb/attrsResponse}{width=300px}{fig:attrsResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
+\figura{Bitmap/ServiciosWeb/attrsResponsePost}{width=400px}{fig:attrsResponsePost}{Respuesta del Servicio Web de Clasificación de Palabras a una petición POST} 
+
+%------------------------------------------------------------------
+\section{Servicio de Detección del Tiempo Verbal}
+%-------------------------------------------------------------------
+\label{cap5:sec:ServiciodeDeteccióndelTiempoVerbal}
+
+Servicio de tiempo verbal ( /translate/getTypePhrase ): recibe una petición POST, con una lista de palabras ya clasificadas, tal y como podemos observar en la Figura \ref{fig:getTypeRequest}. Después de recibir la petición busca palabras clave en la lista de palabras recibida. Si detecta alguna palabra clave, devuelve en un JSON con el tipo de frase que se debe de generar, tal y como podemos ver en la Figura \ref{fig:getTypeResponse}.  
+  
+\figura{Bitmap/ServiciosWeb/getTypeRequest}{width=400px}{fig:getTypeRequest}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
+\figura{Bitmap/ServiciosWeb/getTypeResponse}{width=220px}{fig:getTypeResponse}{Llamada al servicio web de clasificación de palabras}
+
+
 %------------------------------------------------------------------
 \section{Servicio de Generación de Lenguaje Natural}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioGLN}
-Como ya hemos hablado anteriormente, hemos utilizado el framework SimpleNLG-ES\footnote{https://github.com/citiususc/SimpleNLG-ES}, para la fase de generación del lenguaje. Este framework está escrito en Java, lo que impide su utilización dentro de nuestro servicio web central desarrollado en Python 3.
 
-Este Servicio Web utiliza Apache TomCat como contenedor, para encapsular el framework SimpleNLG-ES, y poder ser accesible desde el servicio web principal o cualquier otro servicio web del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}.  
+Como ya hemos hablado anteriormente, hemos utilizado la librería SimpleNLG-ES\footnote{https://github.com/citiususc/SimpleNLG-ES}.
+Este servicio web recibe un JSON con un array de strings, tal y como podemos ver en la Figura \ref{fig:nlgResponse}, y su finalidad es devolver una frase con las palabras recibidas en la llamada. En la Figura \ref{fig:nlgRequest} podemos ver la respuesta de este servicio a la llamada de las palabras ``perro, rápido, comer, pan, duro´´.
 
-Este servicio web recibe un JSON con un simple array de palabras, tal y como podemos ver en la Figura \ref{fig:nlgRequest}. Esta petición puede ser parseada gracias al framework GSON visto en el Capitulo \ref{cap3:sec:GSON} para obtener una clase Java con la cual formaremos la frase en lenguaje natural, la cual se devuelve en la respuesta del servicio, en texto plano tal y como podemos ver en la Figura \ref{fig:nlgResponse}.
-\figura{Bitmap/EstadoDeLaCuestion/nlgRequest}{width=300px}{fig:nlgRequest}{Petición al servicio de creación del lenguaje}
-\figura{Bitmap/EstadoDeLaCuestion/nlgResponse}{width=300px}{fig:nlgResponse}{Respuesta del servicio de creación del lenguaje}
+\figura{Bitmap/ServiciosWeb/responseTranslateService}{width=300px}{fig:nlgResponse}{Petición al servicio de creación del lenguaje}
+\figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:nlgRequest}{Respuesta del servicio de creación del lenguaje}
 
-\section{Fases del proceso}
 
-En está sección vamos a explicar, las diferentes fases que transforman la entrada del servicio de generación de lenguaje hasta obtener una frase valida.
+Una vez el servidor recibe la petición Post, la librería GSON se encarga de parsear la entrada para convertir el JSON en un ArrayList de Strings, dado que Java reconoce los JSON como una cadena de texto, y utilizando esta librería podemos obtener una clase implementada usando el JSON en formato string y el tipo de clase que se desea obtener.
+Una vez la entrada está transformada de manera correcta, se llama al Servicio Web de Clasificación de palabras, a traves de una petición POST
 
-\subsection{Preparación}
-Una vez el servidor recibe la petición Post, el frameword GSON se encarga de parsear la entrada para devolver un array de palabras, el cual se enviara al sistema generador de lenguaje.
-Una vez el sistema recibe el array de palabras, se preparan están palabras para su posterior tratamiento organizandolas según la categoría léxica, que se recibe en el JSON gracias al sistema de procesamiento de lenguaje natural, del cual hablaremos más adelante.
+
 Con el resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir la lista de palabras en aquellas que formaran el sujeto y aquellas que formaran el objecto y el verbo. Cabe destacar que SimpleNLG, al generar los objectos palabras, desecha tanto el genero como el numero, los cuales se añaden a posteriori. 
 
 \subsection{Sujeto}
@@ -74,6 +87,7 @@ El tiempo verbal de la frase se escoge, dependiendo de la llamada que  reciba el
 
 Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase se guarda en una variable la cual se devolverá en la respuesta del servicio.
 
+
 %------------------------------------------------------------------
 \section{Servicios Web en Django}
 %-------------------------------------------------------------------
@@ -93,16 +107,7 @@ Este servicio lanza una petición GET a un servicio web externo de la API de ARAA
 \subsection{Servicio web de traducción}
 
 Este segundo servicio web tiene diferentes end-points, accesibles desde /translate:
-\begin{enumerate}
 
-\item Servicio de traducción de pictogramas (/translate/getPictoTranslate?pictoId='XXXX'): recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
+Servicio de traducción de pictogramas (/translate/getPictoTranslate?pictoId='XXXX'): recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
 \figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:translateResponse}{Llamada al servicio web de traducción de pictogramas, para el pictograma 2317}
 \figura{Bitmap/ServiciosWeb/responsetranslateService}{width=300px}{fig:responsetranslateService}{Respuesta del servicio de traducciones de pictogramas}
-
-
-\item Servicio de tiempo verbal ( /translate/getTypePhrase ): recibe una petición POST, con una lista de palabras ya clasificadas, tal y como podemos observar en la Figura \ref{fig:getTypeRequest}. Después de recibir la petición busca palabras clave en la lista de palabras recibida. Si detecta alguna palabra clave y un verbo, devuelve en una variable el tipo de frase que se debe de generar, tal y como podemos ver en la Figura \ref{fig:getTypeResponse}.  
-  
-\figura{Bitmap/ServiciosWeb/getTypeRequest}{width=400px}{fig:getTypeRequest}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
-\figura{Bitmap/ServiciosWeb/getTypeResponse}{width=220px}{fig:getTypeResponse}{Llamada al servicio web de clasificación de palabras}
-
-\end{enumerate}

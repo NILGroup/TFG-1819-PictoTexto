@@ -1,5 +1,4 @@
 package NLG;
-import simplenlg.features.Gender;
 
 
 public class Attributes {

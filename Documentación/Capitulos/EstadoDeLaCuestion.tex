@@ -94,7 +94,7 @@ El sistema pictogáfico Bliss\citep{Eugene1985} fue creado con la idea de ser un 
 \figura{Bitmap/EstadoDeLaCuestion/blissSilla}{width=50px}{fig:pictoBlisSilla}{Picograma Bliss que representa una silla.}
 	\item Símbolos ideográficos: expresan una idea, no describen el objeto, por ejemplo en la Figura \ref{fig:pictoBlisHogar} podemos ver el símbolo de hogar, el cual tiene un corazón que significa sentimientos y que es no es algo tangible, con una casa.
 	\figura{Bitmap/EstadoDeLaCuestion/blissHogar}{width=100px}{fig:pictoBlisHogar}{Creación de la palabra hogar en el sistema Bliss}
-	\item Símbolos arbitrarios: expresan un concepto abstracto y el símbolo no guarda ningún relación con el objeto representado, como podemos observar en la Figura \ref{fig:blissArbitrario},donde aparece el pictograma para la conjunción "porque", que es un concepto abstracto.
+	\item Símbolos arbitrarios: expresan un concepto abstracto y el símbolo no guarda ningún relación con el objeto representado, como podemos observar en la Figura \ref{fig:blissArbitrario},donde aparece el pictograma para la conjunción ``porque´´, que es un concepto abstracto.
 \figura{Bitmap/EstadoDeLaCuestion/blissPorque}{width=100px}{fig:blissArbitrario}{Pictograma Bliss que significa porque.}
 
 
@@ -144,11 +144,11 @@ Además, ARASAAC permite añadir un marco al borde del pictograma, dicho marco sir
 
 \figura{Bitmap/EstadoDeLaCuestion/borde}{width=150px}{fig:bordes}{Ejemplo de bordes de color en pictogramas}
 
-En ARASAAC existen también pictogramas más complejos que expresan frases hechas tal y como podemos observar en el pictograma asociado a la acción \textit{"sacar al perro"} en la Figura \ref{fig:fraseHecha}.
+En ARASAAC existen también pictogramas más complejos que expresan frases hechas tal y como podemos observar en el pictograma asociado a la acción \textit{``sacar al perro´´} en la Figura \ref{fig:fraseHecha}.
 
 \figura{Bitmap/EstadoDeLaCuestion/sacarAlPerro}{width=150px}{fig:fraseHecha}{Ejemplo de un pictograma complejo}
 
-En ARASAAC hay palabras que pueden tener varios pictogramas asociados, por ejemplo tal y como se puede observar en la Figura \ref{fig:telefono}, la palabra \textit{"teléfono"} tiene diferentes pictogramas asociados, y el uso de un pictograma u otro dependerá del nivel cognitivo del usuario, el contexto de la frase, etc.
+En ARASAAC hay palabras que pueden tener varios pictogramas asociados, por ejemplo tal y como se puede observar en la Figura \ref{fig:telefono}, la palabra \textit{``teléfono´´} tiene diferentes pictogramas asociados, y el uso de un pictograma u otro dependerá del nivel cognitivo del usuario, el contexto de la frase, etc.
 \figura{Bitmap/EstadoDeLaCuestion/telefono}{width=300px}{fig:telefono}{Ejemplo de palabra con diferentes pictogramas}
 
 En ARASAAC los verbos carecen de conjugación como podemos observar en la Figura \ref{fig:traduccion3} donde se puede ver que no existen conjugaciones. Los tiempos verbales: presente, pasado o futuro quedan determinados por los pictogramas de ayer, hoy o mañana, como podemos observar en la Figura \ref{fig:traduccion5}, que ayudan a dar tiempo verbal a la frase. 
@@ -207,7 +207,7 @@ Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo e
 
 \item Macro planificación. Etapa donde se debe seleccionar el contenido que se desea convertir a texto. Para que el texto generado sea coherente es preciso estructurar el contenido del mismo en el orden correcto. La salida de esta fase es el denominado plan del documento, una estructura de datos que suele ser un árbol, donde en cada nodo se encapsula la información más importante que debe formar parte de un párrafo o de una frase, además de información de como se relaciona con el resto de nodos. En la Figura \ref{fig:macroplanificacion} podemos ver un ejemplo de la salida de esta etapa, en la que se puede ver una estructura del párrafo obtenida tras terminar la macro planificación,en el árbol resultante podemos observar la secuencia temporal que tendrá el párrafo.
 \figura{Bitmap/EstadoDeLaCuestion/macroplanificacion}{width=250px}{fig:macroplanificacion}{Árbol representativo de la fase de macro planificación en GLN.}
-\item Micro planificación. Partiendo de la salida de la macro planificación, se determinan que partes formaran el texto resultado, agregando las estructuras que formaran parte de este, el léxico que se utilizara para expresar los conceptos y los hechos recogidos en la primera etapa y la generación de expresiones que aparecerán en el texto.  Siguiendo el ejemplo de visto en la Macro planificación se pueden generar frases como "El viento a las 6:00" o "a las 15:00 el viento cambio", donde el referente común es "el viento".
+\item Micro planificación. Partiendo de la salida de la macro planificación, se determinan que partes formaran el texto resultado, agregando las estructuras que formaran parte de este, el léxico que se utilizara para expresar los conceptos y los hechos recogidos en la primera etapa y la generación de expresiones que aparecerán en el texto.  Siguiendo el ejemplo de visto en la Macro planificación se pueden generar frases como ``El viento a las 6:00´´ o ``a las 15:00 el viento cambio´´, donde el referente común es ``el viento´´.
 \item Realización. El objetivo de esta fase es la realización de las oraciones finales que se utilizaran, así como la estructura final que tendrá el texto. La generación o realización del texto se puede dividir en dos partes realización lingüística en la que se determina la representación en palabras del texto de salida es decir se forman las oraciones, y la realización de la estructura en la que se genera el texto en el formato correcto para su visualización en un medio determinado, como puede ser HTML, o un documento Latex, tal y como podemos ver en la \ref{Appendix:Key1}.
 \figura{Bitmap/EstadoDeLaCuestion/RealizacionSalida}{width=250px}{fig:realizacionSalida}{Salida de la fase de la realización donde podemos ver la estructura final en HTML a la izquierda y Latex a la derecha.}
 
@@ -239,7 +239,7 @@ A nivel técnico, los servicios web más usados suelen ser de dos tipos.
 \begin{itemize}
  \item SOAP. Utilizan el lenguaje XML para poder comunicarse utilizando el protocolo SOAP (Simple Object Access Protocol), este lenguaje es usado tanto para definir la arquitectura como el formato de los mensajes. Estos tipos de servicios deben contener un lenguaje legible para la máquina con la descripción de operaciones ofrecidas por el servicio escrito en WSDL (Web Services Description Language), el cuál está basado también en XML con el fin de definir interfaces sintácticamente.
  
-  \item Restfull (Representational State Transfer Web Services).  Los servicios web Restfull utilizan estándares tales como: SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura la cuál podríamos llamar "ligera", ya que utilizan las herramientas mínimas para formar los servicios. Por ello, el desarrollo de este tipo de servicios son baratos y su adaptación es poco costosa. Son más adecuados para integraciones básicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
+  \item Restfull (Representational State Transfer Web Services).  Los servicios web Restfull utilizan estándares tales como: SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura la cuál podríamos llamar ``ligera´´, ya que utilizan las herramientas mínimas para formar los servicios. Por ello, el desarrollo de este tipo de servicios son baratos y su adaptación es poco costosa. Son más adecuados para integraciones básicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
    
 \end{itemize}
 

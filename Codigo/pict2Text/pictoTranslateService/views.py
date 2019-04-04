@@ -43,6 +43,8 @@ def getWordAttrs(request):
             words=[];
             for word in body:
                 words.append({'keyword':word, 'attrs': getAttrs(nlp,word)})
+
+            print(json.dumps(words, indent=4, sort_keys=True))
             return JsonResponse(words, status=200, safe=False)
         else:
             response = {'message': "405 Method Not Allowed"}
@@ -70,6 +72,7 @@ def getAttrs(nlp,word):
 def getTypePhrase(request):
     response = {'Type': "present"}
     if request.method == "POST":
+        print(request.body)
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         for picto in body:
