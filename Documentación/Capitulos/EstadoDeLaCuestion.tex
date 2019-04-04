@@ -230,9 +230,7 @@ El WC3 (World Wide Web Consortium) define un Servicio Web como\footnote{https://
 
 Los servicios web fueron creados para solucionar el problema de la interoperabilidad entre las distintas aplicaciones. En los 90, el gran objetivo era poder integrar diferentes aplicaciones dentro del mismo servicio. Decimos que estas aplicaciones son distintas, ya que pueden estar desarrolladas en muchos lenguajes de programación como son: C++, Java,etc. Y ejecutarse tanto en Unix, en un PC, o un computador mainframe.
 Por todas  estas diferencias, no existía una forma fácil de comunicar todas las aplicaciones entre sí. El desarrollo de XML, propició poder compartir datos entre ellas a través de la red, o de Internet. 
-
 \figura{Bitmap/EstadoDeLaCuestion/serviciosWeb}{width=300px}{fig:servicioWeb}{Estructura servicios Web.}
-
 
 A nivel técnico, los servicios web más usados suelen ser de dos tipos.
 
@@ -272,14 +270,14 @@ Las tres principales desventajas de los servicios web son\footnote{http://fabioa
 %-------------------------------------------------------------
 \label{cap2:sec:Sistema de traducción texto-picto}
 Es muy importante destacar que no se ha encontrado ninguna herramienta que haga la traducción de picto a texto que se planea realizar en este trabajo. 
-En esta sección se presentan los sistemas de traducción texto a picto existentes, estos sistemas hacen la traducción inversa a lo que se pretende hacer en este TFG y nos ayudarán tomándolos como base para realizar nuestro proyecto. 
+Por ello, en esta sección se presentan los sistemas de traducción texto a picto existentes, estos sistemas hacen la traducción inversa a lo que se pretende hacer en este TFG y nos ayudarán tomándolos como base para realizar nuestro proyecto. 
 
 \subsection{Araword}
-Araword\footnote{http://www.arasaac.org/software.php} es una aplicación gratuita creada por Arasacc, que permite la traducción simultanea de texto a pictograma.
+Araword\footnote{http://www.arasaac.org/software.php} es una aplicación gratuita que utiliza los pictogramas propios de Arasacc, lo cuál permite la traducción simultanea de texto a pictograma.
 
 Esta herramienta tiene como objetivo principal facilitar la elaboración de materiales con pictogramas. Es similar a un editor de textos tal y como se puede ver en la Figura \ref{fig:articulosAraword}, se comienza con un documento en blanco y se van escribiendo frases en lenguaje natural que se van traduciendo a pictogramas. 
 Cada vez que se introduce una palabra en el editor, la propia herramienta es la que se encarga de traducirla a pictograma automáticamente. Cuando las palabras tienen varios pictogramas asociados, Araword te muestra uno de ellos dando la posibilidad de poder elegir otro pictograma si este no se considera el más adecuado.
-En Araword utiliza la gran variedad de artículos que le proporciona Arasaac, como podemos ver en la Figura \ref{fig:articulosAraword}.
+Araword utiliza la gran variedad de artículos que le proporciona Arasaac, como podemos ver en la Figura \ref{fig:articulosAraword}.
 \figura{Bitmap/EstadoDeLaCuestion/articulosAraword}{width=300px}{fig:articulosAraword}{Ejemplo de traducción de artículos en Araword.}
 El caso de las preposiciones es muy parecido al de los artículos en donde gracias a Arasaac la aplicación posee una gran variedad de pictogramas para representarlas, como aparece en la Figura \ref{fig:preposicionAraword}.
 \figura{Bitmap/EstadoDeLaCuestion/preposicionAraword}{width=300px}{fig:preposicionAraword}{Ejemplo preposiciones Araword.}\\
@@ -291,12 +289,15 @@ En la Figura \ref{fig:ejemploAraword} se muestra un ejemplo de la traducción hec
 \subsection{PictoTraductor}
 PictoTraductor\footnote{https://www.pictotraductor.com/} es una aplicación web pensada y desarrollada para facilitar la comunicación mediante pictogramas. Principalmente está dirigida a padres y profesionales, para traducir textos a pictogramas y así poder comunicarse con sus hijos o pacientes que solo entienden pictogramas y no lenguaje natural.
 
-La interfaz de la aplicación se puede ver en la Figura \ref{fig:pictoTraductor}. Consta de una barra de búsqueda en la que se introduce el texto que se quiere traducir a pictogramas. A medida que se va escribiendo una palabra se va mostrando el pictograma que representa el texto introducido en la parte inferior. Para las palabras que tengan más de un pictograma asociado, la herramienta da la opción de elegir el pictograma al usuario mediante las flechas que aparecen encima del picto traducido.
+La interfaz de la aplicación se puede ver en la Figura\ref{fig:pictoTraductor}.
+\figura{Bitmap/EstadoDeLaCuestion/pictoTraductor}{width=300px}{fig:pictoTraductor}{Interfaz de PictoTraductor.}
+Consta de una barra de búsqueda en la que se introduce el texto que se quiere traducir a pictogramas. A medida que se va escribiendo una palabra se va mostrando el pictograma que representa el texto introducido en la parte inferior. Para las palabras que tengan más de un pictograma asociado, la herramienta da la opción de elegir el pictograma al usuario mediante las flechas que aparecen encima del picto traducido.
 Para los artículos, PictoTraductor prsenta por defecto la palabra literal,  dejando la opción de poder cambiarlo a otro pictograma cuyo significado sea el mismo, como vemos en la Figura \ref{fig:articulosPictoT}.
 \figura{Bitmap/EstadoDeLaCuestion/articulosPictoT}{width=300px}{fig:articulosPictoT}{Ejemplo traduccíon de los artículos en PictoTraductor.}
 Para las preposiciones aparece un solo pictograma como parece en la Figura \ref{fig:preposicionPictoT}.
 \figura{Bitmap/EstadoDeLaCuestion/preposicionPictoT}{width=300px}{fig:preposicionPictoT}{Ejemplo traducción de las preposiciones en PictoTraductor.}\\
-PictoTraductor no encuentra el pictograma asociado a una palabra se muestra una imagen con la traducción literal de la palabra. Por último la traducción de los diferentes tiempos verbales en la frases es siempre la misma, el infinitivo, tal y como se puede ver en la Figura \ref{}.
+PictoTraductor no encuentra el pictograma asociado a una palabra se muestra una imagen con la traducción literal de la palabra. Por último la traducción de los diferentes tiempos verbales en la frases es siempre la misma, el infinitivo, tal y como se puede ver en la Figura\ref{fig:pictoTverbos}.
+\figura{Bitmap/EstadoDeLaCuestion/pictoTverbos}{width=300px}{fig:pictoTverbos}{Ejemplo traducción de tiempos verbales en PictoTraductor.}
 
 \subsection{Pictar}
 Pictar \citep{MartinGuerrero2018} es una aplicación web que permite traducir de texto a pictogramas. En la Figura \ref{fig:pictar} se muestra el aspecto general de la herramienta \figura{Bitmap/EstadoDeLaCuestion/pictar}{width=300px}{fig:pictar}{Página inicial de pictar}.
