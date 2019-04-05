@@ -20,8 +20,10 @@ public class Attributes {
 		return Type;
 	}
 	public Boolean getGender() {
-		return Gender.compareToIgnoreCase("Masc")==0;
-		
+		if(this.Gender!=null)
+			return Gender.compareToIgnoreCase("Masc")==0;
+		else
+			return true;
 	}
 	public boolean getNumber() {
 		if(Number.compareToIgnoreCase("Sing")==0) {

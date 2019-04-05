@@ -31,7 +31,7 @@ El Servicio Web de Generación de Lenguaje Natural, utiliza Apache TomCat como co
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioClasificaciónDePalabras}
 
-El Servicio Clasificación De Palabras (/translate/getWordAttrs?word), es accesible tanto por el método GET, como por el método POST, en la Figura \ref{fig:attrsRequest} podemos ver una llamada a este servicio con la palabra ``casa´´. Su finalidad es utilizando la librería Spacy, crear un objeto que devuelva la categoría léxica ( nombre, verbo, adjetivo...) y las características que Spacy devuelva, como puede ser el genero o el número, de la palabra o palabras que recibe, tal y como podemos en la Figura \ref{fig:attrsResponse}.
+El Servicio Clasificación De Palabras \footnote{/translate/getWordAttrs}, es accesible tanto por el método GET\footnote{/translate/getWordAttrs?word=`NombrePalabra'}, como por el método POST, en la Figura \ref{fig:attrsRequest} podemos ver una llamada a este servicio con la palabra ``casa". Su finalidad es utilizando la librería Spacy, crear un objeto que devuelva la categoría léxica ( nombre, verbo, adjetivo...) y las características que Spacy devuelva, como puede ser el genero o el número, de la palabra o palabras que recibe, tal y como podemos en la Figura \ref{fig:attrsResponse}.
 Una vez se lee la palabra de entrada, en caso de que sea una petición GET, o el array de palabras en caso de una petición POST, se carga el modulo de SpaCy del cual ya hemos hablado en el capitulo \ref{cap3:sec:SpaCy}, posteriormente el modelo de palabras en español, y obtenemos el token de cada una de las palabras recibidas. 
 Tratamos los dados devueltos por el token y creamos el objeto que formara la respuesta, el cual contendrá la palabra con sus características, tal y como se ve en la Figura \ref{fig:attrsResponsePost}
 \figura{Bitmap/ServiciosWeb/attrsRequest}{width=300px}{fig:attrsRequest}{Llamada al servicio web de clasificación de palabras}
@@ -39,15 +39,14 @@ Tratamos los dados devueltos por el token y creamos el objeto que formara la res
 \figura{Bitmap/ServiciosWeb/attrsResponsePost}{width=400px}{fig:attrsResponsePost}{Respuesta del Servicio Web de Clasificación de Palabras a una petición POST} 
 
 %------------------------------------------------------------------
-\section{Servicio de Detección del Tiempo Verbal}
+\section{Servicio de Detección de Tiempo Verbal}
 %-------------------------------------------------------------------
-\label{cap5:sec:ServiciodeDeteccióndelTiempoVerbal}
+\label{cap5:sec:ServiciodeDeteccióndeTiempoVerbal}
 
-Servicio de tiempo verbal ( /translate/getTypePhrase ): recibe una petición POST, con una lista de palabras ya clasificadas, tal y como podemos observar en la Figura \ref{fig:getTypeRequest}. Después de recibir la petición busca palabras clave en la lista de palabras recibida. Si detecta alguna palabra clave, devuelve en un JSON con el tipo de frase que se debe de generar, tal y como podemos ver en la Figura \ref{fig:getTypeResponse}.  
+Servicio de Detección de Tiempo Verbal \footnote{/translate/getTypePhrase}, recibe una petición POST, con una lista de palabras,al igual que el Servicio Web de Clasificación de Palabras. Después de recibir la petición busca palabras clave en la lista de palabras recibida. Si detecta alguna palabra clave, devuelve en un JSON con el tipo de frase que se debe de generar, tal y como podemos ver en la Figura \ref{fig:getTypeResponse}. 
+El servicio permite clasificar frases tanto en pasado, como en futuro y presente en caso de no haber ninguna palabra clave.
   
-\figura{Bitmap/ServiciosWeb/getTypeRequest}{width=400px}{fig:getTypeRequest}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
-\figura{Bitmap/ServiciosWeb/getTypeResponse}{width=220px}{fig:getTypeResponse}{Llamada al servicio web de clasificación de palabras}
-
+\figura{Bitmap/ServiciosWeb/getTypeResponse}{width=300px}{fig:getTypeResponse}{Servicio de Detección de Tiempo Verbal} 
 
 %------------------------------------------------------------------
 \section{Servicio de Generación de Lenguaje Natural}
@@ -55,50 +54,41 @@ Servicio de tiempo verbal ( /translate/getTypePhrase ): recibe una petición POST
 \label{cap5:sec:ServicioGLN}
 
 Como ya hemos hablado anteriormente, hemos utilizado la librería SimpleNLG-ES\footnote{https://github.com/citiususc/SimpleNLG-ES}.
-Este servicio web recibe un JSON con un array de strings, tal y como podemos ver en la Figura \ref{fig:nlgResponse}, y su finalidad es devolver una frase con las palabras recibidas en la llamada. En la Figura \ref{fig:nlgRequest} podemos ver la respuesta de este servicio a la llamada de las palabras ``perro, rápido, comer, pan, duro´´.
+El servicio de generación de lenguaje natural \footnote{/NLGWebService/createPhrase}
+) recibe un JSON con un array de strings, tal y como podemos ver en la Figura \ref{fig:nlgResponse}, y su finalidad es devolver una frase con las palabras recibidas en la llamada. En la Figura \ref{fig:nlgRequest} podemos ver la respuesta de este servicio a la llamada de las palabras ``perro, rápido, comer, pan, duro".
 
 \figura{Bitmap/ServiciosWeb/responseTranslateService}{width=300px}{fig:nlgResponse}{Petición al servicio de creación del lenguaje}
 \figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:nlgRequest}{Respuesta del servicio de creación del lenguaje}
 
 
-Una vez el servidor recibe la petición Post, la librería GSON se encarga de parsear la entrada para convertir el JSON en un ArrayList de Strings, dado que Java reconoce los JSON como una cadena de texto, y utilizando esta librería podemos obtener una clase implementada usando el JSON en formato string y el tipo de clase que se desea obtener.
-Una vez la entrada está transformada de manera correcta, se llama al Servicio Web de Clasificación de palabras, a traves de una petición POST
+Una vez el servidor recibe la petición Post, la librería GSON se encarga de parsear la entrada para convertir el JSON de entrada en un ArrayList de Strings. Este paso es necesario dado que Java reconoce los JSON como una cadena de texto, y utilizando esta librería podemos conseguir una clase implementada usando un JSON y el tipo de clase Java representado por el JSON.
+
+Cuando la entrada es transformada de manera correcta, se llama al Servicio Web de Clasificación de Palabras, a través de una petición POST, y usando también una petición POST con los mismos datos se llama al Servicio Web de Detección de Tiempo Verbal, y de esa manera obtenemos el tiempo verbal en el que se debe conjugar la frase.
+
+Gracias al resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir la lista de palabras en aquellas que formaran el sujeto (aquellas que están antes del verbo) y aquellas que formaran el objecto (palabras encontradas después del verbo).
+
+Una vez identificadas las palabras que forman parte del sujeto se pasa a procesar el sujeto de la frase. En este proceso se configura un determinante en caso de que sea necesario, es decir si es un nombre común por ejemplo ``corredor, perro, bailarina", por defecto el determinante es \textit{ el o la},por ejemplo ``corredora,rapido'' generara ``La corredora rapida''.En palabra principal sea un determinante como ``el, ella, nosotros", no se añade ningún determinante. Además, se obtiene el genero y numero del nombre principal del sujeto, para proceder a la configuración de los mismos de todo el sujeto, de manera que si el nombre es femenino plural como por ejemplo ``mujeres, contento'' el sujeto resultante sera ''Las mujeres contentas''.
+
+De la misma manera que con el sujeto, se recorre el array de palabras objeto, y si se encuentran palabras de categoría léxica ``nombre'' se configura la parte objeto del predicado utilizando el genero y numero obtenido. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera `` galletas duras''.
+
+El tiempo verbal de la frase se escoge, dependiendo de la respuesta del Servicio de Detección de Tiempo Verbal. Diferenciamos tres tipos de respuesta,
+pasado, futuro y presente que es la configuración de tiempo verbal por defecto.
+
+En caso de encontrar un adverbio se fuerza su posición al final de la frase que formara el objeto, si se encuentra dentro del array de palabras objecto,  de manera que si las palabras que conformaran la frase final contienen ``profesora,comer,ayer,galletas,duro'', la frase resultante sera ``La profesora comío galletas duras ayer''. En caso de encontrar el adverbio dentro del array de palabras del sujeto se pondrá al final del sujeto, y así la entrada ``profesora ayer,comer,galletas,duro'' generara la frase ``La profesora ayer comío galletas duras''
 
 
-Con el resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir la lista de palabras en aquellas que formaran el sujeto y aquellas que formaran el objecto y el verbo. Cabe destacar que SimpleNLG, al generar los objectos palabras, desecha tanto el genero como el numero, los cuales se añaden a posteriori. 
-
-\subsection{Sujeto}
-
-Una vez tenemos el subarray de palabras ya clasificadas que formaran el sujeto se pasa a procesar el sujeto de la frase. En este proceso se configura un determinante en caso de que sea necesario, por defecto el determinante es \textit{ el o la}. Además se reconoce el genero y numero del nombre principal del sujeto, para proceder a la configuración de los mismos de todo el sujeto. 
-
-\subsection{Objeto}
-
-De la misma manera que con el sujeto, se recorre el sujeto añadiendo una a una las palabras como complemento del objeto, para después añadirlo a la frase.
-
-\subsection{Tiempo verbal}
-
-El tiempo verbal de la frase se escoge, dependiendo de la llamada que  reciba el servicio. Existen tres end-points :  /createSimplePhrase en la Figura \ref{fig:simplePhrase} podemos ver una petición para generar una  frase en presente, /createFuturePhrase en la Figura \ref{fig:futurePhrase} una llamada para frases en futuro y por ultimo la llamada a /createPastPhrase para crear una frase en pasado, en la Figura  \ref{fig:simplePhrase} podemos ver un ejemplo de esta.
-
-\figura{Bitmap/ServiciosWeb/presentPhrase}{width=400px}{fig:simplePhrase}{Petición de creación de frase simple en presente}
-\figura{Bitmap/ServiciosWeb/FuturePhrase}{width=400px}{fig:futurePhrase}{Petición de creación de frase simple en futuro}
-\figura{Bitmap/ServiciosWeb/pastPhrase}{width=400px}{fig:pastPhrase}{Petición de creación de frase simple en pasado}
-
-\subsection{Realización y envió}
-
-Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase se guarda en una variable la cual se devolverá en la respuesta del servicio.
-
+Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase sera devuelto en la respuesta del servicio tal y como podemos ver en la Figura \ref{fig:nlgRequest}, para la entrada ``perro, rápido, comer, pan, duro''
 
 %------------------------------------------------------------------
-\section{Servicios Web en Django}
-%-------------------------------------------------------------------
-\label{cap5:sec:ServiciosDjango}
+\section{Servicios para la gestión de pictogramas} %-------------------------------------------------------------------
+\label{cap5:sec:ServiciosParaPictos}
 
-Para la obtención de los pictogramas, así como su significado se han implementado una serie de servicios web que hacen uso de la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Estos servicios se han desarrollado usando el FrameWork Django, del cual ya hemos hablado anteriormente.
-A continuación pasaremos a desarrollar los diferentes servicios web desarrollados:
+Para la obtención de los pictogramas, así como su significado se han implementado una serie de servicios web que hacen uso de la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. 
+En esta subsección pasaremos a desarrollar los diferentes servicios web, que utilizamos para llamar a la API de ARASAAC, y crear las respuestas necesarias:
 
 \subsection{Servicio web de búsqueda}
 
-Este servicio web (/picto/getPicto?pictoName='NombrePictograma'), recibe una palabra a través de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON.
+Este servicio web \footnote{/picto/getPicto?pictoName=`NombrePictograma'}, recibe una palabra a través de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON.
 \figura{Bitmap/ServiciosWeb/pictoFinderRequest}{width=400px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
 Este servicio lanza una petición GET a un servicio web externo de la API de ARAASAC, el cual devuelve una lista de pictogramas. Esta respuesta es tratada, filtrando y obteniendo aquellos datos que son realmente necesarios, para crear una lista de objetos. Cada objeto tendrá un identificador de un pictograma, asociado a la palabra recibida, de la base de datos de ARASAAC, la URL al archivo de imagen alojado en los servidores de ARASAAC y el significado de ese pictograma. Una vez toda la información es tratada y se crea la lista de objetos, se genera un JSON que se devuelve en la respuesta del servicio.
 
@@ -108,6 +98,6 @@ Este servicio lanza una petición GET a un servicio web externo de la API de ARAA
 
 Este segundo servicio web tiene diferentes end-points, accesibles desde /translate:
 
-Servicio de traducción de pictogramas (/translate/getPictoTranslate?pictoId='XXXX'): recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
+Servicio de traducción de pictogramas\footnote{/translate/getPictoTranslate?pictoId='XXXX'} recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
 \figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:translateResponse}{Llamada al servicio web de traducción de pictogramas, para el pictograma 2317}
 \figura{Bitmap/ServiciosWeb/responsetranslateService}{width=300px}{fig:responsetranslateService}{Respuesta del servicio de traducciones de pictogramas}

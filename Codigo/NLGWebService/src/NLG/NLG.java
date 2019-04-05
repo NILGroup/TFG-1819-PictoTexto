@@ -1,13 +1,9 @@
 package NLG;
 
-import java.util.Map.Entry;
-
 import simplenlg.features.Feature;
-import simplenlg.features.Form;
 import simplenlg.features.Gender;
 import simplenlg.features.LexicalFeature;
 import simplenlg.features.Tense;
-import simplenlg.framework.ElementCategory;
 import simplenlg.framework.LexicalCategory;
 import simplenlg.framework.NLGElement;
 import simplenlg.framework.NLGFactory;
@@ -18,10 +14,7 @@ import simplenlg.realiser.spanish.*;
 import simplenlg.phrasespec.*;
 
 import java.util.List;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import static java.nio.charset.StandardCharsets.*;
 
 public class NLG {
 
@@ -31,7 +24,6 @@ public class NLG {
 	private SPhraseSpec simplePhrase;
 	private String output;
 	private NLGFactory factory;
-	private SPhraseSpec s1;
 
 	public NLG() {
 		this.lexicon = new XMLLexicon();
@@ -48,7 +40,7 @@ public class NLG {
 		return instance;
 	}
 
-	public void createASimplePhrase(NPPhraseSpec subject, NLGElement verbWord, NLGElement objectWord) {
+	public void createASimplePhrase(NPPhraseSpec subject, NLGElement verbWord, NPPhraseSpec objectWord) {
 		this.simplePhrase = new SPhraseSpec(factory);
  
 		NPPhraseSpec object = factory.createNounPhrase(objectWord);
@@ -58,7 +50,7 @@ public class NLG {
 		if(verb!=null) {
 			simplePhrase.setVerbPhrase(verb);
 			if(object!=null)
-			simplePhrase.setObject(object);
+				simplePhrase.setObject(object);
 		}
 		output = realiser.realiseSentence(simplePhrase);
 	
@@ -106,7 +98,7 @@ public class NLG {
 				break;
 			case ("ADJ"):
 				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.ADJECTIVE);
-				aux.setPlural(words[i].getAttrs().getNumber());
+				aux.setPlural(words[i].getAttrs().getNumber());		
 				break;
 			case ("NOUN"):
 				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.NOUN);
@@ -168,14 +160,24 @@ public class NLG {
 	}
 
 
-	public NPPhraseSpec createObject(List<NLGElement> subjectWords) {
+	public NPPhraseSpec createObject(List<NLGElement> objectWords) {
 		NPPhraseSpec object = null;
 		object = factory.createNounPhrase();
-		for (NLGElement word : subjectWords) {
+		for (NLGElement word : objectWords) {
 			if (word.isA(LexicalCategory.ADVERB)) {
 				object.addPostModifier(word);
-			}else
-				object.addComplement(word);
+			}else {
+				if (word.isA(LexicalCategory.NOUN)) {
+					object.setHead(word);
+					object.setDeterminer("un");
+					object.setPlural(word.isPlural());
+					if(word.getFeature(LexicalFeature.GENDER)==Gender.FEMININE){
+						object.setFeature(LexicalFeature.GENDER, Gender.FEMININE);
+					}
+				}else{
+					object.addComplement(word);
+					}
+				}
 			}	
 		return object;
 	}
