@@ -2,8 +2,7 @@ from django.http import JsonResponse
 
 import requests
 import json
-import datetime
-import pict2Text.constants as constants
+import pict2Text.Utils.constants as constants
 import pict2Text.Utils.SpacyModel as spacyimp
 
 # Create your views here.
@@ -28,7 +27,6 @@ def getPictoTranslate(request):
 
 
 def getWordAttrs(request):
-    print(datetime.datetime.now())
     if request.method == "GET":
         nlp = spacyimp.SpacyIMP.__getModel__()
         word = request.GET.get('word', 'word')
@@ -38,7 +36,6 @@ def getWordAttrs(request):
     else:
         if request.method == "POST":
             nlp = spacyimp.SpacyIMP.__getModel__()
-            print(datetime.datetime.now())
             body_unicode = request.body.decode('utf-8')
             body = json.loads(body_unicode)
             words=[];
@@ -47,7 +44,6 @@ def getWordAttrs(request):
             print(json.dumps(words, indent=4, sort_keys=True))
             return JsonResponse(words, status=200, safe=False)
         else:
-            print(datetime.datetime.now())
             response = {'message': "405 Method Not Allowed"}
             return JsonResponse(response, status=405)
 

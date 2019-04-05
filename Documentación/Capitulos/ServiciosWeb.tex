@@ -88,9 +88,9 @@ En esta subsección pasaremos a desarrollar los diferentes servicios web, que uti
 
 \subsection{Servicio web de búsqueda}
 
-Este servicio web \footnote{/picto/getPicto?pictoName=`NombrePictograma'}, recibe una palabra a través de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON.
+Este servicio web\footnote{/picto/getPicto?pictoName=`NombrePictograma'}, recibe una palabra a través de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON.
 \figura{Bitmap/ServiciosWeb/pictoFinderRequest}{width=400px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
-Este servicio lanza una petición GET a un servicio web externo de la API de ARAASAC, el cual devuelve una lista de pictogramas. Esta respuesta es tratada, filtrando y obteniendo aquellos datos que son realmente necesarios, para crear una lista de objetos. Cada objeto tendrá un identificador de un pictograma, asociado a la palabra recibida, de la base de datos de ARASAAC, la URL al archivo de imagen alojado en los servidores de ARASAAC y el significado de ese pictograma. Una vez toda la información es tratada y se crea la lista de objetos, se genera un JSON que se devuelve en la respuesta del servicio.
+Este servicio lanza una petición GET a un servicio web externo\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'} de la API de ARAASAC, el cual devuelve una lista de pictogramas. La respuesta devuelta por la API de ARAASAC es procesada para quedarnos con los siguientes datos de cada pictograma: identificador del pictograma, la URL al archivo con la imagen asociado al pictograma de ARASAAC y el significado. A continuación se crea una lista con todos los pictogramas y sus datos y se genera un JSON que sera la salida del servicio.
 
 \figura{Bitmap/ServiciosWeb/pictoFinderResponse}{width=300px}{fig:pictoFinderResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa}
 
@@ -98,6 +98,6 @@ Este servicio lanza una petición GET a un servicio web externo de la API de ARAA
 
 Este segundo servicio web tiene diferentes end-points, accesibles desde /translate:
 
-Servicio de traducción de pictogramas\footnote{/translate/getPictoTranslate?pictoId='XXXX'} recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
+Servicio de traducción de pictogramas\footnote{/translate/getPictoTranslate?pictoId='XXXX'} recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC de busqueda de pictogramas por id\footnote{\footnote{https://api.arasaac.org/api/pictograms/es/'idPictograma'}}. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
 \figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:translateResponse}{Llamada al servicio web de traducción de pictogramas, para el pictograma 2317}
 \figura{Bitmap/ServiciosWeb/responsetranslateService}{width=300px}{fig:responsetranslateService}{Respuesta del servicio de traducciones de pictogramas}
