@@ -127,7 +127,7 @@ Servicio de traducción de pictogramas\footnote{/translate/getPictoTranslate?pict
 \label{cap5:sec:ComponentesAngular}
 
 En esta sección introduciremos los diferentes componentes Angular desarrollados para la parte Front-End de la aplicación. Hemos implementado diferentes componentes: un buscador de pictogramas, un traductor de pictograma por id, y el componente contenedor
- para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un HTML, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de utiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo un componente de modales para el tratamiento de errores.
+ para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un HTML, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de utiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo otro servicio de modales para el tratamiento de errores.
 
 
 \subsection{Servicio Proxy}
@@ -136,11 +136,18 @@ El servicio proxy de la aplicación Angular sirve para abstraer las diferentes ll
 
 \figura{Bitmap/ServiciosWeb/proxyService}{width=200px}{fig:proxyClassDiagram}{Diagrama de clase del Servicio Proxy}
 
+\subsection{Servicio de modales}  
+
+El servicio de modales, es un componente reusable que se inyecta en los componentes que tienen una parte visual. Su utilidad principal es lanzar una modal genérica, dado un error especifico. Sigue el patrón Factory, dado que su utilidad es crear objetos específicos gracias a sus datos de entrada, tal y como podemos ver en la Figura \ref{fig:errorModalExample}. Además de esto hemos utilizado la libreria NGBoostrap\footnote{https://ng-bootstrap.github.io/} para la implementación de este servicio de modales, esta librería hace uso del patron Singleton para las modales, y ademas abstrae todos la funcionalidad relacionada con el uso de modales, como pueda ser la lógica de abrir o cerrar la modal. Además de la funcionalidad tiene estilos CSS propios, que ayudan a definir el tamaño de la modal, el fondo que se pone sobre el body de la pagina etc. 
+Este servicio tiene dos variables de entrada el codigo de error y el texto asociado al error, ambos obtenidos del error devuelto por el servicio. En la Figura \ref{fig:modalErrorServiceClass}
+\figura{Bitmap/ServiciosWeb/modalErrorServiceExample}{width=200px}{fig:errorModalExample}{Ejemplo de modal para un error del tipo 404}
+\figura{Bitmap/ServiciosWeb/modalErrorServiceClass}{width=200px}{fig:modalErrorServiceClass}{Diagrama de clase del servicio de modales}
+
 \subsection{Buscador de pictogramas}
-Este componente tiene la utilidad principal de ser un punto de entrada para los pictogramas. En la vista podemos ver un input donde introducir el nombre del pictograma que se desea buscar. Una vez seleccionada la palabra o palabras que se desean buscar, el controlador del buscador, llamara al servicio de aplicación el cual generara la URL usando el archivo de constantes de la aplicación y llamara al componente Proxy el cual sera el encargado de enviar y recibir la respuesta del servicio web. Una vez el servicio web 
- 
+Este componente tiene la utilidad principal de ser un punto de entrada para los pictogramas. En la vista podemos ver un input donde introducir el nombre del pictograma que se desea buscar. Una vez seleccionada la palabra o palabras que se desean buscar, el controlador del buscador, llamara al servicio de aplicación el cual generara la URL usando el archivo de constantes de la aplicación y llamara al servicio proxy, que se encargara de enviar y recibir la respuesta del servicio web. Una vez el servicio de aplicación tiene la respuesta, se encarga de tratarla. En caso de error, sube la excepción hasta el controlador el cual llamara al servicio de modales, para informar al usuario del error. En caso de que la respuesta del servicio web sea correcta, el servicio de aplicación del buscador se encargara de tratarla, y generar un objecto para el controlador, utilizando el transformer del componente. Una vez el controlador tiene el objeto final muestra un carousel de pictogramas, implementado gracias a la librería NGBoostrap. Este carousel nos permitirá añadir imágenes al componente, contenedor de pictogramas, gracias a una variable bindeada (pictoPhrase) entre los dos componentes. 
+Podemos ver un diagrama de clase de todo el componente buscador en la Figura \ref{fig:finderClass}    
+\figura{Bitmap/ServiciosWeb/finderClass}{width=300px}{fig:finderClass}{Diagrama de clase del componente buscador de pictogramas}
+
 \subsection{Contenedor de pictogramas} 
 \subsection{Traductor de pictogramas por id}
-\subsection{Slide de pictogramas} 
 
-\subsection{Componente de modales}  
