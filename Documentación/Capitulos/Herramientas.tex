@@ -88,11 +88,11 @@ Por último es importante destacar la función "realiser", la cuál es la encargada
 Para conseguir la traducción de cada pictograma a texto hemos utilizado la API de Arasaac \footnote{https://beta.arasaac.org/developers/api}, centrándonos en la sección de pictogramas, como vemos en la Figura \ref{fig:principal}.
 \figura{Bitmap/Herramientas/PrincipalAPI}{width=300px}{fig:principal}{Pagina web de la API de Arasaac}.
 En el trabajo se han utilizado dos de los métodos "GET" proporcionados en la API, por un lado obtenemos el cuerpo del pictograma introduciendo su identificador para encontrarlo(/pictograms/{locale}/{idPictogram}). 
-Por ejemplo introduciendo el id 2517 obtenemos la estructura con toda la información correspondiente al pictograma de la palabra "perro", tal y como se muestra en la Figura \ref{fig:APIperro}
+Por ejemplo introduciendo el id 2517 obtenemos la estructura con toda la información correspondiente al pictograma de la palabra "perro", tal y como se muestra en la Figura\ref{fig:APIperro}
 \figura{Bitmap/Herramientas/APIperro}{width=300px}{fig:APIperro}{Código obtenido del pictograma con la palabra "perro"}.
 
 El otro método "GET" que se ha utilizado para nuestro proyecto es para poder buscar el texto para relacionarlo con el pictograma que deseamos (/pictograms/{locale}/search/{searchText}). 
-Este método nos devuelve un objeto con todo lo relacionado con el texto buscado, siguiendo el ejemplo anterior con la palabra "perro", obtenemos el objeto que se muestra en la Figura \ref{fig:perroProyecto}\figura{Bitmap/Herramientas/APIperroProyecto}{width=300px}{fig:perroProyecto}{Información del objeto con la palabra "perro"}.  
+Este método nos devuelve un objeto con todo lo relacionado con el texto buscado, siguiendo el ejemplo anterior con la palabra "perro", obtenemos el objeto que se muestra en la Figura\ref{fig:perroProyecto}\figura{Bitmap/Herramientas/APIperroProyecto}{width=300px}{fig:perroProyecto}{Información del objeto con la palabra "perro"}.  
   
 \section{Angular}
 %-------------------------------------------------------------
