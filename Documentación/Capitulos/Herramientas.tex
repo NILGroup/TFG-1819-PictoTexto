@@ -86,7 +86,7 @@ Por último es importante destacar la función "realiser", la cuál es la encargada
 \label{cap3:sec:API-Arasaac}
 
 Para conseguir la traducción de cada pictograma a texto hemos utilizado la API de Arasaac \footnote{https://beta.arasaac.org/developers/api}, centrándonos en la sección de pictogramas, como vemos en la Figura \ref{fig:principal}.
-
+\figura{Bitmap/Herramientas/PrincipalAPI}{width=300px}{fig:principal}{Pagina web de la API de Arasaac}.
 En el trabajo se han utilizado dos de los métodos "GET" proporcionados en la API, por un lado obtenemos el cuerpo del pictograma introduciendo su identificador para encontrarlo(/pictograms/{locale}/{idPictogram}). 
 Por ejemplo introduciendo el id 2517 obtenemos la estructura con toda la información correspondiente al pictograma de la palabra "perro", tal y como se muestra en la Figura \ref{fig:APIperro}
 \figura{Bitmap/Herramientas/APIperro}{width=300px}{fig:APIperro}{Código obtenido del pictograma con la palabra "perro"}.
@@ -94,10 +94,10 @@ Por ejemplo introduciendo el id 2517 obtenemos la estructura con toda la informa
 El otro método "GET" que se ha utilizado para nuestro proyecto es para poder buscar el texto para relacionarlo con el pictograma que deseamos (/pictograms/{locale}/search/{searchText}). 
 Este método nos devuelve un objeto con todo lo relacionado con el texto buscado, siguiendo el ejemplo anterior con la palabra "perro", obtenemos el objeto que se muestra en la Figura \ref{fig:perroProyecto}\figura{Bitmap/Herramientas/APIperroProyecto}{width=300px}{fig:perroProyecto}{Información del objeto con la palabra "perro"}.  
   
-\section{Angular CLI}
+\section{Angular}
 %-------------------------------------------------------------
-\label{cap3:sec:Angular CLI}
-Angular CLI es un framework de desarrollo creado y desarrollado por Google, cuya finalidad consiste en el desarrollo de aplicaciones web SPA (Single-Page Applications), es decir, interacción web con una sola página web. Esta herramienta nos aporta tanto una mayor flexibilidad, como una mayor operabilidad en la parte del cliente del servidor, haciendo que dicha parte sea más rápida, dinámica y fluida.
+\label{cap3:sec:Angular}
+Angular es un framework de desarrollo creado y mantenido por Google, cuya finalidad consiste en el desarrollo de aplicaciones web SPA (Single-Page Applications), es decir, interacción web con una sola página web. Esta herramienta nos aporta tanto una mayor flexibilidad, como una mayor operabilidad en la parte del cliente, haciendo que dicha parte sea más rápida, dinámica y fluida.
 
 Esta aportación es muy importante para nuestra aplicación ya que en la parte backend del servidor la herramienta Django explicada en el apartado anterior es la encargada de realizar todo el proceso, sin embargo para la parte frontend observamos que no disponíamos de ninguna herramienta que se encargara de ella, la cuál nos proporcionaría como he mencionado anteriormente una mayor fluidez y rapidez al servidor. Es ahí donde entra Angular siendo el encargado de la parte frontend haciendo cada parte de la página web independiente una de la otra.
   
@@ -106,7 +106,7 @@ La segunda alternativa fue la opción de introducir JQuery, esta segunda opción e
 La última opción y al final la escogida fue la de implantar dentro de nuestro trabajo Angular, ya que era la alternativa que más funcionalidades aportaba y la más completa.
 
 Además la herramienta está formado por diferentes módulos distintos unos de otros y estos a su vez están formados por diferentes componentes, ofreciendo una división automática de códigos para que los usuarios solo carguen aquellos que necesitan.
-Otra característica importante de Angular es que realiza una rápida conversión del código escrito en código optimizado para máquinas de Javascript ofreciendo una productividad muy alta.
+Otra característica importante de Angular es que se desarrolla en el lenguaje TypeScript que es un lenguaje fuertemente tipado lo que ofrece beneficios sobre JavaScript, en el momento de la construcción del proyecto, el codigo TypeScript se convierte a JavaScript para poder utilizarlo en el navegador.
 
  
 
