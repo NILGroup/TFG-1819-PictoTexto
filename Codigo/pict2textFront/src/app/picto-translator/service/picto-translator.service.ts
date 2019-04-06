@@ -15,7 +15,7 @@ export class PictoTranslatorService {
       this.proxyService.getByName(name, AppConstants.translatorPictoURL).subscribe(getPictoTranslateSuccess.bind(this),getPictoTranslateError)
       function getPictoTranslateSuccess(data){
         //LLAMADA AL TRANSFORMER
-        resolve(data);
+        resolve(data['meanings']);
       }
       function getPictoTranslateError(data){
         //TRAMAMIENTO DE ERRORES

@@ -116,7 +116,7 @@ Este servicio lanza una petición GET a un servicio web externo\footnote{https://
 
 Este segundo servicio web tiene diferentes end-points, accesibles desde /translate:
 
-Servicio de traducción de pictogramas\footnote{/translate/getPictoTranslate?pictoId='XXXX'} recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC de busqueda de pictogramas por id\footnote{\footnote{https://api.arasaac.org/api/pictograms/es/'idPictograma'}}. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
+Servicio de traducción de pictogramas\footnote{/translate/getPictoTranslate?pictoId='XXXX'} recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC de busqueda de pictogramas por id\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
 \figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:translateResponse}{Llamada al servicio web de traducción de pictogramas, para el pictograma 2317}
 \figura{Bitmap/ServiciosWeb/responsetranslateService}{width=300px}{fig:responsetranslateService}{Respuesta del servicio de traducciones de pictogramas}
 
@@ -126,7 +126,7 @@ Servicio de traducción de pictogramas\footnote{/translate/getPictoTranslate?pict
 %-------------------------------------------------------------------
 \label{cap5:sec:ComponentesAngular}
 
-En esta sección introduciremos los diferentes componentes Angular desarrollados para la parte Front-End de la aplicación. Hemos implementado diferentes componentes: un buscador de pictogramas, un traductor de pictograma por id, y el componente traductor de pictogramas, que sirve de contenedor para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un HTML, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de utiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo otro servicio de modales para el tratamiento de errores.
+En esta sección introduciremos los diferentes componentes Angular desarrollados para la parte Front-End de la aplicación. Hemos implementado diferentes componentes: un buscador de pictogramas, un traductor de pictograma por id, y el componente traductor de pictogramas, que sirve de contenedor para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un HTML, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de útiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo otro servicio de modales para el tratamiento de errores.
 
 
 \subsection{Servicio Proxy}
@@ -159,3 +159,8 @@ A diferencia del componente buscador de pictogramas, en caso de que la respuesta
 
 \subsection{Traductor de pictogramas por id}
 
+Este componente es el más básico de los implementados, utiliza la misma arquitectura que el componente del traductor de pictogramas, tal y como podemos ver en la Figura \ref{fig:IdPictogramTranslator}.
+Este componente tiene como finalidad obtener las diferentes traducciones de un pictograma, gracias al identificador de ese pictograma, el cual es recogido del input por el controlador, para seguir el flujo llamando a su servicio de aplicación, el cual generara la URL con el identificador del pictograma y la URL del servicio web de traducción de pictogramas por id, y llama al proxy el cual se encargara de lanzar la petición GET y devolver la respuesta del servicio. Dado que la respuesta del servicio es muy sencilla hemos decidido omitir el transformador y en el mismo servicio de aplicación obtener el string de significados y devolverlo al controlador el cual sera el encargado de mostrarlo por pantalla al usuario.
+
+
+\figura{Bitmap/ServiciosWeb/IdPictogramTranslator}{width=300px}{fig:IdPictogramTranslator}{Diagrama de clase del componente traductor de pictogramas por id}

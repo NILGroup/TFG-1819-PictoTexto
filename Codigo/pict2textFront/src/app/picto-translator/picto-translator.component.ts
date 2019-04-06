@@ -19,7 +19,7 @@ export class PictoTranslatorComponent{
   }
 
   getPictoTranslateSucces(data){
-    this.translates=data['meanings'];
+    this.translates=data;
   }
 
   getPictoTranslateError(data){
