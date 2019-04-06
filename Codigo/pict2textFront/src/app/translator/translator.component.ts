@@ -15,7 +15,6 @@ import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class TranslatorComponent {
 
-  phrase: string;
   finalPhrase: string;
   @Input() pictoPhrase:Picto[];
   constructor(private translatorService: TranslatorService, private modalService: NgbModal) {  
@@ -43,11 +42,6 @@ export class TranslatorComponent {
       activeModal.componentInstance.errorCode=data.status;
       activeModal.componentInstance.errorText=data.statusText;
   
-  }
-
-
-  getPhraseTypeSuccess(data){
-    console.log(data)
   }
 
   drop(event: CdkDragDrop<string[]>) {
