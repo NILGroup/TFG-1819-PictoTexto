@@ -94,17 +94,19 @@ Por ejemplo introduciendo el id 2517 obtenemos la estructura con toda la informa
 El otro método "GET" que se ha utilizado para nuestro proyecto es para poder buscar el texto para relacionarlo con el pictograma que deseamos (/pictograms/{locale}/search/{searchText}). 
 Este método nos devuelve un objeto con todo lo relacionado con el texto buscado, siguiendo el ejemplo anterior con la palabra "perro", obtenemos el objeto que se muestra en la Figura \ref{fig:perroProyecto}\figura{Bitmap/Herramientas/APIperroProyecto}{width=300px}{fig:perroProyecto}{Información del objeto con la palabra "perro"}.  
   
-\section{Angular}
+\section{Angular CLI}
 %-------------------------------------------------------------
-\label{cap3:sec:Angular}
-Angular es un framework de desarrollo creado y desarrollado por google, cuya finalidad consiste en el desarrollo de aplicaciones web SPA (Single-Page Applications), es decir, interacción web con una sola página web. Esto es muy útil ya que si la página tiene diferentes secciones nos permite poder acceder a todas ellas usando Javascript, sin necesidad de hacer consultas al servidor tan frecuentemente, haciendo que la propia página sea más rápida, dinámica y fluida.
+\label{cap3:sec:Angular CLI}
+Angular CLI es un framework de desarrollo creado y desarrollado por Google, cuya finalidad consiste en el desarrollo de aplicaciones web SPA (Single-Page Applications), es decir, interacción web con una sola página web. Esta herramienta nos aporta tanto una mayor flexibilidad, como una mayor operabilidad en la parte del cliente del servidor, haciendo que dicha parte sea más rápida, dinámica y fluida.
 
-Es importante mencionar que Angular solo tratará la parte del frontend la cuál estará conectada con la parte backend, esto ayudará a poder hacer cada parte de la página web independiente una de la otra.
+Esta aportación es muy importante para nuestra aplicación ya que en la parte backend del servidor la herramienta Django explicada en el apartado anterior es la encargada de realizar todo el proceso, sin embargo para la parte frontend observamos que no disponíamos de ninguna herramienta que se encargara de ella, la cuál nos proporcionaría como he mencionado anteriormente una mayor fluidez y rapidez al servidor. Es ahí donde entra Angular siendo el encargado de la parte frontend haciendo cada parte de la página web independiente una de la otra.
+  
+Para realizar esta función de la parte frontend del servidor se estudiaron las diferentes herramientas que se podrían utilizar, en un primer momento se pensó en extender la herramienta Django para la parte del cliente, pero dicha herramienta ofrecía ciertas limitaciones en esta parte del servidor, por tanto se deshizo esa idea.
+La segunda alternativa fue la opción de introducir JQuery, esta segunda opción era mejor que la primera aunque sin llegar a convencernos del todo.
+La última opción y al final la escogida fue la de implantar dentro de nuestro trabajo Angular, ya que era la alternativa que más funcionalidades aportaba y la más completa.
 
-Además Angular está formado por diferentes módulos diferentes unos de otros y cada módulo a su vez por diferentes componentes, esto ofrece una división automática de códigos para que los usuarios solo carguen aquellos que necesitan.
+Además la herramienta está formado por diferentes módulos distintos unos de otros y estos a su vez están formados por diferentes componentes, ofreciendo una división automática de códigos para que los usuarios solo carguen aquellos que necesitan.
 Otra característica importante de Angular es que realiza una rápida conversión del código escrito en código optimizado para máquinas de Javascript ofreciendo una productividad muy alta.
-
-Por último, hay que destacar la posibilidad que ofrece Angular de realizar pruebas de testing, tanto para realizar pruebas unitarias como pruebas end-to-end. 
 
  
 
