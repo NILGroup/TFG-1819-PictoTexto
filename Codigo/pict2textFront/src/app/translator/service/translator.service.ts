@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProxyService} from 'src/app/utils/proxy/proxy-service.service';
 import { AppConstants } from 'src/app/constants/constant.service';
-import { Word } from '../transformer/word';
 
 @Injectable({
   providedIn: 'root'

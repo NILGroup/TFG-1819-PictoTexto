@@ -10,8 +10,16 @@ A lo largo de este capitulo se presentaran los diferentes servicios web, que hem
 %-------------------------------------------------------------------
 \label{cap5:sec:Arquitectura}
 
-El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad   funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debiamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte back-end, y a componentes en la parte front-end. En ambas casos aplicando, hemos seguido los principios de responsabilidad única (Single Responsability Principle)\footnote{https://devexperto.com/principio-responsabilidad-unica/}, segregación de la interfaz (Interface Segregation Principle)\footnote{https://hackernoon.com/interface-segregation-principle-bdf3f94f1d11}, y de inversión de dependencias (Dependency inversion principle).
-Estos tres principios forman parte de SOLID (Single responsibility, Open-closed, Liskov substitution, Interface segregation and Dependency inversion), descritos por Robert C. Martin\citep{martin2013agile} y que buscan una alta modularidad y bajo acoplamiento entre los diferentes componentes de un producto software. Nuestra arquitectura se basa en los siguientes principios de SOLID:
+El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad   funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debiamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte back-end, y a componentes en la parte front-end. En ambas casos aplicando, hemos seguido los principios de responsabilidad única (Single Responsability Principle)\footnote{https://devexperto.com/principio-responsabilidad-unica/}, segregación de la interfaz (Interface Segregation Principle)\footnote{https://hackernoon.c
+om/interface-segregation-principle-bdf3f94f1d11}, y de inversión de dependencias (Dependency inversion principle).
+Estos tres principios forman parte de SOLID (Single responsibility, Open-closed, Liskov substitution, Interface segregation and Dependency inversion), descritos por Robert C. Martin\citep{martin2013agile}. Los principales objetivos de los 5 principios SOLID son:
+\begin{itemize}
+\item Crear un producto software de calidad que sea robusto.
+\item Producir código ordenado y limpio dando además una gran flexibilidad buscando que sea reutilizable y facilmente mantenible gracias al bajo acomplamiento que se consigue
+\item Permitir la escalabilidad, gracias a una alta modularidad obtenida por la separación de responsabilidades.
+\end{itemize}
+
+Nuestra arquitectura se basa en los siguientes principios de SOLID:
 
 \begin{itemize}
 
@@ -77,7 +85,17 @@ pasado, futuro y presente que es la configuración de tiempo verbal por defecto.
 En caso de encontrar un adverbio se fuerza su posición al final de la frase que formara el objeto, si se encuentra dentro del array de palabras objecto,  de manera que si las palabras que conformaran la frase final contienen ``profesora,comer,ayer,galletas,duro'', la frase resultante sera ``La profesora comío galletas duras ayer''. En caso de encontrar el adverbio dentro del array de palabras del sujeto se pondrá al final del sujeto, y así la entrada ``profesora ayer,comer,galletas,duro'' generara la frase ``La profesora ayer comío galletas duras''
 
 
-Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase sera devuelto en la respuesta del servicio tal y como podemos ver en la Figura \ref{fig:nlgRequest}, para la entrada ``perro, rápido, comer, pan, duro''
+Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase sera devuelto en la respuesta del servicio tal y como podemos ver en la Figura \ref{fig:nlgRequest}, para la entrada ``perro, rápido, comer, pan, duro''.
+A continuación repasaremos otros ejemplos de entradas:
+\begin{itemize}
+\item Entrada simple sujeto, verbo, objeto (Profesor,comer,galletas
+\item Entrada con adjetivo en el sujeto, adjetivo, verbo, objeto: ''Profesor, listo, comer, galletas'' -> ``El profesor listo come galletas''
+\item Entrada con adverbio en el sujeto, adverbio, verbo, objeto: ''Profesor, ayer, comer, galletas'' -> ''El profesor ayer comió galletas''
+\item Entrada con adjetivo y adverbio temporal en el sujeto: sujeto, adjetivo, adverbio, verbo, objeto: ''Profesor, listo, ayer, comer, galletas'' -> ''El profesor listo ayer comió galletas''
+\item Entrada con adjetivo en el predicado: sujeto, verbo, objeto, adjetivo: ''Profesor, comer, galletas, duro'' -> ''El profesor come galletas duras''
+\item Entrada con adverbio en el predicado: sujeto, verbo, adverbio temporal, objeto: ''Profesor, comer, galletas, ayer'' -> ''El profesor comió galletas ayer''
+\item Entrada con adjetivo y adverbio en el predicado, adverbio, adjetivo, verbo, objeto: ''Profesor, comer, galletas, duro, ayer'' -> ''El profesor commió galletas duras ayer''
+\end{itemize}
 
 %------------------------------------------------------------------
 \section{Servicios para la gestión de pictogramas} %-------------------------------------------------------------------
@@ -101,3 +119,28 @@ Este segundo servicio web tiene diferentes end-points, accesibles desde /transla
 Servicio de traducción de pictogramas\footnote{/translate/getPictoTranslate?pictoId='XXXX'} recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC de busqueda de pictogramas por id\footnote{\footnote{https://api.arasaac.org/api/pictograms/es/'idPictograma'}}. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
 \figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:translateResponse}{Llamada al servicio web de traducción de pictogramas, para el pictograma 2317}
 \figura{Bitmap/ServiciosWeb/responsetranslateService}{width=300px}{fig:responsetranslateService}{Respuesta del servicio de traducciones de pictogramas}
+
+
+%------------------------------------------------------------------
+\section{Componentes Angular}
+%-------------------------------------------------------------------
+\label{cap5:sec:ComponentesAngular}
+
+En esta sección introduciremos los diferentes componentes Angular desarrollados para la parte Front-End de la aplicación. Hemos implementado diferentes componentes: un buscador de pictogramas, un traductor de pictograma por id, y el componente contenedor
+ para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un HTML, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de utiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo un componente de modales para el tratamiento de errores.
+
+
+\subsection{Servicio Proxy}
+
+El servicio proxy de la aplicación Angular sirve para abstraer las diferentes llamadas HTTP del resto de la aplicación, sus métodos se encargan de enviar las peticiones HTTP que se necesitan (GET o POST) y esperar la respuesta del servicio y devolverla al servicio de aplicación que le ha llamado gracias al uso del patrón Observer. Gracias a este patrón todos aquellas clases que llaman al cualquier método del proxy se convierten en subscriptores del mismo, y cuando el proxy recibe la respuesta de los servicios web se encargar de avisar a los subscriptores de que tienen la respuesta y dársela. Además de esto en caso de fallo en la llamada, el proxy volverá a lanzarla hasta cinco veces, cuando la quinta falla devuelve el error a sus subscriptores. En la Figura \ref{fig:proxyClassDiagram} podemos ver un diagrama de clases del servicio proxy.
+
+\figura{Bitmap/ServiciosWeb/proxyService}{width=200px}{fig:proxyClassDiagram}{Diagrama de clase del Servicio Proxy}
+
+\subsection{Buscador de pictogramas}
+Este componente tiene la utilidad principal de ser un punto de entrada para los pictogramas. En la vista podemos ver un input donde introducir el nombre del pictograma que se desea buscar. Una vez seleccionada la palabra o palabras que se desean buscar, el controlador del buscador, llamara al servicio de aplicación el cual generara la URL usando el archivo de constantes de la aplicación y llamara al componente Proxy el cual sera el encargado de enviar y recibir la respuesta del servicio web. Una vez el servicio web 
+ 
+\subsection{Contenedor de pictogramas} 
+\subsection{Traductor de pictogramas por id}
+\subsection{Slide de pictogramas} 
+
+\subsection{Componente de modales}  
