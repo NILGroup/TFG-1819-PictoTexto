@@ -2,25 +2,29 @@
 
 \chapter{Trabajo Individual}
 \label{cap6:trabajoInd}
-A lo largo de este capitulo hablaremos del trabajo realizado por cada uno de los miembros del equipo, siguiendo la metodología de trabajo explicado anteriormente en \ref{cap4:sec:Metodologíadetrabajo}
+A lo largo de este capitulo hablaremos del trabajo realizado por cada uno de los miembros del equipo.
 
 %------------------------------------------------------------------
 \section{Trabajo Individual de Jose Maria}
 %-------------------------------------------------------------------
 \label{cap6:sec:Jose Maria}
 
-Lo primero que realice fue un estudio  de aquellas tareas del estado del arte, de las cuales estábamos seguros que tendríamos que tratar para comenzar con la redacción de este documento. La investigación inicial se centro en en el estudio de los SAACS, poniendo especial atención en los pictogramas y los sistemas pictograficos, y de manera general Servicios Web. 
+Lo primero que realice fue un estudio de los SAACS, poniendo especial atención en los pictogramas, y los Servicios Web. 
 
-En la búsqueda de información sobre los SAACS, analice los sistemas pictograficos más extendidos y la comunicación a través de  pictogramas. Tras esta investigación decidimos que usaríamos los pictogramas de ARASAAC para el desarrollo de este Trabajo de Fin de Grado.
+En la búsqueda de información sobre los SAACS, analice los sistemas pictograficos más extendidos y la comunicación a través de  pictogramas. 
 
-Uno de los requisitos indispensables de este proyecto, era la necesidad de incluir la aplicación dentro de un Servicio Web, por lo cual investigue sobre cuales eran las diferentes opciones para crear un Servicio Web en Python, y dada su potencia, facilidad de uso y la gran comunidad decidimos utilizar Django. Una vez expuesto y estudiado su uso, desarrolle una prototipo tecnológico, para probar su utilidad y como primer acercamiento a la tecnología.
+Uno de los requisitos indispensables de este proyecto, era la necesidad de incluir la aplicación dentro de un Servicio Web, por lo cual investigue sobre cuales eran las diferentes opciones para crear un Servicio Web en Python. Además desarrolle una prototipo tecnológico, para aprender a crear servicios web con Python.
 
-El siguiente paso necesario, era un estudio sobre los diferentes sistemas de generación de lenguaje natural parte fundamental del proyecto. Investigue y documente la base teórica de la generación de lenguaje natural, una vez termine esto pase a la búsqueda de diferentes frameworks de generación de lenguaje natural en español, tras la cual encontré el framework SimpleNLG-ES, que es el unico  framework de generación de lenguaje natural en español que encontré. Una vez presentados los resultados desarrolle un prototipo tecnológico utilizando dicho framework. Este prototipo muy simple permitía enviarle un sujeto, verbo y un complemento directo. Dado que SimpleNLG-ES es un framework Java, y la base de los microservicios web están implementados en Python, decidi encapsular el framework en un servicio web al cual se llamaba desde el servicio web de Django.
+A continuación, pensamos en la metodologia de trabajo que seguiriamos y la documente  en la memoria en el capitulo \ref{cap4:MetodologiaDeTrabajo}.
+
+El siguiente paso necesario, era un estudio sobre los diferentes sistemas de generación de lenguaje natural parte fundamental del proyecto. Investigue y documente la base teórica de la generación de lenguaje natural, una vez termine esto pase a la búsqueda de diferentes frameworks de generación de lenguaje natural en español, tras la cual encontré el framework SimpleNLG-ES. Una vez presentados los resultados de mi investigación en la memoria, desarrolle un prototipo tecnológico utilizando dicho framework. Este prototipo muy simple permitía enviarle un sujeto, un verbo y un complemento directo y este devolvía una frase en lenguaje natural con dichos elementos.
 Para generar este servicio web, analice diferentes vías de servicios web Java, y realice dos prototipos uno con WildFly\footnote{http://www.wildfly.org/} y otro con Apache Tomcat\footnote{http://tomcat.apache.org/}, y teniendo en cuenta diferente factores como rendimiento o la comunidad decidí implementar Tomcat. Durante el desarrollo de este prototipo surgió el problema de recibir datos en formatos JSON en un servicio web Java, tras analizar las diferentes posibilidades que encontré decidí optar por usar el framework GSON.
 
-Con el aumento de los micro servicios web implementados, decidí refactorizar el código y diseñe una arquitectura que fomentara la rápida integración de nuevos servicios, que además sean completamente independientes entre ellos siguiendo el principio de responsabilidad única\footnote{https://devexperto.com/principio-responsabilidad-unica/} por el cual cada modulo debe de realizar una única cosa. 
+Una vez termine el trabajo de implementación, documente los servicios web y los principios de la arquitectura, en la memoria.
 
-Dado el limite del framework Django para la gestión de aplicaciones web desde el lado del cliente, desarrolle una aplicación web fron-end, que después integre con la aplicación Django, para de esta manera obtener mayor funcionalidad y descargar parte del trabajo en parte del cliente.
+Dado el limite del framework Django para la gestión de aplicaciones web desde el lado del cliente, desarrolle una aplicación web fron-end en Angular CLI, que después integre con la aplicación Django, para de esta manera obtener mayor funcionalidad, flexibilidad y descargar parte del trabajo en el cliente. Una vez terminada la implementación documente la aplicación, en la memoria. 
+
+Después realice un estudio sobre los diferentes analizadores de lenguaje natural para el castellano y decidimos usar Spacy. A continuación de investigar su uso, desarrolle el servicio web de detección de palabras y posteriormente documente su funcionamiento.  Además de este servicio decidimos que era necesario, crear un servicio web que detectara el tiempo verbal en el que se debería conjugar la frase. Con la respuesta de este servicio se llamaría a un servicio web u otro dentro del servicio de generación de lenguaje natural. Una vez estudiados los pasos a seguir desarrolle los tres servicios web. Para los servicios de generación de lenguaje tuve que hacer una refactorización el servicio ya creado, para abstraer el comportamiento común de los diferentes servicios web de la generación de lenguaje. Una  vez terminado todo los descrito documente los servicios web.
 
 %------------------------------------------------------------------
 \section{Trabajo Individual de Salvador}
@@ -35,6 +39,11 @@ El trabajo iba avanzando, y así con la investigación de mi compañero sobre la ge
 
 Debido a ciertas dificultades que encontramos a la hora de integrar nuestro servicio realizado en Python, en un Servicio Web codificado en Java. Tuve que investigar la librería GSON la cuál nos permitía justamente lo que necesitábamos, consiguiendo así poder solventar ese problema.
 
-El siguiente paso fue el desarrollo de la demo y sus primeros servicios webs ya implementados y funcionando. Además de investigar el uso y funcionamiento de los servicios Apache Tomcat, los cuáles serían necesarios en nuestra aplicación.  
+El siguiente paso fue el desarrollo de la demo y sus primeros servicios webs ya implementados y funcionando. Además de investigar el uso y funcionamiento de los servicios Apache Tomcat, los cuáles serían necesarios en nuestra aplicación.
+
+Dada la limitación que presentaba el framework Django realicé un estudio sobre aquellas herramientas que nos podían ayudar a completar las limitaciones de Django. Dando como resultado que Angular CLI era la opción más idónea para realizar esa función y documentando esa elección.
+
+Otro aspecto muy importante para la realización de nuestro trabajo era elegir el analizador de lenguaje natural que mejor se adaptaba a nuestras necesidades, cuando con el estudio de mi compañero observamos que la herramienta Spacy era la mejor opción, mi objetivo derivó en documentar los motivos por los que dicha herramienta era la elección correcta y las características que nos ofrecía por las que pasaba a ser una de las herramientas indispensables en nuestro TFG. 
+  
 
      

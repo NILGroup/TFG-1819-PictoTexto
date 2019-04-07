@@ -3,7 +3,7 @@ import {FinderService} from 'src/app/finder/service/finder-service.service'
 import {Picto} from 'src/app/finder/transformer/picto'
 import { ProxyService } from '../utils/proxy/proxy-service.service';
 import { ModalComponent } from '../utils/modals/modal-component'
-import {NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {FinderTransformer} from 'src/app/finder/transformer/finder-transformer.transformer'
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
@@ -37,8 +37,8 @@ export class FinderComponent {
 
    getPictoError(data){
     const activeModal = this.modalService.open(ModalComponent);
-    console.log(data)
-    console.log("todo mal en el componente")
+    activeModal.componentInstance.errorCode=data.status;
+    activeModal.componentInstance.errorText=data.statusText;
   }
 
   

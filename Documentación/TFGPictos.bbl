@@ -1,22 +1,22 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{18}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{Abril~Abad\'{i}n(2010)}]{DoloresAbril2010}
 {\sc Abril~Abad\'{i}n, V. C.~A., I. Delgado Santos~C.}
 \newblock {\em Comunicaci\'{o}n Aumentativa y Alternativa\/}.
-\newblock CEAPAT, 3º edici\'on, 2010.
+\newblock CEAPAT, 3ï¿½ edici\'on, 2010.
 
 \bibitem[{\'{A}lvarez(2013)}]{LorenzoAlvarezTFG2013}
 {\sc \'{A}lvarez, L.~L.}
 \newblock {\em Los sistemas Alternativos y/o Aumentativos de Comunicaci\'{o}n:
-  la Comunicación Bimodal como recurso en el aula de Audici\'{o}n y
+  la Comunicaciï¿½n Bimodal como recurso en el aula de Audici\'{o}n y
   Lenguaje\/}.
 \newblock Tfg, Universidad de Valladolid, 2013.
 
 \bibitem[{B.(2007)}]{Socorro2007}
 {\sc B., M. d.~S.}
-\newblock ¿qué es la generación de lenguaje natural? una visión general sobre
-  el proceso de generación.
+\newblock ï¿½quï¿½ es la generaciï¿½n de lenguaje natural? una visiï¿½n general
+  sobre el proceso de generaciï¿½n.
 \newblock {\em Inteligencia Artificial. Revista Iberoamericana de Inteligencia
   Artificial\/}, vol.\ 11, p\'aginas 105--128, 2007.
 \newblock ISSN 1137-3601.
@@ -32,8 +32,8 @@
 
 \bibitem[{Bertola~L{\'o}pez(2018-02-15)}]{Bertola2018}
 {\sc Bertola~L{\'o}pez, E.}
-\newblock {\em An{\'a}lisis emp{\'i}­rico de las caracter{\'a}­sticas formales
-  de los s{\'i}­mbolos pictogr{\'a}ficos Arasaac\/}.
+\newblock {\em An{\'a}lisis emp{\'i}ï¿½rico de las caracter{\'a}ï¿½sticas
+  formales de los s{\'i}ï¿½mbolos pictogr{\'a}ficos Arasaac\/}.
 \newblock Tesis Doctoral, 2018-02-15.
 
 \bibitem[{Dale et\ al.(2000)Dale, Moisl y Somers}]{Robert2000}
@@ -42,10 +42,10 @@
 \newblock Taylor \& Francis, 2000.
 \newblock ISBN 9780824790004.
 
-\bibitem[{García~Ibáñez(2004)}]{CarlosGarcia2004}
-{\sc García~Ibáñez, P.~G., Raquel Hervás~Ballesteros}.
+\bibitem[{Garcï¿½a~Ibï¿½ï¿½ez(2004)}]{CarlosGarcia2004}
+{\sc Garcï¿½a~Ibï¿½ï¿½ez, P.~G., Raquel Hervï¿½s~Ballesteros}.
 \newblock Una arquitectura software para el desarrollo de aplicaciones de
-  generación de lenguaje natural.
+  generaciï¿½n de lenguaje natural.
 \newblock 2004.
 
 \bibitem[{Han(2005)}]{Han2005}
@@ -62,7 +62,7 @@
 \bibitem[{Jozef~Trzpis(2015)}]{Trzpis2015}
 {\sc Jozef~Trzpis, D.}
 \newblock {\em Adaptaci\'{o}n de una herramienta de Generaci\'{o}n de Lenguaje
-  Natural al idioma Español\/}.
+  Natural al idioma Espaï¿½ol\/}.
 \newblock Phd, Universidad Polit\'{e}cnica de Madrid, 2015.
 
 \bibitem[{Mar{\'i}n y P{\'e}rez(2003)}]{marin2003}
@@ -72,10 +72,17 @@
 \newblock Colecci{\'o}n Logopedia e Intervenci{\'o}n Series. Nau Llibres, 2003.
 \newblock ISBN 9788476426821.
 
+\bibitem[{Martin(2013)}]{martin2013agile}
+{\sc Martin, R.}
+\newblock {\em Agile Software Development: Principles, Patterns, and
+  Practices\/}.
+\newblock Always learning. Pearson, 2013.
+\newblock ISBN 9781292025940.
+
 \bibitem[{Mart\'{i}n~Guerrero(2018)}]{MartinGuerrero2018}
 {\sc Mart\'{i}n~Guerrero, A.}
-\newblock {\em PICTAR: una herramienta de elaboración de contenido para
-  personas con TEA basada en la traducción de texto a pictogramas\/}.
+\newblock {\em PICTAR: una herramienta de elaboraciï¿½n de contenido para
+  personas con TEA basada en la traducciï¿½n de texto a pictogramas\/}.
 \newblock Phd, Universidad Complutense de Madrid, 2018.
 
 \bibitem[{McDonald(1985)}]{Eugene1985}
@@ -112,7 +119,7 @@
 \bibitem[{Warrick(2010)}]{WarrickAnneCSH2010}
 {\sc Warrick, A.}
 \newblock {\em Comunicaci\'{o}n sin habla\/}.
-\newblock CEAPAT, 3º edici\'on, 2010.
+\newblock CEAPAT, 3ï¿½ edici\'on, 2010.
 \newblock ISBN 0-9684186-0-0.
 
 \end{thebibliography}

@@ -1,9 +1,6 @@
 export class Word{
     keyword:string;
-    keywords:[]
-    attrs:{}
-    constructor(keyword, attrs){
-        this.attrs=attrs;
+    constructor(keyword){
         this.keyword=keyword;
     }
 }

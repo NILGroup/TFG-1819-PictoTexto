@@ -18,7 +18,7 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('landingPage.urls')),
-    path('picto/',include('pictoService.urls')),
-    path('translate/',include('pictoTranslateService.urls')),
+    path('', include('pict2Text.landingPage.urls')),
+    path('picto/',include('pict2Text.pictoService.urls')),
+    path('translate/',include('pict2Text.pictoTranslateService.urls')),
 ]

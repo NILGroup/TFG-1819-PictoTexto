@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {PictoTranslatorService} from 'src/app/picto-translator/service/picto-translator.service'
 import { ProxyService } from '../utils/proxy/proxy-service.service';
+import { ModalComponent } from '../utils/modals/modal-component'
+import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-picto-translator',
@@ -10,17 +12,18 @@ import { ProxyService } from '../utils/proxy/proxy-service.service';
 })
 export class PictoTranslatorComponent{
   translates:string;
-  constructor(private pictoTranslatorService :PictoTranslatorService  ) { }
+  constructor(private pictoTranslatorService :PictoTranslatorService,private modalService: NgbModal  ) { }
 
   getPictosTranslate(name:string){
-    this.pictoTranslatorService.getPictogramTranslate(name).then(this.getPictoTranslateSucces.bind(this), this.getPictoTranslateError);
+    this.pictoTranslatorService.getPictogramTranslate(name).then(this.getPictoTranslateSucces.bind(this), this.getPictoTranslateError.bind(this));
   }
 
   getPictoTranslateSucces(data){
-    this.translates=data['meanings'];
+    this.translates=data;
   }
 
-  getPictoTranslateError(){
-    console.log("todo mal en el componente")
-  }
+  getPictoTranslateError(data){
+    const activeModal = this.modalService.open(ModalComponent);
+    activeModal.componentInstance.errorCode=data.status;
+    activeModal.componentInstance.errorText=data.statusText;  }
 }

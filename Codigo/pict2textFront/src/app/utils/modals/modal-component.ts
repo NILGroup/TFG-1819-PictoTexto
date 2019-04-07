@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,7 +6,8 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent  implements OnInit {
  
- 
+  @Input() errorCode;
+  @Input() errorText;
   constructor( public activeModal: NgbActiveModal ) {}
 
   ngOnInit() {

@@ -3,7 +3,8 @@ import { ProxyService } from '../utils/proxy/proxy-service.service';
 import { TranslatorService } from 'src/app/translator/service/translator.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {Picto} from 'src/app/finder/transformer/picto'
-import { Word } from './transformer/word';
+import { ModalComponent } from '../utils/modals/modal-component'
+import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-translator',
@@ -14,18 +15,17 @@ import { Word } from './transformer/word';
 
 export class TranslatorComponent {
 
-  phrase: string;
   finalPhrase: string;
   @Input() pictoPhrase:Picto[];
-  constructor(private translatorService: TranslatorService) {  
+  constructor(private translatorService: TranslatorService, private modalService: NgbModal) {  
 }
 
   getTranslate() {
-    let words:Word[] =[], i=0;
+    let words:String[] =[], i=0;
     for(i=0;i<this.pictoPhrase.length;++i){
-        words.push(new Word(this.pictoPhrase[i].keyword,this.pictoPhrase[i].attrs));
+        words.push(this.pictoPhrase[i].keyword);
     }
-    this.translatorService.getPhraseType(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+    this.translatorService.getPhrase(words).then(this.getTranslateSucces.bind(this), this.getTranslateError.bind(this));
   }
 
 
@@ -38,13 +38,10 @@ export class TranslatorComponent {
   }
 
   getTranslateError(data) {
-    console.log(data);
-    console.log('todo mal en el componente');
-  }
-
-
-  getPhraseTypeSuccess(data){
-    console.log(data)
+      const activeModal = this.modalService.open(ModalComponent);
+      activeModal.componentInstance.errorCode=data.status;
+      activeModal.componentInstance.errorText=data.statusText;
+  
   }
 
   drop(event: CdkDragDrop<string[]>) {

@@ -15,17 +15,8 @@ export class FinderService {
       
       function getPictoSuccess(data){
         //LLAMADA AL TRANSFORMER
-        let transformed:Picto[]=this.finderTransformer.getPictoData(data);
-        this.proxyService.getByName(name,AppConstants.wordAttr).subscribe(getAttrsSuccess.bind(this),getPictoError)
-        
-        
-        function getAttrsSuccess(data){
-          let i=0;
-          for( i=0;i<transformed.length;++i){
-            transformed[i].attrs=data.attrs;
-          }
-          resolve(transformed);
-        }
+        let transformed:Picto[]=this.finderTransformer.getPictoData(data);      
+        resolve(transformed);
       }
       function getPictoError(data){
         //TRAMAMIENTO DE ERRORES
