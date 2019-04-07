@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'landingPage',
-    'pictoService',
-    'pictoTranslateService',
+    'pict2Text.landingPage',
+    'pict2Text.pictoService',
+    'pict2Text.pictoTranslateService',
 ]
 
 MIDDLEWARE = [
