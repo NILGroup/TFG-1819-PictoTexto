@@ -28,11 +28,34 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/tests/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+            <state relative-caret-position="119">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/Utils/SpacyModel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="54" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -124,20 +147,21 @@
         <option value="$PROJECT_DIR$/pict2Text/Utils/Spacy.py" />
         <option value="$PROJECT_DIR$/pict2Text/Utils/SpacyModel.py" />
         <option value="$PROJECT_DIR$/pict2Text/landingPage/views.py" />
-        <option value="$PROJECT_DIR$/pict2Text/pict2Text/Utils/SpacyModel.py" />
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/__init__.py" />
         <option value="$PROJECT_DIR$/pict2Text/pictoTranslateService/views.py" />
         <option value="$PROJECT_DIR$/pict2Text/pictoService/views.py" />
         <option value="$PROJECT_DIR$/pict2Text/pictoTranslateService/tests/tests.py" />
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/settings.py" />
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/urls.py" />
+        <option value="$PROJECT_DIR$/pict2Text/pict2Text/Utils/SpacyModel.py" />
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/tests/tests.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="421" />
+    <option name="y" value="-14" />
+    <option name="width" value="933" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -186,7 +210,7 @@
               <item name="Codigo" type="462c0819:PsiDirectoryNode" />
               <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
               <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
-              <item name="pictoTranslateService" type="462c0819:PsiDirectoryNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -304,6 +328,20 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Unittests_for_tests_TranslateWebServiceTest - 2019.04.07 at 15h 08m 05s.xml">
+      <configuration name="Unittests for tests.TranslateWebServiceTest" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_TranslateWebServiceTest - 2019.04.07 at 15h 15m 26s.xml">
+      <configuration name="Unittests for tests.TranslateWebServiceTest" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_TranslateWebServiceTest - 2019.04.07 at 15h 15m 35s.xml">
+      <configuration name="Unittests for tests.TranslateWebServiceTest" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_TranslateWebServiceTest - 2019.04.07 at 15h 15m 52s.xml">
+      <configuration name="Unittests for tests.TranslateWebServiceTest" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -314,21 +352,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49729145" visible="true" weight="0.19978632" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49729145" visible="true" weight="0.098524764" />
       <window_info id="Structure" order="1" sideWeight="0.50270855" side_tool="true" weight="0.14963119" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3238512" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3206934" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49894625" visible="true" weight="0.4091904" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49894625" weight="0.4084507" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50105375" side_tool="true" weight="0.329718" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -355,8 +392,18 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout-to-restore>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/tests/tests.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/myProject/myProject/wsgi.py" />
     <entry file="file://$PROJECT_DIR$/myProject/myProject/urls.py" />
     <entry file="file://$PROJECT_DIR$/myProject/myProject/settings.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/importlib/__init__.py">
@@ -477,13 +524,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/Utils/SpacyModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/Utils/constants.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -528,13 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -542,6 +575,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="75" column="16" selection-start-line="75" selection-end-line="75" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/Utils/SpacyModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="54" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -557,8 +607,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/tests/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>

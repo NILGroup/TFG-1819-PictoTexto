@@ -1,0 +1,78 @@
+% !TeX encoding = ISO-8859-1
+
+\chapter{Arquitectura}
+\label{cap:Arquitectura}
+	
+
+%------------------------------------------------------------------
+\section{Arquitectura}
+%-------------------------------------------------------------------
+\label{cap5:sec:Arquitectura}
+
+El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad   funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debiamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte back-end, y a componentes en la parte front-end. En ambas casos aplicando, hemos seguido los principios de responsabilidad única (Single Responsability Principle)\footnote{https://devexperto.com/principio-responsabilidad-unica/}, segregación de la interfaz (Interface Segregation Principle)\footnote{https://hackernoon.c
+om/interface-segregation-principle-bdf3f94f1d11}, y de inversión de dependencias (Dependency inversion principle).
+Estos tres principios forman parte de SOLID (Single responsibility, Open-closed, Liskov substitution, Interface segregation and Dependency inversion), descritos por Robert C. Martin\citep{martin2013agile}. Los principales objetivos de los 5 principios SOLID son:
+\begin{itemize}
+\item Crear un producto software de calidad que sea robusto.
+\item Producir código ordenado y limpio dando además una gran flexibilidad buscando que sea reutilizable y facilmente mantenible gracias al bajo acomplamiento que se consigue
+\item Permitir la escalabilidad, gracias a una alta modularidad obtenida por la separación de responsabilidades.
+\end{itemize}
+
+Nuestra arquitectura se basa en los siguientes principios de SOLID:
+
+\begin{itemize}
+
+\item El principio de responsabilidad única, promueve la separación de las clases para promover que cada clase haga una sola cosa, y no dependa de un tercero. Cada clase debe de ser responsable únicamente de su comportamiento y no tener dependencia de un tercero. Un ejemplo de violación de este principio es cuando en una misma clase, están involucradas dos capas diferentes de la arquitectura. Además este principio promueve la creación de múltiples clases muy simples, con lógica mínima, en contra de una clase con una lógica mayor, ya que está ultima produce un fuerte acoplamiento y disminuye la sostenibilidad del código. Por ejemplo en nuestro proyecto todos los Servicios Web, están organizados por diferentes clases, donde cada Servicio Web es independiente uno del otro.
+
+\item El principio de segregación de la interfaz, es muy parecido al principio de responsabilidad única, ya que este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es la interfaz de peticiones de la aplicación angular donde todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
+
+\item Principio de inversión de dependencias, consiste en evitar dependencias externas dentro del código, y que el código central de las aplicaciones no dependa de frameworks, de bases de datos o del como se conecten los diferentes servicios entre ellos. Normalmente se habla de que las clases de alto nivel no deben de depender de las clases de bajo nivel\footnote{https://devexperto.com/principio-de-inversion-de-dependencias/}, un ejemplo de esto en nuestra aplicación es el uso de Servicios Web, que reciben tipos básicos y devuelven los resultados en formato JSON.
+
+\end{itemize}
+
+El Servicio Web de Generación de Lenguaje Natural, utiliza Apache TomCat como contenedor, para encapsular la librería SimpleNLG-ES, y poder ser accesible desde el servicio web principal o cualquier otro servicio web del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}.
+
+
+%------------------------------------------------------------------
+\section{Componentes Angular}
+%-------------------------------------------------------------------
+\label{cap5:sec:ComponentesAngular}
+
+En esta sección introduciremos los diferentes componentes Angular desarrollados para la parte Front-End de la aplicación. Hemos implementado diferentes componentes: un buscador de pictogramas, un traductor de pictograma por id, y el componente traductor de pictogramas, que sirve de contenedor para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un HTML, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de útiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo otro servicio de modales para el tratamiento de errores.
+
+
+\subsection{Servicio Proxy}
+
+El servicio proxy de la aplicación Angular sirve para abstraer las diferentes llamadas HTTP del resto de la aplicación, sus métodos se encargan de enviar las peticiones HTTP que se necesitan (GET o POST) y esperar la respuesta del servicio y devolverla al servicio de aplicación que le ha llamado gracias al uso del patrón Observer. Gracias a este patrón todos aquellas clases que llaman al cualquier método del proxy se convierten en subscriptores del mismo, y cuando el proxy recibe la respuesta de los servicios web se encargar de avisar a los subscriptores de que tienen la respuesta y dársela. Además de esto en caso de fallo en la llamada, el proxy volverá a lanzarla hasta cinco veces, cuando la quinta falla devuelve el error a sus subscriptores. En la Figura \ref{fig:proxyClassDiagram} podemos ver un diagrama de clases del servicio proxy.
+
+\figura{Bitmap/ServiciosWeb/proxyService}{width=200px}{fig:proxyClassDiagram}{Diagrama de clase del Servicio Proxy}
+
+\subsection{Servicio de modales}  
+
+El servicio de modales, es un componente reusable que se inyecta en los componentes que tienen una parte visual. Su utilidad principal es lanzar una modal genérica, dado un error especifico. Sigue el patrón Factory, dado que su utilidad es crear objetos específicos gracias a sus datos de entrada, tal y como podemos ver en la Figura \ref{fig:errorModalExample}. Además de esto hemos utilizado la libreria NGBoostrap\footnote{https://ng-bootstrap.github.io/} para la implementación de este servicio de modales, esta librería hace uso del patron Singleton para las modales, y ademas abstrae todos la funcionalidad relacionada con el uso de modales, como pueda ser la lógica de abrir o cerrar la modal. Además de la funcionalidad tiene estilos CSS propios, que ayudan a definir el tamaño de la modal, el fondo que se pone sobre el body de la pagina etc. 
+Este servicio tiene dos variables de entrada el codigo de error y el texto asociado al error, ambos obtenidos del error devuelto por el servicio. En la Figura \ref{fig:modalErrorServiceClass}
+\figura{Bitmap/ServiciosWeb/modalErrorServiceExample}{width=200px}{fig:errorModalExample}{Ejemplo de modal para un error del tipo 404}
+\figura{Bitmap/ServiciosWeb/modalErrorServiceClass}{width=200px}{fig:modalErrorServiceClass}{Diagrama de clase del servicio de modales}
+
+\subsection{Buscador de pictogramas}
+Este componente tiene la utilidad principal de ser un punto de entrada para los pictogramas. En la vista podemos ver un input donde introducir el nombre del pictograma que se desea buscar. Una vez seleccionada la palabra o palabras que se desean buscar, el controlador del buscador, llamara al servicio de aplicación el cual generara la URL usando el archivo de constantes de la aplicación y llamara al servicio proxy, que se encargara de enviar y recibir la respuesta del servicio web. Una vez el servicio de aplicación tiene la respuesta, se encarga de tratarla. En caso de error, sube la excepción hasta el controlador el cual llamara al servicio de modales, para informar al usuario del error. En caso de que la respuesta del servicio web sea correcta, el servicio de aplicación del buscador se encargara de tratarla, y generar un objecto para el controlador, utilizando el transformer del componente. Una vez el controlador tiene el objeto final muestra un carousel de pictogramas, implementado gracias a la librería NGBoostrap. Este carousel nos permitirá añadir imágenes al componente, traductor de pictogramas, gracias a una variable bindeada (pictoPhrase) entre los dos componentes. 
+Podemos ver un diagrama de clase de todo el componente buscador en la Figura \ref{fig:finderClass}    
+\figura{Bitmap/ServiciosWeb/finderClass}{width=300px}{fig:finderClass}{Diagrama de clase del componente buscador de pictogramas}
+
+\subsection{Traductor de pictogramas} 
+
+El traductor de pictogramas sigue la misma estructura interna que el buscador de pictogramas, eliminando el transformador tal y como podemos ver en la Figura \ref{fig:translatorComponent}. Este componente tiene el array de pictogramas que después traduciremos, y sirve para lanzar la traducción.
+El componente implementa un contenedor para los pictogramas, donde se muestran todos los pictogramas que forman la frase, este contenedor de pictogramas ha sido implementado utilizando la biblioteca Material de Angular\footnote{https://material.angular.io/}. Esta biblioteca nos permite entre otras cosas implementar este contenedor, que tiene drag and drop dentro de sus elementos, lo cual nos permite ordenar los pictogramas una vez añadidos. Además hemos añadido un boton de borrar elementos, para eliminar aquellos pictogramas que se hayan añadido por error, o simplemente para poder hacer diferentes traducciones.
+\figura{Bitmap/ServiciosWeb/translatorComponent}{width=300px}{fig:translatorComponent}{Diagrama de clase del componente traductor}
+
+Dada la simplicidad de la respuesta del servicio de generación de lenguaje, este componente carece de un transformador para tratar la respuesta. El controlador de este componente recorre la lista de pictogramas del contenedor, y guarda en una lista el significado de cada uno de los pictogramas y le envía al servicio de aplicación del traductor esta lista.
+El servicio de aplicación genera el cuerpo de la petición POST y carga la URL del servicio de generación de lenguaje del archivo de constantes, y llama al servicio proxy el cual sera encargado de lanzar la petición POST y devolverle la respuesta del servicio.
+A diferencia del componente buscador de pictogramas, en caso de que la respuesta del servicio sea positiva se obtiene el cuerpo de la respuesta y se devuelve al controlador el cual sera el encargado de mostrar el resultado.
+
+\subsection{Traductor de pictogramas por id}
+
+Este componente es el más básico de los implementados, utiliza la misma arquitectura que el componente del traductor de pictogramas, tal y como podemos ver en la Figura \ref{fig:IdPictogramTranslator}.
+Este componente tiene como finalidad obtener las diferentes traducciones de un pictograma, gracias al identificador de ese pictograma, el cual es recogido del input por el controlador, para seguir el flujo llamando a su servicio de aplicación, el cual generara la URL con el identificador del pictograma y la URL del servicio web de traducción de pictogramas por id, y llama al proxy el cual se encargara de lanzar la petición GET y devolver la respuesta del servicio. Dado que la respuesta del servicio es muy sencilla hemos decidido omitir el transformador y en el mismo servicio de aplicación obtener el string de significados y devolverlo al controlador el cual sera el encargado de mostrarlo por pantalla al usuario.
+
+
+\figura{Bitmap/ServiciosWeb/IdPictogramTranslator}{width=300px}{fig:IdPictogramTranslator}{Diagrama de clase del componente traductor de pictogramas por id}
