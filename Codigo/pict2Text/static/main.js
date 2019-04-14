@@ -8923,7 +8923,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div  #content class=\"mt-5\">\r\n  <div class=\" row\">\r\n    <div class=\" col-lg-8 col-sm-12\">\r\n      <app-translator [(pictoPhrase)]=\"pictoPhrase\"></app-translator>\r\n    </div>\r\n    <div class=\"col-lg-4 col-sm-12\">\r\n      <app-finder [(pictoPhrase)]=\"pictoPhrase\"></app-finder>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-lg\">\r\n      <app-picto-translator></app-picto-translator>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<app-header></app-header>\r\n<div  #content class=\"ml-4 mr-4\">\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-8 col-sm-12 mt-5\">\r\n        <div class=\"container\">\r\n      <app-translator [(pictoPhrase)]=\"pictoPhrase\"></app-translator>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-xl-4 col-sm-12 mt-5 \">\r\n        <div class=\"container\">\r\n        <app-finder [(pictoPhrase)]=\"pictoPhrase\"></app-finder>\r\n    </div>\r\n      </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-8 col-sm-12 mt-5\">\r\n      <div class=\"container\">\r\n      <app-picto-translator></app-picto-translator>\r\n    </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -8987,6 +8987,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_material_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./utils/material-module */ "./src/app/utils/material-module.ts");
 /* harmony import */ var ngx_cookie__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-cookie */ "./node_modules/ngx-cookie/fesm5/ngx-cookie.js");
 /* harmony import */ var _polyfills__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../polyfills */ "./src/polyfills.ts");
+/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./header/header.component */ "./src/app/header/header.component.ts");
+/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./footer/footer.component */ "./src/app/footer/footer.component.ts");
+
+
 
 
 
@@ -9014,7 +9018,9 @@ var AppModule = /** @class */ (function () {
                 _finder_finder_component__WEBPACK_IMPORTED_MODULE_11__["FinderComponent"],
                 _picto_translator_picto_translator_component__WEBPACK_IMPORTED_MODULE_12__["PictoTranslatorComponent"],
                 _translator_translator_component__WEBPACK_IMPORTED_MODULE_13__["TranslatorComponent"],
-                _utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_9__["ModalComponent"]
+                _utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_9__["ModalComponent"],
+                _header_header_component__WEBPACK_IMPORTED_MODULE_17__["HeaderComponent"],
+                _footer_footer_component__WEBPACK_IMPORTED_MODULE_18__["FooterComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -9092,7 +9098,7 @@ module.exports = ".finder-opa{\r\n    background-color:rgba(0,0,0,.14);\r\n    p
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"  col-12\">\r\n    <div class=\"container\">\r\n        <label>Nombre del picto</label>\r\n        <form class=\"card card-sm\">\r\n            <div class=\"card-body row no-gutters align-items-center\">\r\n                <div class=\"col-auto\">\r\n                    <i class=\"fas fa-search h4 text-body\"></i>\r\n                </div>\r\n                <div class=\"col\">\r\n                    <input class=\"form-control  form-control-borderless\" id=\"pictoName\" type=\"search\"\r\n                        placeholder=\"Introduzca el nombre\" name=\"pictoName\" #name>\r\n                </div>\r\n                <div class=\"col-auto\">\r\n                    <button class=\"btn  btn-submit\" type=\"submit\" (click)=\"getPictosByName(name.value)\">Buscar</button>\r\n                </div>\r\n            </div>\r\n        </form>\r\n        <!--end of col-->\r\n\r\n        <div>\r\n            <ngb-carousel *ngIf=\"myPicto\" [showNavigationIndicators]=\"false\">\r\n                <div *ngFor=\"let img of myPicto\">\r\n                    <ng-template ngbSlide>\r\n                        <img src={{img.url}} class=\"img-responsive mx-auto d-flex justify-content-center flex-wrap\"\r\n                            alt=\"\" width=\"30%\">\r\n                        <div class=\"carousel-caption\">\r\n                            <p ><span class=\"finder-opa\">Id de pictograma: {{img.id}}</span></p>\r\n                            <button class=\"btn btn-primary\" (click)=\"addPicto(img, content)\">Añadir</button>\r\n                        </div>\r\n\r\n                    </ng-template>\r\n                </div>\r\n            </ngb-carousel>\r\n        </div>\r\n\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n    <div class=\"form-group mx-auto\">\r\n        <label>\r\n            <h3>Nombre del picto</h3>\r\n        </label>\r\n        <div class=\"input-group  input-group-lg\">\r\n            <input class=\"form-control\" id=\"pictoName\" type=\"search\" placeholder=\"Introduzca el nombre\" name=\"pictoName\"\r\n                #name>\r\n            <button class=\"btn-lg btn-submit bg-dark text-white\" type=\"submit\"\r\n                (click)=\"getPictosByName(name.value)\">Buscar</button>\r\n        </div>\r\n\r\n        <ngb-carousel *ngIf=\"myPicto\" [showNavigationIndicators]=\"false\">\r\n            <div *ngFor=\"let img of myPicto\">\r\n                <ng-template ngbSlide>\r\n                    <img src={{img.url}} class=\"img-responsive mx-auto d-flex justify-content-center flex-wrap\" alt=\"\"\r\n                        width=\"30%\">\r\n                    <div class=\"carousel-caption\">\r\n                        <p><span class=\"finder-opa\">Id de pictograma: {{img.id}}</span></p>\r\n                        <button class=\"btn-lg btn-submit bg-dark text-white\"\r\n                            (click)=\"addPicto(img, content)\">Añadir</button>\r\n                    </div>\r\n                </ng-template>\r\n            </div>\r\n        </ngb-carousel>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -9138,8 +9144,8 @@ var FinderComponent = /** @class */ (function () {
     };
     FinderComponent.prototype.getPictoError = function (data) {
         var activeModal = this.modalService.open(_utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_4__["ModalComponent"]);
-        console.log(data);
-        console.log("todo mal en el componente");
+        activeModal.componentInstance.errorCode = data.status;
+        activeModal.componentInstance.errorText = data.statusText;
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -9193,14 +9199,7 @@ var FinderService = /** @class */ (function () {
             function getPictoSuccess(data) {
                 //LLAMADA AL TRANSFORMER
                 var transformed = this.finderTransformer.getPictoData(data);
-                this.proxyService.getByName(name, src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].wordAttr).subscribe(getAttrsSuccess.bind(this), getPictoError);
-                function getAttrsSuccess(data) {
-                    var i = 0;
-                    for (i = 0; i < transformed.length; ++i) {
-                        transformed[i].attrs = data.attrs;
-                    }
-                    resolve(transformed);
-                }
+                resolve(transformed);
             }
             function getPictoError(data) {
                 //TRAMAMIENTO DE ERRORES
@@ -9243,7 +9242,6 @@ var FinderTransformer = /** @class */ (function () {
         var i = 0;
         for (i = 0; i < data['pictos'].length; ++i)
             myPicto.push(new _picto__WEBPACK_IMPORTED_MODULE_2__["Picto"](data['pictos'][i].id, data['pictos'][i].url, data['pictos'][i].keyWords));
-        console.log(myPicto);
         return myPicto;
     };
     FinderTransformer = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -9279,6 +9277,118 @@ var Picto = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/footer/assets/footer.component.css":
+/*!****************************************************!*\
+  !*** ./src/app/footer/assets/footer.component.css ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n@media(min-width:1080px){\r\nfooter{\r\n    position: absolute;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n}\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZm9vdGVyL2Fzc2V0cy9mb290ZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixRQUFRO0lBQ1IsU0FBUztJQUNULE9BQU87QUFDWDtBQUNBIiwiZmlsZSI6InNyYy9hcHAvZm9vdGVyL2Fzc2V0cy9mb290ZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5AbWVkaWEobWluLXdpZHRoOjEwODBweCl7XHJcbmZvb3RlcntcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHJpZ2h0OiAwO1xyXG4gICAgYm90dG9tOiAwO1xyXG4gICAgbGVmdDogMDtcclxufVxyXG59Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/footer/assets/footer.component.html":
+/*!*****************************************************!*\
+  !*** ./src/app/footer/assets/footer.component.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n<footer class=\" footer  page-footer navbar-dark bg-dark align-bottom text-white text-center\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row py-4 \">\r\n          <ul class=\"col-xl-2 navbar-nav ml-3\">\r\n              <li class>\r\n                  <h4>En colaboración con: </h4>\r\n                  <img class=\"img-fluid mx-auto mt-3 d-block\" id=\"logo-navbar-middle\" src=\"/static/assets/dirs/arasaac.png\" width=\"300\" alt=\"Welcome to Pict2Text\">\r\n                </li>\r\n          </ul>\r\n        <div class=\"col-xl-3 navbar-nav mx-auto\">\r\n            <h5>Desarrollado por:</h5>\r\n          <li>José Mª López Pulido</li>\r\n          <li>Salvador Gonzalez Alvarez</li>\r\n        </div>\r\n          <div class=\"col-xl-3 navbar-nav mx-auto\">\r\n            <h5>Bajo la dirección de:</h5>\r\n            <li>Virginia Francisco Gilmartín </li>\r\n            <li>Susana Bautista Blasco</li>\r\n          </div>\r\n    <div class=\"col-xl-2 mr-3 \">\r\n        <ul class=\"navbar-nav\">\r\n            <li>\r\n                <h4>Con licencia:</h4>\r\n                <img class=\"img-fluid mx-auto mt-3 d-block\" id=\"logo-navbar-middle\" src=\"/static/assets/dirs/ccc.png\" width=\"200\" alt=\"Welcome to Pict2Text\">\r\n              </li>\r\n        </ul>\r\n    </div>\r\n  </div>\r\n</div>\r\n  </footer>\r\n  "
+
+/***/ }),
+
+/***/ "./src/app/footer/footer.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/footer/footer.component.ts ***!
+  \********************************************/
+/*! exports provided: FooterComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FooterComponent", function() { return FooterComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var FooterComponent = /** @class */ (function () {
+    function FooterComponent() {
+    }
+    FooterComponent.prototype.ngOnInit = function () {
+    };
+    FooterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-footer',
+            template: __webpack_require__(/*! ./assets/footer.component.html */ "./src/app/footer/assets/footer.component.html"),
+            styles: [__webpack_require__(/*! ./assets/footer.component.css */ "./src/app/footer/assets/footer.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], FooterComponent);
+    return FooterComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/header/assets/header.component.css":
+/*!****************************************************!*\
+  !*** ./src/app/header/assets/header.component.css ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "#navbar-primary .navbar-nav { \r\n      width: 100%;\r\n      text-align: center;\r\n    }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaGVhZGVyL2Fzc2V0cy9oZWFkZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtNQUNNLFdBQVc7TUFDWCxrQkFBa0I7SUFDcEIiLCJmaWxlIjoic3JjL2FwcC9oZWFkZXIvYXNzZXRzL2hlYWRlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI25hdmJhci1wcmltYXJ5IC5uYXZiYXItbmF2IHsgXHJcbiAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICB9Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/header/assets/header.component.html":
+/*!*****************************************************!*\
+  !*** ./src/app/header/assets/header.component.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<header role=\"banner\">\r\n\r\n  <nav id=\"navbar-primary\" class=\"navbar\">\r\n    <!-- Navbar content -->\r\n    <div class=\"container-fluid\">\r\n      <ul class=\"nav navbar-nav\">\r\n        <li><img class=\"img-fluid mx-auto mt-3 d-block\" id=\"logo-navbar-middle\" src=\"/static/assets/dirs/pict2TextLogo.gif\"\r\n            width=\"500\" alt=\"Welcome to Pict2Text\"></li>\r\n      </ul>\r\n    </div>\r\n  </nav>\r\n</header>"
+
+/***/ }),
+
+/***/ "./src/app/header/header.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/header/header.component.ts ***!
+  \********************************************/
+/*! exports provided: HeaderComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderComponent", function() { return HeaderComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var HeaderComponent = /** @class */ (function () {
+    function HeaderComponent() {
+    }
+    HeaderComponent.prototype.ngOnInit = function () {
+    };
+    HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-header',
+            template: __webpack_require__(/*! ./assets/header.component.html */ "./src/app/header/assets/header.component.html"),
+            styles: [__webpack_require__(/*! ./assets/header.component.css */ "./src/app/header/assets/header.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], HeaderComponent);
+    return HeaderComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/picto-translator/assets/picto-translator.component.css":
 /*!************************************************************************!*\
   !*** ./src/app/picto-translator/assets/picto-translator.component.css ***!
@@ -9297,7 +9407,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <div class=\"form-group \">\r\n      <label>Identificador del picto</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"pictoId\" placeholder=\"Introduzca el pictograma que desea buscar\" name=\"pictoId\" #idPicto>\r\n    </div>\r\n    <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getPictosTranslate(idPicto.value)\">Submit</button>\r\n  <div class=\"container\" *ngIf=\"translates\">\r\n    <p>El picto significa</p>\r\n    <div *ngFor=\"let translate of translates\">\r\n      <p>{{translate}}</p>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n  <div class=\"mb-6\">\r\n    <div class=\"form-group\">\r\n      <label><h3>Identificador del picto</h3></label>\r\n      <div class=\"input-group  input-group-lg\">\r\n          <input type=\"search\" class=\"form-control\" id=\"pictoId\" placeholder=\"Introduzca el pictograma que desea buscar\" name=\"pictoId\" #idPicto>\r\n      <button type=\"submit\"class=\"btn-lg btn-submit bg-dark text-white\"   (click)=\"getPictosTranslate(idPicto.value)\">Buscar</button>\r\n      </div>\r\n      <div class=\"container\" *ngIf=\"translates\">\r\n        <h3><p>El picto significa</p></h3>\r\n        <div *ngFor=\"let translate of translates\">\r\n          <p>{{translate}}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -9315,22 +9425,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_picto_translator_service_picto_translator_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/picto-translator/service/picto-translator.service */ "./src/app/picto-translator/service/picto-translator.service.ts");
 /* harmony import */ var _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
+/* harmony import */ var _utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/modals/modal-component */ "./src/app/utils/modals/modal-component.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+
+
 
 
 
 
 var PictoTranslatorComponent = /** @class */ (function () {
-    function PictoTranslatorComponent(pictoTranslatorService) {
+    function PictoTranslatorComponent(pictoTranslatorService, modalService) {
         this.pictoTranslatorService = pictoTranslatorService;
+        this.modalService = modalService;
     }
     PictoTranslatorComponent.prototype.getPictosTranslate = function (name) {
-        this.pictoTranslatorService.getPictogramTranslate(name).then(this.getPictoTranslateSucces.bind(this), this.getPictoTranslateError);
+        this.pictoTranslatorService.getPictogramTranslate(name).then(this.getPictoTranslateSucces.bind(this), this.getPictoTranslateError.bind(this));
     };
     PictoTranslatorComponent.prototype.getPictoTranslateSucces = function (data) {
-        this.translates = data['meanings'];
+        this.translates = data;
     };
-    PictoTranslatorComponent.prototype.getPictoTranslateError = function () {
-        console.log("todo mal en el componente");
+    PictoTranslatorComponent.prototype.getPictoTranslateError = function (data) {
+        var activeModal = this.modalService.open(_utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_4__["ModalComponent"]);
+        activeModal.componentInstance.errorCode = data.status;
+        activeModal.componentInstance.errorText = data.statusText;
     };
     PictoTranslatorComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -9339,7 +9456,7 @@ var PictoTranslatorComponent = /** @class */ (function () {
             providers: [src_app_picto_translator_service_picto_translator_service__WEBPACK_IMPORTED_MODULE_2__["PictoTranslatorService"], _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_3__["ProxyService"]],
             styles: [__webpack_require__(/*! ./assets/picto-translator.component.css */ "./src/app/picto-translator/assets/picto-translator.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_picto_translator_service_picto_translator_service__WEBPACK_IMPORTED_MODULE_2__["PictoTranslatorService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_picto_translator_service_picto_translator_service__WEBPACK_IMPORTED_MODULE_2__["PictoTranslatorService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"]])
     ], PictoTranslatorComponent);
     return PictoTranslatorComponent;
 }());
@@ -9376,7 +9493,7 @@ var PictoTranslatorService = /** @class */ (function () {
             _this.proxyService.getByName(name, src_app_constants_constant_service__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].translatorPictoURL).subscribe(getPictoTranslateSuccess.bind(_this), getPictoTranslateError);
             function getPictoTranslateSuccess(data) {
                 //LLAMADA AL TRANSFORMER
-                resolve(data);
+                resolve(data['meanings']);
             }
             function getPictoTranslateError(data) {
                 //TRAMAMIENTO DE ERRORES
@@ -9415,7 +9532,7 @@ module.exports = ".cdk-drag-placeholder {\r\n    opacity: 0;\r\n  }\r\n  \r\n  .
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n            <label>Pictogramas</label>\r\n      </div>\r\n      <div cdkDropList cdkDropListOrientation=\"horizontal\" class=\"example-list scrolling-wrapper\"\r\n            (cdkDropListDropped)=\"drop($event)\">\r\n            <div class=\"example-box dragElement\" *ngFor=\"let img of pictoPhrase; index as i\" cdkDrag>\r\n                  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"remove(i)\">\r\n                        <span aria-hidden=\"true\">&times;</span>\r\n                  </button>\r\n                  <img src={{img.url}} class=\"img-responsive mx-auto finder\" alt=\"\" width=\"200px\">\r\n            </div>\r\n      </div>\r\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"getTranslate()\">Traducir</button>\r\n</div>\r\n\r\n<div class=\"container\" *ngIf=\"finalPhrase\">\r\n      <p>{{finalPhrase}}</p>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n            <label>\r\n                  <h3>Pictogramas</h3>\r\n            </label>\r\n            <div cdkDropList cdkDropListOrientation=\"horizontal\" class=\"example-list scrolling-wrapper\"\r\n                  (cdkDropListDropped)=\"drop($event)\">\r\n                  <div class=\"example-box dragElement\" *ngFor=\"let img of pictoPhrase; index as i\" cdkDrag>\r\n                        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"remove(i)\">\r\n                              <span aria-hidden=\"true\">&times;</span>\r\n                        </button>\r\n                        <img src={{img.url}} class=\"img-responsive mx-auto finder\" alt=\"\" width=\"200px\">\r\n                  </div>\r\n            </div>\r\n      </div>\r\n      <button type=\"submit\" class=\"btn-lg btn-submit bg-dark text-white\" (click)=\"getTranslate()\">Traducir</button>\r\n\r\n      <div class=\"container\" *ngIf=\"finalPhrase\">\r\n            <p>{{finalPhrase}}</p>\r\n      </div>\r\n</div>"
 
 /***/ }),
 
@@ -9483,21 +9600,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/proxy/proxy-service.service */ "./src/app/utils/proxy/proxy-service.service.ts");
 /* harmony import */ var src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/translator/service/translator.service */ "./src/app/translator/service/translator.service.ts");
 /* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "./node_modules/@angular/cdk/esm5/drag-drop.es5.js");
+/* harmony import */ var _utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/modals/modal-component */ "./src/app/utils/modals/modal-component.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+
+
 
 
 
 
 
 var TranslatorComponent = /** @class */ (function () {
-    function TranslatorComponent(translatorService) {
+    function TranslatorComponent(translatorService, modalService) {
         this.translatorService = translatorService;
+        this.modalService = modalService;
     }
     TranslatorComponent.prototype.getTranslate = function () {
         var words = [], i = 0;
         for (i = 0; i < this.pictoPhrase.length; ++i) {
             words.push(this.pictoPhrase[i].keyword);
         }
-        this.translatorService.getPhrase(words).then(this.getTranslateSucces.bind(this), this.getTranslateError);
+        this.translatorService.getPhrase(words).then(this.getTranslateSucces.bind(this), this.getTranslateError.bind(this));
     };
     TranslatorComponent.prototype.remove = function (i) {
         this.pictoPhrase.splice(i, 1);
@@ -9506,11 +9628,9 @@ var TranslatorComponent = /** @class */ (function () {
         this.finalPhrase = data;
     };
     TranslatorComponent.prototype.getTranslateError = function (data) {
-        console.log(data);
-        console.log('todo mal en el componente');
-    };
-    TranslatorComponent.prototype.getPhraseTypeSuccess = function (data) {
-        console.log(data);
+        var activeModal = this.modalService.open(_utils_modals_modal_component__WEBPACK_IMPORTED_MODULE_5__["ModalComponent"]);
+        activeModal.componentInstance.errorCode = data.status;
+        activeModal.componentInstance.errorText = data.statusText;
     };
     TranslatorComponent.prototype.drop = function (event) {
         Object(_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__["moveItemInArray"])(this.pictoPhrase, event.previousIndex, event.currentIndex);
@@ -9526,7 +9646,7 @@ var TranslatorComponent = /** @class */ (function () {
             providers: [src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_3__["TranslatorService"], _utils_proxy_proxy_service_service__WEBPACK_IMPORTED_MODULE_2__["ProxyService"]],
             styles: [__webpack_require__(/*! ./assets/translator.component.css */ "./src/app/translator/assets/translator.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_3__["TranslatorService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_translator_service_translator_service__WEBPACK_IMPORTED_MODULE_3__["TranslatorService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModal"]])
     ], TranslatorComponent);
     return TranslatorComponent;
 }());
@@ -9630,7 +9750,7 @@ var MaterialModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\r\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">Error</h4>\r\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n  </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <p>MENSAJE DE ERROR</p>\r\n</div>\r\n\r\n<div class=\"modal-footer\">\r\n  <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"activeModal.close('Close click')\">Cerrar</button>\r\n</div>"
+module.exports = "<div class=\"modal-header\">\r\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">Se ha producido un error {{errorCode}}</h4>\r\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n  </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <p>{{errorText}}</p>\r\n</div>\r\n\r\n<div class=\"modal-footer\">\r\n  <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"activeModal.close('Close click')\">Cerrar</button>\r\n</div>"
 
 /***/ }),
 
@@ -9656,6 +9776,14 @@ var ModalComponent = /** @class */ (function () {
     }
     ModalComponent.prototype.ngOnInit = function () {
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ModalComponent.prototype, "errorCode", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ModalComponent.prototype, "errorText", void 0);
     ModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             template: __webpack_require__(/*! ./assets/error-modal.html */ "./src/app/utils/modals/assets/error-modal.html"),
@@ -9723,18 +9851,8 @@ var ProxyService = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
     };
     ProxyService.prototype.handleError = function (error) {
-        if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-        }
-        else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error("Backend returned code " + error.status + ", " +
-                ("body was: " + error.error));
-        }
         // return an observable with a user-facing error message
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["throwError"])('Something bad happened; please try again later.');
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["throwError"])(error);
     };
     ProxyService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

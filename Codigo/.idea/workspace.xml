@@ -16,7 +16,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
+            <state relative-caret-position="408">
               <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
@@ -25,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/tests/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="187">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -63,8 +63,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="75" column="16" selection-start-line="75" selection-end-line="75" selection-end-column="16" />
+            <state relative-caret-position="294">
+              <caret line="125" column="22" selection-start-line="125" selection-start-column="22" selection-end-line="125" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pict2Text/static/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="6" selection-start-line="1" selection-start-column="14" selection-end-line="2" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -209,8 +218,7 @@
               <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
               <item name="Codigo" type="462c0819:PsiDirectoryNode" />
               <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
-              <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
-              <item name="Utils" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -544,9 +552,7 @@
     <entry file="file://$PROJECT_DIR$/pict2Text/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/tests/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/tests/tests.py" />
     <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -573,8 +579,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="75" column="16" selection-start-line="75" selection-end-line="75" selection-end-column="16" />
+        <state relative-caret-position="294">
+          <caret line="125" column="22" selection-start-line="125" selection-start-column="22" selection-end-line="125" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -597,7 +603,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="408">
           <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
@@ -607,8 +613,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/tests/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>

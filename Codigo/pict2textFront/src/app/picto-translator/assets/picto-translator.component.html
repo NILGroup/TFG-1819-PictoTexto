@@ -3,8 +3,8 @@
     <div class="form-group">
       <label><h3>Identificador del picto</h3></label>
       <div class="input-group  input-group-lg">
-      <input type="text" class="form-control" id="pictoId" placeholder="Introduzca el pictograma que desea buscar" name="pictoId" #idPicto>
-      <button type="submit"class="btn-lg btn-submit bg-dark text-white"   (click)="getPictosTranslate(idPicto.value)">Submit</button>
+          <input type="search" class="form-control" id="pictoId" placeholder="Introduzca el pictograma que desea buscar" name="pictoId" #idPicto>
+      <button type="submit"class="btn-lg btn-submit bg-dark text-white"   (click)="getPictosTranslate(idPicto.value)">Buscar</button>
       </div>
       <div class="container" *ngIf="translates">
         <h3><p>El picto significa</p></h3>
