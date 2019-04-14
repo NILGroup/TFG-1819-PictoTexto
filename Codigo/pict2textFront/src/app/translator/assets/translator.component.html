@@ -1,19 +1,21 @@
 <div class="container">
       <div class="form-group ">
-            <label>Pictogramas</label>
-      </div>
-      <div cdkDropList cdkDropListOrientation="horizontal" class="example-list scrolling-wrapper"
-            (cdkDropListDropped)="drop($event)">
-            <div class="example-box dragElement" *ngFor="let img of pictoPhrase; index as i" cdkDrag>
-                  <button type="button" class="close" aria-label="Close" (click)="remove(i)">
-                        <span aria-hidden="true">&times;</span>
-                  </button>
-                  <img src={{img.url}} class="img-responsive mx-auto finder" alt="" width="200px">
+            <label>
+                  <h3>Pictogramas</h3>
+            </label>
+            <div cdkDropList cdkDropListOrientation="horizontal" class="example-list scrolling-wrapper"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box dragElement" *ngFor="let img of pictoPhrase; index as i" cdkDrag>
+                        <button type="button" class="close" aria-label="Close" (click)="remove(i)">
+                              <span aria-hidden="true">&times;</span>
+                        </button>
+                        <img src={{img.url}} class="img-responsive mx-auto finder" alt="" width="200px">
+                  </div>
             </div>
       </div>
-      <button type="submit" class="btn btn-primary" (click)="getTranslate()">Traducir</button>
-</div>
+      <button type="submit" class="btn-lg btn-submit bg-dark text-white" (click)="getTranslate()">Traducir</button>
 
-<div class="container" *ngIf="finalPhrase">
-      <p>{{finalPhrase}}</p>
+      <div class="container" *ngIf="finalPhrase">
+            <p>{{finalPhrase}}</p>
+      </div>
 </div>

@@ -15,6 +15,8 @@ import {MaterialModule} from './utils/material-module';
 import { CookieModule } from 'ngx-cookie';
 
 import '../polyfills';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import '../polyfills';
     FinderComponent,
     PictoTranslatorComponent,
     TranslatorComponent,
-    ModalComponent
+    ModalComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
