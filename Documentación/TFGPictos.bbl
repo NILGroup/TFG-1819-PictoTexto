@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{19}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{Abril~Abad\'{i}n(2010)}]{DoloresAbril2010}
@@ -13,14 +13,6 @@
   Lenguaje\/}.
 \newblock Tfg, Universidad de Valladolid, 2013.
 
-\bibitem[{B.(2007)}]{Socorro2007}
-{\sc B., M. d.~S.}
-\newblock ¿qu{\'e} es la generaci{\'o}n de lenguaje natural? una visi{\'o}n
-  general sobre el proceso de generaci{\'o}n.
-\newblock {\em Inteligencia Artificial. Revista Iberoamericana de Inteligencia
-  Artificial\/}, vol.\ 11, p\'aginas 105--128, 2007.
-\newblock ISSN 1137-3601.
-
 \bibitem[{Basil et\ al.(1990)Basil, Almirall y de~la
   Bellacasa}]{basil1990comunicacion}
 {\sc Basil, C.}, {\sc Almirall, C.} y {\sc de~la Bellacasa, R.}
@@ -30,11 +22,19 @@
   Sociales, 1990.
 \newblock ISBN 9788486852566.
 
-\bibitem[{Bertola~L{\'o}pez(2018-02-15)}]{Bertola2018}
+\bibitem[{Bernardos(2007)}]{Socorro2007}
+{\sc Bernardos, M. d.~S.}
+\newblock ¿qu{\'e} es la generaci{\'o}n de lenguaje natural? una visi{\'o}n
+  general sobre el proceso de generaci{\'o}n.
+\newblock {\em Inteligencia Artificial. Revista Iberoamericana de Inteligencia
+  Artificial\/}, vol.\ 11, p\'aginas 105--128, 2007.
+\newblock ISSN 1137-3601.
+
+\bibitem[{Bertola~L{\'o}pez(2018)}]{Bertola2018}
 {\sc Bertola~L{\'o}pez, E.}
 \newblock {\em An{\'a}lisis emp{\'i}rico de las caracter{\'a}sticas formales de
   los s{\'i}mbolos pictogr{\'a}ficos Arasaac\/}.
-\newblock Tesis Doctoral, 2018-02-15.
+\newblock Tesis Doctoral, 2018.
 
 \bibitem[{Dale et\ al.(2000)Dale, Moisl y Somers}]{Robert2000}
 {\sc Dale, R.}, {\sc Moisl, H.} y {\sc Somers, H.}
@@ -42,8 +42,14 @@
 \newblock Taylor \& Francis, 2000.
 \newblock ISBN 9780824790004.
 
-\bibitem[{Garc{\'i}~Ib{\'a}ñez(2004)}]{CarlosGarcia2004}
-{\sc Garc{\'i}~Ib{\'a}ñez, P.~G., Raquel Herv{\'a}s~Ballesteros}.
+\bibitem[{Delia Correa~Piñero(2011)}]{Correa2011}
+{\sc Delia Correa~Piñero, D. P.-J., Tamara Correa~Moreno}.
+\newblock Comunicaci\'{o}“n aumentativa una introducci\'{o}“n conceptual y
+  pra{\'a}ctica.
+\newblock 2011.
+
+\bibitem[{Garc{\'i}a Ib{\'a}ñez~Carlos(2004)}]{CarlosGarcia2004}
+{\sc Garc{\'i}a Ib{\'a}ñez~Carlos, G.~P., Herv{\'a}s Ballesteros~Raquel}.
 \newblock Una arquitectura software para el desarrollo de aplicaciones de
   generaci{\'o}n de lenguaje natural.
 \newblock 2004.
