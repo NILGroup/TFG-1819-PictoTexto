@@ -33,5 +33,14 @@ En la Figura \ref{fig:ourBoard} se puede ver como esta estructurado el tablero, 
 \section{Control de versiones: GitHub}
 
 
-El sistema elegido para el control de versiones ha sido GitHub dado que nos permitía tener el proyecto en privado\footnote{https://help.github.com/articles/making-a-public-repository-private/}, de esta manera el proyecto solo era visible y modificable por los miembros del equipo y tener copias usando diferentes ramas del proyecto, tal y como podemos ver en la Figura \ref{fig:ramasGit}.
+El sistema elegido para el control de versiones ha sido GitHub, utilizando la cuenta del grupo NYL\footnote{http://nil.fdi.ucm.es/}, utilizar esta cuenta nos permitia tener el proyecto en privado y que solo los miembros del mismo tengan acceso al mismo. Durante el desarrollo del proyecto hemos utilizado diferentes ramas, las cuales explicaremos a continuación:
+\begin{itemize}
+\item Master: en esta rama se guarda el ultimo estado estable tanto de la aplicación como de la documentación. A final de cada sprint todas las ramas se mergean a master para mantener la actualización y a modo de check-point.
+\item Documentation: durante el sprint aquí se realizan todas las modificaciones sobre la documentación del proyecto.
+\item Django: esta rama sirve para guardar todas las modificaciones que se hacen en el servidor de Django durante el sprint, probar las nuevas funcionalidades que se están desarrollando etc.
+\item Front-End: está rama nació con la necesidad de una aplicación front-end que diera mayor flexibilidad a la aplicación, después de terminar la aplicación sirve para realizar todas las modificaciones sobre dicha aplicación.
+\item NLG: en esta rama se ha realizado los diferentes desarrollos sobre el servicio web de generación de lenguaje natural
+\item QA: rama temporal para la creación de modificaciones, pruebas y test en las aplicaciones.
+\end{itemize}
+Hay que destacar que en todas las ramas se mantenía una copia estable del resto del proyecto para realizar las pruebas necesarias y poder tener una visión completa de todo el proyecto durante el desarrollo. 
 Antes de cada reunión con las tutoras se hace merge de todas las ramas a la rama master, a modo de check-point.

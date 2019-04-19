@@ -2,34 +2,75 @@
 
 \chapter{Servicios Web para la Traducción de Pictogramas a Texto}
 \label{cap:serviciosWeb}
-	
-A lo largo de este capitulo se presentaran los diferentes servicios web, que hemos implementado, para la traducción de mensajes con pictogramas. En la Sección \ref{cap5:sec:Arquitectura} presentaremos la arquitectura de la aplicación y los diferentes principios en los que nos hemos basado para su implementación.
-
-
-El Servicio Web de Generación de Lenguaje Natural, utiliza Apache TomCat como contenedor, para encapsular la librería SimpleNLG-ES, y poder ser accesible desde el servicio web principal o cualquier otro servicio web del proyecto IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}.
+\figura{Bitmap/ServiciosWeb/ServiciosWebDiagrama}{width=400px}{fig:ServiciosWebDiagrama}{Diagrama de los diferentes Servicios Web} 
+A lo largo de este capitulo se presentaran los diferentes servicios web, que hemos implementado, para la traducción de mensajes con pictogramas y veremos como se integran entre ellos, en la Figura \ref{fig:ServiciosWebDiagrama}, podemos ver un diagrama de los diferentes servicios web, su relación entre ellos y la vista de la aplicación.
 
 
 %------------------------------------------------------------------
-\section{Servicio Clasificación De Palabras}
+\section{Servicio Web de Clasificación De Palabras}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioClasificaciónDePalabras}
 
-El Servicio Clasificación De Palabras \footnote{/translate/getWordAttrs}, es accesible tanto por el método GET\footnote{/translate/getWordAttrs?word=`NombrePalabra'}, como por el método POST, en la Figura \ref{fig:attrsRequest} podemos ver una llamada a este servicio con la palabra ``casa". Su finalidad es utilizando la librería Spacy, crear un objeto que devuelva la categoría léxica ( nombre, verbo, adjetivo...) y las características que Spacy devuelva, como puede ser el genero o el número, de la palabra o palabras que recibe, tal y como podemos en la Figura \ref{fig:attrsResponse}.
-Una vez se lee la palabra de entrada, en caso de que sea una petición GET, o el array de palabras en caso de una petición POST, se carga el modulo de SpaCy del cual ya hemos hablado en el capitulo \ref{cap3:sec:SpaCy}, posteriormente el modelo de palabras en español, y obtenemos el token de cada una de las palabras recibidas. 
-Tratamos los dados devueltos por el token y creamos el objeto que formara la respuesta, el cual contendrá la palabra con sus características, tal y como se ve en la Figura \ref{fig:attrsResponsePost}
-\figura{Bitmap/ServiciosWeb/attrsRequest}{width=300px}{fig:attrsRequest}{Llamada al servicio web de clasificación de palabras}
-\figura{Bitmap/ServiciosWeb/attrsResponse}{width=300px}{fig:attrsResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa} 
-\figura{Bitmap/ServiciosWeb/attrsResponsePost}{width=400px}{fig:attrsResponsePost}{Respuesta del Servicio Web de Clasificación de Palabras a una petición POST} 
+El Servicio Clasificación De Palabras, se encarga de dada una palabra o un array de palabras devolver la categoría léxica y todos los atributos de cada una de las palabras recibidas.
+Una vez se tiene la entrada se llama a la libreria Spacy que ya ha sido cargada previamente, y se utiliza su función Tokenizer\footnote{https://spacy.io/api/tokenizer}. Esta función sirve para obtener las características y la categorización léxica de una palabra. 
+Las características y diferentes categorías léxicas de las palabras, que seran devueltas por este servicio web están reflejadas en las tablas \ref{tabla:cat1} y \ref{tabla:cat2}.
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Verbo & Nombre & Adjetivo & Determinante \\
+\hline \hline
+Cat. Léxica & Cat. Léxica & Cat. Léxica & Cat. Léxica \\ \hline
+Forma verbal & Número & Número & Número \\ \hline
+ - & Género  & Género  & Tipo \\ \hline
+\end{tabular}
+\caption{Tabla de características de Verbos, Nombres, Adjetivos y Determinantes .}
+\label{tabla:cat1}
+\end{center}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+ Adverbio & Pronombre & Preposiciones  \\
+\hline \hline
+Cat. Léxica &Cat. Léxica &Cat. Léxica \\ \hline
+- &- &Tipo \\ \hline
+\end{tabular}
+\caption{Tabla de características de Adverbios, Pronombres, Preposiciones.}
+\label{tabla:cat2}
+\end{center}
+\end{table}
+
+\figura{Bitmap/ServiciosWeb/attrsResponsePost}{width=300px}{fig:attrsResponsePost}{Respuesta del Servicio Clasificación De Palabras } 
+Dado que la salida de la función Tokenizer devuelve un string, se parsea su salida y se genera un objeto en formato JSON que sera la salida del servicio web. En la Figura \ref{fig:attrsResponsePost}, podemos ver la respuesta del servicio web para la entrada perro, rápido, comer, pan.
+En la Figura \ref{fig:caracPal}, podemos ver un resumen del flujo que sigue este servicio.
+\figura{Bitmap/ServiciosWeb/caracPal}{width=100px}{fig:caracPal}{Flujo del Servicio Clasificación De Palabras} 
 
 %------------------------------------------------------------------
 \section{Servicio de Detección de Tiempo Verbal}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServiciodeDeteccióndeTiempoVerbal}
 
-Servicio de Detección de Tiempo Verbal \footnote{/translate/getTypePhrase}, recibe una petición POST, con una lista de palabras,al igual que el Servicio Web de Clasificación de Palabras. Después de recibir la petición busca palabras clave en la lista de palabras recibida. Si detecta alguna palabra clave, devuelve en un JSON con el tipo de frase que se debe de generar, tal y como podemos ver en la Figura \ref{fig:getTypeResponse}. 
-El servicio permite clasificar frases tanto en pasado, como en futuro y presente en caso de no haber ninguna palabra clave.
-  
-\figura{Bitmap/ServiciosWeb/getTypeResponse}{width=300px}{fig:getTypeResponse}{Servicio de Detección de Tiempo Verbal} 
+Este servicio web, tiene como finalidad determinar el tiempo verbal de una frase dado una lista de palabras. Después de recibir la petición busca alguna de las  palabras clave, que esta en la tabla \ref{tabla:tiempoVerbal}, en la lista de palabras recibida. Si detecta alguna de las palabras clave devuelve en un JSON con el tiempo verbal correspondiente a dicha palabra clave. En caso de no encontrar ninguna de las palabras clave, el servicio web devolverá presente.
+
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Presente & Pasado & Futuro \\
+\hline \hline
+Hoy & Ayer & Mañana \\ \hline
+\end{tabular}
+\caption{Tabla de palabras clave para la detección del tiempo verbal.}
+\label{tabla:tiempoVerbal}
+\end{center}
+\end{table}
+
+En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio.
+\figura{Bitmap/ServiciosWeb/deteccionTiempoVerbal}{width=200px}{fig:deteccionTiempoVerbal}{Flujo del Servicio Web de Detección del Tiempo Verbal} 
 
 %------------------------------------------------------------------
 \section{Servicio de Generación de Lenguaje Natural}

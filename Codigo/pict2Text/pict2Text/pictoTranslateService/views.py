@@ -7,24 +7,6 @@ import pict2Text.Utils.SpacyModel as spacyimp
 
 # Create your views here.
 
-def getPictoTranslate(request):
-    if request.method == "GET":
-        result = []
-        url = constants.PICTO_BASE_DIR + constants.ES_LANGUAGE
-        r = requests.get(url + request.GET.get('pictoId', 'id'))
-        if r.status_code == 200:
-            object = json.loads(r.text)
-            for word in object['keywords']:
-                result.append(word['keyword'])
-            response = {
-                'meanings': result
-            }
-        else:
-            response = {'status': 'false', 'message': r.text}
-        return JsonResponse(response, status=r.status_code)
-    else:
-        return JsonResponse("405 Method Not Allowed", status=405)
-
 
 def getWordAttrs(request):
     if request.method == "GET":
@@ -66,10 +48,10 @@ def getAttrs(nlp,word):
 
     return attrs;
 
+
 def getTypePhrase(request):
     response = {'Type': "present"}
     if request.method == "POST":
-        print(request.body)
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         for picto in body:
@@ -77,7 +59,8 @@ def getTypePhrase(request):
                 response['Type'] = "past"
             if picto == "mañana":
                 response['Type'] = "future"
-        print(response)
+            if picto == "hoy":
+                response = {'Type': "present"}
         return JsonResponse(response, status=200)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)

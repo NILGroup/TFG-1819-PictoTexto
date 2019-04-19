@@ -27,6 +27,24 @@ def getPicto(request):
     else:
         return JsonResponse("405 Method Not Allowed", status=405)
 
+def getPictoTranslate(request):
+    if request.method == "GET":
+        result = []
+        url = constants.PICTO_BASE_DIR + constants.ES_LANGUAGE
+        r = requests.get(url + request.GET.get('pictoId', 'id'))
+        if r.status_code == 200:
+            object = json.loads(r.text)
+            for word in object['keywords']:
+                result.append(word['keyword'])
+            response = {
+                'meanings': result
+            }
+        else:
+            response = {'status': 'false', 'message': r.text}
+        return JsonResponse(response, status=r.status_code)
+    else:
+        return JsonResponse("405 Method Not Allowed", status=405)
+
 
 
 def clearString(cadena):
