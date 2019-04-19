@@ -103,8 +103,8 @@ public class CreatePhrase extends HttpServlet {
 
 	private void setAccessControlHeaders(HttpServletResponse resp) {
 		resp.setHeader("Access-Control-Allow-Origin", "*");
-		resp.setHeader("Access-Control-Request-Headers", "Origin, X-Requested-With, X-CSRFToken, Content-Type, accept");
-		resp.setHeader("Access-Control-Allow-Methods", "GET,POST");
+		resp.setHeader("Access-Control-Request-Headers", "Origin, X-Requested-With, Content-Type, accept");
+		resp.setHeader("Access-Control-Allow-Methods", "GET,DO,POST");
 		resp.setHeader("Content-Type", "application/json");
 		resp.setHeader("Response-Type", "text/plain");
 

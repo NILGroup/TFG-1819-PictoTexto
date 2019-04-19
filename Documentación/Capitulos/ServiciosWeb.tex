@@ -73,27 +73,22 @@ En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo q
 \figura{Bitmap/ServiciosWeb/deteccionTiempoVerbal}{width=200px}{fig:deteccionTiempoVerbal}{Flujo del Servicio Web de Detección del Tiempo Verbal} 
 
 %------------------------------------------------------------------
-\section{Servicio de Generación de Lenguaje Natural}
+\section{Servicio de Generación de Frases en Lenguaje Natural}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioGLN}
 
-Como ya hemos hablado anteriormente, hemos utilizado la librería SimpleNLG-ES\footnote{https://github.com/citiususc/SimpleNLG-ES}.
-El servicio de generación de lenguaje natural \footnote{/NLGWebService/createPhrase}
-) recibe un JSON con un array de strings, tal y como podemos ver en la Figura \ref{fig:nlgResponse}, y su finalidad es devolver una frase con las palabras recibidas en la llamada. En la Figura \ref{fig:nlgRequest} podemos ver la respuesta de este servicio a la llamada de las palabras ``perro, rápido, comer, pan, duro".
 
-\figura{Bitmap/ServiciosWeb/responseTranslateService}{width=300px}{fig:nlgResponse}{Petición al servicio de creación del lenguaje}
-\figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:nlgRequest}{Respuesta del servicio de creación del lenguaje}
+Este servicio web recibe un array de strings y devuelve una frase creada a partir de las palabras recibidas en la llamada. Por ejemplo dado un array con las palabras ``corredora, rapido''
 
+\begin{enumerate}
 
-Una vez el servidor recibe la petición Post, la librería GSON se encarga de parsear la entrada para convertir el JSON de entrada en un ArrayList de Strings. Este paso es necesario dado que Java reconoce los JSON como una cadena de texto, y utilizando esta librería podemos conseguir una clase implementada usando un JSON y el tipo de clase Java representado por el JSON.
+\item Una vez el servidor recibe la petición Post, la librería GSON se encarga de parsear la entrada para convertir el JSON de entrada en un ArrayList de Strings. Este paso es necesario dado que Java reconoce los JSON como una cadena de texto, y utilizando esta librería podemos conseguir una clase implementada usando un JSON y el tipo de clase Java representado por el JSON.
+\item Cuando la entrada es transformada de manera correcta, se llama al Servicio Web de Clasificación de Palabras, a través de una petición POST, y usando también una petición POST con los mismos datos se llama al Servicio Web de Detección de Tiempo Verbal, y de esa manera obtenemos el tiempo verbal en el que se debe conjugar la frase.
+\item Gracias al resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir la lista de palabras en aquellas que formaran el sujeto (aquellas que están antes del verbo) y aquellas que formaran el objecto (palabras encontradas después del verbo).
+\item Una vez identificadas las palabras que forman parte del sujeto se pasa a procesar el sujeto de la frase. En este proceso se configura un determinante en caso de que sea necesario, es decir si es un nombre común por ejemplo ``corredor, perro, bailarina", por defecto el determinante es \textit{ el o la},por ejemplo ``corredora,rapido'' generara ``La corredora rapida''.En palabra principal sea un determinante como ``el, ella, nosotros", no se añade ningún determinante. Además, se obtiene el genero y numero del nombre principal del sujeto, para proceder a la configuración de los mismos de todo el sujeto, de manera que si el nombre es femenino plural como por ejemplo ``mujeres, contento'' el sujeto resultante sera ''Las mujeres contentas''.
+\itemDe la misma manera que con el sujeto, se recorre el array de palabras objeto, y si se encuentran palabras de categoría léxica ``nombre'' se configura la parte objeto del predicado utilizando el genero y numero obtenido. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera `` galletas duras''.
+\end{enumerate}
 
-Cuando la entrada es transformada de manera correcta, se llama al Servicio Web de Clasificación de Palabras, a través de una petición POST, y usando también una petición POST con los mismos datos se llama al Servicio Web de Detección de Tiempo Verbal, y de esa manera obtenemos el tiempo verbal en el que se debe conjugar la frase.
-
-Gracias al resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir la lista de palabras en aquellas que formaran el sujeto (aquellas que están antes del verbo) y aquellas que formaran el objecto (palabras encontradas después del verbo).
-
-Una vez identificadas las palabras que forman parte del sujeto se pasa a procesar el sujeto de la frase. En este proceso se configura un determinante en caso de que sea necesario, es decir si es un nombre común por ejemplo ``corredor, perro, bailarina", por defecto el determinante es \textit{ el o la},por ejemplo ``corredora,rapido'' generara ``La corredora rapida''.En palabra principal sea un determinante como ``el, ella, nosotros", no se añade ningún determinante. Además, se obtiene el genero y numero del nombre principal del sujeto, para proceder a la configuración de los mismos de todo el sujeto, de manera que si el nombre es femenino plural como por ejemplo ``mujeres, contento'' el sujeto resultante sera ''Las mujeres contentas''.
-
-De la misma manera que con el sujeto, se recorre el array de palabras objeto, y si se encuentran palabras de categoría léxica ``nombre'' se configura la parte objeto del predicado utilizando el genero y numero obtenido. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera `` galletas duras''.
 
 El tiempo verbal de la frase se escoge, dependiendo de la respuesta del Servicio de Detección de Tiempo Verbal. Diferenciamos tres tipos de respuesta,
 pasado, futuro y presente que es la configuración de tiempo verbal por defecto.

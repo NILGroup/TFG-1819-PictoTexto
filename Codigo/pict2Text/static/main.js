@@ -8912,7 +8912,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".emptyFinder{\r\n    height: 30px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxZQUFZO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZW1wdHlGaW5kZXJ7XHJcbiAgICBoZWlnaHQ6IDMwcHg7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -8923,7 +8923,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\r\n<div  #content class=\"ml-4 mr-4\">\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-8 col-sm-12 mt-5\">\r\n        <div class=\"container\">\r\n      <app-translator [(pictoPhrase)]=\"pictoPhrase\"></app-translator>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-xl-4 col-sm-12 mt-5 \">\r\n        <div class=\"container\">\r\n        <app-finder [(pictoPhrase)]=\"pictoPhrase\"></app-finder>\r\n    </div>\r\n      </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-8 col-sm-12 mt-5\">\r\n      <div class=\"container\">\r\n      <app-picto-translator></app-picto-translator>\r\n    </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<app-footer></app-footer>"
+module.exports = "<app-header></app-header>\r\n<div  #content class=\"ml-4 mr-4\">\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-8 col-sm-12 mt-2\">\r\n        <div class=\"container\">\r\n      <app-translator [(pictoPhrase)]=\"pictoPhrase\"></app-translator>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-xl-4 col-sm-12 mt-2 \">\r\n        <div class=\"container\">\r\n        <app-finder [(pictoPhrase)]=\"pictoPhrase\"></app-finder>\r\n    </div>\r\n      </div>\r\n  </div>\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -9067,7 +9067,7 @@ var AppConstants = /** @class */ (function () {
     }
     AppConstants.pictoFinderURl = '/picto/getPicto?pictoName=';
     AppConstants.translatorPhraseURL = 'http://127.0.0.1:8080/NLGWebService/createPhrase';
-    AppConstants.translatorPictoURL = '/translate/getPictoTranslate?pictoId=';
+    AppConstants.translatorPictoURL = '/picto/getPictoTranslate?pictoId=';
     AppConstants.typePhraseURL = '/translate/getTypePhrase';
     AppConstants.wordAttr = '/translate/getWordAttrs?word=';
     AppConstants = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -9087,7 +9087,7 @@ var AppConstants = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".finder-opa{\r\n    background-color:rgba(0,0,0,.14);\r\n    padding: 5px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZmluZGVyL2Fzc2V0cy9maW5kZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGdDQUFnQztJQUNoQyxZQUFZO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvZmluZGVyL2Fzc2V0cy9maW5kZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5maW5kZXItb3Bhe1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDAsMCwwLC4xNCk7XHJcbiAgICBwYWRkaW5nOiA1cHg7XHJcbn0iXX0= */"
+module.exports = ".finder-opa{\r\n    background-color:rgba(0,0,0,.14);\r\n    padding: 5px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZmluZGVyL2Fzc2V0cy9maW5kZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGdDQUFnQztJQUNoQyxZQUFZO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvZmluZGVyL2Fzc2V0cy9maW5kZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5maW5kZXItb3Bhe1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDAsMCwwLC4xNCk7XHJcbiAgICBwYWRkaW5nOiA1cHg7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -9532,7 +9532,7 @@ module.exports = ".cdk-drag-placeholder {\r\n    opacity: 0;\r\n  }\r\n  \r\n  .
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n            <label>\r\n                  <h3>Pictogramas</h3>\r\n            </label>\r\n            <div cdkDropList cdkDropListOrientation=\"horizontal\" class=\"example-list scrolling-wrapper\"\r\n                  (cdkDropListDropped)=\"drop($event)\">\r\n                  <div class=\"example-box dragElement\" *ngFor=\"let img of pictoPhrase; index as i\" cdkDrag>\r\n                        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"remove(i)\">\r\n                              <span aria-hidden=\"true\">&times;</span>\r\n                        </button>\r\n                        <img src={{img.url}} class=\"img-responsive mx-auto finder\" alt=\"\" width=\"200px\">\r\n                  </div>\r\n            </div>\r\n      </div>\r\n      <button type=\"submit\" class=\"btn-lg btn-submit bg-dark text-white\" (click)=\"getTranslate()\">Traducir</button>\r\n\r\n      <div class=\"container\" *ngIf=\"finalPhrase\">\r\n            <p>{{finalPhrase}}</p>\r\n      </div>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n            <label>\r\n                  <h3>Pictogramas</h3>\r\n            </label>\r\n            <div cdkDropList cdkDropListOrientation=\"horizontal\" class=\"example-list scrolling-wrapper\"\r\n                  (cdkDropListDropped)=\"drop($event)\">\r\n                  <div class=\"example-box dragElement\" *ngFor=\"let img of pictoPhrase; index as i\" cdkDrag>\r\n                        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"remove(i)\">\r\n                              <span aria-hidden=\"true\">&times;</span>\r\n                        </button>\r\n                        <img src={{img.url}} class=\"img-responsive mx-auto finder\" alt=\"\" width=\"180px\">\r\n                  </div>\r\n            </div>\r\n      </div>\r\n      <button type=\"submit\" class=\"btn-lg btn-submit bg-dark text-white\" (click)=\"getTranslate()\">Traducir</button>\r\n\r\n      <div class=\"container\" *ngIf=\"finalPhrase\">\r\n            <p>{{finalPhrase}}</p>\r\n      </div>\r\n</div>\r\n<div class=\"mt-3\">\r\n<app-picto-translator></app-picto-translator>\r\n</div>"
 
 /***/ }),
 

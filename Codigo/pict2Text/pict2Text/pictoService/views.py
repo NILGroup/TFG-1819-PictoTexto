@@ -22,7 +22,8 @@ def getPicto(request):
                     'pictos': result
             }
         else:
-            response={'status':'false','message': r.message}
+            print(r)
+            response={'status':'false','message': ''}
         return JsonResponse(response,status=r.status_code)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)
