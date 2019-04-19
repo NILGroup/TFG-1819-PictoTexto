@@ -82,21 +82,32 @@ Este servicio web recibe un array de strings y devuelve una frase creada a parti
 
 \begin{enumerate}
 
-\item Una vez el servidor recibe la petición Post, la librería GSON se encarga de parsear la entrada para convertir el JSON de entrada en un ArrayList de Strings. Este paso es necesario dado que Java reconoce los JSON como una cadena de texto, y utilizando esta librería podemos conseguir una clase implementada usando un JSON y el tipo de clase Java representado por el JSON.
-\item Cuando la entrada es transformada de manera correcta, se llama al Servicio Web de Clasificación de Palabras, a través de una petición POST, y usando también una petición POST con los mismos datos se llama al Servicio Web de Detección de Tiempo Verbal, y de esa manera obtenemos el tiempo verbal en el que se debe conjugar la frase.
-\item Gracias al resultado de esta clasificación podemos determinar la posición del verbo, con lo cual podemos dividir la lista de palabras en aquellas que formaran el sujeto (aquellas que están antes del verbo) y aquellas que formaran el objecto (palabras encontradas después del verbo).
-\item Una vez identificadas las palabras que forman parte del sujeto se pasa a procesar el sujeto de la frase. En este proceso se configura un determinante en caso de que sea necesario, es decir si es un nombre común por ejemplo ``corredor, perro, bailarina", por defecto el determinante es \textit{ el o la},por ejemplo ``corredora,rapido'' generara ``La corredora rapida''.En palabra principal sea un determinante como ``el, ella, nosotros", no se añade ningún determinante. Además, se obtiene el genero y numero del nombre principal del sujeto, para proceder a la configuración de los mismos de todo el sujeto, de manera que si el nombre es femenino plural como por ejemplo ``mujeres, contento'' el sujeto resultante sera ''Las mujeres contentas''.
-\itemDe la misma manera que con el sujeto, se recorre el array de palabras objeto, y si se encuentran palabras de categoría léxica ``nombre'' se configura la parte objeto del predicado utilizando el genero y numero obtenido. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera `` galletas duras''.
+\item Obtención de la clasificación lexica de las palabras:
+ Una vez el servidor recibe la petición Post, la librería GSON se encarga de tratar la entrada para transformarla en un ArrayList de Strings. Esto es porque Java no reconoce objectos, en la entrada de los servicios web y tienen que ser tratadas previamente. A continuación se llama al Servicio Web de Clasificación de Palabras para obtener las características y categoría léxica de cada palabra.
+
+\item A continuación se hace una llamada al Servicio Web de Detección de Tiempo Verbal, para obtener el tiempo verbal el que se debe conjugar la frase resultante.
+
+\item Gracias al resultado de esta clasificación sabemos cual es la posición del verbo dentro del array de palabras. Gracias a esto podemos dividir la lista de palabras en aquellas que formaran el sujeto (aquellas que están antes del verbo) y aquellas que formaran el objecto (palabras encontradas después del verbo).
+
+\item Una vez identificadas las palabras que forman parte del sujeto se pasa a procesar el sujeto de la frase.
+
+\begin{itemize}
+\item Selección del determinante: En este proceso se selecciona un determinante en caso de que sea necesario, es decir si es un nombre común (por ejemplo  ``corredor, perro, bailarina''), por defecto el determinante es \textit{el o la}. Si la palabra principal es un determinante como ``el, ella, nosotros", no se añade.
+\item Genero y número: se selecciona el genero y numero de la palabra principal del sujeto, y se configura en todo el sujeto, de manera que si el nombre es femenino plural como por ejemplo ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''.
+\item En caso de encontrar un adverbio dentro del array de palabras se fuerza su posición dentro del sujeto al final del sujeto, y así la entrada ``profesora ayer,comer,galletas,duro'' generara la frase ``La profesora ayer comió galletas duras''
+\end{itemize}
+
+\item De la misma manera que con el sujeto, se obtienen las palabras que formaran el predicado excluyendo el verbo. En caso de tener palabras de categoría léxica ``nombre'' se configura la parte objeto del predicado utilizando el genero y numero obtenido. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera `` galletas duras''.
+Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras que conformaran la frase final contienen ``profesora, comer, ayer, galletas, duro'', la frase resultante sera ``La profesora comío galletas duras ayer''. 
+
+\item El tiempo verbal de la frase se escoge, dependiendo de la respuesta del Servicio de Detección de Tiempo Verbal. Diferenciamos tres tipos de respuesta,
+pasado, futuro y presente que es la configuración de tiempo verbal por defecto.
+
+\item Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase sera devuelto en la respuesta del servicio web.
+
 \end{enumerate}
 
 
-El tiempo verbal de la frase se escoge, dependiendo de la respuesta del Servicio de Detección de Tiempo Verbal. Diferenciamos tres tipos de respuesta,
-pasado, futuro y presente que es la configuración de tiempo verbal por defecto.
-
-En caso de encontrar un adverbio se fuerza su posición al final de la frase que formara el objeto, si se encuentra dentro del array de palabras objecto,  de manera que si las palabras que conformaran la frase final contienen ``profesora,comer,ayer,galletas,duro'', la frase resultante sera ``La profesora comío galletas duras ayer''. En caso de encontrar el adverbio dentro del array de palabras del sujeto se pondrá al final del sujeto, y así la entrada ``profesora ayer,comer,galletas,duro'' generara la frase ``La profesora ayer comío galletas duras''
-
-
-Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase sera devuelto en la respuesta del servicio tal y como podemos ver en la Figura \ref{fig:nlgRequest}, para la entrada ``perro, rápido, comer, pan, duro''.
 A continuación repasaremos otros ejemplos de entradas:
 \begin{itemize}
 \item Entrada simple sujeto, verbo, objeto (Profesor,comer,galletas
@@ -109,11 +120,10 @@ A continuación repasaremos otros ejemplos de entradas:
 \end{itemize}
 
 %------------------------------------------------------------------
-\section{Servicios para la gestión de pictogramas} %-------------------------------------------------------------------
+\section{Servicios Web para la gestión de pictogramas} %-------------------------------------------------------------------
 \label{cap5:sec:ServiciosParaPictos}
 
-Para la obtención de los pictogramas, así como su significado se han implementado una serie de servicios web que hacen uso de la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. 
-En esta subsección pasaremos a desarrollar los diferentes servicios web, que utilizamos para llamar a la API de ARASAAC, y crear las respuestas necesarias:
+En esta subsección pasaremos a explicar los diferentes servicios web, que hemos creado para tratar con pictogramas utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. 
 
 \subsection{Servicio web de búsqueda}
 
