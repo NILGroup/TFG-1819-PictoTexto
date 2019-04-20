@@ -106,7 +106,8 @@ pasado, futuro y presente que es la configuración de tiempo verbal por defecto.
 \item Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase sera devuelto en la respuesta del servicio web.
 
 \end{enumerate}
-
+En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue este servicio.
+\figura{Bitmap/ServiciosWeb/NLGService}{width=350px}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural} 
 
 A continuación repasaremos otros ejemplos de entradas:
 \begin{itemize}
@@ -123,21 +124,31 @@ A continuación repasaremos otros ejemplos de entradas:
 \section{Servicios Web para la gestión de pictogramas} %-------------------------------------------------------------------
 \label{cap5:sec:ServiciosParaPictos}
 
-En esta subsección pasaremos a explicar los diferentes servicios web, que hemos creado para tratar con pictogramas utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. 
+En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. Para creación de estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC} 
+\figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{width=200px}{fig:serviciosAPIARAASAC}{Flujo de los Servicios Web Para Pictogramas } 
 
-\subsection{Servicio web de búsqueda}
+\subsection{Servicio Web de búsqueda del pictograma asociado a una palabra}
 
-Este servicio web\footnote{/picto/getPicto?pictoName=`NombrePictograma'}, recibe una palabra a través de una petición GET tal y como podemos ver en la Figura \ref{fig:pictoFinderRequest}, y devuelve un objeto en formato JSON.
-\figura{Bitmap/ServiciosWeb/pictoFinderRequest}{width=400px}{fig:pictoFinderRequest}{Petición al servicio de búsqueda de pictogramas}
-Este servicio lanza una petición GET a un servicio web externo\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'} de la API de ARAASAC, el cual devuelve una lista de pictogramas. La respuesta devuelta por la API de ARAASAC es procesada para quedarnos con los siguientes datos de cada pictograma: identificador del pictograma, la URL al archivo con la imagen asociado al pictograma de ARASAAC y el significado. A continuación se crea una lista con todos los pictogramas y sus datos y se genera un JSON que sera la salida del servicio.
-
-\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{width=300px}{fig:pictoFinderResponse}{Respuesta del servicio de búsqueda de pictogramas para la palabra casa}
+Este servicio web, recibe una palabra a través de una petición GET y devuelve un objeto en formato JSON, con un array de objetos con los diferentes pictogramas asociados a la palabra recibida.
+Este servicio lanza una petición GET al buscador de pictogramas de la API de ARAASAC\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'}, el cual devuelve una lista de pictogramas, con todos los pictogramas en los que aparece la palabra introducida.
+La respuesta devuelta por la API de ARAASAC es procesada, eliminando los resultados que no son deseados, por ejemplo si se realiza la busqueda huevo, la API de ARAASAC devolverá tres pictogramas: huevo, huevo frito, huevo roto, por lo que los dos últimos se excluirán. Por cada pictograma se genera un objecto con los siguientes atributos:
+\begin{itemize}
+\item Identificador del pictograma.
+\item URL externa a la imagen del pictograma.
+\item El significado del pictograma.
+\end{itemize}
+Cada objecto se añade a una lista que sera devuelta en el resultado de este servicio web tal y como podemos ver en la Figurac \ref{fig:pictoFinderResponse}, para la entrada ``huevo''.
+\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{width=400px}{fig:pictoFinderResponse}{Respuesta del buscador por id de la API de ARAASAC} 
 
 \subsection{Servicio web de traducción}
 
-Este segundo servicio web tiene diferentes end-points, accesibles desde /translate:
+Este servicio web recibe un identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma.
 
-Servicio de traducción de pictogramas\footnote{/translate/getPictoTranslate?pictoId='XXXX'} recibe el identificador de un pictograma tal y como podemos ver en la Figura \ref{fig:translateResponse} y obtiene todos los significados de dicho pictograma haciendo uso de una llamada a la API de ARASAAC de busqueda de pictogramas por id\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. Encapsula dentro de un objeto los valores necesarios obtenidos de la respuesta del servicio de ARAASAC, y lo devuelve dentro de un JSON, tal y como podemos ver en la Figura  \ref{fig:responsetranslateService}.
-\figura{Bitmap/ServiciosWeb/translateService}{width=300px}{fig:translateResponse}{Llamada al servicio web de traducción de pictogramas, para el pictograma 2317}
-\figura{Bitmap/ServiciosWeb/responsetranslateService}{width=300px}{fig:responsetranslateService}{Respuesta del servicio de traducciones de pictogramas}
+
+\begin{itemize}
+\item Una vez el servicio recibe un identificador, lanza una petición al buscador de pictogramas de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823.
+\figura{Bitmap/ServiciosWeb/finderIDAPI}{width=300px}{fig:finderIDAPI}{Respuesta del buscador por id de la API de ARAASAC} 
+\item Se accede al atributo ``Keywords'' del objeto devuelto por la API, se encapsula dentro de un objeto, y se devuelve dentro de un JSON tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
+\figura{Bitmap/ServiciosWeb/responseTranslatePictoService}{width=300px}{fig:responseTranslatePictoService}{Respuesta del buscador por id de la API de ARAASAC} 
+\end{itemize}
 

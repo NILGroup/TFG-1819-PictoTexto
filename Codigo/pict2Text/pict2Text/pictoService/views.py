@@ -22,7 +22,6 @@ def getPicto(request):
                     'pictos': result
             }
         else:
-            print(r)
             response={'status':'false','message': ''}
         return JsonResponse(response,status=r.status_code)
     else:
