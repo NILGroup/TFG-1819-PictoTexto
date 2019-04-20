@@ -110,21 +110,31 @@ En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue es
 \figura{Bitmap/ServiciosWeb/NLGService}{width=350px}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural} 
 
 A continuación repasaremos otros ejemplos de entradas:
-\begin{itemize}
-\item Entrada simple sujeto, verbo, objeto (Profesor,comer,galletas
-\item Entrada con adjetivo en el sujeto, adjetivo, verbo, objeto: ''Profesor, listo, comer, galletas'' -> ``El profesor listo come galletas''
-\item Entrada con adverbio en el sujeto, adverbio, verbo, objeto: ''Profesor, ayer, comer, galletas'' -> ''El profesor ayer comió galletas''
-\item Entrada con adjetivo y adverbio temporal en el sujeto: sujeto, adjetivo, adverbio, verbo, objeto: ''Profesor, listo, ayer, comer, galletas'' -> ''El profesor listo ayer comió galletas''
-\item Entrada con adjetivo en el predicado: sujeto, verbo, objeto, adjetivo: ''Profesor, comer, galletas, duro'' -> ''El profesor come galletas duras''
-\item Entrada con adverbio en el predicado: sujeto, verbo, adverbio temporal, objeto: ''Profesor, comer, galletas, ayer'' -> ''El profesor comió galletas ayer''
-\item Entrada con adjetivo y adverbio en el predicado, adverbio, adjetivo, verbo, objeto: ''Profesor, comer, galletas, duro, ayer'' -> ''El profesor commió galletas duras ayer''
-\end{itemize}
-
+\begin{table}[htbp]
+\begin{tabular}{p{1.5cm}p{1cm}p{1.2cm}p{1cm}p{2cm}p{1cm}p{1cm}p{3cm}}
+\hline
+Sujeto & Adj. & Adv. & Verbo & Objecto & Adj. & Adv. & Resultado \\
+\hline \hline
+Corredor & -&-&Perder & Zapatillas &- &- & El corredor pierde unas zapatillas\\ \hline
+Corredor & Rápido &- & Perder & Zapatillas&- &- & El corredor rápido pierde unas zapatillas\\ \hline
+Corredor & - & Ayer & Perder & Zapatillas &- &-& El corredor ayer perdió unas zapatillas.\\ \hline
+Corredor & - & Mañana & Perder & Zapatillas &- &-& El corredor mañana perderá unas zapatillas.\\ \hline
+Corredor & Rápido & Ayer & Perder & Zapatillas &- &- & El corredor rápido ayer perdió unas zapatillas.\\ \hline
+Corredor & -&-&Perder & Zapatillas &Nuevo &- & El corredor pierde unas zapatillas nuevas\\ \hline
+Corredor &Rápido &-&Perder & Zapatillas &Nuevo &- & El corredor rápido pierde unas zapatillas nuevas\\ \hline
+Corredor &Rápido &Ayer &Perder & Zapatillas &Nuevo &- & El corredor rápido ayer perdió unas zapatillas nuevas.
+\\ \hline
+Corredor &Rápido &- &Perder & Zapatillas &Nuevo &Ayer & El corredor rápido perdió unas zapatillas nuevas ayer.
+\\ \hline
+\end{tabular} 
+\caption{Tabla con diferentes entradas y salidas del Servicio Web de Generación de Frases en Lenguaje Natural.}
+\label{tabla:tiempoVerbal}
+\end{table}
 %------------------------------------------------------------------
 \section{Servicios Web para la gestión de pictogramas} %-------------------------------------------------------------------
 \label{cap5:sec:ServiciosParaPictos}
 
-En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. Para creación de estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC} 
+En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. Para creación de estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}. 
 \figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{width=200px}{fig:serviciosAPIARAASAC}{Flujo de los Servicios Web Para Pictogramas } 
 
 \subsection{Servicio Web de búsqueda del pictograma asociado a una palabra}
