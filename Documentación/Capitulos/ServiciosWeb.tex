@@ -109,7 +109,7 @@ pasado, futuro y presente que es la configuración de tiempo verbal por defecto.
 En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue este servicio.
 \figura{Bitmap/ServiciosWeb/NLGService}{width=350px}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural} 
 
-A continuación repasaremos otros ejemplos de entradas:
+En la tabla \ref{tabla:tiempoVerbal} podemos ver un resumen con diferentes entradas de este Servicio Web.
 \begin{table}[htbp]
 \begin{tabular}{p{1.5cm}p{1cm}p{1.2cm}p{1cm}p{2cm}p{1cm}p{1cm}p{3cm}}
 \hline
@@ -137,8 +137,8 @@ Corredor &Rápido &- &Perder & Zapatillas &Nuevo &Ayer & El corredor rápido perdi
 En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. Para creación de estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}. 
 \figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{width=200px}{fig:serviciosAPIARAASAC}{Flujo de los Servicios Web Para Pictogramas } 
 
-\subsection{Servicio Web de búsqueda del pictograma asociado a una palabra}
-
+\subsection{Servicio Web de búsqueda del pictogramas asociados a una palabra}
+\label{cap5:sec:ServiciosParaPictosPalabra}
 Este servicio web, recibe una palabra a través de una petición GET y devuelve un objeto en formato JSON, con un array de objetos con los diferentes pictogramas asociados a la palabra recibida.
 Este servicio lanza una petición GET al buscador de pictogramas de la API de ARAASAC\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'}, el cual devuelve una lista de pictogramas, con todos los pictogramas en los que aparece la palabra introducida.
 La respuesta devuelta por la API de ARAASAC es procesada, eliminando los resultados que no son deseados, por ejemplo si se realiza la busqueda huevo, la API de ARAASAC devolverá tres pictogramas: huevo, huevo frito, huevo roto, por lo que los dos últimos se excluirán. Por cada pictograma se genera un objecto con los siguientes atributos:
@@ -153,8 +153,6 @@ Cada objecto se añade a una lista que sera devuelta en el resultado de este serv
 \subsection{Servicio web de traducción}
 
 Este servicio web recibe un identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma.
-
-
 \begin{itemize}
 \item Una vez el servicio recibe un identificador, lanza una petición al buscador de pictogramas de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823.
 \figura{Bitmap/ServiciosWeb/finderIDAPI}{width=300px}{fig:finderIDAPI}{Respuesta del buscador por id de la API de ARAASAC} 

@@ -13,6 +13,7 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './assets/finder.component.html',
   providers: [FinderService,FinderTransformer,NgbCarouselConfig, ProxyService],
   styleUrls: ['./assets/finder.component.css']
+
 })
 export class FinderComponent {
   myPicto:Picto[];
