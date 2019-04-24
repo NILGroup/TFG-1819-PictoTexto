@@ -15,22 +15,22 @@ Por último, para agilizar tanto el tiempo de respuesta de los servidores como el
 \label{cap3:sec:Django}
 Debido a los diferentes servicios web que se utilizan en este TFG, se necesitaba un espacio o contenedor en donde pudieran desembocar y relacionar entre sí estos servicios mencionados anteriormente. Además al ser python uno de los lenguajes de programación más utilizados en este trabajo, era aconsejable que dicho contenedor estuviera también desarrollado en ese mismo lenguaje. 
 Con estos requisitos previos se eligió la herramienta Django que al ser un framework de desarrollo web\footnote{https://tutorial.djangogirls.org/es/django/} de código abierto escrito en Python,  y respetando el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C). Tiene como meta principal facilitar la creación de sitios web. Además de ser muy importante el re-uso de código, la conectividad y el desarrollo rápido.
-Todos estos motivos la convirtieron en la herramienta ideal sobre la que construir la comunicación entre los diferentes servicios y además al estar escrita en Python nos solucionaba problemas de errores con uno de los lenguajes de programación utilizados.   
+Todos estos motivos la convirtieron en la herramienta ideal sobre la que construir la comunicación entre los diferentes servicios y además al estar escrita en Python nos solucionaba problemas de errores con uno de los lenguajes de programación utilizados. 
 
-
-\section{GSON}
+\section{API-Arasaac}
 %-------------------------------------------------------------
-\label{cap3:sec:GSON}
-GSON es una librería open-source la cuál nos permite convertir nuestros objetos Java en JSON o viceversa, esta librería es muy importante ya que nos permite poder obtener un objeto GSON compatible con servicio web configurado en lenguaje Java. Nuestro servicio web obliga a recibir obligatoriamente un objeto en formato JSON.
+\label{cap3:sec:API-Arasaac}
 
-Esta librería GSON contiene el método "from JSON", dicho método es vital para la obtención de un objeto compatible entre los servicios python y los de Java.
+Para conseguir la traducción de cada pictograma a texto hemos utilizado la API de Arasaac\footnote{https://beta.arasaac.org/developers/api}, centrándonos en la sección de pictogramas.
+En este trabajo se han utilizado dos de los métodos proporcionados en la API, por un lado obtenemos la información del pictograma a partir de su id, con esto se consigue una relación entre la palabra y su pictograma gracias al código de identificación.
+Por ejemplo si se desea buscar la palabra \textit{perro}, el método relaciona dicha palabra a su id devolviendo el pictograma asociado a ella, en este caso el id 2517.
 
-Una vez obtenido el objeto GSON mencionado, la propia librería se encarga de mandar el objeto al servicio web que lo necesita.
+El segundo método utilizado permite obtener el texto asociado a un pictograma partiendo de su id encontrado en el método anterior, gracias a esto  se logra una conexión entre el texto, su pictograma y un objeto con toda la información relevante asociada a la palabra , siguiendo el ejemplo anterior del pictograma con id 2517 se consigue una relación con el texto \textit{perro} y además un objeto con información relativa dicha palabra.  
 
 \section{SpaCy}
 %-------------------------------------------------------------
 \label{cap3:sec:SpaCy}
-SpaCy es una biblioteca de procesamiento escrita en Python diseñada para el procedimiento avanzado de lenguaje natural\footnote{\url{https://medium.com/datos-y-ciencia/comenzando-con-spacy-para-procesamiento-de-lenguaje-natural-e8cf24a18a5a}}.
+SpaCy es una biblioteca escrita en Python diseñada para el procesamiento avanzado de lenguaje natural\footnote{\url{https://medium.com/datos-y-ciencia/comenzando-con-spacy-para-procesamiento-de-lenguaje-natural-e8cf24a18a5a}}.
 Además al ser la librería relativamente más moderna destaca para el programador por su facilidad de uso y su velocidad a la hora de realizar el procesamiento del lenguaje.
 
 Para nuestro proyecto la función principal que realizará spaCy será la de analizador de las palabras que conforman la oración a traducir, spaCy será el encargado de proporcionarnos la información de las características  o atributos de las palabras analizadas, estos atributos pueden ser llamados también "tokens". 
@@ -70,19 +70,16 @@ Otra de las características que permite la herramienta es la de añadirle al verb
 
 Por último es importante destacar la función "realiser", la cuál es la encargada de juntar las diferentes partes sintácticas en un objeto que devolverá la oración generada. 
 
-
-\section{API-Arasaac}
+\section{GSON}
 %-------------------------------------------------------------
-\label{cap3:sec:API-Arasaac}
+\label{cap3:sec:GSON}
+Como hemos explicado en el apartado de la API de Arasaac, los pictogramas obtenidos vienen escritos en python pero nuestras herramientas para el tratamiento del lenguaje Natural utilizan lenguaje Java, por esta razón se necesita en este trabajo el uso de GSON.  
+Es una librería open-source la cuál nos permite convertir nuestros objetos Java en JSON o viceversa, esta librería es muy importante ya que nos permite poder obtener un objeto GSON compatible con un servicio web configurado en lenguaje Java. Nuestro servicio web obliga a recibir un objeto en formato JSON.
 
-Para conseguir la traducción de cada pictograma a texto hemos utilizado la API de Arasaac \footnote{https://beta.arasaac.org/developers/api}, centrándonos en la sección de pictogramas, como vemos en la Figura \ref{fig:principal}.
-\figura{Bitmap/Herramientas/PrincipalAPI}{width=300px}{fig:principal}{Pagina web de la API de Arasaac}.
-En el trabajo se han utilizado dos de los métodos "GET" proporcionados en la API, por un lado obtenemos el cuerpo del pictograma introduciendo su identificador para encontrarlo(/pictograms/{locale}/{idPictogram}). 
-Por ejemplo introduciendo el id 2517 obtenemos la estructura con toda la información correspondiente al pictograma de la palabra "perro".
+Esta librería GSON contiene el método "from JSON", dicho método es vital para la obtención de un objeto compatible entre los servicios python y los de Java.
 
-El otro método "GET" que se ha utilizado para nuestro proyecto es para poder buscar el texto para relacionarlo con el pictograma que deseamos (/pictograms/{locale}/search/{searchText}). 
-Este método nos devuelve un objeto con todo lo relacionado con el texto buscado, siguiendo el ejemplo anterior con la palabra "perro".  
-  
+Una vez obtenido el objeto GSON mencionado, la propia librería se encarga de mandar el objeto al servicio web que lo necesita.
+    
 \section{Angular}
 %-------------------------------------------------------------
 \label{cap3:sec:Angular}
