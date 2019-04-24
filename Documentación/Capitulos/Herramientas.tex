@@ -25,18 +25,18 @@ Para conseguir la traducción de cada pictograma a texto hemos utilizado la API d
 En este trabajo se han utilizado dos de los métodos proporcionados en la API, por un lado obtenemos la información del pictograma a partir de su id, con esto se consigue una relación entre la palabra y su pictograma gracias al código de identificación.
 Por ejemplo si se desea buscar la palabra \textit{perro}, el método relaciona dicha palabra a su id devolviendo el pictograma asociado a ella, en este caso el id 2517.
 
-El segundo método utilizado permite obtener el texto asociado a un pictograma partiendo de su id encontrado en el método anterior, gracias a esto  se logra una conexión entre el texto, su pictograma y un objeto con toda la información relevante asociada a la palabra , siguiendo el ejemplo anterior del pictograma con id 2517 se consigue una relación con el texto \textit{perro} y además un objeto con información relativa dicha palabra.  
+El segundo método utilizado permite obtener el texto asociado a un pictograma partiendo de su id encontrado en el método anterior, gracias a esto  se logra una conexión entre el texto, su pictograma y un objeto con toda la información relevante asociada a la palabra , siguiendo el ejemplo anterior del pictograma con id 2517 se consigue una relación con el texto \textit{perro} y además un objeto con información relativa a dicha palabra.  
 
 \section{Spacy}
 %-------------------------------------------------------------
 \label{cap3:sec:Spacy}
 Spacy es una biblioteca escrita en Python diseñada para el procesamiento avanzado de lenguaje natural\footnote{\url{https://medium.com/datos-y-ciencia/comenzando-con-spacy-para-procesamiento-de-lenguaje-natural-e8cf24a18a5a}}.
 
-Para el uso del lenguaje natural primero se necesitaba realizar una clasificación y análisis de las palabras que se quieran traducir a pictogramas y así conocer las características de cada una de ellas. Para esta función de analizador se eligió usar la librería Spacy por delante de otras como NLTK, esta elección se basó sobre todo al estar Spacy orientado a objetos devolviendo la información necesaria en dicho objeto, mientras que NLTK es una biblioteca de procesamiento de cadenas, es decir, recibe como entrada una cadena y devuelve otra cadena. Por tanto era más adecuado para nuestro proyecto el uso de Spacy. 
+Para el uso del lenguaje natural primero se necesitaba realizar una clasificación y análisis de las palabras que se quieran traducir a pictogramas y así conocer las características de cada una de ellas. Para esta función de análisis se eligió usar la librería Spacy por delante de otras como NLTK, esta elección se basó sobre todo al estar Spacy orientado a objetos devolviendo la información necesaria en el propio objeto, mientras que NLTK es una biblioteca de procesamiento de cadenas, es decir, recibe como entrada una cadena y devuelve otra cadena. Por tanto era más adecuado para este proyecto el uso de Spacy. 
     
 Como acabo de mencionar en el párrafo anterior, Spacy será el encargado de proporcionarnos la información de los atributos de cada palabra analizada mediante su función Tokenizer. Así con esta función obtendremos la categoría léxica de las palabras, es decir, conseguiremos conocer si la palabra es sustantivo, adjetivo, verbo, determinante, etc.
 
-Una vez conseguida su categoría léxica, Spacy nos proporciona las características de cada palabra y nosotros dependiendo del tipo de palabra que sea seleccionamos unos atributos u otros como son:
+Una vez conseguida su categoría léxica, Spacy nos proporciona las características de cada palabra y nosotros dependiendo del tipo de palabra que sea seleccionamos unos atributos u otros.
 \begin{itemize}
     \item \textbf{Sustantivos} y \textbf{Adjetivos}, lo principal es conocer su género y número.
     \item \textbf{Verbos}, se obtiene su forma y tiempo verbal.
@@ -49,26 +49,26 @@ Toda esta información se mandará como entrada a la siguiente fase de nuestro TFG
 \section{SimpleNLG-ES}
 %-------------------------------------------------------------
 \label{cap3:sec:SimpleNLG}
-Una vez Spacy analiza y clasifica todas las partes de la oración. Se necesita una nueva herramienta que recibiendo como entrada una lista con el análisis pormenorizado de dicha oración e identificados el sujeto, verbo y complementos de la misma, sea capaz de generar cada palabra en lenguaje natural. 
+Una vez Spacy analiza y clasifica todas las partes de la oración. Se necesita una nueva herramienta que recibiendo como entrada una lista con el análisis pormenorizado de las oraciones e identificados el sujeto, verbo y complementos de las mismas, sea capaz de generar cada palabra en lenguaje natural. 
 La herramienta idónea elegida para realizar esta tarea es SimpleNLG-ES, esta biblioteca hecha en Java permite realizar la generación de lenguaje natural usando palabras\citep{Trzpis2015}.\\
-Conforme los datos de entrada que reciba Simple-NLG es capaz de crear diferentes tipos de frases, yendo desde frases simples o frases nominales hasta aquellas que posean un cierto grado de complejidad como pueden ser frases más complejas u oraciones. Dependiendo la complejidad de la frase, su forma de realizar la generación de lenguaje natural difiere una de otra.
+Conforme los datos de entrada que reciba Simple-NLG es capaz de crear diferentes tipos de frases, yendo desde frases simples o nominales hasta aquellas que posean un cierto grado de complejidad como pueden ser frases más complejas u oraciones. Dependiendo la complejidad de la frase, su forma de realizar la generación de lenguaje natural difiere una de otra.
 \begin{itemize}
-    \item \textbf{Frases simples o nominales}. Cuando se ha identificado que la frase para analizar no tiene ningún verbo, Simple-NLG empieza a generar el sustantivo de la frase añadiendo a dicho sustantivo el determinante que concuerde con el género y número especificado en los datos de entrada en caso que fuera necesario. Una vez creado el sustantivo con su determinante correspondiente Simple-NLG iría generando los complementos que integran el sujeto completo, como pueden ser: adjetivos, adverbios, etc, por ejemplo para la frase ``La casa roja''. El sustantivo será ``casa'', su determinante asociado será ``la'' y por último el complemento del sustantivo será ``roja''.    
+    \item \textbf{Frases simples o nominales}. Cuando se ha identificado que la frase para analizar no tiene ningún verbo, Simple-NLG empieza a generar el sustantivo de la frase añadiendo a dicho sustantivo el determinante que concuerde con el género y número especificado en los datos de entrada, en caso que fuera necesario. Una vez creado el sustantivo con su determinante correspondiente Simple-NLG irá generando los complementos que integran el sujeto completo, como pueden ser: adjetivos, adverbios, etc. Por ejemplo para la frase ``La casa roja''. El sustantivo será ``casa'', su determinante asociado será ``la'' y por último el complemento del sustantivo será ``roja''.    
     \item \textbf{Frases compuestas u Oraciones}. Para este tipos de frases u oraciones lo primero que se busca es el verbo, una vez identificado dicho verbo, aquello que se encuentre delante de él formará el sujeto y el resto será el predicado con sus complementos, haciendo la generación del lenguaje en esta ocasión de la siguiente manera:
     \begin{itemize}
     \item Sujeto. Se genera de la misma forma que en las frases nominales, por ejemplo ``mi perro''.
-    \item Verbo. Dependiendo de los datos de entrada recibidos, se obtiene la forma y el tiempo verbal, diferenciando entre pasado, futuro o presente, este último a su vez es el que viene por defecto. Y generando así la respuesta más adecuada, como por ejemplo ``es'' se generará como una oración en presente. 
-    \item Complementos. Una vez generado el verbo se identifica si existen más datos en el predicado, en caso afirmativo se generan los elementos correspondientes, por ejemplo ``negro''. 
+    \item Verbo. Dependiendo de los datos de entrada recibidos, se obtiene la forma y el tiempo verbal, diferenciando entre pasado, futuro o presente, este último a su vez es el que viene por defecto. Y generando así la respuesta más adecuada. Como por ejemplo ``es'' se generará como una oración en presente. 
+    \item Complementos. Una vez generado el verbo se identifica si existen más datos en el predicado, en caso afirmativo se generan los elementos correspondientes. Por ejemplo ``negro''. 
     \end{itemize}
 \end{itemize}
-Es importante destacar que Simple-NLG permite también negar las frases u oraciones, y además una vez se haya realizado la generación de la frase al completo, siguiendo el ejemplo dado, la frase generada en su totalidad será: ``mi perro es negro''. 
+Es importante destacar que Simple-NLG permite también negar las frases u oraciones, y además una vez se haya realizado la generación de la frase al completo, siguiendo el ejemplo anteriormente dado, la frase generada en su totalidad será: ``mi perro es negro''. \\
 La misma herramienta se encargará de devolver la respuesta del servicio web gracias a la última fase llamada realización.   
 
 \section{GSON}
 %-------------------------------------------------------------
 \label{cap3:sec:GSON}
-Como hemos explicado en el apartado de la API de Arasaac, los pictogramas obtenidos vienen escritos en python pero nuestras herramientas para el tratamiento del lenguaje Natural utilizan lenguaje Java, por esta razón se necesita en este trabajo el uso de GSON.  
-Es una librería open-source la cuál nos permite convertir nuestros objetos Java en JSON o viceversa, esta librería es muy importante ya que nos permite poder obtener un objeto GSON compatible con un servicio web configurado en lenguaje Java. Nuestro servicio web obliga a recibir un objeto en formato JSON.
+Como hemos explicado en el apartado de la API de Arasaac, los pictogramas obtenidos vienen dados en python pero nuestras herramientas para el tratamiento del lenguaje Natural utilizan lenguaje Java, por esta razón se necesita en este trabajo el uso de GSON.\\  
+Se trata una librería open-source la cuál nos permite convertir nuestros objetos Java en JSON o viceversa, esta librería es muy importante ya que nos permite poder obtener un objeto GSON compatible con un servicio web configurado en lenguaje Java. Nuestro servicio web obliga a recibir un objeto en formato JSON.
 
 Esta librería GSON contiene el método "from JSON", dicho método es vital para la obtención de un objeto compatible entre los servicios python y los de Java.
 
@@ -77,16 +77,15 @@ Una vez obtenido el objeto GSON mencionado, la propia librería se encarga de man
 \section{Angular}
 %-------------------------------------------------------------
 \label{cap3:sec:Angular}
-Angular es un framework de desarrollo creado y mantenido por Google, cuya finalidad consiste en el desarrollo de aplicaciones web SPA (Single-Page Applications), es decir, interacción web con una sola página web. Esta herramienta nos aporta tanto una mayor flexibilidad, como una mayor operabilidad en la parte del cliente, haciendo que dicha parte sea más rápida, dinámica y fluida.
-
-Esta aportación es muy importante para nuestra aplicación ya que en la parte backend del servidor la herramienta Django explicada en el apartado anterior es la encargada de realizar todo el proceso, sin embargo para la parte frontend observamos que no disponíamos de ninguna herramienta que se encargara de ella, la cuál nos proporcionaría como he mencionado anteriormente una mayor fluidez y rapidez al servidor. Es ahí donde entra Angular siendo el encargado de la parte frontend haciendo cada parte de la página web independiente una de la otra.
+El motivo principal por el que se ha decidido utilizar la herramienta Angular es el de dotar de una mayor rapidez tanto al tiempo de respuesta como a la comunicación entre los diferentes servicios web. 
+Angular es un framework de desarrollo creado y mantenido por Google, cuya finalidad consiste en el desarrollo de aplicaciones web SPA (Single-Page Applications), es decir, interacción web con una sola página web, lo que provoca que la aplicación sea más rápida, dinámica y fluida. 
+Angular se encargará del lado frontend de la aplicación haciendo cada parte de la página web independiente una de la otra. 
   
 Para realizar esta función de la parte frontend del servidor se estudiaron las diferentes herramientas que se podrían utilizar, en un primer momento se pensó en extender la herramienta Django para la parte del cliente, pero dicha herramienta ofrecía ciertas limitaciones en esta parte del servidor, por tanto se deshizo esa idea.
-La segunda alternativa fue la opción de introducir JQuery, esta segunda opción era mejor que la primera aunque sin llegar a convencernos del todo.
-La última opción y al final la escogida fue la de implantar dentro de nuestro trabajo Angular, ya que era la alternativa que más funcionalidades aportaba y la más completa.
+La segunda alternativa fue la opción de introducir JQuery, esta segunda opción tampoco era la más idónea ya que se trata de una librería orientada a acceder y modificar los elementos de la página y no para gestionar el uso de diferentes servicios, algo esencial en este proyecto.
+La última opción y al final la escogida fue la de implantar dentro de nuestro trabajo Angular, ya que era la alternativa que más funcionalidades aportaba y de las analizadas la más orientada a gestionar diferentes servicios en una misma página.
 
-Además la herramienta está formado por diferentes módulos distintos unos de otros y estos a su vez están formados por diferentes componentes, ofreciendo una división automática de códigos para que los usuarios solo carguen aquellos que necesitan.
-Otra característica importante de Angular es que se desarrolla en el lenguaje TypeScript que es un lenguaje fuertemente tipado lo que ofrece beneficios sobre JavaScript, en el momento de la construcción del proyecto, el codigo TypeScript se convierte a JavaScript para poder utilizarlo en el navegador.
+Además la herramienta está formado por diferentes módulos distintos unos de otros y estos a su vez están formados por diferentes componentes, ofreciendo una división automática de códigos para que los usuarios solo carguen aquellos que necesitan, por ejemplo para nuestro proyecto se han creado diferentes componentes como puede ser el buscador de pictogramas o el componente de traductor de pictogramas, cada uno de estos módulos son independientes unos de otros.
 
  
 
