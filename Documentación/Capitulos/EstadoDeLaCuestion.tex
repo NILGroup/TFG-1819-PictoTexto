@@ -151,9 +151,9 @@ En ARASAAC hay palabras que pueden tener varios pictogramas asociados, por ejemp
 \figura{Bitmap/EstadoDeLaCuestion/conjugacion}{width=300px}{fig:traduccion3}{Ejemplo de verbos conjugados}
 En ARASAAC los verbos carecen de conjugación como podemos observar en la Figura \ref{fig:traduccion3} donde se puede ver que el pictograma asociado a las diferentes conjugaciones del verbo ir es el mismo. Los tiempos verbales de una frase (presente, pasado o futuro) quedan determinados por los pictogramas de ayer, hoy o mañana, como podemos observar en la Figura \ref{fig:traduccion5}.
 
- \figura{Bitmap/EstadoDeLaCuestion/tiempo}{width=300px}{fig:traduccion5}{Pictogramas de hoy, mañana, y pasado}
+ \figura{Bitmap/EstadoDeLaCuestion/tiempo}{width=300px}{fig:traduccion5}{Pictogramas de hoy, mañana, y pasado} 
 %------------------------------------------------------------------
-\section{Comunicación a través de pictogramas}
+\subsubsection{Comunicación a través de pictogramas}
 %-------------------------------------------------------------------
 
 \label{cap2:sec:Comunicacionatravesdepictogramas}
@@ -172,7 +172,55 @@ Las frases con pictogramas suelen tener una complejidad reducida, limitándose ca
 \figura{Bitmap/EstadoDeLaCuestion/conjuncionTemporal}{width=150px}{fig:pictoconjugacion}{Ejemplo de frase con conjunción temporal}
 Aunque dentro de los sistemas pictograficos, si existen conjunciones temporales que sirven para aportar información, tal y como se puede ver en la Figura \ref{fig:pictoconjugacion}. Una conjugación como pueda ser ``antes'' determinara el tiempo verbal de la frase en pasado. Además de conjugaciones existen palabras que ayudan a determinar el tiempo verbal de la frase como puede ser ayer, hoy o mañana.
 
+%-------------------------------------------------------------
+\section{Sistema de traducción texto-picto}
+%-------------------------------------------------------------
+\label{cap2:sec:Sistema de traducción texto-picto}
+Es muy importante destacar que no se ha encontrado ninguna herramienta que haga la traducción de picto a texto que se planea realizar en este trabajo. 
+Por ello, en esta sección se presentan los sistemas de traducción texto a picto existentes, estos sistemas hacen la traducción inversa a lo que se pretende hacer en este TFG y nos ayudarán tomándolos como base para realizar nuestro proyecto. 
 
+\subsection{Araword}
+Araword\footnote{http://www.arasaac.org/software.php} es una aplicación gratuita que utiliza los pictogramas propios de Arasacc, lo cuál permite la traducción simultanea de texto a pictograma. Esta herramienta tiene como objetivo principal facilitar la elaboración de materiales con pictogramas. Es similar a un editor de textos, se comienza con un documento en blanco y se van escribiendo frases en lenguaje natural que se van traduciendo a pictogramas. 
+Cada vez que se introduce una palabra en el editor, la propia herramienta es la que se encarga de traducirla a pictograma automáticamente. Cuando las palabras tienen varios pictogramas asociados, Araword te muestra uno de ellos dando la posibilidad de poder elegir otro pictograma si este no se considera el más adecuado.
+Araword está dotado con una gran variedad de pictogramas para la traducción de artículos, todo esta variedad es gracias al uso de la base de datos que le proporciona Arasaac, como podemos ver en la Figura \ref{fig:articulosAraword}.
+\figura{Bitmap/EstadoDeLaCuestion/articulosAraword}{width=300px}{fig:articulosAraword}{Ejemplo de traducción de artículos en Araword.}
+El caso de las preposiciones la aplicación posee una base de datos bastante amplia de pictogramas para representarlas, como aparece en la Figura \ref{fig:preposicionAraword}.
+\figura{Bitmap/EstadoDeLaCuestion/preposicionAraword}{width=300px}{fig:preposicionAraword}{Ejemplo preposiciones Araword.}\\
+Araword no traduce las conjugaciones de los verbos que aparecen en las frases, usando siempre el infinitivo del verbo, tal y como se puede observar en la Figura.
+
+Como hemos podido observar en los diferentes ejemplos Araword inserta debajo de cada pictograma la palabra del texto a la que corresponde dicha imagen. Por último, es importante añadir que siempre se hace una traducción literal de las frases, así como podemos ver en la Figura \ref{fig:ejemploAraword} se muestra un ejemplo de la traducción hecha por Araword del texto.
+\figura{Bitmap/EstadoDeLaCuestion/ejemploAraword}{width=300px}{fig:ejemploAraword}{Ejemplo traducción de las frases yo paseo al perro y yo paseaba al perro.}
+
+\subsection{PictoTraductor}
+PictoTraductor\footnote{https://www.pictotraductor.com/} es una aplicación web pensada y desarrollada para facilitar la comunicación mediante pictogramas. Principalmente está dirigida a padres y profesionales, para traducir textos a pictogramas y así poder comunicarse con sus hijos o pacientes que solo entienden pictogramas y no lenguaje natural.
+
+La interfaz de la aplicación se puede ver en la Figura \ref{fig:pictoTraductor}.
+\figura{Bitmap/EstadoDeLaCuestion/pictoTraductor}{width=300px}{fig:pictoTraductor}{Interfaz de PictoTraductor.}
+Consta de una barra de búsqueda en la que se introduce el texto que se quiere traducir a pictogramas. A medida que se va escribiendo una palabra se va mostrando el pictograma que representa el texto introducido en la parte inferior. Para las palabras que tengan más de un pictograma asociado, la herramienta da la opción de elegir el pictograma al usuario mediante las flechas que aparecen encima del picto traducido.
+Para los artículos, PictoTraductor presenta por defecto el pictograma con la palabra escrita literalmente,  dejando la opción al usuario de cambiar el pictograma a otro cuyo significado sea el mismo mediante las flechas dispuestas arriba y abajo de la imagen, como vemos en la Figura \ref{fig:articulosPictoT}.
+\figura{Bitmap/EstadoDeLaCuestion/articulosPictoT}{width=300px}{fig:articulosPictoT}{Ejemplo traduccíon de los artículos en PictoTraductor.}
+Todas las preposiciones tienen su traducción a pictograma, sin embargo no contienen varios pictogramas que hagan referencia a cada una de ella y por tanto solo hay un pictograma por cada una, como aparece en la Figura \ref{fig:preposicionPictoT}.
+\figura{Bitmap/EstadoDeLaCuestion/preposicionPictoT}{width=300px}{fig:preposicionPictoT}{Ejemplo traducción de las preposiciones en PictoTraductor.}\\
+Cuando PictoTraductor no encuentra el pictograma asociado a una palabra se muestra una imagen con la traducción literal de la palabra, tal y como se observa en la Figura \ref{fig:LiteralPictoT}. 
+\figura{Bitmap/EstadoDeLaCuestion/LiteralPictoT}{width=300px}{fig:LiteralPictoT}{Ejemplo traducción literal en PictoTraductor.}
+Por último la traducción de los diferentes tiempos verbales en la frases es siempre la misma, el infinitivo, tal y como se puede ver en la Figura \ref{fig:pictoTverbos}.
+\figura{Bitmap/EstadoDeLaCuestion/pictoTverbos}{width=300px}{fig:pictoTverbos}{Ejemplo traducción de las frases yo paseo al perro y yo paseaba al perro.}
+
+\subsection{Pictar}
+Pictar \citep{MartinGuerrero2018} es una aplicación web que permite traducir de texto a pictogramas. El usuario introduce el texto que desea traducir y al pulsar el botón buscar se generan los pictogramas adecuados para la frase introducida, tal y como se puede ver en la Figura \ref{fig:pictar1} \figura{Bitmap/EstadoDeLaCuestion/pictar1}{width=300px}{fig:pictar1}{Texto traducido en Pictar.}
+
+Para la traducción de artículos Pictar posee una traducción variada de pictogramas, ofreciendo la posibilidad al usuario de elegir la imagen que le parezca adecuada sin cambiar el significado de la misma, como aparece en la Figura\ref{fig:ArticulosPictar}
+\figura{Bitmap/EstadoDeLaCuestion/ArticulosPictar}{width=300px}{fig:ArticulosPictar}{Ejemplos Artículos Pictar.}
+Pictar tiene en su base de datos traducción para la mayoría de las preposiciones, sin embargo la traducción que ofrece es única, es decir para cada preposición tiene un único pictograma asociado, tal como se observa en la Figura \ref{fig:PreposicionPictar}
+\figura{Bitmap/EstadoDeLaCuestion/PreposicionPictar}{width=300px}{fig:PreposicionPictar}{Ejemplos Preposición Pictar.}
+
+Además esta aplicación no realiza ninguna traducción literal de la palabra, si la palabra buscada no existe en la base de datos no traducirá esa palabra, como hace referencia la Figura \ref{fig:LiteralPictar} 
+\figura{Bitmap/EstadoDeLaCuestion/LiteralPictar}{width=300px}{fig:LiteralPictar}{Ejemplos de traducción literal en Pictar.}
+
+Es importante destacar que Pictar no traduce de diferente manera las frases en las que se emplean distintos tiempos verbales, es decir en todas las traducciones el pictograma utilizado será el infinitivo tanto para el pasado, presente o futuro, podemos observarlo en el ejemplo que se muestra en la Figura \ref{fig:pictarVerbos} \figura{Bitmap/EstadoDeLaCuestion/pictarVerbos}{width=300px}{fig:pictarVerbos}{Ejemplo traducción de las frases yo paseo al perro y yo paseaba al perro.}
+
+Esta aplicación además ofrece en la parte derecha un buscador de pictogramas. El usuario introduce la palabra a buscar en la parte inferior aparecen los pictogramas asociados a dicha palabra.
+El usuario puede mover los pictogramas encontrados a la rejilla de traducción. Pudiendo cambiar el color del pictograma, añadir texto debajo de él, etc. Tal y cómo se puede ver en la Figura \ref{fig:pictar2} \figura{Bitmap/EstadoDeLaCuestion/pictar2}{width=300px}{fig:pictar2}{Ejemplo buscador y editor pictar}.
 
 %-------------------------------------------------------------
 \section{Generación de lenguaje natural}
@@ -198,7 +246,7 @@ Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo e
 \figura{Bitmap/EstadoDeLaCuestion/preprocesado}{width=250px}{fig:preprocesado}{Ejemplo de una entrada de texto con datos meteorológicos, para la fase de preprocesado.}
 
 \item Macro planificación. Etapa donde se debe seleccionar el contenido que se desea convertir a texto. Para que el texto generado sea coherente es preciso estructurar el contenido del mismo en el orden correcto. La salida de esta fase es el denominado plan del documento, una estructura de datos que suele ser un árbol, donde en cada nodo se encapsula la información más importante que debe formar parte de un párrafo o de una frase, además de información de como se relaciona con el resto de nodos. En la Figura \ref{fig:macroplanificacion} podemos ver un ejemplo de la salida de esta etapa, en la que se puede ver una estructura del párrafo obtenido tras terminar la macro planificación, en el árbol resultante podemos observar la secuencia temporal que tendrá el párrafo.
-\figura{Bitmap/EstadoDeLaCuestion/macroplanificacion}{width=250px}{fig:macroplanificacion}{Árbol representativo de la fase de macro planificación en GLN.}
+\figura{Bitmap/EstadoDeLaCuestion/macroplanificacion}{width=250px}{fig:macroplanificacion}{Árbol resultado de la fase de macro planificación para la recogida de datos meteorológicos.}
 \item Micro planificación. Partiendo de la salida de la macro planificación, se determina que partes formaran el texto resultado, agregando las estructuras que formaran parte de este, el léxico que se utilizara para expresar los conceptos y los hechos recogidos en la primera etapa y la generación de expresiones que aparecerán en el texto. Siguiendo el ejemplo visto en la Macro planificación se pueden generar pequeñas frases referenciales pueden ser como ``Viento de las 6:00'' o ``a las 15:00 el viento cambio'', donde el referente común es ``el viento''.
 \item Realización. El objetivo de esta fase es la realización de las oraciones finales que se utilizaran, así como la estructura final que tendrá el texto. La generación o realización del texto se puede dividir en dos partes realización lingüística en la que se determina la representación en palabras del texto de salida es decir se forman las oraciones, y la realización de la estructura en la que se genera el texto en el formato correcto para su visualización en un medio determinado, como puede ser HTML, o un documento Latex, tal y como podemos ver en la Figura \ref{fig:realizacionSalida}.
 \figura{Bitmap/EstadoDeLaCuestion/RealizacionSalida}{width=250px}{fig:realizacionSalida}{Salida de la fase de la realización donde podemos ver la estructura final en HTML a la izquierda y Latex a la derecha.}
@@ -228,8 +276,8 @@ El WC3 (World Wide Web Consortium) define un Servicio Web como\footnote{https://
 
 	Un Servicio Web es un componente accesible mediante peticiones Web estándar tales como GET o POST. Normalmente se denomina servicio web a una colección de procedimientos accesibles desde Internet. La gran ventaja de los servicios web es que al acceder desde el navegador a un servicio web este nos devuelve el contenido con un formato estándar como puede ser XML.	
 
-Los servicios web fueron creados para solucionar el problema de la interoperabilidad entre las distintas aplicaciones. En los 90, el gran objetivo era poder integrar diferentes aplicaciones dentro del mismo servicio. Decimos que estas aplicaciones son distintas, ya que pueden estar desarrolladas en muchos lenguajes de programación como son: C++, Java,etc. Y ejecutarse tanto en Unix, en un PC, o un computador mainframe.
-Por todas  estas diferencias, no existía una forma fácil de comunicar todas las aplicaciones entre sí. El desarrollo de XML, propició poder compartir datos entre ellas a través de la red, o de Internet. 
+Estos servicios web se empezaron a desarrollar para solucionar el problema de la interoperabilidad entre las distintas aplicaciones. En la década de los 90, el objetivo principal era poder integrar diferentes aplicaciones dentro del mismo servicio. Estas aplicaciones son diferentes porque estan desarrolladas en muchos lenguajes de programación como: C++, Java, etc. Y ejecutarse tanto en Unix, en un PC, o un computador mainframe.
+Por todas  estas diferencias, era muy difícil y costoso comunicar todas las aplicaciones entre sí. Gracias al desarrollo de XML, se consiguió poder compartir datos entre ellas a través de la red, o de Internet. 
 \figura{Bitmap/EstadoDeLaCuestion/serviciosWeb}{width=300px}{fig:servicioWeb}{Estructura servicios Web.}
 
 A nivel técnico, los servicios web más usados suelen ser de dos tipos.
@@ -237,7 +285,7 @@ A nivel técnico, los servicios web más usados suelen ser de dos tipos.
 \begin{itemize}
  \item SOAP. Utilizan el lenguaje XML para poder comunicarse utilizando el protocolo SOAP (Simple Object Access Protocol), este lenguaje es usado tanto para definir la arquitectura como el formato de los mensajes. Estos tipos de servicios deben contener un lenguaje legible para la máquina con la descripción de operaciones ofrecidas por el servicio escrito en WSDL (Web Services Description Language), el cuál está basado también en XML con el fin de definir interfaces sintácticamente.
  
-  \item Restfull (Representational State Transfer Web Services).  Los servicios web Restfull utilizan estándares tales como: SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura la cuál podríamos llamar ``ligera´´, ya que utilizan las herramientas mínimas para formar los servicios. Por ello, el desarrollo de este tipo de servicios son baratos y su adaptación es poco costosa. Son más adecuados para integraciones básicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
+  \item Restfull (Representational State Transfer Web Services).  Los servicios web Restfull utilizan estándares tales como: SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura que podríamos llamar ligera, ya que utilizan las herramientas mínimas para formar los servicios. El desarrollo de este tipo de servicios es barato y su adaptación poco costosa. Son más adecuados para integraciones básicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
    
 \end{itemize}
 
@@ -246,7 +294,7 @@ En una arquitectura de Servicios Web se pueden distinguir tres partes fundamenta
 \begin{itemize}
   \item Proveedor de servicios web. Es el encargado de enviar al publicador del servicio un fichero WSDL con la información básica de dicho servicio.
    \item Publicador del servicio. Una vez la información llega al publicador este descubre quien es el proveedor (protocolo WSDL), y se pone en contacto con él (protocolo SOAP y REST).
-   \item Proveedor del servicio. Acepta la petición del servicio y envía los datos estructurados en formato XML usando SOAP, si fuese un servicio REST los datos enviados seriían de tipo JSON.  
+   \item Proveedor del servicio. Acepta la petición del servicio y envía los datos estructurados en formato XML usando SOAP, si fuese un servicio REST los datos enviados serían de tipo JSON.  
 \end{itemize}
 
 \subsection{Ventajas de los servicios Web}
@@ -265,50 +313,4 @@ Las tres principales desventajas de los servicios web son\footnote{http://fabioa
   \item Al estar muy ligados con HTTP, las medidas de seguridad que tratan de bloquear la comunicación entre programas se pueden burlar fácilmente.
 \end{itemize} 
 
-%-------------------------------------------------------------
-\section{Sistema de traducción texto-picto}
-%-------------------------------------------------------------
-\label{cap2:sec:Sistema de traducción texto-picto}
-Es muy importante destacar que no se ha encontrado ninguna herramienta que haga la traducción de picto a texto que se planea realizar en este trabajo. 
-Por ello, en esta sección se presentan los sistemas de traducción texto a picto existentes, estos sistemas hacen la traducción inversa a lo que se pretende hacer en este TFG y nos ayudarán tomándolos como base para realizar nuestro proyecto. 
-
-\subsection{Araword}
-Araword\footnote{http://www.arasaac.org/software.php} es una aplicación gratuita que utiliza los pictogramas propios de Arasacc, lo cuál permite la traducción simultanea de texto a pictograma.
-
-Esta herramienta tiene como objetivo principal facilitar la elaboración de materiales con pictogramas. Es similar a un editor de textos, se comienza con un documento en blanco y se van escribiendo frases en lenguaje natural que se van traduciendo a pictogramas. 
-Cada vez que se introduce una palabra en el editor, la propia herramienta es la que se encarga de traducirla a pictograma automáticamente. Cuando las palabras tienen varios pictogramas asociados, Araword te muestra uno de ellos dando la posibilidad de poder elegir otro pictograma si este no se considera el más adecuado.
-Araword utiliza la gran variedad de artículos que le proporciona Arasaac, como podemos ver en la Figura\ref{fig:articulosAraword}.
-\figura{Bitmap/EstadoDeLaCuestion/articulosAraword}{width=300px}{fig:articulosAraword}{Ejemplo de traducción de artículos en Araword.}
-El caso de las preposiciones es muy parecido al de los artículos en donde gracias a Arasaac la aplicación posee una gran variedad de pictogramas para representarlas, como aparece en la Figura\ref{fig:preposicionAraword}.
-\figura{Bitmap/EstadoDeLaCuestion/preposicionAraword}{width=300px}{fig:preposicionAraword}{Ejemplo preposiciones Araword.}\\
-Araword no conjuga los verbos que aparecen en las frases, al no contemplar diferentes pictogramas para traducir los diferentes tiempos verbales, por ello usa siempre el infinitivo del verbo. Araword solo contempla el tiempo de las frases cuando la oración posee literalmente un adverbio de tiempo a traducir.
-
-En la Figura\ref{fig:ejemploAraword} se muestra un ejemplo de la traducción hecha por Araword del texto.
-\figura{Bitmap/EstadoDeLaCuestion/ejemploAraword}{width=300px}{fig:ejemploAraword}{Ejemplo yo paseaba al perro.}
-
-\subsection{PictoTraductor}
-PictoTraductor\footnote{https://www.pictotraductor.com/} es una aplicación web pensada y desarrollada para facilitar la comunicación mediante pictogramas. Principalmente está dirigida a padres y profesionales, para traducir textos a pictogramas y así poder comunicarse con sus hijos o pacientes que solo entienden pictogramas y no lenguaje natural.
-
-La interfaz de la aplicación se puede ver en la Figura\ref{fig:pictoTraductor}.
-\figura{Bitmap/EstadoDeLaCuestion/pictoTraductor}{width=300px}{fig:pictoTraductor}{Interfaz de PictoTraductor.}
-Consta de una barra de búsqueda en la que se introduce el texto que se quiere traducir a pictogramas. A medida que se va escribiendo una palabra se va mostrando el pictograma que representa el texto introducido en la parte inferior. Para las palabras que tengan más de un pictograma asociado, la herramienta da la opción de elegir el pictograma al usuario mediante las flechas que aparecen encima del picto traducido.
-Para los artículos, PictoTraductor prsenta por defecto la palabra literal,  dejando la opción de poder cambiarlo a otro pictograma cuyo significado sea el mismo, como vemos en la Figura \ref{fig:articulosPictoT}.
-\figura{Bitmap/EstadoDeLaCuestion/articulosPictoT}{width=300px}{fig:articulosPictoT}{Ejemplo traduccíon de los artículos en PictoTraductor.}
-Para las preposiciones aparece un solo pictograma como parece en la Figura \ref{fig:preposicionPictoT}.
-\figura{Bitmap/EstadoDeLaCuestion/preposicionPictoT}{width=300px}{fig:preposicionPictoT}{Ejemplo traducción de las preposiciones en PictoTraductor.}\\
-PictoTraductor no encuentra el pictograma asociado a una palabra se muestra una imagen con la traducción literal de la palabra. Por último la traducción de los diferentes tiempos verbales en la frases es siempre la misma, el infinitivo, tal y como se puede ver en la Figura\ref{fig:pictoTverbos}.
-\figura{Bitmap/EstadoDeLaCuestion/pictoTverbos}{width=300px}{fig:pictoTverbos}{Ejemplo traducción de tiempos verbales en PictoTraductor.}
-
-\subsection{Pictar}
-Pictar \citep{MartinGuerrero2018} es una aplicación web que permite traducir de texto a pictogramas. En la Figura \ref{fig:pictar} se muestra el aspecto general de la herramienta \figura{Bitmap/EstadoDeLaCuestion/pictar}{width=300px}{fig:pictar}{Página inicial de pictar}.
-
-El usuario introduce el texto que desea traducir y al pulsar el botón buscar 
-se generan los pictogramas adecuados para la frase introducida, tal y como se puede ver en la (Figura \ref{fig:pictar1}) \figura{Bitmap/EstadoDeLaCuestion/pictar1}{width=300px}{fig:pictar1}{Texto traducido en Pictar}.
-
-Para realizar la traducción de artículos y preposiciones se escribe la palabra en la parte derecha de la página donde se encuentra la barra de búsqueda, apareciendo los diferentes pictogramas que se asocian a esa palabra, dando la posibilidad al usuario que elija la que más le guste.
-
-Pictar no traduce de diferente manera las frases en las que se emplean distintos tiempos verbales, es decir en todas las traducciones el pictograma utilizado será el mismo tanto para el verbo en infinitivo, pasado, presente o futuro, el infinitivo.
-
-Esta aplicación además ofrece en la parte derecha un buscador de pictogramas. El usuario introduce la palabra a buscar en la parte inferior aparecen los pictogramas asociados a dicha palabra.
-El usuario puede mover los pictogramas encontrados a la rejilla de traducción. Pudiendo cambiar el color del pictograma, añadir texto debajo de él, etc. Tal y cómo se puede ver en la Figura\ref{fig:pictar2} \figura{Bitmap/EstadoDeLaCuestion/pictar2}{width=300px}{fig:pictar2}{Ejemplo buscador y editor pictar}.
 

@@ -4,22 +4,19 @@
 \chapter{Herramientas}
 \label{cap:Herramientas}
 
-A lo largo de este capítulo analizaremos las diferentes herramientas utilizadas para el desarrollo de este TFG, para facilitar la comunicación entre los servicios webs utilizamos Django, al tener aplicaciones en lenguaje Java y otros en python se utilizará GSON para obtener un objeto en Java a partir de python.
-Las herramientas que se usan para el tratamiento del lenguaje natural son por un lado un analizador del propio lenguaje en donde utilizaremos Spacy. Y por otro lado un generador también del lenguaje natural como es Simple-NLG.
-
-Para configurar la parte relacionada con los servidores las herramientas que se han elegido para ellos son Apache tomcat y Angular.
-Por último, para conseguir todo lo relacionado con los pictogramas se utiliza la API de Arasaac.   
+A lo largo de este capítulo analizaremos las diferentes herramientas utilizadas para el desarrollo de este TFG, necesitamos un espacio para facilitar la relación de los servicios web para ello utilizamos Django, la función principal de la que se encargarán nuestros servicios web será todo lo relacionado con el uso del lenguaje natural, para ello se necesita un analizador del propio lenguaje como es Spacy y una vez analizado el lenguaje, es imprescindible un generador de frases de lenguaje natural en este caso el elegido es Simple-NLG, para conseguir las traducciones de texto a pictogramas ha sido imprescindible el uso de la API de Arasaac.     
+Una parte importante en este proceso es conseguir una correcta comunicación entre los servicios web que utilizan lenguaje Java como por ejemplo todo lo relacionado con el lenguaje natural con otros basados en python, para asegurarnos de que esta comunicación se realiza correctamente es necesario la utilización de la librería GSON la cual es capaz de realizar la conversión de un objeto en lenguaje python a Java.   
+Por último, para agilizar tanto el tiempo de respuesta de los servidores como el proceso de comunicación de los diferentes servicios web de nuestro trabajo se ha elegido la herramienta Angular.
+  
 
 %-------------------------------------------------------------
 \section{Django}
 %-------------------------------------------------------------
 \label{cap3:sec:Django}
+Debido a los diferentes servicios web que se utilizan en este TFG, se necesitaba un espacio o contenedor en donde pudieran desembocar y relacionar entre sí estos servicios mencionados anteriormente. Además al ser python uno de los lenguajes de programación más utilizados en este trabajo, era aconsejable que dicho contenedor estuviera también desarrollado en ese mismo lenguaje. 
+Con estos requisitos previos se eligió la herramienta Django que al ser un framework de desarrollo web\footnote{https://tutorial.djangogirls.org/es/django/} de código abierto escrito en Python,  y respetando el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C). Tiene como meta principal facilitar la creación de sitios web. Además de ser muy importante el re-uso de código, la conectividad y el desarrollo rápido.
+Todos estos motivos la convirtieron en la herramienta ideal sobre la que construir la comunicación entre los diferentes servicios y además al estar escrita en Python nos solucionaba problemas de errores con uno de los lenguajes de programación utilizados.   
 
-Django es un framework de desarrollo web\footnote{https://tutorial.djangogirls.org/es/django/} de código abierto escrito en Python, respetando el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C). La meta principal de este framework es facilitar la creación de sitios web. En Django es muy importante el re-uso de código, la conectividad y el desarrollo rápido.\\  
-\begin{enumerate}
-\item Django da soporte de base de datos permitiendo crear los modelos de datos necesarios y a través de su API administrar y gestionar dicha base de datos. Además concede al usuario la posibilidad de poder ejecutar sus propias consultas SQL.
-\item En la parte de servicios web, Django incluye un servidor ligero que ofrece la posibilidad de realizar pruebas y trabajar en una etapa de desarrollo. Para una etapa más de producción se ha decidido contar con otra aplicación como es Apache.
-\end{enumerate}
 
 \section{GSON}
 %-------------------------------------------------------------
@@ -29,13 +26,6 @@ GSON es una librería open-source la cuál nos permite convertir nuestros objetos 
 Esta librería GSON contiene el método "from JSON", dicho método es vital para la obtención de un objeto compatible entre los servicios python y los de Java.
 
 Una vez obtenido el objeto GSON mencionado, la propia librería se encarga de mandar el objeto al servicio web que lo necesita.
-
-\section{Apache Tomcat}
-%-------------------------------------------------------------
-\label{cap3:sec:Apache Tomcat} 
-Para poder levantar el servidor se ha decidido utilizar la versión 9.0.14 de Apache Tomcat, el cuál eso un entorno cuya principal misión es la de distribuir aplicaciones servlets\footnote{\url{https://www.oracle.com/technetwork/java/javaee/servlet/index.html}}. Los servlets son módulos escritos en Java utilizados sobretodo para ampliar las capacidades propias del servidor.
-
-El servidor se encarga de analizar las palabras que le llegan y conectar con la API de Arasaac con el fin de obtener la relación entre cada palabra y sus pictogramas correspondientes.
 
 \section{SpaCy}
 %-------------------------------------------------------------
@@ -88,11 +78,10 @@ Por último es importante destacar la función "realiser", la cuál es la encargada
 Para conseguir la traducción de cada pictograma a texto hemos utilizado la API de Arasaac \footnote{https://beta.arasaac.org/developers/api}, centrándonos en la sección de pictogramas, como vemos en la Figura \ref{fig:principal}.
 \figura{Bitmap/Herramientas/PrincipalAPI}{width=300px}{fig:principal}{Pagina web de la API de Arasaac}.
 En el trabajo se han utilizado dos de los métodos "GET" proporcionados en la API, por un lado obtenemos el cuerpo del pictograma introduciendo su identificador para encontrarlo(/pictograms/{locale}/{idPictogram}). 
-Por ejemplo introduciendo el id 2517 obtenemos la estructura con toda la información correspondiente al pictograma de la palabra "perro", tal y como se muestra en la Figura\ref{fig:APIperro}
-\figura{Bitmap/Herramientas/APIperro}{width=300px}{fig:APIperro}{Código obtenido del pictograma con la palabra "perro"}.
+Por ejemplo introduciendo el id 2517 obtenemos la estructura con toda la información correspondiente al pictograma de la palabra "perro".
 
 El otro método "GET" que se ha utilizado para nuestro proyecto es para poder buscar el texto para relacionarlo con el pictograma que deseamos (/pictograms/{locale}/search/{searchText}). 
-Este método nos devuelve un objeto con todo lo relacionado con el texto buscado, siguiendo el ejemplo anterior con la palabra "perro", obtenemos el objeto que se muestra en la Figura\ref{fig:perroProyecto}\figura{Bitmap/Herramientas/APIperroProyecto}{width=300px}{fig:perroProyecto}{Información del objeto con la palabra "perro"}.  
+Este método nos devuelve un objeto con todo lo relacionado con el texto buscado, siguiendo el ejemplo anterior con la palabra "perro".  
   
 \section{Angular}
 %-------------------------------------------------------------
