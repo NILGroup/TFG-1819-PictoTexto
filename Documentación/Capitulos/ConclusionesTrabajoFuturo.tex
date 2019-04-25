@@ -3,6 +3,43 @@
 \chapter{Conclusiones y Trabajo Futuro}
 \label{cap:conclusiones}
 
-Conclusiones del trabajo y líneas de trabajo futuro.
+A lo largo de este capítulo se presentarán las conclusiones obtenidas de este TFG y el trabajo futuro que se podría realizar si se continuara el desarrollo de este proyecto.
 
+%------------------------------------------------------------------
+\section{Conclusiones}
+%-------------------------------------------------------------------
+\label{cap9:sec:Conclusiones}
+En la actualidad la comunicación es un elemento indispensable para cualquier ser humano, ninguno de nosotros sería capaz de imaginarse su vida sin poder relacionarse con otras personas mediante el uso de la palabra. Sin embargo en nuestra sociedad hay personas con ciertas diversidades funcionales que les impiden poder tener una comunicación efectiva, por más simple que pudiera llegar a ser lo que quieren decir.
+Gracias a la aparición de diferentes alternativas de comunicación, como pueden ser los pictogramas. Se ha ayudado a estas personas a lograr que puedan entender aquello que otra persona le está queriendo transmitir. Aunque este tipo de comunicación sigue siendo muy limitada e incluso a veces reduciéndose dicha comunicación a personas que poseen el mismo tipo de diversidad.\\
+Por todo ello, es necesario desarrollar una herramienta que facilite a los usuarios de los pictogramas la comunicación con las personas de su alrededor. \\  
 
+El objetivo principal en este TFG era desarrollar una serie de servicios web que permitiesen traducir dichos pictogramas a texto con el fin de ayudar a aquellas personas con dificultades para comunicarse mediante el lenguaje natural. La idea fundamental era  mediante el uso de una sucesión de pictogramas formar frases u oraciones que se pudieran traducir a lenguaje coloquial. Para ello contábamos con una base de datos sacada de la API de Arasaac, gracias a la cual podíamos obtener los pictogramas con los que construir la secuencia de imágenes.\\ 
+En un primer momento se decidió empezar con secuencias de pictogramas que hicieran referencia a frases lo más simple posibles, como pueden ser frases nominales que son aquellas que no tienen verbo. Hasta llegar a secuencias que hacían referencia a frases más complejas, en las cuales se incluía no solo el verbo sino también aquellas que están formadas por un sujeto y su predicado, además de contemplar el tiempo al que hace referencia dicha secuencia, es decir, al traducir a lenguaje natural nos dice si la secuencia se desarrolla en el presente, pasado o futuro.\\   
+
+Una vez se desarrollaron los servicios web decidimos integrarlos en un API para que así fueran más accesibles a cualquiera que los necesitará. El siguiente paso fue crear una aplicación web para que pudiera ser utilizada por cualquier persona. Esta web presenta un buscador en donde el usuario puede encontrar el pictograma al que hace referencia una palabra, cuando encuentra el pictograma que quiere lo arrastra hacia el tablero de pictogramas. En este tablero se van colocando dichos pictogramas en forma de secuencia, es decir, uno detrás de otro. Hasta formar la secuencia que el usuario desee, por último pulsando el botón de generar se le traducirá la secuencia de pictogramas a la frase u oración correspondiente.     
+
+Este proyecto ha supuesto un gran reto y una gran oportunidad para nosotros, donde  nos ha permitido poder aplicar todos los conocimientos adquiridos en las distintas asignaturas cursadas durante nuestra carrera a un proyecto grande y con una utilidad más allá del ámbito académico, entre las asignaturas hay destacar:
+\begin{itemize}
+    \item \textbf{Ingeniería del Software} y \textbf{Gestión de Proyectos Software}. Donde nos enseñaron a tener la capacidad de gestionar proyectos software de una manera correcta y eficaz.
+    \item \textbf{Fundamentos de la programación} y \textbf{Gestión de Información en la Web}. Donde nos enseñaron dos de los principales lenguajes utilizados en este TFG como son: Java y Python.
+    \item \textbf{Aplicaciones Web}. Donde nos enseñaron los conocimientos necesarios de HTML, CSS y Javascript usados en el desarrollo de nuestra aplicación web.
+    \item \textbf{Bases de Datos} y \textbf{Ampliación de Bases de Datos}. Nos aportaron los conocimientos sobre la gestión de las bases de datos.
+    \item Y por último, aunque no menos importante \textbf{Ética, Legislación y Profesión}. En la cuál nos informaron sobre el uso de las licencias, con las que proteger nuestro trabajo así como aprender a utilizar de una manera correcta el software libre. 
+\end{itemize}
+
+Para finalizar, estamos muy contentos con nuestra trabajo realizado en este proyecto y creo que hemos cumplido con las expectativas que nos marcamos al empezar este TFG.
+
+%------------------------------------------------------------------
+\section{Trabajo Futuro}
+%-------------------------------------------------------------------
+\label{cap9:sec:Trabajo Futuro}
+Con el objetivo de mejorar y completar algunas funcionalidades de cara a obtener una aplicación más completa, pensamos que se podrían marcar como trabajo de futuro la realización de algunas características que se quedaron sin implementar en este proyecto.
+
+\begin{itemize}
+    \item \textbf{Reconocimiento de pictogramas}. Sería un paso adelante en nuestra aplicación la implementación de un método que reconociese los pictogramas sin necesidad de utilizar el buscador, para ello el método a crear podría recibir de un documento externo la secuencia de pictogramas que se desea traducir.
+    \item \textbf{Eliminación del buscador de pictogramas}. Si se ha llevado a cabo la implementación mencionada en el punto primero, el buscador ya no sería necesario pudiendo eliminarlo de la aplicación y dotando a la misma un toque más estético, donde aparecería la secuencia de pictogramas y su traducción.
+    \item \textbf{Mejora en la lectura de los pictogramas}.
+    \item \textbf{Incremento en la complejidad de las frases a traducir}. Aunque la complejidad que ahora mismo traduce este TFG es correcta, pensamos que en un futuro se puede introducir más complejidad a las secuencias de pictogramas a traducir para cada vez tener un traductor más completo.
+\end{itemize}
+
+El factor principal por el que no se han podido realizar las funcionalidades comentadas no ha sido otro que la falta de tiempo. Nos gustaría en un futuro poder seguir mejorando nuestra aplicación con el fin de completarla lo máximo posible y así poder ayudar a las personas que lo necesiten. 
