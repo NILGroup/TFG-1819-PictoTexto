@@ -45,7 +45,6 @@ public class NLG {
  
 		NPPhraseSpec object = factory.createNounPhrase(objectWord);
 		VPPhraseSpec verb = factory.createVerbPhrase(verbWord);
-		
 		simplePhrase.setSubject(subject);
 		if(verb!=null) {
 			simplePhrase.setVerbPhrase(verb);
@@ -61,6 +60,7 @@ public class NLG {
 		this.simplePhrase = new SPhraseSpec(factory);
  
 		NPPhraseSpec object = factory.createNounPhrase(objectWord);
+		
 		VPPhraseSpec verb = factory.createVerbPhrase(verbWord);
 		simplePhrase.setSubject(subject);
 		if(verb!=null) {
@@ -107,7 +107,6 @@ public class NLG {
 					aux.setFeature(LexicalFeature.GENDER,Gender.MASCULINE);
 				else
 					aux.setFeature(LexicalFeature.GENDER,Gender.FEMININE);
-
 				break;
 			case ("ADV"):
 				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.ADVERB);
@@ -117,6 +116,19 @@ public class NLG {
 				break;
 			case("PRON"):
 				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.PRONOUN);
+				aux.setPlural(words[i].getAttrs().getNumber());
+				if(words[i].getAttrs().getGender())
+					aux.setFeature(LexicalFeature.GENDER,Gender.MASCULINE);
+				else
+					aux.setFeature(LexicalFeature.GENDER,Gender.FEMININE);
+				break;
+			case("DET"):
+				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.DETERMINER);
+				aux.setPlural(words[i].getAttrs().getNumber());
+				if(words[i].getAttrs().getGender())
+					aux.setFeature(LexicalFeature.GENDER,Gender.MASCULINE);
+				else
+					aux.setFeature(LexicalFeature.GENDER,Gender.FEMININE);
 				break;
 			}		
 			wordsList.add(aux);
@@ -142,9 +154,14 @@ public class NLG {
 		NPPhraseSpec subject = null;
 		subject = factory.createNounPhrase();
 		for (NLGElement word : subjectWords) {
-			if (word.isA(LexicalCategory.NOUN)) {
-				subject.setHead(word);
-				subject.setDeterminer("el");
+			if (word.isA(LexicalCategory.NOUN) || word.isA(LexicalCategory.PRONOUN) ) {
+				System.out.println(word);
+				if(word.isA(LexicalCategory.NOUN)) {
+					subject.setHead(word);
+					subject.setDeterminer("el");
+				}else {
+					subject.setHead(word);
+				}
 				subject.setPlural(word.isPlural());
 				if(word.getFeature(LexicalFeature.GENDER)==Gender.FEMININE){
 					subject.setFeature(LexicalFeature.GENDER, Gender.FEMININE);
@@ -169,13 +186,16 @@ public class NLG {
 			}else {
 				if (word.isA(LexicalCategory.NOUN)) {
 					object.setHead(word);
-					object.setDeterminer("un");
+					if(object.getDeterminer().size()==0)
+						object.setDeterminer("un");
 					object.setPlural(word.isPlural());
 					if(word.getFeature(LexicalFeature.GENDER)==Gender.FEMININE){
 						object.setFeature(LexicalFeature.GENDER, Gender.FEMININE);
 					}
 				}else{
-					object.addComplement(word);
+					if(!word.isA(LexicalCategory.DETERMINER)){
+						object.addComplement(word);
+					}
 					}
 				}
 			}	

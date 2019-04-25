@@ -67,22 +67,26 @@ public class CreatePhrase extends HttpServlet {
 			ArrayList<NLGElement> wordNLG = miNlgTest.createNLGWords(words);
 			int i = miNlgTest.recogniseVerb(wordNLG);
 			// DEFINE subject
-			List<NLGElement> subjectWords = wordNLG.subList(0, i);
-			NPPhraseSpec subject = miNlgTest.createSubject(subjectWords);
-			List<NLGElement> objectWords = wordNLG.subList(i + 1, wordsList.size());
-			NPPhraseSpec object = miNlgTest.createObject(objectWords);
-			switch(type.getType()) {
-				case("past"):
-					miNlgTest.createASimplePastPhrase(subject, wordNLG.get(i), object);
-					break;
-				case("future"):
-					miNlgTest.createASimpleFuturePhrase(subject, wordNLG.get(i), object);
-					break;
-				default:
-					miNlgTest.createASimplePhrase(subject, wordNLG.get(i), object);
-					break;
+			if(i>0) {
+				List<NLGElement> subjectWords = wordNLG.subList(0, i);
+				NPPhraseSpec subject = miNlgTest.createSubject(subjectWords);
+				List<NLGElement> objectWords = wordNLG.subList(i + 1, wordsList.size());
+				NPPhraseSpec object = miNlgTest.createObject(objectWords);
+				switch(type.getType()) {
+					case("past"):
+						miNlgTest.createASimplePastPhrase(subject, wordNLG.get(i), object);
+						break;
+					case("future"):
+						miNlgTest.createASimpleFuturePhrase(subject, wordNLG.get(i), object);
+						break;
+					default:
+						miNlgTest.createASimplePhrase(subject, wordNLG.get(i), object);
+						break;
+				}
+			}else {
+				NPPhraseSpec subject = miNlgTest.createSubject(wordNLG);
+				miNlgTest.createASimplePhrase(subject, null, null);
 			}
-			
 			response.getWriter().append(gson.toJson(miNlgTest.getOutput()));
 			response.setHeader("Access-Control-Allow-Origin", "*");
 			response.setHeader("Content-Type", "text/plain");
