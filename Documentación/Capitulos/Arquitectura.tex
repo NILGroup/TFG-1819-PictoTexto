@@ -70,11 +70,20 @@ Podemos ver un diagrama de clase del componente buscador en la Figura \ref{fig:f
 \subsection{Traductor de pictogramas por id}
 
 Este componente es el más básico de los implementados, utiliza la misma arquitectura que el componente del traductor de pictogramas, tal y como podemos ver en la Figura \ref{fig:IdPictogramTranslator}.
-Este componente tiene como finalidad obtener las diferentes traducciones de un pictograma, gracias al identificador de ese pictograma, el cual es recogido del input por el controlador, para seguir el flujo llamando a su servicio de aplicación, el cual generara la URL con el identificador del pictograma y la URL del servicio web de traducción de pictogramas por id, y llama al proxy el cual se encargara de lanzar la petición GET y devolver la respuesta del servicio. Dado que la respuesta del servicio es muy sencilla hemos decidido omitir el transformador y en el mismo servicio de aplicación obtener el string de significados y devolverlo al controlador el cual sera el encargado de mostrarlo por pantalla al usuario.
-
+Este componente tiene como finalidad obtener las diferentes traducciones de un pictograma, gracias al identificador introducido. Este identificador es recogido por su controlador, para enviarlo al su servicio de aplicación, el cual generara la URL con el identificador del pictograma y la URL, y llama al proxy.
+Con la respuesta del servicio web, en caso de ser correcto mostramos en la vista, el string de significados devuelto por el servicio web, en caso de que la respuesta sea un error, se llamara al servicio de modales. 
 
 \figura{Bitmap/Arquitectura/IdPictogramTranslator}{width=300px}{fig:IdPictogramTranslator}{Diagrama de clase del componente traductor de pictogramas por id}
 
 
 \section{Flujo}
- El controlador de este componente recorre la lista de pictogramas del contenedor, y guarda en una lista el significado de cada uno de los pictogramas y le envía al servicio de aplicación del traductor esta lista.
+ Una vez se accede a la aplicación, lo primero que debemos hacer es una búsqueda, usando el componente buscador de pictogramas. Una vez clicamos sobre el botón de buscar, el controlador del componente buscador recoge el nombre del pictograma y los envía a su servicio de aplicación el cual sigue el patrón singleton.
+
+El servicio de aplicación del componente tiene inyectado el servicio proxy el cual es un singleton, y el archivo de constantes. Gracias al archivo de constantes y con el nombre del pictograma se genera la URL de la petición GET la cual lanzara el servicio proxy.
+
+Con la respuesta del servicio, se genera un objecto utilizando el transformador del componente, el cual sera devuelto al controlador. Una vez el controlador tiene el objecto, lo asocia a sus atributos y se muestra la galería en la vista. La galería muestra al usuario las diferentes imágenes asociadas a un pictograma ademas de su identificador y un botón que permite añadir ese pictograma al componente traductor de pictogramas. Gracias a este componente podemos añadir todos los pictogramas que necesitamos para generar la frase.
+
+Una vez tenemos todos los pictogramas podremos usar el componente traductor de pictogramas, para organizar los pictogramas en el orden necesario para generar la frase y poder borrar los pictogramas que se han añadido al componente. Este borrado nos permite modificar la frase de pictogramas, eliminar pictogramas añadidos por error o simplemente borrar todos los pictogramas para introducir una frase nueva.
+ 	
+Una vez queda definida la frase de pictogramas que se desea traducir se hace clic sobre el botón traducir, el cual llamara al controlador del componente del traductor de pictogramas.
+El controlador de este componente recorre la lista de pictogramas del contenedor, y guarda en una lista el significado de cada uno de los pictogramas y le envía al servicio de aplicación del traductor esta lista.
