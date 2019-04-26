@@ -195,6 +195,8 @@ public class NLG {
 				}else{
 					if(!word.isA(LexicalCategory.DETERMINER)){
 						object.addComplement(word);
+					}else {
+						object.setDeterminer(word.getAllFeatures().get("feminine_singular"));
 					}
 					}
 				}
