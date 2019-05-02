@@ -3,6 +3,7 @@ package NLG;
 import simplenlg.features.Feature;
 import simplenlg.features.Gender;
 import simplenlg.features.LexicalFeature;
+import simplenlg.features.Person;
 import simplenlg.features.Tense;
 import simplenlg.framework.LexicalCategory;
 import simplenlg.framework.NLGElement;

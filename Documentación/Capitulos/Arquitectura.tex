@@ -1,11 +1,12 @@
 % !TeX encoding = ISO-8859-1
 
-\chapter{Arquitectura}
-\label{cap:Arquitectura}
+\chapter{Pict2Text}
+\label{cap:Pict2Text}
 
 En el siguiente capitulo hablaremos de la arquitectura que hemos diseñado para la aplicación los distintos módulos de la misma y como se integran entre si. La aplicación esta formada por diferentes partes o módulos que se integran para conseguir la traducción de pictogramas a lenguaje natural, además para facilitar su uso se ha añadido un buscador de pictogramas y un traductor de pictogramas por id, tal y como podemos ver en la Figura \ref{fig:appEscritorio}, además hemos querido desarrollar la aplicación para que sea responsive y se pueda utilizar en cualquier dispositivo.
 \figura{Bitmap/Arquitectura/appEscritorio}{width=430px}{fig:appEscritorio}{Pict2Text versión escritorio}
 \figura{Bitmap/Arquitectura/appMo}{width=100px}{fig:appMo}{Pict2Text versión escritorio}
+
 %------------------------------------------------------------------
 \section{Arquitectura}
 %-------------------------------------------------------------------
@@ -28,7 +29,7 @@ Estos principios tienen como finalidad crear un producto software de calidad que
 
 
 %------------------------------------------------------------------
-\section{Componentes y Servicios Angular}
+\section{Front-end}
 %-------------------------------------------------------------------
 \label{cap5:sec:ComponentesAngular}
 
@@ -67,23 +68,163 @@ El servicio de aplicación creara la URL para hacer la llamada al Servicio Web de
 Podemos ver un diagrama de clase del componente buscador en la Figura \ref{fig:finderClass}.    
 \figura{Bitmap/Arquitectura/finderClass}{width=300px}{fig:finderClass}{Diagrama de clase del componente buscador de pictogramas}
 
-\subsection{Traductor de pictogramas por id}
 
-Este componente es el más básico de los implementados, utiliza la misma arquitectura que el componente del traductor de pictogramas, tal y como podemos ver en la Figura \ref{fig:IdPictogramTranslator}.
-Este componente tiene como finalidad obtener las diferentes traducciones de un pictograma, gracias al identificador introducido. Este identificador es recogido por su controlador, para enviarlo al su servicio de aplicación, el cual generara la URL con el identificador del pictograma y la URL, y llama al proxy.
-Con la respuesta del servicio web, en caso de ser correcto mostramos en la vista, el string de significados devuelto por el servicio web, en caso de que la respuesta sea un error, se llamara al servicio de modales. 
-
-\figura{Bitmap/Arquitectura/IdPictogramTranslator}{width=300px}{fig:IdPictogramTranslator}{Diagrama de clase del componente traductor de pictogramas por id}
+%------------------------------------------------------------------
+\section{Back-End}
+%-------------------------------------------------------------------
 
 
-\section{Flujo}
- Una vez se accede a la aplicación, lo primero que debemos hacer es una búsqueda, usando el componente buscador de pictogramas. Una vez clicamos sobre el botón de buscar, el controlador del componente buscador recoge el nombre del pictograma y los envía a su servicio de aplicación el cual sigue el patrón singleton.
+%------------------------------------------------------------------
+\subsection{Servicio Web de Clasificación De Palabras}
+%-------------------------------------------------------------------
+\label{cap5:sec:ServicioClasificaciónDePalabras}
 
-El servicio de aplicación del componente tiene inyectado el servicio proxy el cual es un singleton, y el archivo de constantes. Gracias al archivo de constantes y con el nombre del pictograma se genera la URL de la petición GET la cual lanzara el servicio proxy.
+El Servicio Clasificación De Palabras, se encarga de dada una palabra o un array de palabras devolver la categoría léxica y todos los atributos de cada una de las palabras recibidas.
+Una vez se tiene la entrada se llama a la libreria Spacy que ya ha sido cargada previamente, y se utiliza su función Tokenizer\footnote{https://spacy.io/api/tokenizer}. Esta función sirve para obtener las características y la categorización léxica de una palabra. 
+Las características y diferentes categorías léxicas de las palabras, que seran devueltas por este servicio web están reflejadas en las tablas \ref{tabla:cat1} y \ref{tabla:cat2}.
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Verbo & Nombre & Adjetivo & Determinante \\
+\hline \hline
+Cat. Léxica & Cat. Léxica & Cat. Léxica & Cat. Léxica \\ \hline
+Forma verbal & Número & Número & Número \\ \hline
+ - & Género  & Género  & Tipo \\ \hline
+\end{tabular}
+\caption{Tabla de características de Verbos, Nombres, Adjetivos y Determinantes .}
+\label{tabla:cat1}
+\end{center}
+\end{table}
 
-Con la respuesta del servicio, se genera un objecto utilizando el transformador del componente, el cual sera devuelto al controlador. Una vez el controlador tiene el objecto, lo asocia a sus atributos y se muestra la galería en la vista. La galería muestra al usuario las diferentes imágenes asociadas a un pictograma ademas de su identificador y un botón que permite añadir ese pictograma al componente traductor de pictogramas. Gracias a este componente podemos añadir todos los pictogramas que necesitamos para generar la frase.
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+ Adverbio & Pronombre & Preposiciones  \\
+\hline \hline
+Cat. Léxica &Cat. Léxica &Cat. Léxica \\ \hline
+- &- &Tipo \\ \hline
+\end{tabular}
+\caption{Tabla de características de Adverbios, Pronombres, Preposiciones.}
+\label{tabla:cat2}
+\end{center}
+\end{table}
 
-Una vez tenemos todos los pictogramas podremos usar el componente traductor de pictogramas, para organizar los pictogramas en el orden necesario para generar la frase y poder borrar los pictogramas que se han añadido al componente. Este borrado nos permite modificar la frase de pictogramas, eliminar pictogramas añadidos por error o simplemente borrar todos los pictogramas para introducir una frase nueva.
- 	
-Una vez queda definida la frase de pictogramas que se desea traducir se hace clic sobre el botón traducir, el cual llamara al controlador del componente del traductor de pictogramas.
-El controlador de este componente recorre la lista de pictogramas del contenedor, y guarda en una lista el significado de cada uno de los pictogramas y le envía al servicio de aplicación del traductor esta lista.
+\figura{Bitmap/ServiciosWeb/attrsResponsePost}{width=300px}{fig:attrsResponsePost}{Respuesta del Servicio Clasificación De Palabras } 
+Dado que la salida de la función Tokenizer devuelve un string, se parsea su salida y se genera un objeto en formato JSON que sera la salida del servicio web. En la Figura \ref{fig:attrsResponsePost}, podemos ver la respuesta del servicio web para la entrada perro, rápido, comer, pan.
+En la Figura \ref{fig:caracPal}, podemos ver un resumen del flujo que sigue este servicio.
+\figura{Bitmap/ServiciosWeb/caracPal}{width=100px}{fig:caracPal}{Flujo del Servicio Clasificación De Palabras} 
+
+%------------------------------------------------------------------
+\subsection{Servicio de Detección de Tiempo Verbal}
+%-------------------------------------------------------------------
+\label{cap5:sec:ServiciodeDeteccióndeTiempoVerbal}
+
+Este servicio web, tiene como finalidad determinar el tiempo verbal de una frase dado una lista de palabras. Después de recibir la petición busca alguna de las  palabras clave, que esta en la tabla \ref{tabla:tiempoVerbal}, en la lista de palabras recibida. Si detecta alguna de las palabras clave devuelve en un JSON con el tiempo verbal correspondiente a dicha palabra clave. En caso de no encontrar ninguna de las palabras clave, el servicio web devolverá presente.
+
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Presente & Pasado & Futuro \\
+\hline \hline
+Hoy & Ayer & Mañana \\ \hline
+\end{tabular}
+\caption{Tabla de palabras clave para la detección del tiempo verbal.}
+\label{tabla:tiempoVerbal}
+\end{center}
+\end{table}
+
+En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio.
+\figura{Bitmap/ServiciosWeb/deteccionTiempoVerbal}{width=200px}{fig:deteccionTiempoVerbal}{Flujo del Servicio Web de Detección del Tiempo Verbal} 
+
+%------------------------------------------------------------------
+\subsection{Servicio de Generación de Frases en Lenguaje Natural}
+%-------------------------------------------------------------------
+\label{cap5:sec:ServicioGLN}
+
+
+Este servicio web recibe un array de strings y devuelve una frase creada a partir de las palabras recibidas en la llamada. Por ejemplo dado un array con las palabras ``corredora, rapido''
+
+\begin{enumerate}
+
+\item Obtención de la clasificación lexica de las palabras:
+ Una vez el servidor recibe la petición Post, la librería GSON se encarga de tratar la entrada para transformarla en un ArrayList de Strings. Esto es porque Java no reconoce objectos, en la entrada de los servicios web y tienen que ser tratadas previamente. A continuación se llama al Servicio Web de Clasificación de Palabras para obtener las características y categoría léxica de cada palabra.
+
+\item A continuación se hace una llamada al Servicio Web de Detección de Tiempo Verbal, para obtener el tiempo verbal el que se debe conjugar la frase resultante.
+
+\item Gracias al resultado de esta clasificación sabemos cual es la posición del verbo dentro del array de palabras. Gracias a esto podemos dividir la lista de palabras en aquellas que formaran el sujeto (aquellas que están antes del verbo) y aquellas que formaran el objecto (palabras encontradas después del verbo).
+
+\item Una vez identificadas las palabras que forman parte del sujeto se pasa a procesar el sujeto de la frase.
+
+\begin{itemize}
+\item Selección del determinante: En este proceso se selecciona un determinante en caso de que sea necesario, es decir si es un nombre común (por ejemplo  ``corredor, perro, bailarina''), por defecto el determinante es \textit{el o la}. Si la palabra principal es un determinante como ``el, ella, nosotros", no se añade.
+\item Genero y número: se selecciona el genero y numero de la palabra principal del sujeto, y se configura en todo el sujeto, de manera que si el nombre es femenino plural como por ejemplo ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''.
+\item En caso de encontrar un adverbio dentro del array de palabras se fuerza su posición dentro del sujeto al final del sujeto, y así la entrada ``profesora ayer,comer,galletas,duro'' generara la frase ``La profesora ayer comió galletas duras''
+\end{itemize}
+
+\item De la misma manera que con el sujeto, se obtienen las palabras que formaran el predicado excluyendo el verbo. En caso de tener palabras de categoría léxica ``nombre'' se configura la parte objeto del predicado utilizando el genero y numero obtenido. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera `` galletas duras''.
+Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras que conformaran la frase final contienen ``profesora, comer, ayer, galletas, duro'', la frase resultante sera ``La profesora comío galletas duras ayer''. 
+
+\item El tiempo verbal de la frase se escoge, dependiendo de la respuesta del Servicio de Detección de Tiempo Verbal. Diferenciamos tres tipos de respuesta,
+pasado, futuro y presente que es la configuración de tiempo verbal por defecto.
+
+\item Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase sera devuelto en la respuesta del servicio web.
+
+\end{enumerate}
+En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue este servicio.
+\figura{Bitmap/ServiciosWeb/NLGService}{width=350px}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural} 
+
+En la tabla \ref{tabla:tiempoVerbal} podemos ver un resumen con diferentes entradas de este Servicio Web.
+\begin{table}[htbp]
+\begin{tabular}{p{1.5cm}p{1cm}p{1.2cm}p{1cm}p{2cm}p{1cm}p{1cm}p{3cm}}
+\hline
+Sujeto & Adj. & Adv. & Verbo & Objecto & Adj. & Adv. & Resultado \\
+\hline \hline
+Corredor & -&-&Perder & Zapatillas &- &- & El corredor pierde unas zapatillas\\ \hline
+Corredor & Rápido &- & Perder & Zapatillas&- &- & El corredor rápido pierde unas zapatillas\\ \hline
+Corredor & - & Ayer & Perder & Zapatillas &- &-& El corredor ayer perdió unas zapatillas.\\ \hline
+Corredor & - & Mañana & Perder & Zapatillas &- &-& El corredor mañana perderá unas zapatillas.\\ \hline
+Corredor & Rápido & Ayer & Perder & Zapatillas &- &- & El corredor rápido ayer perdió unas zapatillas.\\ \hline
+Corredor & -&-&Perder & Zapatillas &Nuevo &- & El corredor pierde unas zapatillas nuevas\\ \hline
+Corredor &Rápido &-&Perder & Zapatillas &Nuevo &- & El corredor rápido pierde unas zapatillas nuevas\\ \hline
+Corredor &Rápido &Ayer &Perder & Zapatillas &Nuevo &- & El corredor rápido ayer perdió unas zapatillas nuevas.
+\\ \hline
+Corredor &Rápido &- &Perder & Zapatillas &Nuevo &Ayer & El corredor rápido perdió unas zapatillas nuevas ayer.
+\\ \hline
+\end{tabular} 
+\caption{Tabla con diferentes entradas y salidas del Servicio Web de Generación de Frases en Lenguaje Natural.}
+\label{tabla:tiempoVerbal}
+\end{table}
+
+%------------------------------------------------------------------
+\subsection{Servicios Web para la gestión de pictogramas} %-------------------------------------------------------------------
+\label{cap5:sec:ServiciosParaPictos}
+
+En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. Para creación de estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}. 
+\figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{width=200px}{fig:serviciosAPIARAASAC}{Flujo de los Servicios Web Para Pictogramas } 
+
+\subsection{Servicio Web de búsqueda del pictogramas asociados a una palabra}
+\label{cap5:sec:ServiciosParaPictosPalabra}
+Este servicio web, recibe una palabra a través de una petición GET y devuelve un objeto en formato JSON, con un array de objetos con los diferentes pictogramas asociados a la palabra recibida.
+Este servicio lanza una petición GET al buscador de pictogramas de la API de ARAASAC\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'}, el cual devuelve una lista de pictogramas, con todos los pictogramas en los que aparece la palabra introducida.
+La respuesta devuelta por la API de ARAASAC es procesada, eliminando los resultados que no son deseados, por ejemplo si se realiza la busqueda huevo, la API de ARAASAC devolverá tres pictogramas: huevo, huevo frito, huevo roto, por lo que los dos últimos se excluirán. Por cada pictograma se genera un objecto con los siguientes atributos:
+\begin{itemize}
+\item Identificador del pictograma.
+\item URL externa a la imagen del pictograma.
+\item El significado del pictograma.
+\end{itemize}
+Cada objecto se añade a una lista que sera devuelta en el resultado de este servicio web tal y como podemos ver en la Figurac \ref{fig:pictoFinderResponse}, para la entrada ``huevo''.
+\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{width=400px}{fig:pictoFinderResponse}{Respuesta del buscador por id de la API de ARAASAC} 
+
+\subsection{Servicio web de traducción}
+
+Este servicio web recibe un identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma.
+\begin{itemize}
+\item Una vez el servicio recibe un identificador, lanza una petición al buscador de pictogramas de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823.
+\figura{Bitmap/ServiciosWeb/finderIDAPI}{width=300px}{fig:finderIDAPI}{Respuesta del buscador por id de la API de ARAASAC} 
+\item Se accede al atributo ``Keywords'' del objeto devuelto por la API, se encapsula dentro de un objeto, y se devuelve dentro de un JSON tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
+\figura{Bitmap/ServiciosWeb/responseTranslatePictoService}{width=300px}{fig:responseTranslatePictoService}{Respuesta del buscador por id de la API de ARAASAC} 
+\end{itemize}

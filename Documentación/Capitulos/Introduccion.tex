@@ -4,14 +4,17 @@
 \label{cap:introduccion}
 \chapterquote{El hombre, mediante palabras, expresa su significado}{San Agustín}
 
+En este capitulo de introducción sirve para presentar este documento, las motivaciones principales por las cuales se ha llevado a cabo, los objetivos que se esperaban cumplir y necesidades que este proyecto quiere cubrir. Además expondremos la estructura de este documento con el fin de presentar brevemente los diferentes temas que se exponen en está memoria y por ultimo hablaremos sobre la metodología de trabajo que hemos seguido durante el desarrollo del proyecto.
+
+\section{Motivación}
 La comunicación es una parte fundamental del  desarrollo social y humano, pero las personas con diversidad funcional se encuentran muchos obstáculos para conseguir una comunicación efectiva.
 La aparición de diferentes vías de comunicación, como por ejemplo los pictogramas, ha supuesto un gran avance para lograr una comunicación efectiva en este colectivo. Pero la realidad es que la comunicación sigue estando muy limitada y en ocasiones se reduce a personas con el mismo tipo de diversidad funcional y especialistas formados en este área. Este es el caso de usuarios cuya vía de comunicación son los pictogramas, ya que el resto de usuarios desconoce su significado lo que produce que la comunicación quede notablemente reducida o en muchos casos sea imposible.
 
-Por todo ello, existe la necesidad de crear una herramienta que ayude a la comunicación de los usuarios de pictogramas con su entorno, un software que sea capaz de traducir pictogramas a lenguaje natural. Esta herramienta software permitirá derribar barreras y ayudar a la inclusión social de personas que por su diversidad funcional están en riesgo de exclusión.
+Por todo ello, existe la necesidad de crear una herramienta que ayude a la comunicación de los usuarios de pictogramas con su entorno, un software que sea capaz de traducir pictogramas a lenguaje natural. Esta herramienta software permitirá derribar barreras y ayudar a la inclusión social de personas que por su diversidad funcional están en riesgo de exclusión. Dado que actualmente y como veremos existen múltiples herramientas que permiten la traducción de lenguaje natural a pictogramas pero de pictogramas a lenguaje natural.
 
-El objetivo de este TFG es crear un traductor de pictogramas a texto. Los principales beneficiados serán usuarios con problemas para comunicarse mediante el lenguaje natural y que necesitan apoyarse en los pictogramas, como pueden ser: personas con parálisis cerebral, autismo o cualquier otro tipo de discapacidad cognitiva.
-Además, este trabajo está pensado para ayudar a esas personas a poder comunicarse en cualquier ambiente cotidiano de la vida, desde poder pedir un refresco en un bar hasta expresar su deseo de comer macarrones. Algo tan simple que para cualquier persona resulta muy fácil de hacer y que por desgracia para ellos no lo es tanto.
-Por ello crearemos una aplicación que permita la interpretación (no la traducción literal) de mensajes escritos con pictogramas a texto.
+\section{Objetivos}
+Los principales beneficiados serán usuarios con problemas para comunicarse mediante el lenguaje natural y que necesitan apoyarse en los pictogramas, como pueden ser: personas con parálisis cerebral, autismo o cualquier otro tipo de discapacidad cognitiva.
+Además, este trabajo está pensado para ayudar a esas personas a poder comunicarse en cualquier ambiente cotidiano de la vida, desde poder pedir un refresco en un bar hasta expresar su deseo de comer macarrones, o expresar aquellas actividades que han realizado o van a realizar en un futuro como pueda ser ir a una excursión. Algo tan simple que para cualquier persona resulta muy fácil de hacer y que por desgracia para ellos no lo es tanto.
 
 El objetivo principal de este trabajo, es la creación de un traductor de pictogramas a lenguaje natural, buscando la interpretación del mensaje y no una traducción literal. Se buscará la facilidad de uso a través de una interfaz cómoda, accesible e intuitiva, para de esta manera llegar al máximo publico posible. Además usaremos servicios web con el fin de poder crear diferentes funcionalidades independientes unas de otras que se pueden integrar en otras aplicaciones. Esto es muy beneficioso en el futuro para otros programadores pudiendo integrar aquellas funcionalidades desarrolladas en nuestro trabajo que les interesen. 
 
@@ -22,7 +25,7 @@ Con este TFG también buscamos afianzar los conocimientos adquiridos en el Grado 
 %-------------------------------------------------------------------
 \label{cap1:sec:EstructuraDeLaMemoria}
 
-La memoria de este trabajo estará estructurado de la siguiente manera. En el capítulo 2 \textbf {(Estado de la cuestión)}, hablaremos de todos las aspectos importantes para la generación del lenguaje natural, el uso de pictogramas, de SAACS y de los diferentes sistemas pictográficos existentes en la actualidad . Además de introducir los Servicios web y la metodología de desarrollo empleada en este trabajo. En el capítulo 3 \textbf {(Herramientas)}, será donde se describa las diferentes herramientas utilizadas para la confección de este trabajo. Aquí se presentarán Django, GSON,  la herramienta Simple-NLG, la API de Arasaac usada para obtener la información necesaria sobre los pictogramas, el analizador sintáctico Spacy y Angular. En el capítulo 4 \textbf {(Metodología de trabajo)}, se hablará sobre la metodología de trabajo seguida en el proyecto. En el capítulo 5 \textbf {(Servicios Web)}, se presentan en detalle los diferentes servicios webs que se han implementado en el trabajo.  En el capítulo 6 \textbf {(Trabajo individual)}, se expondrá el trabajo individual realizado por cada uno de los autores del TFG.
+La memoria de este trabajo estará estructurado de la siguiente manera. En el capítulo \ref{cap:estadoDeLaCuestion} \textbf {(Estado de la cuestión)}, hablaremos de todos las aspectos importantes para la generación del lenguaje natural, el uso de pictogramas, de SAACS y de los diferentes sistemas pictográficos existentes en la actualidad . Además de introducir los Servicios web y la metodología de desarrollo empleada en este trabajo. En el capítulo \ref{cap:Herramientas} \textbf {(Herramientas)}, será donde se describa las diferentes herramientas utilizadas para la confección de este trabajo. Aquí se presentarán Django, la herramienta Simple-NLG, la API de Arasaac usada para obtener la información necesaria sobre los pictogramas, el analizador sintáctico Spacy y Angular. En el capítulo \ref{cap:Pict2Text} \textbf {(Pict2Text)}, se presentan en detalle los diferentes servicios webs que se han implementado en el trabajo.  En el capítulo \ref{cap:trabajoInd} \textbf {(Trabajo individual)}, se expondrá el trabajo individual realizado por cada uno de los autores del TFG.
 
 %------------------------------------------------------------------
 \section{Metodología de Trabajo}
@@ -55,5 +58,5 @@ En la Figura \ref{fig:ourBoard} se puede ver como esta estructurado el tablero. 
 \item Revisión: Tareas que las tutoras están revisando, para validar su corrección antes de la siguiente reunión. Las tareas de código no son revisadas a nivel interno por las tutoras, tan solo si cumplen con la funcionalidad definida.
 \item Done: Tareas que tras el proceso de revisión se pueden dar por terminadas.
 \end{itemize}
-\figura{Bitmap/EstadoDeLaCuestion/ourBoard}{width=350px}{fig:ourBoard}{Tablero del proyecto}
+\figura{Bitmap/EstadoDeLaCuestion/ourBoard}{width=200px}{fig:ourBoard}{Tablero del proyecto}
 
