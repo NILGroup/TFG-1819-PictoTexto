@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
 import HttpService.HttpService;
 import NLG.Attributes;
 import NLG.NLG;
 import NLG.Word;
-import proxy.Proxy;
 import simplenlg.framework.NLGElement;
 import simplenlg.phrasespec.NPPhraseSpec;
 

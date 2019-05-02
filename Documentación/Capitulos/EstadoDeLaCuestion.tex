@@ -262,10 +262,14 @@ Existen diferentes tipos de arquitectura de sistemas de GLN \citep{CarlosGarcia2
 Durante la generación de lenguaje se hace uso de un diccionario de palabras, por cada palabra se suele hacer uso de la misma estructura:
 
 \begin{itemize}
-\item Lema.
-\item Categoría Léxica.
-\item Genero.
-\item Numero.
+\item Forma base de la palabra.
+\item Categoría Léxica: si es un nombre, adjetivo, verbo, determinante...
+\item Genero: diferenciación entre masculino, femenino o indeterminado.
+\item Numero: singular o plural.
+\end{itemize}
+Dependiendo de que tipo de palabra sea pueden aparecer otras caracteristicas, en caso de que la palabra sea un verbo el diccionario también tiene las diferentes conjugaciones para los tiempos verbales, presente, pasado, futuro, imperativo..., los diferentes conjugaciones verbales dependerá del diccionario que use el generador de lenguaje.
+En caso de palabras como nombres, determinantes o adjetivos, se añaden además las siguientes entradas al diccionario:
+\begin{itemize}
 \item Forma en singular.
 \item Forma en plural.
 \item Forma con genero femenino.

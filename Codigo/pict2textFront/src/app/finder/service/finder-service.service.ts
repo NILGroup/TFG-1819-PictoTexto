@@ -16,8 +16,11 @@ export class FinderService {
       function getPictoSuccess(data){
         //LLAMADA AL TRANSFORMER
         let transformed:Picto[]=this.finderTransformer.getPictoData(data);      
-        resolve(transformed);
-      }
+        if(transformed.length>0)
+          resolve(transformed);
+        reject({'status':404, 'statusText':'No se ha encontrado ningún pictograma'})
+
+        }
       function getPictoError(data){
         //TRAMAMIENTO DE ERRORES
         reject(data)
