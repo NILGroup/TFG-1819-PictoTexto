@@ -3,7 +3,6 @@ package NLG;
 
 public class Attributes {
 
-
 	private String Type;
 	private String Gender;
 	private String Number;

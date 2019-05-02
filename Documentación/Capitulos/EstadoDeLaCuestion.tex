@@ -213,42 +213,43 @@ Pictar tiene en su base de datos traducción para la mayoría de las preposiciones
 Además esta aplicación no realiza ninguna traducción literal de la palabra, si la palabra buscada no existe en la base de datos no traducirá esa palabra, como hace referencia la Figura \ref{fig:LiteralPictar} 
 \figura{Bitmap/EstadoDeLaCuestion/LiteralPictar}{width=300px}{fig:LiteralPictar}{Ejemplos de traducción literal en Pictar.}
 
-Es importante destacar que Pictar no traduce de diferente manera las frases en las que se emplean distintos tiempos verbales, es decir en todas las traducciones el pictograma utilizado será el infinitivo tanto para el pasado, presente o futuro, podemos observarlo en el ejemplo que se muestra en la Figura \ref{fig:pictarVerbos} \figura{Bitmap/EstadoDeLaCuestion/pictarVerbos}{width=300px}{fig:pictarVerbos}{Ejemplo traducción de las frases yo paseo al perro y yo paseaba al perro.}
+Es importante destacar que Pictar no traduce de diferente manera las frases en las que se emplean distintos tiempos verbales, es decir en todas las traducciones el pictograma utilizado será el infinitivo tanto para el pasado, presente o futuro, podemos observarlo en el ejemplo que se muestra en la Figura \ref{fig:pictarVerbos} \figura{Bitmap/EstadoDeLaCuestion/pictarVerbos}{width=300px}{fig:pictarVerbos}{Ejemplo traducción de las frases yo paseo al perro y yo paseaba al perro.}.
 
-Esta aplicación además ofrece en la parte derecha un buscador de pictogramas. El usuario introduce la palabra a buscar en la parte inferior aparecen los pictogramas asociados a dicha palabra.
-El usuario puede mover los pictogramas encontrados a la rejilla de traducción. Pudiendo cambiar el color del pictograma, añadir texto debajo de él, etc. Tal y cómo se puede ver en la Figura \ref{fig:pictar2} \figura{Bitmap/EstadoDeLaCuestion/pictar2}{width=300px}{fig:pictar2}{Ejemplo buscador y editor pictar}.
+Esta aplicación además ofrece en la parte derecha un buscador de pictogramas. El usuario introduce la palabra a buscar y en la parte inferior aparecen los pictogramas asociados a dicha palabra.
+El usuario puede mover los pictogramas encontrados a la rejilla de traducción. Pudiendo cambiar el color del pictograma, añadir texto debajo de él, etc, tal y cómo se puede ver en la Figura \ref{fig:pictar2} \figura{Bitmap/EstadoDeLaCuestion/pictar2}{width=300px}{fig:pictar2}{Ejemplo buscador y editor pictar}.
 
 %-------------------------------------------------------------
 \section{Generación de lenguaje natural}
 %-------------------------------------------------------------
 \label{cap2:sec:GeneraciónDeLenguajeNatural}
 
-La Generación de Lenguaje Natural (GLN) es un campo de la Inteligencia Artificial para crear programas informaticos que generan lenguaje natural ya sea hablado o escrito\citep{Socorro2007}. 
+La Generación de Lenguaje Natural (GLN) es un campo de la Inteligencia Artificial para crear programas informaticos que generan lenguaje natural ya sea hablado o escrito \citep{Socorro2007}.  Se busca que el programa generador se comunique igual que si de una persona se tratase \citep{Robert2000, VICENTE2015}. La GLN se engloba dentro de la lingüística computacional aunque engloba muchas otras áreas de estudio fuera de la informática como la lingüística o la psicología. 
 
-Se busca que el programa generador se comunique igual que si de una persona se tratase \citep{Robert2000, VICENTE2015}. La GLN se engloba dentro de la lingüística computacional aunque engloba muchas otras áreas de estudio fuera de la informática como la lingüística o la psicología. 
+Falsamente podemos pensar que lo más importante de la generación del lenguaje es la obtención de un texto gramaticalmente correcto. Pero, lo más importante es que el texto generado explique aquello que se desea transmitir. Por esa razón podemos concluir que el proceso de generación de lenguaje natural se podría resumir en la construcción de un mensaje que transmite una idea de manera clara.
 
-Falsamente podemos pensar que lo más importante de la generación del lenguaje es la obtención de un texto gramaticalmente correcto. Pero lo más importante es que el texto generado explique aquello que se desea transmitir. Por esa razón podemos concluir que el proceso de generación de lenguaje natural se podría resumir en la construcción de un mensaje que transmite un mensaje de manera clara.
-
-Existe dos maneras de que un programa informático se comunique con un usuario. La primera forma es a través de mensajes estáticos definidos en el código, este acercamiento si bien es valido, genera un sistema cerrado y no flexible en el cual hay lugar para la interpretación del lenguaje. La segunda vía, es la generación de lenguaje basada en conocimiento o \textit{deep generation} donde es el propio sistema el encargado de generar el lenguaje a través de su conocimiento basándose en el conocimiento lingüístico del que dispone \citep{CarlosGarcia2004}.
+Existe dos maneras de que un programa informático se comunique con un usuario. La primera forma es a través de mensajes estáticos definidos en el código, este acercamiento si bien es valido, genera un sistema cerrado y no flexible en el cual no hay lugar para la interpretación del lenguaje. La segunda vía, es la generación de lenguaje basada en conocimiento o \textit{deep generation} donde es el propio sistema el encargado de generar el lenguaje basándose en el conocimiento lingüístico del que dispone \citep{CarlosGarcia2004}.
 
 \subsection{Fases de GLN}
 
-Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo en diferentes fases tal y como se puede ver en la Figura\ref{fig:nlg}, dichas fases serán descritas brevemente a continuación\citep{VICENTE2015}:
+Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo en diferentes fases tal y como se puede ver en la Figura \ref{fig:nlg}, dichas fases serán descritas brevemente a continuación \citep{VICENTE2015}:
 
-\figura{Bitmap/EstadoDeLaCuestion/nlg}{width=300px}{fig:nlg}{Fases de generación del lenguaje.}
+\figura{Bitmap/EstadoDeLaCuestion/nlg}{width=300px}{fig:nlg}{Fases de generación del lenguaje, Fuente http://www.scielo.org.mx.}
 
 \begin{enumerate}
-\item Preprocesado. Esta etapa es opcional y puede no aparecer en un sistema de GLN, dado que solamente es necesaria cuando existen datos que han de ser analizados e interpretados. El objetivo del preprocesado es la generación de estructuras de datos que permitan que el texto de entrada sea más fácil de tratar en las siguientes fases\citep{Han2005}. En la Figura \ref{fig:preprocesado}, podemos ver una entrada de datos meteorológicos que necesitan un preprocesamiento, antes de poder añadirse al texto.
+\item Preprocesado. Esta etapa es opcional y puede no aparecer en un sistema de GLN, dado que solamente es necesaria cuando existen datos que han de ser analizados e interpretados. El objetivo del preprocesado es la generación de estructuras de datos que permitan que el texto de entrada sea más fácil de tratar en las siguientes fases \citep{Han2005}. En la Figura \ref{fig:preprocesado}, podemos ver una entrada de datos meteorológicos que necesitan un preprocesamiento, antes de poder añadirse al texto.
 \figura{Bitmap/EstadoDeLaCuestion/preprocesado}{width=250px}{fig:preprocesado}{Ejemplo de una entrada de texto con datos meteorológicos, para la fase de preprocesado.}
 
 \item Macro planificación. Etapa donde se debe seleccionar el contenido que se desea convertir a texto. Para que el texto generado sea coherente es preciso estructurar el contenido del mismo en el orden correcto. La salida de esta fase es el denominado plan del documento, una estructura de datos que suele ser un árbol, donde en cada nodo se encapsula la información más importante que debe formar parte de un párrafo o de una frase, además de información de como se relaciona con el resto de nodos. En la Figura \ref{fig:macroplanificacion} podemos ver un ejemplo de la salida de esta etapa, en la que se puede ver una estructura del párrafo obtenido tras terminar la macro planificación, en el árbol resultante podemos observar la secuencia temporal que tendrá el párrafo.
 \figura{Bitmap/EstadoDeLaCuestion/macroplanificacion}{width=250px}{fig:macroplanificacion}{Árbol resultado de la fase de macro planificación para la recogida de datos meteorológicos.}
-\item Micro planificación. Partiendo de la salida de la macro planificación, se determina que partes formaran el texto resultado, agregando las estructuras que formaran parte de este, el léxico que se utilizara para expresar los conceptos y los hechos recogidos en la primera etapa y la generación de expresiones que aparecerán en el texto. Siguiendo el ejemplo visto en la Macro planificación se pueden generar pequeñas frases referenciales pueden ser como ``Viento de las 6:00'' o ``a las 15:00 el viento cambio'', donde el referente común es ``el viento''.
-\item Realización. El objetivo de esta fase es la realización de las oraciones finales que se utilizaran, así como la estructura final que tendrá el texto. La generación o realización del texto se puede dividir en dos partes realización lingüística en la que se determina la representación en palabras del texto de salida es decir se forman las oraciones, y la realización de la estructura en la que se genera el texto en el formato correcto para su visualización en un medio determinado, como puede ser HTML, o un documento Latex, tal y como podemos ver en la Figura \ref{fig:realizacionSalida}.
+\item Micro planificación. Partiendo de la salida de la macro planificación, se determina que partes formaran el texto resultado, agregando las estructuras que formaran parte de este, el léxico que se utilizara para expresar los conceptos y los hechos recogidos en la primera etapa y la generación de expresiones que aparecerán en el texto. Siguiendo el ejemplo visto en la macro planificación se pueden generar pequeñas frases referenciales como pueden ser ``Viento de las 6:00'' o ``a las 15:00 el viento cambio'', donde el referente común es ``el viento''.
+\item Realización. El objetivo de esta fase es la realización de las oraciones finales que se utilizaran, así como la estructura final que tendrá el texto. La generación o realización del texto se puede dividir en dos partes:
+\begin{itemize}
+\item Realización Lingüística: en esta parte se determina la representación en palabras del texto de salida, es decir, se forman las oraciones.
+\item Realización de la Estructura: en esta parte se define el formato correcto del texto generado para su visualización en un medio determinado, como puede ser HTML, o un documento Latex, tal y como podemos ver en la Figura \ref{fig:realizacionSalida}.
+\end{itemize}
 \figura{Bitmap/EstadoDeLaCuestion/RealizacionSalida}{width=250px}{fig:realizacionSalida}{Salida de la fase de la realización donde podemos ver la estructura final en HTML a la izquierda y Latex a la derecha.}
 
 \end{enumerate}
-
 Existen diferentes tipos de arquitectura de sistemas de GLN \citep{CarlosGarcia2004}:
 \begin{enumerate}
 	\item Integrada o monolítica: el sistema es un solo bloque sin división clara entre módulos.
@@ -257,6 +258,21 @@ Existen diferentes tipos de arquitectura de sistemas de GLN \citep{CarlosGarcia2
 	\item Pizarra: la información no va de modulo a modulo si no que se guarda en una zona común, de manera que cada modulo pueda modificarla.
 	\item Basada  en revisión: la información fluye de forma cíclica entre los módulos hasta alcanzar un estado óptimo.
 \end{enumerate}
+
+Durante la generación de lenguaje se hace uso de un diccionario de palabras, por cada palabra se suele hacer uso de la misma estructura:
+
+\begin{itemize}
+\item Forma base de la palabra.
+\item Categoría Léxica: si es un nombre, adjetivo, verbo, determinante...
+\item Genero: diferenciación entre masculino, femenino o indeterminado.
+\item Numero: singular o plural.
+\end{itemize}
+Dependiendo de que tipo de palabra sea pueden aparecer otras caracteristicas, en caso de que la palabra sea un verbo el diccionario también tiene las diferentes conjugaciones para los tiempos verbales, presente, pasado, futuro, imperativo..., los diferentes conjugaciones verbales dependerá del diccionario que use el generador de lenguaje.
+En caso de palabras como nombres, determinantes o adjetivos, se añaden además las siguientes entradas al diccionario:
+\item Forma en singular.
+\item Forma en plural.
+\item Forma con genero femenino.
+\item Forma con genero femenino plural.
 %-------------------------------------------------------------
 \section{Servicios Web}
 %-------------------------------------------------------------
