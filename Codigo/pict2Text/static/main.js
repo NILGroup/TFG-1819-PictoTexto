@@ -8923,7 +8923,7 @@ module.exports = ".emptyFinder{\r\n    height: 30px;\r\n}\r\n/*# sourceMappingUR
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\r\n<div  #content class=\"ml-4 mr-4\">\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-8 col-sm-12 mt-2\">\r\n        <div class=\"container\">\r\n      <app-translator [(pictoPhrase)]=\"pictoPhrase\"></app-translator>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-xl-4 col-sm-12 mt-2 \">\r\n        <div class=\"container\">\r\n        <app-finder [(pictoPhrase)]=\"pictoPhrase\"></app-finder>\r\n    </div>\r\n      </div>\r\n  </div>\r\n<app-footer></app-footer>"
+module.exports = "<app-header></app-header>\r\n<div  #content class=\"ml-4 mr-4\">\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-8 col-sm-12 mt-5\">\r\n        <div class=\"container\">\r\n      <app-translator [(pictoPhrase)]=\"pictoPhrase\"></app-translator>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-xl-4 col-sm-12 mt-5\">\r\n        <div class=\"container\">\r\n        <app-finder [(pictoPhrase)]=\"pictoPhrase\"></app-finder>\r\n    </div>\r\n      </div>\r\n  </div>\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -9065,7 +9065,7 @@ __webpack_require__.r(__webpack_exports__);
 var AppConstants = /** @class */ (function () {
     function AppConstants() {
     }
-    AppConstants.pictoFinderURl = '/picto/getPicto?pictoName=';
+    AppConstants.pictoFinderURl = 'picto/getPicto?pictoName=';
     AppConstants.translatorPhraseURL = 'http://127.0.0.1:8080/NLGWebService/createPhrase';
     AppConstants.translatorPictoURL = '/picto/getPictoTranslate?pictoId=';
     AppConstants.typePhraseURL = '/translate/getTypePhrase';
@@ -9284,7 +9284,7 @@ var Picto = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n@media(min-width:1080px){\r\nfooter{\r\n    position: absolute;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n}\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZm9vdGVyL2Fzc2V0cy9mb290ZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixRQUFRO0lBQ1IsU0FBUztJQUNULE9BQU87QUFDWDtBQUNBIiwiZmlsZSI6InNyYy9hcHAvZm9vdGVyL2Fzc2V0cy9mb290ZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5AbWVkaWEobWluLXdpZHRoOjEwODBweCl7XHJcbmZvb3RlcntcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHJpZ2h0OiAwO1xyXG4gICAgYm90dG9tOiAwO1xyXG4gICAgbGVmdDogMDtcclxufVxyXG59Il19 */"
+module.exports = "\r\nfooter{\r\n    position: fixed;\r\n    left: 0;\r\n    bottom: 0;\r\n    width: 100%;\r\n    text-align: center;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZm9vdGVyL2Fzc2V0cy9mb290ZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7SUFDSSxlQUFlO0lBQ2YsT0FBTztJQUNQLFNBQVM7SUFDVCxXQUFXO0lBQ1gsa0JBQWtCO0FBQ3RCIiwiZmlsZSI6InNyYy9hcHAvZm9vdGVyL2Fzc2V0cy9mb290ZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5mb290ZXJ7XHJcbiAgICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgICBsZWZ0OiAwO1xyXG4gICAgYm90dG9tOiAwO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -9295,7 +9295,7 @@ module.exports = "\r\n@media(min-width:1080px){\r\nfooter{\r\n    position: abso
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<footer class=\" footer  page-footer navbar-dark bg-dark align-bottom text-white text-center\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row py-4 \">\r\n          <ul class=\"col-xl-2 navbar-nav ml-3\">\r\n              <li class>\r\n                  <h4>En colaboración con: </h4>\r\n                  <img class=\"img-fluid mx-auto mt-3 d-block\" id=\"logo-navbar-middle\" src=\"/static/assets/dirs/arasaac.png\" width=\"300\" alt=\"Welcome to Pict2Text\">\r\n                </li>\r\n          </ul>\r\n        <div class=\"col-xl-3 navbar-nav mx-auto\">\r\n            <h5>Desarrollado por:</h5>\r\n          <li>José Mª López Pulido</li>\r\n          <li>Salvador Gonzalez Alvarez</li>\r\n        </div>\r\n          <div class=\"col-xl-3 navbar-nav mx-auto\">\r\n            <h5>Bajo la dirección de:</h5>\r\n            <li>Virginia Francisco Gilmartín </li>\r\n            <li>Susana Bautista Blasco</li>\r\n          </div>\r\n    <div class=\"col-xl-2 mr-3 \">\r\n        <ul class=\"navbar-nav\">\r\n            <li>\r\n                <h4>Con licencia:</h4>\r\n                <img class=\"img-fluid mx-auto mt-3 d-block\" id=\"logo-navbar-middle\" src=\"/static/assets/dirs/ccc.png\" width=\"200\" alt=\"Welcome to Pict2Text\">\r\n              </li>\r\n        </ul>\r\n    </div>\r\n  </div>\r\n</div>\r\n  </footer>\r\n  "
+module.exports = "\r\n<footer class=\" footer  page-footer navbar-dark bg-dark align-bottom text-white text-center\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row py-2\">\r\n          <ul class=\"col-xl-2 navbar-nav ml-3\">\r\n              <li class>\r\n                  <h5>En colaboración con: </h5>\r\n                  <img class=\"img-fluid mx-auto mt-2 d-block\" id=\"logo-navbar-middle\" src=\"/static/assets/dirs/arasaac.png\" width=\"200\" alt=\"Welcome to Pict2Text\">\r\n                </li>\r\n          </ul>\r\n        <div class=\"col-xl-3 navbar-nav mt-2 mx-auto\">\r\n            <h6>Desarrollado por:</h6>\r\n          <li>José Mª López Pulido</li>\r\n          <li>Salvador Gonzalez Alvarez</li>\r\n        </div>\r\n          <div class=\"col-xl-3 navbar-nav mt-2 mx-auto\">\r\n            <h6>Bajo la dirección de:</h6>\r\n            <li>Virginia Francisco Gilmartín </li>\r\n            <li>Susana Bautista Blasco</li>\r\n          </div>\r\n    <div class=\"col-xl-2 mr-3 \">\r\n        <ul class=\"navbar-nav\">\r\n            <li>\r\n                <h5>Con licencia:</h5>\r\n                <img class=\"img-fluid mx-auto mt-2 d-block\" id=\"logo-navbar-middle\" src=\"/static/assets/dirs/ccc.png\" width=\"150\" alt=\"Welcome to Pict2Text\">\r\n              </li>\r\n        </ul>\r\n    </div>\r\n  </div>\r\n</div>\r\n  </footer>\r\n  "
 
 /***/ }),
 
@@ -9351,7 +9351,7 @@ module.exports = "#navbar-primary .navbar-nav { \r\n      width: 100%;\r\n      
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header role=\"banner\">\r\n\r\n  <nav id=\"navbar-primary\" class=\"navbar\">\r\n    <!-- Navbar content -->\r\n    <div class=\"container-fluid\">\r\n      <ul class=\"nav navbar-nav\">\r\n        <li><img class=\"img-fluid mx-auto mt-3 d-block\" id=\"logo-navbar-middle\" src=\"/static/assets/dirs/pict2TextLogo.gif\"\r\n            width=\"500\" alt=\"Welcome to Pict2Text\"></li>\r\n      </ul>\r\n    </div>\r\n  </nav>\r\n</header>"
+module.exports = "<header role=\"banner\">\r\n\r\n  <nav id=\"navbar-primary\" class=\"navbar py-4\">\r\n    <!-- Navbar content -->\r\n    <div class=\"container-fluid\">\r\n      <ul class=\"nav navbar-nav\">\r\n        <li><img class=\"img-fluid mx-auto mt-3 d-block\" id=\"logo-navbar-middle\" src=\"/static/assets/dirs/pict2TextLogo.gif\"\r\n            width=\"500\" alt=\"Welcome to Pict2Text\"></li>\r\n      </ul>\r\n    </div>\r\n  </nav>\r\n</header>"
 
 /***/ }),
 
@@ -9532,7 +9532,7 @@ module.exports = ".cdk-drag-placeholder {\r\n    opacity: 0;\r\n  }\r\n  \r\n  .
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n            <label>\r\n                  <h3>Pictogramas</h3>\r\n            </label>\r\n            <div cdkDropList cdkDropListOrientation=\"horizontal\" class=\"example-list scrolling-wrapper\"\r\n                  (cdkDropListDropped)=\"drop($event)\">\r\n                  <div class=\"example-box dragElement\" *ngFor=\"let img of pictoPhrase; index as i\" cdkDrag>\r\n                        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"remove(i)\">\r\n                              <span aria-hidden=\"true\">&times;</span>\r\n                        </button>\r\n                        <img src={{img.url}} class=\"img-responsive mx-auto finder\" alt=\"\" width=\"180px\">\r\n                  </div>\r\n            </div>\r\n      </div>\r\n      <button type=\"submit\" class=\"btn-lg btn-submit bg-dark text-white\" (click)=\"getTranslate()\">Traducir</button>\r\n\r\n      <div class=\"container\" *ngIf=\"finalPhrase\">\r\n            <p>{{finalPhrase}}</p>\r\n      </div>\r\n</div>\r\n<div class=\"mt-3\">\r\n<app-picto-translator></app-picto-translator>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n      <div class=\"form-group \">\r\n            <label>\r\n                  <h3>Pictogramas</h3>\r\n            </label>\r\n            <div cdkDropList cdkDropListOrientation=\"horizontal\" class=\"example-list scrolling-wrapper\"\r\n                  (cdkDropListDropped)=\"drop($event)\">\r\n                  <div class=\"example-box dragElement\" *ngFor=\"let img of pictoPhrase; index as i\" cdkDrag>\r\n                        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"remove(i)\">\r\n                              <span aria-hidden=\"true\">&times;</span>\r\n                        </button>\r\n                        <img src={{img.url}} class=\"img-responsive mx-auto finder\" alt=\"\" width=\"180px\">\r\n                  </div>\r\n            </div>\r\n      </div>\r\n      <button type=\"submit\" class=\"btn-lg btn-submit bg-dark text-white\" (click)=\"getTranslate()\">Traducir</button>\r\n\r\n      <div class=\"container\" *ngIf=\"finalPhrase\">\r\n            <p>{{finalPhrase}}</p>\r\n      </div>\r\n</div>"
 
 /***/ }),
 
