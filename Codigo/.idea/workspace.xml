@@ -13,11 +13,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="392">
-              <caret line="63" column="33" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
+              <caret line="63" column="30" selection-start-line="63" selection-end-line="64" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoService/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="87">
+              <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -113,8 +125,8 @@
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/urls.py" />
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/pictoService/urls.py" />
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/settings.py" />
-        <option value="$PROJECT_DIR$/pict2Text/pict2Text/pictoService/views.py" />
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/views.py" />
+        <option value="$PROJECT_DIR$/pict2Text/pict2Text/pictoService/views.py" />
       </list>
     </option>
   </component>
@@ -171,7 +183,7 @@
               <item name="Codigo" type="462c0819:PsiDirectoryNode" />
               <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
               <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
-              <item name="pictoTranslateService" type="462c0819:PsiDirectoryNode" />
+              <item name="pictoService" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -313,7 +325,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49729145" visible="true" weight="0.098524764" />
       <window_info id="Structure" order="1" sideWeight="0.50270855" side_tool="true" weight="0.14963119" />
@@ -326,7 +337,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49894625" visible="true" weight="0.40953413" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49894625" visible="true" weight="0.8147346" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50105375" side_tool="true" weight="0.329718" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -518,16 +529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoService/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/Utils/constants.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -576,7 +577,17 @@
     <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
-          <caret line="63" column="33" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
+          <caret line="63" column="30" selection-start-line="63" selection-end-line="64" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoService/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>

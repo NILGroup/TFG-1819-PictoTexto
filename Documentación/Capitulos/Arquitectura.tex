@@ -73,7 +73,6 @@ Podemos ver un diagrama de clase del componente buscador en la Figura \ref{fig:f
 \section{Back-End}
 %-------------------------------------------------------------------
 
-
 %------------------------------------------------------------------
 \subsection{Servicio Web de Clasificación de Palabras}
 %-------------------------------------------------------------------
@@ -134,21 +133,22 @@ Este servicio web recibe un array de strings y devuelve una frase creada a parti
 \item Una vez identificadas las palabras que forman parte del sujeto se pasa a procesar el sujeto de la frase.
 
 \begin{itemize}
-\item Selección del determinante: En este proceso se selecciona un determinante en caso de que sea necesario, es decir si es un nombre común (por ejemplo  ``corredor, perro, bailarina''), por defecto el determinante es \textit{el o la}. Si la palabra principal es un determinante como ``el, ella, nosotros", no se añade.
-\item Genero y número: se selecciona el genero y numero de la palabra principal del sujeto, y se configura en todo el sujeto, de manera que si el nombre es femenino plural como por ejemplo ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''.
-\item En caso de encontrar un adverbio dentro del array de palabras se fuerza su posición dentro del sujeto al final del sujeto, y así la entrada ``profesora ayer,comer,galletas,duro'' generara la frase ``La profesora ayer comió galletas duras''
+\item Creación del objeto sujeto: gracias a la función \textbf{createNounPhrase()} de la librería SimpleNLG, creamos el sintagma nominal que sera el objecto contenedor de todas las palabras que formaran el sujeto.
+ 
+\item Selección del determinante: En este proceso se establecerá el determinante del sujeto, utilizando la función \textbf{setDeterminer(``determinante'')} de SimpleNLG, sobre el objecto creado anteriormente. En caso de que la lista de palabras que formaran el sujeto, no contenga un pronombre o un determinante, se añade el determinante por defecto(``el''). En caso contrario la se añadirá el determinante o pronombre, en lugar del determinante de por defecto.
+
+\item Genero y número: una vez se encuentra una palabra de categoría lexica nombre, se establece como palabra principal del sujeto utilizando el método textbf{setFeature(``nombre''))} además se obtiene su genero y numero y se aplica al sujeto usando las funciones \textbf{setFeature(LexicalFeature.GENDER, Gender.FEMININE)} y \textbf {setPlural(``esPlural'')} respectivamente. Cabe destacar que por defecto el genero y numero de cualquier frase nominal es masculino singular, y solo se establecerá el genero del sujeto en caso de que deba ser femenino. Al establecer el genero y numero del sujeto todas las palabras que lo conforman utilizaran ese genero y numero,  por ejemplo  ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''.
+
+\item En caso de encontrar un adverbio dentro del array de palabras se fuerza su posición dentro del sujeto al final del sujeto. Por ejemplo, para la entrada [``ayer, profesora, despistada, comer, galletas, duro''] se generara la frase ``La profesora despistada ayer comió galletas duras''
 \end{itemize}
 
-\item De la misma manera que con el sujeto, se obtienen las palabras que formaran el predicado excluyendo el verbo. En caso de tener palabras de categoría léxica ``nombre'' se configura la parte objeto del predicado utilizando el genero y numero obtenido. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera `` galletas duras''.
-Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras que conformaran la frase final contienen ``profesora, comer, ayer, galletas, duro'', la frase resultante sera ``La profesora comío galletas duras ayer''. 
+\item De la misma manera que con el sujeto, se genera un objeto que sera el sintagma verbal. Se recorren todas las palabras que formaran el predicado y se aplica la misma lógica para seleccionar el determinante que en el sujeto, con la diferencia de que el determinante por defecto es ``un'', y solo se añadirá en caso de que exista una palabra con categoría léxica nombre. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera ``unas galletas duras''. Además si existe un nombre se aplicara su genero y numero al sintagma verbal. 
+Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras que conformaran la frase final contienen ``profesora, comer, ayer, galletas, duro'', la frase resultante sera ``La profesora comió galletas duras ayer''. 
 
 \item A continuación se hace una llamada al Servicio Web de Detección de Tiempo Verbal, para obtener el tiempo verbal el que se debe conjugar la frase resultante.
 
-
-\item El tiempo verbal de la frase se escoge, dependiendo de la respuesta del Servicio de Detección de Tiempo Verbal. Diferenciamos tres tipos de respuesta,
-pasado, futuro y presente que es la configuración de tiempo verbal por defecto.
-
-\item Una vez tenemos todos las partes de la frase se pasa a la realización de la misma. Se detecta si existen predicados y el objeto de la frase, y en caso de que existan se añaden a la frase, se forma la frase final gracias a SimpleNLG, está fase se denomina realización, el resultado de está fase sera devuelto en la respuesta del servicio web.
+\item Para terminar creamos un objecto frase de la biblioteca simpleNLG con \textbf{SPhraseSpec(``phraseFactory'')}. Utilizando la función \textbf{.setSubject(``subject'')}, añadimos el sujeto creado previamente. En caso de tener verbo lo añadiremos utilizando \textbf{setVerbPhrase.(``verb'')} y seleccionaremos el tiempo verbal de la frase, en caso de que no sea presente usaremos las funciones \textbf{setFeature(Feature.TENSE, Tense.FUTURE) o setFeature(Feature.TENSE, Tense.PAST)}, para definir el tiempo verbal en futuro o pasado respectivamente. Una vez tenemos todos la frase formada se pasa a la realización de la misma, utilizando el objeto \textbf{Realiser} de SimpleNlG, y se guardara en una variable el resultado.
+Esta variable sera la respuesta de este servicio web 
 
 \end{enumerate}
 En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue este servicio.
@@ -194,7 +194,7 @@ La respuesta devuelta por la API de ARAASAC es procesada, eliminando los resulta
 \item El significado del pictograma.
 \end{itemize}
 Cada objecto se añade a una lista que sera devuelta en el resultado de este servicio web tal y como podemos ver en la Figurac \ref{fig:pictoFinderResponse}, para la entrada ``huevo''.
-\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{width=400px}{fig:pictoFinderResponse}{Respuesta del buscador por id de la API de ARAASAC} 
+\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{height=15cm}{fig:pictoFinderResponse}{Respuesta del servicio web de búsqueda del pictogramas asociados a una palabra} 
 
 \subsection{Servicio web de traducción}
 

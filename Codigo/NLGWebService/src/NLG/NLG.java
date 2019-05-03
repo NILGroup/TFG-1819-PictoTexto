@@ -44,13 +44,12 @@ public class NLG {
 	public void createASimplePhrase(NPPhraseSpec subject, NLGElement verbWord, NPPhraseSpec objectWord) {
 		this.simplePhrase = new SPhraseSpec(factory);
  
-		NPPhraseSpec object = factory.createNounPhrase(objectWord);
 		VPPhraseSpec verb = factory.createVerbPhrase(verbWord);
 		simplePhrase.setSubject(subject);
 		if(verb!=null) {
 			simplePhrase.setVerbPhrase(verb);
-			if(object!=null)
-				simplePhrase.setObject(object);
+			if(objectWord!=null)
+				simplePhrase.setObject(objectWord);
 		}
 		output = realiser.realiseSentence(simplePhrase);
 	
@@ -59,15 +58,13 @@ public class NLG {
 
 	public void createASimplePastPhrase(NPPhraseSpec subject, NLGElement verbWord, NLGElement objectWord) {
 		this.simplePhrase = new SPhraseSpec(factory);
- 
-		NPPhraseSpec object = factory.createNounPhrase(objectWord);
-		
+ 		
 		VPPhraseSpec verb = factory.createVerbPhrase(verbWord);
 		simplePhrase.setSubject(subject);
 		if(verb!=null) {
 			simplePhrase.setVerbPhrase(verb);
-			if(object!=null)
-			simplePhrase.setObject(object);
+			if(objectWord!=null)
+			simplePhrase.setObject(objectWord);
 		simplePhrase.setFeature(Feature.TENSE, Tense.PAST);
 		}
 		output = realiser.realiseSentence(simplePhrase);
@@ -77,18 +74,17 @@ public class NLG {
 	public void createASimpleFuturePhrase(NPPhraseSpec subject, NLGElement verbWord, NLGElement objectWord) {
 		this.simplePhrase = new SPhraseSpec(factory);
  
-		NPPhraseSpec object = factory.createNounPhrase(objectWord);
 		VPPhraseSpec verb = factory.createVerbPhrase(verbWord);
 		simplePhrase.setSubject(subject);
 		if(verb!=null) {
 			simplePhrase.setVerbPhrase(verb);
-			if(object!=null)
-			simplePhrase.setObject(object);
+			if(objectWord!=null)
+			simplePhrase.setObject(objectWord);
 		simplePhrase.setFeature(Feature.TENSE, Tense.FUTURE);
 		}
 		output = realiser.realiseSentence(simplePhrase);
-	
 	}
+	
 	public ArrayList<NLGElement> createNLGWords(Word[] words) {
 		ArrayList<NLGElement> wordsList = new ArrayList<NLGElement>();
 		for (int i = 0; i < words.length; ++i) {
@@ -159,8 +155,10 @@ public class NLG {
 				System.out.println(word);
 				if(word.isA(LexicalCategory.NOUN)) {
 					subject.setHead(word);
-					subject.setDeterminer("el");
+					if(subject.getDeterminer().size()==0)
+						subject.setDeterminer("el");
 				}else {
+					word.setCategory(LexicalCategory.DETERMINER);
 					subject.setHead(word);
 				}
 				subject.setPlural(word.isPlural());
@@ -170,8 +168,15 @@ public class NLG {
 			}else {
 				if (word.isA(LexicalCategory.ADVERB)) {
 					subject.addPostModifier(word);
-				}else
-					subject.addComplement(word);
+				}else {
+						if(word.isA(LexicalCategory.DETERMINER)) {
+							subject.setDeterminer(word.getAllFeatures().get("feminine_singular"));
+							if(word.getFeature(LexicalFeature.GENDER)==Gender.FEMININE){
+								subject.setFeature(LexicalFeature.GENDER, Gender.FEMININE);
+							}
+						}else
+							subject.addComplement(word);
+					}
 				}
 		}
 		return subject;
