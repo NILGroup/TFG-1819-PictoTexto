@@ -137,7 +137,7 @@ Este servicio web recibe un array de strings y devuelve una frase creada a parti
  
 \item Selección del determinante: En este proceso se establecerá el determinante del sujeto, utilizando la función \textbf{setDeterminer(``determinante'')} de SimpleNLG, sobre el objecto creado anteriormente. En caso de que la lista de palabras que formaran el sujeto, no contenga un pronombre o un determinante, se añade el determinante por defecto(``el''). En caso contrario la se añadirá el determinante o pronombre, en lugar del determinante de por defecto.
 
-\item Genero y número: una vez se encuentra una palabra de categoría lexica nombre, se establece como palabra principal del sujeto utilizando el método textbf{setFeature(``nombre''))} además se obtiene su genero y numero y se aplica al sujeto usando las funciones \textbf{setFeature(LexicalFeature.GENDER, Gender.FEMININE)} y \textbf {setPlural(``esPlural'')} respectivamente. Cabe destacar que por defecto el genero y numero de cualquier frase nominal es masculino singular, y solo se establecerá el genero del sujeto en caso de que deba ser femenino. Al establecer el genero y numero del sujeto todas las palabras que lo conforman utilizaran ese genero y numero,  por ejemplo  ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''.
+\item Genero y número: una vez se encuentra una palabra de categoría lexica nombre, se establece como palabra principal del sujeto utilizando el método textbf{setFeature(``nombre''))} además se obtiene su genero y numero y se aplica al sujeto usando las funciones \textbf{setFeature(LexicalFeature.GENDER, Gender.FEMININE)} y \textbf {setPlural(``esPlural'')} respectivamente. Cabe destacar que por defecto el genero y numero de cualquier frase nominal es masculino singular, y solo se establecerá el genero del sujeto en caso de que deba ser femenino. Al establecer el genero y numero del sujeto todas las palabras que lo conforman utilizaran ese genero y numero,  por ejemplo  ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''. Dado que todos los pictogramas no existen en femenino, hemos desarrollado una lógica que en caso de existir un determinante con genero, el sujeto tendrá ese genero.
 
 \item En caso de encontrar un adverbio dentro del array de palabras se fuerza su posición dentro del sujeto al final del sujeto. Por ejemplo, para la entrada [``ayer, profesora, despistada, comer, galletas, duro''] se generara la frase ``La profesora despistada ayer comió galletas duras''
 \end{itemize}
@@ -148,28 +148,31 @@ Si existe un adverbio se fuerza su posición al final de la frase, de manera que 
 \item A continuación se hace una llamada al Servicio Web de Detección de Tiempo Verbal, para obtener el tiempo verbal el que se debe conjugar la frase resultante.
 
 \item Para terminar creamos un objecto frase de la biblioteca simpleNLG con \textbf{SPhraseSpec(``phraseFactory'')}. Utilizando la función \textbf{.setSubject(``subject'')}, añadimos el sujeto creado previamente. En caso de tener verbo lo añadiremos utilizando \textbf{setVerbPhrase.(``verb'')} y seleccionaremos el tiempo verbal de la frase, en caso de que no sea presente usaremos las funciones \textbf{setFeature(Feature.TENSE, Tense.FUTURE) o setFeature(Feature.TENSE, Tense.PAST)}, para definir el tiempo verbal en futuro o pasado respectivamente. Una vez tenemos todos la frase formada se pasa a la realización de la misma, utilizando el objeto \textbf{Realiser} de SimpleNlG, y se guardara en una variable el resultado.
-Esta variable sera la respuesta de este servicio web 
+Esta variable sera la respuesta de este servicio web.
 
 \end{enumerate}
 En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue este servicio.
-\figura{Bitmap/ServiciosWeb/NLGService}{width=350px}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural} 
+\figura{Bitmap/ServiciosWeb/NLGService}{width=350px}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural} y en la tabla \ref{tabla:tiempoVerbal} podemos varios ejemplos de entradas y salidas del servicio.
 
-En la tabla \ref{tabla:tiempoVerbal} podemos ver un resumen con diferentes entradas de este Servicio Web.
 \begin{table}[htbp]
-\begin{tabular}{p{1.5cm}p{1cm}p{1.2cm}p{1cm}p{2cm}p{1cm}p{1cm}p{3cm}}
+\begin{tabular}{p{4cm}p{8cm}}
 \hline
-Sujeto & Adj. & Adv. & Verbo & Objecto & Adj. & Adv. & Resultado \\
+Entrada & Salida \\
 \hline \hline
-Corredor & -&-&Perder & Zapatillas &- &- & El corredor pierde unas zapatillas\\ \hline
-Corredor & Rápido &- & Perder & Zapatillas&- &- & El corredor rápido pierde unas zapatillas\\ \hline
-Corredor & - & Ayer & Perder & Zapatillas &- &-& El corredor ayer perdió unas zapatillas.\\ \hline
-Corredor & - & Mañana & Perder & Zapatillas &- &-& El corredor mañana perderá unas zapatillas.\\ \hline
-Corredor & Rápido & Ayer & Perder & Zapatillas &- &- & El corredor rápido ayer perdió unas zapatillas.\\ \hline
-Corredor & -&-&Perder & Zapatillas &Nuevo &- & El corredor pierde unas zapatillas nuevas\\ \hline
-Corredor &Rápido &-&Perder & Zapatillas &Nuevo &- & El corredor rápido pierde unas zapatillas nuevas\\ \hline
-Corredor &Rápido &Ayer &Perder & Zapatillas &Nuevo &- & El corredor rápido ayer perdió unas zapatillas nuevas.
+Corredor, perder, zapatillas & El corredor pierde unas zapatillas\\ \hline
+Corredor, rápido, perder, zapatillas & El corredor rápido pierde unas zapatillas\\ \hline
+Corredor, ayer, perder, zapatillas & El corredor ayer perdió unas zapatillas.\\ \hline
+Corredor, mañana, perder, zapatillas & El corredor mañana perderá unas zapatillas.\\ \hline
+Corredor, rápido, ayer, perder, zapatillas & El corredor rápido ayer perdió unas zapatillas.\\ \hline
+Corredor, perder, zapatillas, nuevo & El corredor pierde unas zapatillas nuevas\\ \hline
+Corredor, rápido, perder, zapatillas, nuevo & El corredor rápido pierde unas zapatillas nuevas\\ \hline
+Corredor,rápido, ayer, perder, zapatillas, nuevo & El corredor rápido ayer perdió unas zapatillas nuevas.
 \\ \hline
-Corredor &Rápido &- &Perder & Zapatillas &Nuevo &Ayer & El corredor rápido perdió unas zapatillas nuevas ayer.
+Corredor, rápido. perder, zapatillas, nuevo, ayer & El corredor rápido perdió unas zapatillas nuevas ayer.
+\\ \hline
+Este, corredor, rápido, perder, zapatillas, nuevo & Este corredor rápido ayer perdió unas zapatillas nuevas.
+\\ \hline
+La, corredor, rápido, perder, zapatillas, nuevo & La corredora rápida ayer perdió unas zapatillas nuevas.
 \\ \hline
 \end{tabular} 
 \caption{Tabla con diferentes entradas y salidas del Servicio Web de Generación de Frases en Lenguaje Natural.}
@@ -180,28 +183,30 @@ Corredor &Rápido &- &Perder & Zapatillas &Nuevo &Ayer & El corredor rápido perdi
 \subsection{Servicios Web para la gestión de pictogramas} %-------------------------------------------------------------------
 \label{cap5:sec:ServiciosParaPictos}
 
-En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. Para creación de estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}. 
+En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. En estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}. 
 \figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{width=200px}{fig:serviciosAPIARAASAC}{Flujo de los Servicios Web Para Pictogramas } 
 
-\subsection{Servicio Web de búsqueda del pictogramas asociados a una palabra}
+\subsection{Servicio Web de Búsqueda del Pictogramas Asociados a una Palabra}
 \label{cap5:sec:ServiciosParaPictosPalabra}
-Este servicio web, recibe una palabra a través de una petición GET y devuelve un objeto en formato JSON, con un array de objetos con los diferentes pictogramas asociados a la palabra recibida.
-Este servicio lanza una petición GET al buscador de pictogramas de la API de ARAASAC\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'}, el cual devuelve una lista de pictogramas, con todos los pictogramas en los que aparece la palabra introducida.
-La respuesta devuelta por la API de ARAASAC es procesada, eliminando los resultados que no son deseados, por ejemplo si se realiza la busqueda huevo, la API de ARAASAC devolverá tres pictogramas: huevo, huevo frito, huevo roto, por lo que los dos últimos se excluirán. Por cada pictograma se genera un objecto con los siguientes atributos:
+Este servicio web, recibe una palabra a través de una petición GET y devuelve un objeto en formato JSON, con un array con los diferentes pictogramas asociados a la palabra recibida.
+Este servicio lanza una petición GET con la palabra recibida, al buscador de pictogramas de la API de ARAASAC\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'}, el cual devuelve una lista de todos los pictogramas, que tienen asociada la palabra introducida.
+La respuesta devuelta por la API de ARAASAC es procesada por nuestro servicio, eliminando los resultados que no son deseados, escogiendo aquellos pictogramas que tienen asociados exclusivamente la palabra introducida, por ejemplo si se realiza la búsqueda huevo, la API de ARAASAC devolverá tres pictogramas: huevo, huevo frito, huevo roto, por lo que los dos últimos se excluirán. Por cada pictograma se devuelven los siguientes atributos:
 \begin{itemize}
 \item Identificador del pictograma.
 \item URL externa a la imagen del pictograma.
 \item El significado del pictograma.
 \end{itemize}
-Cada objecto se añade a una lista que sera devuelta en el resultado de este servicio web tal y como podemos ver en la Figurac \ref{fig:pictoFinderResponse}, para la entrada ``huevo''.
-\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{height=15cm}{fig:pictoFinderResponse}{Respuesta del servicio web de búsqueda del pictogramas asociados a una palabra} 
+\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{height=15cm,width=12cm}{fig:pictoFinderResponse}{Respuesta del servicio web de búsqueda del pictogramas asociados a una palabra}
+Cada objeto se añade a una lista que sera devuelta en el resultado de este servicio web tal y como podemos ver en la Figura \ref{fig:pictoFinderResponse}, para la entrada ``huevo''.
+ 
 
-\subsection{Servicio web de traducción}
+\subsection{Servicio Web de Traducción de Pictogramas a Texto}
 
 Este servicio web recibe un identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma.
-\begin{itemize}
-\item Una vez el servicio recibe un identificador, lanza una petición al buscador de pictogramas de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823.
+Este servicio lanza una petición GET con el identificador recibido, lanza una petición al buscador de pictogramas por id de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823.
+
 \figura{Bitmap/ServiciosWeb/finderIDAPI}{width=300px}{fig:finderIDAPI}{Respuesta del buscador por id de la API de ARAASAC} 
-\item Se accede al atributo ``Keywords'' del objeto devuelto por la API, se encapsula dentro de un objeto, y se devuelve dentro de un JSON tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
+
+Con la respuesta de la API, se accede a su atributo ``Keywords'', se encapsula dentro de un objeto, que sera la respuesta de este servicio tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
+
 \figura{Bitmap/ServiciosWeb/responseTranslatePictoService}{width=300px}{fig:responseTranslatePictoService}{Respuesta del buscador por id de la API de ARAASAC} 
-\end{itemize}
