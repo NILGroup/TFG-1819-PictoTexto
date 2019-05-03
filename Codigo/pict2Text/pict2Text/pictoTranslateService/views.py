@@ -13,7 +13,7 @@ def getWordAttrs(request):
         nlp = spacyimp.SpacyIMP.__getModel__()
         word = request.GET.get('word', 'word')
         attrs = getAttrs(nlp,word);
-        response = {'attrs': attrs}
+        response = {'keyword':word, 'attrs': attrs}
         return JsonResponse(response, status=200)
     else:
         if request.method == "POST":
@@ -61,6 +61,7 @@ def getTypePhrase(request):
                 response['Type'] = "future"
             if picto == "hoy":
                 response = {'Type': "present"}
+        print(json.dumps(response, indent=4, sort_keys=True))
         return JsonResponse(response, status=200)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)

@@ -75,87 +75,61 @@ Podemos ver un diagrama de clase del componente buscador en la Figura \ref{fig:f
 
 
 %------------------------------------------------------------------
-\subsection{Servicio Web de Clasificación De Palabras}
+\subsection{Servicio Web de Clasificación de Palabras}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioClasificaciónDePalabras}
 
-El Servicio Clasificación De Palabras, se encarga de dada una palabra o un array de palabras devolver la categoría léxica y todos los atributos de cada una de las palabras recibidas.
-Una vez se tiene la entrada se llama a la libreria Spacy que ya ha sido cargada previamente, y se utiliza su función Tokenizer\footnote{https://spacy.io/api/tokenizer}. Esta función sirve para obtener las características y la categorización léxica de una palabra. 
-Las características y diferentes categorías léxicas de las palabras, que seran devueltas por este servicio web están reflejadas en las tablas \ref{tabla:cat1} y \ref{tabla:cat2}.
+El servicio web de clasificación de palabras, se encarga de dada una palabra o un array de palabras devolver la categoría léxica (verbo, nombre, adverbio, determinante, adjetivo...) y todos los atributos ( genero, numero, tiempo verbal...) de cada una de las palabras recibidas.
+Una vez se tiene la entrada se llama a la  función Tokenizer\footnote{https://spacy.io/api/tokenizer} de la librería Spacy, cabe destacar que esta llamada se hará por cada una de las palabras que se reciba. Para obtener la categorización léxica de la palabra y los atributos de la mismas, los diferentes resultados de este servicio web están reflejados en las tablas \ref{tabla:clasificacion}.
+
 \begin{table}[htbp]
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
-Verbo & Nombre & Adjetivo & Determinante \\
+Categoría Léxica & Atributos \\
 \hline \hline
-Cat. Léxica & Cat. Léxica & Cat. Léxica & Cat. Léxica \\ \hline
-Forma verbal & Número & Número & Número \\ \hline
- - & Género  & Género  & Tipo \\ \hline
+Verbo & Forma verbal  \\ \hline
+Nombre & Genero, número  \\ \hline
+Determinante & Género, numero, tipo de determinante, determinante definido o indefinido \\ \hline
+Adjetivo & Género, numero\\ \hline
+Pronombre & Género, numero, persona, tipo de pronombre\\ \hline
+Adverbio & -\\ \hline
+Preposiciones & Tipo de preposiciones\\ \hline
+Conjunciones & -\\ \hline
 \end{tabular}
-\caption{Tabla de características de Verbos, Nombres, Adjetivos y Determinantes .}
-\label{tabla:cat1}
+\caption{Tabla de características devueltas por el servicio según la categoría léxica.}
+\label{tabla:clasificacion}
 \end{center}
 \end{table}
+\figura{Bitmap/ServiciosWeb/attrsResponsePost}{height=18cm, width=7cm}{fig:attrsResponsePost}{Respuesta del servicio web de clasificación de palabras para la entrada [corredor, despistado, perder, zapatillas, ayer].}
+\figura{Bitmap/ServiciosWeb/caracPal}{height=10cm}{fig:caracPal}{Flujo del servicio web de clasificación de palabras} 
 
-\begin{table}[htbp]
-\begin{center}
-\begin{tabular}{|l|l|l|}
-\hline
- Adverbio & Pronombre & Preposiciones  \\
-\hline \hline
-Cat. Léxica &Cat. Léxica &Cat. Léxica \\ \hline
-- &- &Tipo \\ \hline
-\end{tabular}
-\caption{Tabla de características de Adverbios, Pronombres, Preposiciones.}
-\label{tabla:cat2}
-\end{center}
-\end{table}
-
-\figura{Bitmap/ServiciosWeb/attrsResponsePost}{width=300px}{fig:attrsResponsePost}{Respuesta del Servicio Clasificación De Palabras } 
-Dado que la salida de la función Tokenizer devuelve un string, se parsea su salida y se genera un objeto en formato JSON que sera la salida del servicio web. En la Figura \ref{fig:attrsResponsePost}, podemos ver la respuesta del servicio web para la entrada perro, rápido, comer, pan.
+La salida de la función tokenizer sera procesada para generar el JSON que sera la salida de nuestro sistema. En la Figura \ref{fig:attrsResponsePost}, podemos ver la respuesta del servicio web para la entrada [corredor, despistado, perder, zapatillas, ayer].
 En la Figura \ref{fig:caracPal}, podemos ver un resumen del flujo que sigue este servicio.
-\figura{Bitmap/ServiciosWeb/caracPal}{width=100px}{fig:caracPal}{Flujo del Servicio Clasificación De Palabras} 
+
 
 %------------------------------------------------------------------
-\subsection{Servicio de Detección de Tiempo Verbal}
+\subsection{Servicio Web de Detección de Tiempo Verbal}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServiciodeDeteccióndeTiempoVerbal}
 
-Este servicio web, tiene como finalidad determinar el tiempo verbal de una frase dado una lista de palabras. Después de recibir la petición busca alguna de las  palabras clave, que esta en la tabla \ref{tabla:tiempoVerbal}, en la lista de palabras recibida. Si detecta alguna de las palabras clave devuelve en un JSON con el tiempo verbal correspondiente a dicha palabra clave. En caso de no encontrar ninguna de las palabras clave, el servicio web devolverá presente.
-
-
-\begin{table}[htbp]
-\begin{center}
-\begin{tabular}{|l|l|l|}
-\hline
-Presente & Pasado & Futuro \\
-\hline \hline
-Hoy & Ayer & Mañana \\ \hline
-\end{tabular}
-\caption{Tabla de palabras clave para la detección del tiempo verbal.}
-\label{tabla:tiempoVerbal}
-\end{center}
-\end{table}
-
-En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio.
-\figura{Bitmap/ServiciosWeb/deteccionTiempoVerbal}{width=200px}{fig:deteccionTiempoVerbal}{Flujo del Servicio Web de Detección del Tiempo Verbal} 
+Este servicio web, tiene como finalidad determinar el tiempo verbal de una frase dado la lista de palabras que conforman la frase. Este servicio busca las palabras temporales, ayer, hoy o mañana en el array de palabras recibido como entrada. Si encuentra alguna de estas palabras devuelve el tiempo verbal correspondiente, pasado si encontró ayer, presente si encontró hoy y futuro si encontró mañana. En caso de no encontrar ninguna de las 3 palabras devuelve presente por defecto. 
+\figura{Bitmap/ServiciosWeb/deteccionTiempoVerbal}{width=100px}{fig:deteccionTiempoVerbal}{Flujo del servicio web de detección del tiempo verbal} 
+\figura{Bitmap/ServiciosWeb/timeDeteccion}{width=100px}{fig:timeDeteccion}{respuesta del servicio web de detección del tiempo verbal para la entrada [corredor, despistado, perder, zapatillas, ayer]} 
+En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio y en las Figura \ref{fig:timeDeteccion} podemos ver un ejemplo de salida para la entrada [corredor, despistado, perder, zapatillas, ayer].
 
 %------------------------------------------------------------------
-\subsection{Servicio de Generación de Frases en Lenguaje Natural}
+\subsection{Servicio Web de Generación de Frases en Lenguaje Natural}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioGLN}
 
-
-Este servicio web recibe un array de strings y devuelve una frase creada a partir de las palabras recibidas en la llamada. Por ejemplo dado un array con las palabras ``corredora, rapido''
+Este servicio web recibe un array de strings y devuelve una frase creada a partir de las palabras recibidas en la llamada. Los pasos seguidos por el servicio para crear la frase de salida son los siguiente:
 
 \begin{enumerate}
 
-\item Obtención de la clasificación lexica de las palabras:
- Una vez el servidor recibe la petición Post, la librería GSON se encarga de tratar la entrada para transformarla en un ArrayList de Strings. Esto es porque Java no reconoce objectos, en la entrada de los servicios web y tienen que ser tratadas previamente. A continuación se llama al Servicio Web de Clasificación de Palabras para obtener las características y categoría léxica de cada palabra.
+\item Obtención de la categoría léxica de cada una de las palabras: Se llama al Servicio Web de Clasificación de Palabras explicado en la sección \ref{cap5:sec:ServicioClasificaciónDePalabras}, utilizando el metodo POST que permite enviar todo el array de palabras, para obtener las características y la categoría léxica de cada palabra.
 
-\item A continuación se hace una llamada al Servicio Web de Detección de Tiempo Verbal, para obtener el tiempo verbal el que se debe conjugar la frase resultante.
-
-\item Gracias al resultado de esta clasificación sabemos cual es la posición del verbo dentro del array de palabras. Gracias a esto podemos dividir la lista de palabras en aquellas que formaran el sujeto (aquellas que están antes del verbo) y aquellas que formaran el objecto (palabras encontradas después del verbo).
+\item División de palabras en sintagma nominal y en sintagma verbal: una vez conocemos la categoría léxica de las palabras, buscamos el verbo dentro del array de palabras. Todas las palabras anteriores al verbo formaran el sintagma nominal y todas las posteriores el sintagma verbal.
 
 \item Una vez identificadas las palabras que forman parte del sujeto se pasa a procesar el sujeto de la frase.
 
@@ -167,6 +141,9 @@ Este servicio web recibe un array de strings y devuelve una frase creada a parti
 
 \item De la misma manera que con el sujeto, se obtienen las palabras que formaran el predicado excluyendo el verbo. En caso de tener palabras de categoría léxica ``nombre'' se configura la parte objeto del predicado utilizando el genero y numero obtenido. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera `` galletas duras''.
 Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras que conformaran la frase final contienen ``profesora, comer, ayer, galletas, duro'', la frase resultante sera ``La profesora comío galletas duras ayer''. 
+
+\item A continuación se hace una llamada al Servicio Web de Detección de Tiempo Verbal, para obtener el tiempo verbal el que se debe conjugar la frase resultante.
+
 
 \item El tiempo verbal de la frase se escoge, dependiendo de la respuesta del Servicio de Detección de Tiempo Verbal. Diferenciamos tres tipos de respuesta,
 pasado, futuro y presente que es la configuración de tiempo verbal por defecto.
