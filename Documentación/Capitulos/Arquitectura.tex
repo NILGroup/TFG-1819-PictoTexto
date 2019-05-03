@@ -2,79 +2,42 @@
 
 \chapter{Pict2Text}
 \label{cap:Pict2Text}
+\figura{Bitmap/ServiciosWeb/pict2Text}{width=12cm}{fig:pict2Text}{Pict2Text}
+A lo largo de este capitulo expondremos la aplicación, Pict2Text que hemos desarrollado para este proyecto, la cual podemos ver en la Figura \ref{fig:pict2Text}. Pict2Text es una aplicación que permite la traducción de pictogramas a lenguaje natural, aunque además posee un buscador de pictogramas, el cual sirve de entrada para los pictogramas, que permite hacer búsquedas de los pictogramas de ARAASAC que tienen asociada una determinada palabra, el cual podemos ver en la Figura \ref{fig:buscadorPictogramas}. Hablaremos sobre los principios de arquitectura en los cuales nos hemos basado. 
+\figura{Bitmap/Arquitectura/buscadorPictogramas}{width=8cm}{fig:buscadorPictogramas}{Buscador de pictogramas de Pict2Text }
+Y detallaremos los diferentes servicios web implementados para la parte Back-End, los cuales hemos decidido clasificar en dos grupos: Servicios Web para la Generación de Frases, donde hablaremos de los servicios web implementados para la generación de lenguaje natural, y los Servicios Web para la Gestión de Pictogramas donde están englobados aquellos servicios web necesarios para el uso de pictogramas. 
 
-En el siguiente capitulo hablaremos de la arquitectura que hemos diseñado para la aplicación los distintos módulos de la misma y como se integran entre si. La aplicación esta formada por diferentes partes o módulos que se integran para conseguir la traducción de pictogramas a lenguaje natural, además para facilitar su uso se ha añadido un buscador de pictogramas y un traductor de pictogramas por id, tal y como podemos ver en la Figura \ref{fig:appEscritorio}, además hemos querido desarrollar la aplicación para que sea responsive y se pueda utilizar en cualquier dispositivo.
-\figura{Bitmap/Arquitectura/appEscritorio}{width=430px}{fig:appEscritorio}{Pict2Text versión escritorio}
-\figura{Bitmap/Arquitectura/appMo}{width=100px}{fig:appMo}{Pict2Text versión escritorio}
+\figura{Bitmap/Arquitectura/ServiciosWebDiagrama}{height=14cm, width=13cm}{fig:ServiciosWebDiagrama}{Pict2Text visión general }
+Por ultimo hablaremos sobre la aplicación Front-End desarrollada con el framework Angular, describiendo los diferentes componentes que la forman y la relación que guardan con la parte Back-End. En la Figura \ref{fig:ServiciosWebDiagrama}, podemos ver un diagrama en el que se muestran las partes Back y Fron-End y su relación.
 
 %------------------------------------------------------------------
 \section{Arquitectura}
 %-------------------------------------------------------------------
 \label{cap5:sec:Arquitectura}
 
-El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad   funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debíamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte back-end, y a componentes en la parte front-end. En ambas casos, hemos seguido los principios\citep{martin2013agile}: 
+El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad   funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debíamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte back-end, y a componentes en la parte front-end. En ambas casos, hemos seguido siguientes los principios \citep{martin2013agile}: 
 
 \begin{itemize}
+\item Principio Open/Closed. Este principio busca que los programas estén abiertos para la extensión y cerrados a la modificación. Esto es que no haga falta modificar el código de nuestras clases para extender su funcionalidad. Esto lo podemos ver en el uso de diferentes servicios web, que aportan funcionalidad individualmente evitando el uso de un solo servicio web que implemente toda la funcionalidad, además del proceso de generación de lenguaje donde las clases implementan pequeños métodos que encadenados aportan funcionalidad a la traducción. Esto permite depurar de una manera más eficiente el código y ampliar su funcionalidad con otros métodos.
+   
+\item Principio de segregación de la interfaz. Este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es la clase encargada de las peticiones HTTP de la aplicación angular donde todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
 
-\item Principio de Responsabilidad única. Este principio promueve la separación de las clases para que cada clase haga una sola cosa, y no dependa de un tercero. Cada clase debe de ser responsable únicamente de su comportamiento y no tener dependencia de un tercero. Un ejemplo de violación de este principio es cuando en una misma clase, están involucradas dos capas diferentes de la arquitectura. Además este principio promueve la creación de múltiples clases muy simples, con lógica mínima, en contra de una clase con una lógica mayor, ya que esta ultima produce un fuerte acoplamiento y disminuye la sostenibilidad del código. Por ejemplo en nuestro proyecto todos los Servicios Web, son independientes unos de  otros.
-
-\item Principio de Segregación de la Interfaz. Este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es la interfaz de peticiones de la aplicación angular donde todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
-
-\item Principio de Inversión de Dependencias. Consiste en evitar dependencias externas dentro del código, y que el código central de las aplicaciones no dependa de frameworks, de bases de datos o del como se conecten los diferentes servicios entre ellos. Normalmente se habla de que las clases de alto nivel no deben de depender de las clases de bajo nivel\footnote{https://devexperto.com/principio-de-inversión-de-dependencias/}, un ejemplo de esto en nuestra aplicación es el uso de Servicios Web, que reciben tipos básicos y devuelven los resultados en formato JSON.
+\item Principio de inversión de dependencias. Consiste en evitar dependencias externas dentro del código, y que el código central de las aplicaciones no dependa de frameworks, de bases de datos o del como se conecten los diferentes servicios entre ellos. Normalmente se habla de que las clases de alto nivel no deben de depender de las clases de bajo nivel\footnote{https://devexperto.com/principio-de-inversión-de-dependencias/}, un ejemplo de esto en nuestra aplicación es el uso de Servicios Web, que reciben tipos básicos para que estos no estén acoplados a estructuras de datos , y sean accesibles para cualquiera.
 
 \end{itemize}
 
-Estos principios tienen como finalidad crear un producto software de calidad que sea robusto, producir código ordenado y limpio dando además una gran flexibilidad buscando que sea reutilizable y fácilmente sostenible gracias al bajo acoplamiento que se consigue y por ultimo permitir la escalabilidad, gracias a una alta modular obtenida por la separación de responsabilidades.
-
-
-
-%------------------------------------------------------------------
-\section{Front-end}
-%-------------------------------------------------------------------
-\label{cap5:sec:ComponentesAngular}
-
-En esta sección introduciremos los diferentes servicios y componentes Angular desarrollados para la parte Front-End de la aplicación. Hemos implementado diferentes componentes: un buscador de pictogramas, un traductor de pictograma por id, y el componente traductor de pictogramas, que sirve de contenedor para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un HTML, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de útiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo otro servicio de modales para el tratamiento de errores.
-
-
-\subsection{Servicio Proxy}
-
-El Servicio Proxy de la aplicación Angular sirve para abstraer las diferentes llamadas HTTP del resto de la aplicación, este componente es necesario ya que sirve de punto de acceso a los Servicios Web explicados en el Capitulo \ref{cap5:serviciosWeb}. Los métodos se encargan de emitir las peticiones HTTP (GET o POST), esperar la respuesta del servicio y devolverla al servicio de aplicación.
-Cuando una clase llama a un método del Servicio Proxy, se convierte en un subscriptor de dicho método. Gracias a la suscripción cuando el Servicio Proxy reciba la respuesta de la llamada HTTP, se encargara de avisar a sus suscriptores de que ya ha recibido la respuesta y entregarla. Esto es gracias al patrón Observer que implementa Angular en las llamadas HTTP. En caso de que la respuesta de la llamada fuera un error, el Servicio Proxy, volverá a reintentar la llamada hasta cinco veces, si la ultima llamada falla, devuelve el error a los suscriptores. En la Figura \ref{fig:proxyClassDiagram} podemos ver un diagrama del Servicio Proxy.
-\figura{Bitmap/Arquitectura/proxyService}{width=200px}{fig:proxyClassDiagram}{Diagrama de clase del Servicio Proxy}
-
-\subsection{Servicio de modales}  
-\figura{Bitmap/Arquitectura/modalErrorServiceExample}{width=400px}{fig:errorModalExample}{Ejemplo de modal para un error del tipo 404}
-El servicio de modales, es un componente reutilizable que se inyecta en los componentes. Su utilidad principal es construir y mostrar una modal  genérica, dado un error especifico, con el fin de mostrar dar al usuario feedback de los errores que puedan darse. Sigue el patrón Factory, es decir su finalidad es crear objetos concretos gracias a sus datos de entrada, tal y como podemos ver en la Figura \ref{fig:errorModalExample}. Además de esto hemos utilizado la librería NGBoostrap\footnote{https://ng-bootstrap.github.io/} para la implementación de este servicio de modales, esta librería hace uso del patron Singleton para las modales, y ademas abstrae todos la funcionalidad relacionada con el uso de modales, como pueda ser la lógica de abrir o cerrar la modal. Además de la funcionalidad tiene estilos CSS propios, que ayudan a definir el tamaño de la modal, el fondo que se pone sobre el body de la pagina etc. 
-Este servicio tiene dos variables de entrada el código de error y el texto asociado al error, ambos obtenidos del error devuelto por el servicio. En la Figura \ref{fig:modalErrorServiceClass}
-\figura{Bitmap/Arquitectura/modalErrorServiceClass}{width=200px}{fig:modalErrorServiceClass}{Diagrama de clase del servicio de modales}
-
-\subsection{Traductor de pictogramas} 
-
-Este componente sirve de contenedor del array de pictogramas que después traduciremos y para lanzar la traducción.
-En el HTML el componente implementa un contenedor para los pictogramas, donde se muestran la frase de pictogramas, este contenedor se ha implementado usando la biblioteca Material de Angular\footnote{https://material.angular.io/}, además existe un botón para lanzar la traducción y el parrafo donde se mostrara el resultado de la traducción. 
-Además este componente tiene un controlador y un servicio de aplicación propio.
-El controlador de este componente se encarga de manejar la logica drag and drop que posee el contenedor de pictogramas, y la lógica de borrado de los pictogramas.
-\figura{Bitmap/Arquitectura/translatorComponent}{width=300px}{fig:translatorComponent}{Diagrama de clase del componente traductor}
-Figura \ref{fig:translatorComponent}
-
-El servicio de aplicación, genera el cuerpo de la petición POST, carga la URL del Servicio de Generación de Lenguaje del archivo de constantes, y después llama al Servicio Proxy el cual sera encargado de lanzar la petición POST y devolver la respuesta del servicio. Una vez se obtiene la respuesta del servicio se devuelve al controlador del componente.
-
-\subsection{Buscador de pictogramas}
-La utilidad principal del Buscador de pictogramas es ser el punto de entrada de los pictogramas a la aplicación. El componente esta formado por un input donde introducir el nombre del pictograma que se desea buscar y un carrusel de pictogramas que permanece oculto hasta que se busca un pictograma. Una vez introducido el pictograma que se desea buscar. El carrusel ha sido implementado gracias a la librería NGBoostrap, gracias al carrusel podemos añadir más de un pictograma al componente Traductor de Pictogramas. 
-A parte de la parte visual, este componente posee un controlador, un servicio de aplicación propios y un transformer.
- El controlador es el encargado de conectar el HTML con el resto de la aplicación Angular, su utilidad principal es la de obtener el nombre del pictograma que se desea buscar y enviarlo al servicio de aplicación, añadir los pictogramas al traductor y por ultimo mostrar los errores gracias al servicio de modales.
- 
-El servicio de aplicación creara la URL para hacer la llamada al Servicio Web de búsqueda del pictogramas asociados a una palabra, visto en el capitulo \ref{cap5:sec:ServiciosParaPictosPalabra}, usando el archivo de constantes. Con la URL generada llamara al Servicio Proxy, que se encargara de enviar y recibir la respuesta del servicio web. Si la respuesta es correcta el servicio de aplicación hará uso del transformer para generar un objecto para el controlador, en caso de error devolverá el error al controlador para que muestre el mensaje de error.
-Podemos ver un diagrama de clase del componente buscador en la Figura \ref{fig:finderClass}.    
-\figura{Bitmap/Arquitectura/finderClass}{width=300px}{fig:finderClass}{Diagrama de clase del componente buscador de pictogramas}
+Estos principios tienen como finalidad crear un producto software de calidad y robusto, gracias al desarrollo de un código ordenado y limpio, otorgando además una gran flexibilidad. Gracias a esto se consigue un producto reutilizable y fácil de mantener gracias al bajo acoplamiento que se obtiene.
 
 
 %------------------------------------------------------------------
 \section{Back-End}
 %-------------------------------------------------------------------
+%------------------------------------------------------------------
+\subsection{Servicios Web para la Generación de Frases}
+%-------------------------------------------------------------------
 
 %------------------------------------------------------------------
-\subsection{Servicio Web de Clasificación de Palabras}
+\subsubsection{Servicio Web de Clasificación de Palabras}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioClasificaciónDePalabras}
 
@@ -108,7 +71,7 @@ En la Figura \ref{fig:caracPal}, podemos ver un resumen del flujo que sigue este
 
 
 %------------------------------------------------------------------
-\subsection{Servicio Web de Detección de Tiempo Verbal}
+\subsubsection{Servicio Web de Detección de Tiempo Verbal}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServiciodeDeteccióndeTiempoVerbal}
 
@@ -118,7 +81,7 @@ Este servicio web, tiene como finalidad determinar el tiempo verbal de una frase
 En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio y en las Figura \ref{fig:timeDeteccion} podemos ver un ejemplo de salida para la entrada [corredor, despistado, perder, zapatillas, ayer].
 
 %------------------------------------------------------------------
-\subsection{Servicio Web de Generación de Frases en Lenguaje Natural}
+\subsubsection{Servicio Web de Generación de Frases en Lenguaje Natural}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioGLN}
 
@@ -186,7 +149,7 @@ La, corredor, rápido, perder, zapatillas, nuevo & La corredora rápida ayer perdi
 En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. En estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}. 
 \figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{width=200px}{fig:serviciosAPIARAASAC}{Flujo de los Servicios Web Para Pictogramas } 
 
-\subsection{Servicio Web de Búsqueda del Pictogramas Asociados a una Palabra}
+\subsubsection{Servicio Web de Búsqueda del Pictogramas Asociados a una Palabra}
 \label{cap5:sec:ServiciosParaPictosPalabra}
 Este servicio web, recibe una palabra a través de una petición GET y devuelve un objeto en formato JSON, con un array con los diferentes pictogramas asociados a la palabra recibida.
 Este servicio lanza una petición GET con la palabra recibida, al buscador de pictogramas de la API de ARAASAC\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'}, el cual devuelve una lista de todos los pictogramas, que tienen asociada la palabra introducida.
@@ -200,7 +163,7 @@ La respuesta devuelta por la API de ARAASAC es procesada por nuestro servicio, e
 Cada objeto se añade a una lista que sera devuelta en el resultado de este servicio web tal y como podemos ver en la Figura \ref{fig:pictoFinderResponse}, para la entrada ``huevo''.
  
 
-\subsection{Servicio Web de Traducción de Pictogramas a Texto}
+\subsubsection{Servicio Web de Traducción de Pictogramas a Texto}
 
 Este servicio web recibe un identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma.
 Este servicio lanza una petición GET con el identificador recibido, lanza una petición al buscador de pictogramas por id de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823.
@@ -210,3 +173,45 @@ Este servicio lanza una petición GET con el identificador recibido, lanza una pe
 Con la respuesta de la API, se accede a su atributo ``Keywords'', se encapsula dentro de un objeto, que sera la respuesta de este servicio tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
 
 \figura{Bitmap/ServiciosWeb/responseTranslatePictoService}{width=300px}{fig:responseTranslatePictoService}{Respuesta del buscador por id de la API de ARAASAC} 
+
+%------------------------------------------------------------------
+\section{Front-end}
+%-------------------------------------------------------------------
+\label{cap5:sec:ComponentesAngular}
+
+En esta sección introduciremos los diferentes servicios y componentes Angular desarrollados para la parte Front-End de la aplicación, la cual podemos ver en la \ref{fig:appEscritorio}. Hemos implementado diferentes componentes: un buscador de pictogramas, un traductor de pictograma por id, y el componente traductor de pictogramas, que sirve de contenedor para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un HTML, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de útiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo otro servicio de modales para el tratamiento de errores.
+Ademas hemos tenido en cuenta que la aplicación sea responsive y diseñado la vista para tener una versión móvil la cual se puede ver en la Figura \ref{fig:appMo}.
+
+\figura{Bitmap/Arquitectura/appEscritorio}{width=430px}{fig:appEscritorio}{Pict2Text}
+\figura{Bitmap/Arquitectura/appMo}{height=15cm}{fig:appMo}{Pict2Text versión para dispositivos moviles}
+\subsection{Servicio Proxy}
+
+El Servicio Proxy de la aplicación Angular sirve para abstraer las diferentes llamadas HTTP del resto de la aplicación, este componente es necesario ya que sirve de punto de acceso a los Servicios Web explicados en el Capitulo \ref{cap5:serviciosWeb}. Los métodos se encargan de emitir las peticiones HTTP (GET o POST), esperar la respuesta del servicio y devolverla al servicio de aplicación.
+Cuando una clase llama a un método del Servicio Proxy, se convierte en un subscriptor de dicho método. Gracias a la suscripción cuando el Servicio Proxy reciba la respuesta de la llamada HTTP, se encargara de avisar a sus suscriptores de que ya ha recibido la respuesta y entregarla. Esto es gracias al patrón Observer que implementa Angular en las llamadas HTTP. En caso de que la respuesta de la llamada fuera un error, el Servicio Proxy, volverá a reintentar la llamada hasta cinco veces, si la ultima llamada falla, devuelve el error a los suscriptores. En la Figura \ref{fig:proxyClassDiagram} podemos ver un diagrama del Servicio Proxy.
+\figura{Bitmap/Arquitectura/proxyService}{width=200px}{fig:proxyClassDiagram}{Diagrama de clase del Servicio Proxy}
+
+\subsection{Servicio de modales}  
+\figura{Bitmap/Arquitectura/modalErrorServiceExample}{width=400px}{fig:errorModalExample}{Ejemplo de modal para un error del tipo 404}
+El servicio de modales, es un componente reutilizable que se inyecta en los componentes. Su utilidad principal es construir y mostrar una modal  genérica, dado un error especifico, con el fin de mostrar dar al usuario feedback de los errores que puedan darse. Sigue el patrón Factory, es decir su finalidad es crear objetos concretos gracias a sus datos de entrada, tal y como podemos ver en la Figura \ref{fig:errorModalExample}. Además de esto hemos utilizado la librería NGBoostrap\footnote{https://ng-bootstrap.github.io/} para la implementación de este servicio de modales, esta librería hace uso del patron Singleton para las modales, y ademas abstrae todos la funcionalidad relacionada con el uso de modales, como pueda ser la lógica de abrir o cerrar la modal. Además de la funcionalidad tiene estilos CSS propios, que ayudan a definir el tamaño de la modal, el fondo que se pone sobre el body de la pagina etc. 
+Este servicio tiene dos variables de entrada el código de error y el texto asociado al error, ambos obtenidos del error devuelto por el servicio. En la Figura \ref{fig:modalErrorServiceClass}
+\figura{Bitmap/Arquitectura/modalErrorServiceClass}{width=200px}{fig:modalErrorServiceClass}{Diagrama de clase del servicio de modales}
+
+\subsection{Traductor de pictogramas} 
+
+Este componente sirve de contenedor del array de pictogramas que después traduciremos y para lanzar la traducción.
+En el HTML el componente implementa un contenedor para los pictogramas, donde se muestran la frase de pictogramas, este contenedor se ha implementado usando la biblioteca Material de Angular\footnote{https://material.angular.io/}, además existe un botón para lanzar la traducción y el parrafo donde se mostrara el resultado de la traducción. 
+Además este componente tiene un controlador y un servicio de aplicación propio.
+El controlador de este componente se encarga de manejar la logica drag and drop que posee el contenedor de pictogramas, y la lógica de borrado de los pictogramas.
+\figura{Bitmap/Arquitectura/translatorComponent}{width=300px}{fig:translatorComponent}{Diagrama de clase del componente traductor}
+Figura \ref{fig:translatorComponent}
+
+El servicio de aplicación, genera el cuerpo de la petición POST, carga la URL del Servicio de Generación de Lenguaje del archivo de constantes, y después llama al Servicio Proxy el cual sera encargado de lanzar la petición POST y devolver la respuesta del servicio. Una vez se obtiene la respuesta del servicio se devuelve al controlador del componente.
+
+\subsection{Buscador de pictogramas}
+La utilidad principal del Buscador de pictogramas es ser el punto de entrada de los pictogramas a la aplicación. El componente esta formado por un input donde introducir el nombre del pictograma que se desea buscar y un carrusel de pictogramas que permanece oculto hasta que se busca un pictograma. Una vez introducido el pictograma que se desea buscar. El carrusel ha sido implementado gracias a la librería NGBoostrap, gracias al carrusel podemos añadir más de un pictograma al componente Traductor de Pictogramas. 
+A parte de la parte visual, este componente posee un controlador, un servicio de aplicación propios y un transformer.
+ El controlador es el encargado de conectar el HTML con el resto de la aplicación Angular, su utilidad principal es la de obtener el nombre del pictograma que se desea buscar y enviarlo al servicio de aplicación, añadir los pictogramas al traductor y por ultimo mostrar los errores gracias al servicio de modales.
+ 
+El servicio de aplicación creara la URL para hacer la llamada al Servicio Web de búsqueda del pictogramas asociados a una palabra, visto en el capitulo \ref{cap5:sec:ServiciosParaPictosPalabra}, usando el archivo de constantes. Con la URL generada llamara al Servicio Proxy, que se encargara de enviar y recibir la respuesta del servicio web. Si la respuesta es correcta el servicio de aplicación hará uso del transformer para generar un objecto para el controlador, en caso de error devolverá el error al controlador para que muestre el mensaje de error.
+Podemos ver un diagrama de clase del componente buscador en la Figura \ref{fig:finderClass}.    
+\figura{Bitmap/Arquitectura/finderClass}{width=300px}{fig:finderClass}{Diagrama de clase del componente buscador de pictogramas}
