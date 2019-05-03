@@ -65,7 +65,7 @@ public class CreatePhrase extends HttpServlet {
 			ArrayList<NLGElement> wordNLG = miNlgTest.createNLGWords(words);
 			int i = miNlgTest.recogniseVerb(wordNLG);
 			// DEFINE subject
-			if(i>0) {
+			if(i>=0) {
 				List<NLGElement> subjectWords = wordNLG.subList(0, i);
 				NPPhraseSpec subject = miNlgTest.createSubject(subjectWords);
 				List<NLGElement> objectWords = wordNLG.subList(i + 1, wordsList.size());

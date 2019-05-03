@@ -150,6 +150,7 @@ public class NLG {
 	public NPPhraseSpec createSubject(List<NLGElement> subjectWords) {
 		NPPhraseSpec subject = null;
 		subject = factory.createNounPhrase();
+		if(!subjectWords.isEmpty()) {
 		for (NLGElement word : subjectWords) {
 			if (word.isA(LexicalCategory.NOUN) || word.isA(LexicalCategory.PRONOUN) ) {
 				System.out.println(word);
@@ -178,6 +179,10 @@ public class NLG {
 							subject.addComplement(word);
 					}
 				}
+		}
+		}else {
+			subject.setHead("yo");
+			subject.setFeature(Feature.PERSON, Person.FIRST);
 		}
 		return subject;
 	}
