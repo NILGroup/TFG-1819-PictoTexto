@@ -11,16 +11,15 @@ Por último, para agilizar tanto el tiempo de respuesta de los servidores como el
 %-------------------------------------------------------------
 \section{Django}
 %-------------------------------------------------------------
-\label{cap3:sec:Django}
-Debido a los diferentes servicios web que se utilizan en este TFG, se necesita un espacio o contenedor en donde pudieran desembocar y relacionar entre sí estos servicios mencionados anteriormente. Además al ser python uno de los lenguajes de programación más utilizados en el proyecto, era aconsejable que dicho contenedor estuviera también desarrollado en ese mismo lenguaje. 
-Con estos requisitos previos se eligió la herramienta Django que al ser un framework de desarrollo web\footnote{https://tutorial.djangogirls.org/es/django/} de código abierto escrito en Python,  y respetando el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C). Tiene como meta principal facilitar la creación de sitios web. Además de ser muy importante el re-uso de código, la conectividad y el desarrollo rápido.\\
-Todos estos motivos la convirtieron en la herramienta ideal sobre la que construir la comunicación entre los diferentes servicios y además al estar escrita en Python nos solucionaba problemas de errores con uno de los lenguajes de programación utilizados. 
+\label{cap3:sec:Django}  
+Debido a los diferentes servicios web que se utilizan en este TFG, se necesita un espacio o framework que ayudase a los programadores a crear dichos servicios web y relacionarlos entre sí. Además al ser python uno de los lenguajes de programación más utilizados en el proyecto, era aconsejable que dicho espacio estuviera también desarrollado en ese mismo lenguaje. 
+Con estos requisitos previos se eligió la herramienta Django, la cuál es un framework que nos permite desarrollar aplicaciones web\footnote{https://openwebinars.net/blog/que-es-django-y-por-que-usarlo/} de una manera gratuita, siendo la única que hemos encontrado así, y de código abierto escrito en Python. Además de respetar el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C), por lo que fomenta el desarrollo rápido y un diseño limpio y pragmático. Por último Django nos permitirá implementar un software rápido, seguro, escalable y versátil.
 
 \section{API-Arasaac}
 %-------------------------------------------------------------
 \label{cap3:sec:API-Arasaac}
 
-Dado un pictogrma necesitabamos conocer la palabra asociada a dicho pictograma y para eso hemos utilizado la API de Arasaac \footnote{https://beta.arasaac.org/developers/api}, centrándonos en la sección de pictogramas.
+Dado un pictograma necesitábamos conocer la palabra asociada a dicho pictograma y para eso hemos utilizado la API de Arasaac \footnote{https://beta.arasaac.org/developers/api}, centrándonos en la sección de pictogramas.
 En este trabajo se han utilizado dos de los métodos proporcionados en la API, por un lado obtenemos el texto asociado a un pictograma partiendo de la propia palabra mediante el método(/pictograms/search/{searchText}), gracias a esto se logra una conexión entre el texto, su pictograma y un objeto con toda la información relevante asociada a la palabra , por ejemplo de la palabra \textit{perro} se consigue un objeto con dicha información relativa a la palabra, como puede ser: sus keywords o palabras clave, el tipo de palabra que es, los posibles plurales de dicha palabra, el significado de la misma, etc. 
  
 El segundo método (/pictograms/{idPictogram}) es necesario para la parte del buscador de nuestra aplicación, ya que permite obtener la información del pictograma a partir de su id, con esto se consigue una relación entre la palabra y su pictograma gracias al código de identificación.
@@ -33,9 +32,9 @@ Spacy es una biblioteca escrita en Python diseñada para el procesamiento avanzad
 
 Para el uso del lenguaje natural primero se necesitaba realizar una clasificación del tipo de palabras, es decir, clasificar dichas palabras según sean sustantivos, adjetivos, verbos,etc.
 Una vez realizada esa organización se necesita realizar un análisis de los atributos de cada palabra, esto significa que dependiendo del tipo de palabra se conozca su género, número, tiempo verbal, etc.\\ 
-Para esta función de análisis se eligió usar la librería Spacy por delante de otras como NLTK o CORENLP, esta elección se basó principalmente en que de estas tres herramientas Spacy, sobre todo en lo referente a la precisión o exactitud cuando realiza un análisis de las palabras, como podemos observar en la figura \ref{fig:precisionSpacy} .\\
+Para esta función de análisis se eligió usar la librería Spacy por delante de otras como ClearNLP o CORENLP, esta elección se basó en poder hacer un procesamiento del lenguaje natural en castellano y ademas la precisión y velocidad cuando realiza un análisis de las palabras, como podemos observar en la figura \ref{fig:precisionSpacy} .\\
 
-\figura{Bitmap/Herramientas/precisionSpacy}{width=200px}{fig:precisionSpacy}{Comparación de la precisión entre Spacy, NLTK, CORENLP.}
+\figura{Bitmap/Herramientas/precisionSpacy}{width=200px}{fig:precisionSpacy}{Benchmark de diferentes procesadores del lenguaje, Fuente https://spacy.io/.}
     
 Spacy por tanto será el encargado de proporcionarnos la información de los atributos de cada palabra analizada, mencionados en el párrafo anterior, mediante su función Tokenizer. Así con esta función obtendremos la categoría léxica de las palabras, es decir, conseguiremos conocer si la palabra es sustantivo, adjetivo, verbo, determinante, etc. Una vez conseguida su categoría léxica, Spacy nos proporciona características de cada palabra:
 \begin{itemize}
@@ -50,20 +49,19 @@ Spacy por tanto será el encargado de proporcionarnos la información de los atrib
 \section{SimpleNLG-ES}
 %-------------------------------------------------------------
 \label{cap3:sec:SimpleNLG}
-Una vez Spacy analiza y clasifica todas las partes de la oración. Se necesita una nueva herramienta que recibiendo como entrada una lista con el análisis pormenorizado de las oraciones e identificados el sujeto, verbo y complementos de las mismas, sea capaz de generar cada palabra en lenguaje natural. 
-La herramienta idónea elegida para realizar esta tarea es SimpleNLG-ES, esta biblioteca hecha en Java permite realizar la generación de lenguaje natural usando palabras\citep{Trzpis2015}.\\
-Conforme los datos de entrada que reciba Simple-NLG es capaz de crear diferentes tipos de frases, yendo desde frases simples o nominales hasta aquellas que posean un cierto grado de complejidad como pueden ser frases más complejas u oraciones. Dependiendo la complejidad de la frase, su forma de realizar la generación de lenguaje natural difiere una de otra.
+El primer motivo por el que la herramienta elegida es SimpleNLG-ES es por que es la única que está pensada para el castellano, además necesitábamos una herramienta que nos permitiese generar frases en lenguaje natural a partir de las palabras asociadas a los pictogramas de entrada. 
+Por estas razones, la herramienta idónea elegida para realizar esta tarea es SimpleNLG-ES, una biblioteca hecha en Java que permite la generación de lenguaje natural \citep{Trzpis2015}.\\
+Simple-NLG es capaz de crear diferentes tipos de frases, yendo desde oraciones nominales, como por ejemplo: ``la casa roja'', hasta aquellas que posean un cierto grado de complejidad como pueden ser oraciones verbales, como puede ser: ``mi perro es negro''. Dependiendo del tipo de frase, la oración se forma de una u otra forma:
 \begin{itemize}
-    \item \textbf{Frases simples o nominales}. Cuando se ha identificado que la frase para analizar no tiene ningún verbo, Simple-NLG empieza a generar el sustantivo de la frase añadiendo a dicho sustantivo el determinante que concuerde con el género y número especificado en los datos de entrada, en caso que fuera necesario. Una vez creado el sustantivo con su determinante correspondiente Simple-NLG irá generando los complementos que integran el sujeto completo, como pueden ser: adjetivos, adverbios, etc. Por ejemplo para la frase ``La casa roja''. El sustantivo será ``casa'', su determinante asociado será ``la'' y por último el complemento del sustantivo será ``roja''.    
-    \item \textbf{Frases compuestas u Oraciones}. Para este tipos de frases u oraciones lo primero que se busca es el verbo, una vez identificado dicho verbo, aquello que se encuentre delante de él formará el sujeto y el resto será el predicado con sus complementos, haciendo la generación del lenguaje en esta ocasión de la siguiente manera:
+    \item \textbf{Frases simples o nominales}. Cuando la frase no tiene ningún verbo, SimpleNLG-ES comienza generando el sustantivo de la frase añadiendo a dicho sustantivo el determinante que concuerde con el género y número del sustantivo, dichas informaciones se deben introducir como datos de entrada. Una vez creado el sustantivo con su determinante correspondiente, la herramienta irá generando los complementos, como pueden ser: adjetivos, adverbios, etc. Para ejemplo mencionado anteriormente ``La casa roja'', el sustantivo introducido será ``casa'', el género y el número serán femenino y singular, SimpleNLG-ES genera con dicho género y número el determinante asociado ``la'' y por último añadirá el complemento del sustantivo introducido ``roja''.    
+    \item \textbf{Oraciones verbales}. Para estos tipos de oraciones se diferencian tres partes, por un lado está la parte del sujeto, la segunda parte que se analiza es el verbo de la oración y por el último el resto de complementos del predicado, haciendo la generación del lenguaje en esta ocasión de la siguiente manera:
     \begin{itemize}
     \item Sujeto. Se genera de la misma forma que en las frases nominales, por ejemplo ``mi perro''.
-    \item Verbo. Dependiendo de los datos de entrada recibidos, se obtiene la forma y el tiempo verbal, diferenciando entre pasado, futuro o presente, este último a su vez es el que viene por defecto. Y generando así la respuesta más adecuada. Como por ejemplo ``es'' se generará como una oración en presente. 
-    \item Complementos. Una vez generado el verbo se identifica si existen más datos en el predicado, en caso afirmativo se generan los elementos correspondientes. Por ejemplo ``negro''. 
+    \item Verbo. Cuando encuentra el verbo SimpleNLG-ES recibe los datos de la forma y tiempo verbal en los que viene dados, es decir, si el tiempo al que se refiere es pasado, presente o futuro y además obtiene la persona y número en la que aparece dicho verbo. Con los datos recibidos, SimpleNLG-ES generará el verbo en su forma mas adecuada, siguiendo el ejemplo puesto antes, generará el verbo en el tiempo presente y en tercera persona ``es''.
+    \item Complementos. Una vez generados tanto el sujeto como el verbo, se pasa a generar el resto de complementos del predicado, para ello como datos de entrada recibirá los tipos de palabras que conforman dicho predicado, es decir, si son sustantivos, adjetivos, adverbios, etc. Generando las palabras de dicho predicado, y haciendo que concuerden en género y número aquellas palabras que califiquen al sujeto, como pueden ser los adjetivos. Por ejemplo ``negro'' que tiene el mismo género y número que el sujeto de la oración. 
     \end{itemize}
 \end{itemize}
-Es importante destacar que Simple-NLG permite también negar las frases u oraciones, y además una vez se haya realizado la generación de la frase al completo, siguiendo el ejemplo anteriormente dado, la frase generada en su totalidad será: ``mi perro es negro''. \\
-La misma herramienta se encargará de devolver la respuesta del servicio web gracias a la última fase llamada realización.
+Por último, es importante destacar que Simple-NLG nos permite también negar oraciones o formar directamente oraciones negativas.
     
 \section{Angular}
 %-------------------------------------------------------------
