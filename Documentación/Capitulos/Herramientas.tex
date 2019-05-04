@@ -33,9 +33,9 @@ Spacy es una biblioteca escrita en Python diseñada para el procesamiento avanzad
 
 Para el uso del lenguaje natural primero se necesitaba realizar una clasificación del tipo de palabras, es decir, clasificar dichas palabras según sean sustantivos, adjetivos, verbos,etc.
 Una vez realizada esa organización se necesita realizar un análisis de los atributos de cada palabra, esto significa que dependiendo del tipo de palabra se conozca su género, número, tiempo verbal, etc.\\ 
-Para esta función de análisis se eligió usar la librería Spacy por delante de otras como NLTK o CORENLP, esta elección se basó principalmente en que de estas tres herramientas Spacy, sobre todo en lo referente a la precisión o exactitud cuando realiza un análisis de las palabras, como podemos observar en la figura \ref{fig:precisionSpacy} .\\
+Para esta función de análisis se eligió usar la librería Spacy por delante de otras como ClearNLP o CORENLP, esta elección se basó en poder hacer un procesamiento del lenguaje natural en castellano y ademas la precisión y velocidad cuando realiza un análisis de las palabras, como podemos observar en la figura \ref{fig:precisionSpacy} .\\
 
-\figura{Bitmap/Herramientas/precisionSpacy}{width=200px}{fig:precisionSpacy}{Comparación de la precisión entre Spacy, NLTK, CORENLP.}
+\figura{Bitmap/Herramientas/precisionSpacy}{width=200px}{fig:precisionSpacy}{Benchmark de diferentes procesadores del lenguaje.}
     
 Spacy por tanto será el encargado de proporcionarnos la información de los atributos de cada palabra analizada, mencionados en el párrafo anterior, mediante su función Tokenizer. Así con esta función obtendremos la categoría léxica de las palabras, es decir, conseguiremos conocer si la palabra es sustantivo, adjetivo, verbo, determinante, etc. Una vez conseguida su categoría léxica, Spacy nos proporciona características de cada palabra:
 \begin{itemize}
