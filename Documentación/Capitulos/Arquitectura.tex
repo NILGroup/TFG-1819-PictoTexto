@@ -32,10 +32,19 @@ Estos principios tienen como finalidad crear un producto software de calidad y r
 %------------------------------------------------------------------
 \section{Back-End}
 %-------------------------------------------------------------------
+\label{cap5:sec:backEnd}
+A lo largo de está sección presentaremos los diferentes servicios web desarrollados en el TFG, los cuales hemos decidido agrupar en dos grupos, dependiendo de la finalidad de los mismos. Servicios Web para la Generación de Frases, donde están agrupados todos los servicios web dedicados a la generación de lenguaje y procesamiento del lenguaje y los Servicios Web para la Gestión de Pictogramas donde están englobados aquellos servicios web encargados del uso de la API de ARAASAC, para el tratamiento de los pictogramas.
+
 %------------------------------------------------------------------
 \subsection{Servicios Web para la Generación de Frases}
 %-------------------------------------------------------------------
 
+Dentro de está subsección hablaremos de los servicios web encargados de la generación de lenguaje natural y procesamiento de lenguaje natural. Dentro del grupo de Servicios Web para la Generación de Frases, están englobados tres servicios web:
+\begin{itemize}
+\item Servicio Web de Clasificación de Palabras, encargado del procesamiento de lenguaje natural de las palabras.
+\item Servicio Web de Detección de Tiempo Verbal, es el encargado de definir el tiempo verbal de la frase resultante.
+\item Servicio Web de Generación de Frases en Lenguaje Natural, este servicio web tiene como finalidad la generación de lenguaje natural.
+\end{itemize}
 %------------------------------------------------------------------
 \subsubsection{Servicio Web de Clasificación de Palabras}
 %-------------------------------------------------------------------
@@ -143,7 +152,7 @@ La, corredor, rápido, perder, zapatillas, nuevo & La corredora rápida ayer perdi
 \end{table}
 
 %------------------------------------------------------------------
-\subsection{Servicios Web para la gestión de pictogramas} %-------------------------------------------------------------------
+\subsection{Servicios Web para la Gestión de Pictogramas} %-------------------------------------------------------------------
 \label{cap5:sec:ServiciosParaPictos}
 
 En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. En estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}. 
@@ -179,14 +188,21 @@ Con la respuesta de la API, se accede a su atributo ``Keywords'', se encapsula d
 %-------------------------------------------------------------------
 \label{cap5:sec:ComponentesAngular}
 
-En esta sección introduciremos los diferentes servicios y componentes Angular desarrollados para la parte Front-End de la aplicación, la cual podemos ver en la \ref{fig:appEscritorio}. Hemos implementado diferentes componentes: un buscador de pictogramas, un traductor de pictograma por id, y el componente traductor de pictogramas, que sirve de contenedor para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un HTML, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de útiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo otro servicio de modales para el tratamiento de errores.
+En esta sección introduciremos los diferentes servicios y componentes Angular desarrollados para la parte Front-End de la aplicación, la cual podemos ver en la \ref{fig:appEscritorio}. Hemos implementado diferentes componentes:
+\begin{itemize}
+\item Buscador de pictogramas: el cual podemos ver en la Figura \ref{fig:buscadorPictogramas}, este componente sirve como entrada de pictogramas a la aplicación, en el podemos ver los diferentes pictogramas asociados a la palabra introducida además del identificador de dicho pictograma.
+\figura{Bitmap/Arquitectura/buscadorPictogramas}{width=8cm}{fig:buscadorPictogramas}{Componente buscador de pictogramas}
+\item Traductor de pictogramas a lenguaje natural: podemos ver este componente en la Figura  \ref{fig:traductorPictogramas}
+\figura{Bitmap/Arquitectura/traductorPictogramas}{width=9cm}{fig:traductorPictogramas}{Componente buscador de pictogramas}, este componente es el encargado de manejar los pictogramas que se van a traducir, dentro de el podemos ver los pictogramas que formaran la frase, ordenarlos o borrar aquellos que no se desean.
+\end{itemize}
+un buscador de pictogramas, un traductor de pictograma por id, y el componente traductor de pictogramas, que sirve de contenedor para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un HTML, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de útiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo otro servicio de ventanas modales para el tratamiento de errores.
 Ademas hemos tenido en cuenta que la aplicación sea responsive y diseñado la vista para tener una versión móvil la cual se puede ver en la Figura \ref{fig:appMo}.
 
 \figura{Bitmap/Arquitectura/appEscritorio}{width=430px}{fig:appEscritorio}{Pict2Text}
 \figura{Bitmap/Arquitectura/appMo}{height=15cm}{fig:appMo}{Pict2Text versión para dispositivos moviles}
 \subsection{Servicio Proxy}
 
-El Servicio Proxy de la aplicación Angular sirve para abstraer las diferentes llamadas HTTP del resto de la aplicación, este componente es necesario ya que sirve de punto de acceso a los Servicios Web explicados en el Capitulo \ref{cap5:serviciosWeb}. Los métodos se encargan de emitir las peticiones HTTP (GET o POST), esperar la respuesta del servicio y devolverla al servicio de aplicación.
+El servicio proxy de la aplicación Angular sirve para abstraer las diferentes llamadas HTTP del resto de la aplicación, este componente es necesario ya que sirve de punto de acceso a los Servicios Web explicados en la seccion Back-End \ref{cap5:sec:backEnd}, de este capitulo. Los métodos se encargan de emitir las peticiones HTTP (GET o POST), esperar la respuesta del servicio y devolverla al servicio de aplicación.
 Cuando una clase llama a un método del Servicio Proxy, se convierte en un subscriptor de dicho método. Gracias a la suscripción cuando el Servicio Proxy reciba la respuesta de la llamada HTTP, se encargara de avisar a sus suscriptores de que ya ha recibido la respuesta y entregarla. Esto es gracias al patrón Observer que implementa Angular en las llamadas HTTP. En caso de que la respuesta de la llamada fuera un error, el Servicio Proxy, volverá a reintentar la llamada hasta cinco veces, si la ultima llamada falla, devuelve el error a los suscriptores. En la Figura \ref{fig:proxyClassDiagram} podemos ver un diagrama del Servicio Proxy.
 \figura{Bitmap/Arquitectura/proxyService}{width=200px}{fig:proxyClassDiagram}{Diagrama de clase del Servicio Proxy}
 
@@ -196,7 +212,7 @@ El servicio de modales, es un componente reutilizable que se inyecta en los comp
 Este servicio tiene dos variables de entrada el código de error y el texto asociado al error, ambos obtenidos del error devuelto por el servicio. En la Figura \ref{fig:modalErrorServiceClass}
 \figura{Bitmap/Arquitectura/modalErrorServiceClass}{width=200px}{fig:modalErrorServiceClass}{Diagrama de clase del servicio de modales}
 
-\subsection{Traductor de pictogramas} 
+\subsection{Traductor de pictogramas a lenguaje natural} 
 
 Este componente sirve de contenedor del array de pictogramas que después traduciremos y para lanzar la traducción.
 En el HTML el componente implementa un contenedor para los pictogramas, donde se muestran la frase de pictogramas, este contenedor se ha implementado usando la biblioteca Material de Angular\footnote{https://material.angular.io/}, además existe un botón para lanzar la traducción y el parrafo donde se mostrara el resultado de la traducción. 
