@@ -69,7 +69,7 @@ public class CreatePhrase extends HttpServlet {
 				List<NLGElement> subjectWords = wordNLG.subList(0, i);
 				NPPhraseSpec subject = miNlgTest.createSubject(subjectWords);
 				List<NLGElement> objectWords = wordNLG.subList(i + 1, wordsList.size());
-				NPPhraseSpec object = miNlgTest.createObject(objectWords);
+				NPPhraseSpec object = miNlgTest.createObject(subjectWords, objectWords);
 				switch(type.getType()) {
 					case("past"):
 						miNlgTest.createASimplePastPhrase(subject, wordNLG.get(i), object);
