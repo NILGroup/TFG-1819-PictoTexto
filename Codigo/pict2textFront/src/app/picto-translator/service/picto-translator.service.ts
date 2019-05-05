@@ -9,7 +9,6 @@ export class PictoTranslatorService {
 
   constructor(private proxyService: ProxyService) { }
 
-  
   getPictogramTranslate(name:string) {
     return new Promise((resolve, reject) => {
       this.proxyService.getByName(name, AppConstants.translatorPictoURL).subscribe(getPictoTranslateSuccess.bind(this),getPictoTranslateError)
