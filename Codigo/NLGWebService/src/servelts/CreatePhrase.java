@@ -16,6 +16,8 @@ import HttpService.HttpService;
 import NLG.Attributes;
 import NLG.NLG;
 import NLG.Word;
+import simplenlg.features.Gender;
+import simplenlg.features.LexicalFeature;
 import simplenlg.framework.NLGElement;
 import simplenlg.phrasespec.NPPhraseSpec;
 
@@ -69,7 +71,7 @@ public class CreatePhrase extends HttpServlet {
 				List<NLGElement> subjectWords = wordNLG.subList(0, i);
 				NPPhraseSpec subject = miNlgTest.createSubject(subjectWords);
 				List<NLGElement> objectWords = wordNLG.subList(i + 1, wordsList.size());
-				NPPhraseSpec object = miNlgTest.createObject(subjectWords, objectWords);
+				NPPhraseSpec object = miNlgTest.createObject( objectWords, subject.isPlural(), (Gender) subject.getFeature(LexicalFeature.GENDER));
 				switch(type.getType()) {
 					case("past"):
 						miNlgTest.createASimplePastPhrase(subject, wordNLG.get(i), object);

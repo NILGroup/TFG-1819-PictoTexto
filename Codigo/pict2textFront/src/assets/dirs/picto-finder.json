@@ -1,8 +1,0 @@
-{"pictoFinder":{
-    "pictoUrl":"http://127.0.0.1:8000/picto/getPicto?pictoName=",
-    "textfile":"assets/textfile.txt"
-    },
-  "translatorService":{
-
-  }
-}

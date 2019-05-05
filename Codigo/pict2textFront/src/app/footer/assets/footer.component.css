@@ -1,8 +1,9 @@
-
+@media(min-width:1080px){
 footer{
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
+}
 }
