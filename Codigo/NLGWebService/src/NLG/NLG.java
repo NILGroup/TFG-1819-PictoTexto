@@ -153,59 +153,55 @@ public class NLG {
 		NPPhraseSpec subject = factory.createNounPhrase();
 
 		if (!subjectWords.isEmpty()) {
+			boolean isPlural = false;
 			Gender isFeminine = Gender.MASCULINE;
-			boolean  isPlural = false, existNoun = false;
-			NLGElement aux;
-			
+			boolean existNoun = false;
+			boolean existDeterminerOrPronoun = false;
 			
 			for (NLGElement word : subjectWords) {
-			
 				if (word.isPlural()) 
 					isPlural = true;
 				if(word.getFeature(LexicalFeature.GENDER) == Gender.FEMININE)
 					isFeminine = Gender.FEMININE;
+				if(word.isA(LexicalCategory.NOUN))
+					existNoun = true;
+				if(word.isA(LexicalCategory.DETERMINER)||word.isA(LexicalCategory.PRONOUN))
+					existDeterminerOrPronoun = true;
+			}
+			
+			
+			for (NLGElement word : subjectWords) {
+				System.out.println(word);
 				
 				if(word.isA(LexicalCategory.DETERMINER)) {
 					subject.setDeterminer(word.getAllFeatures().get("feminine_singular"));
-				}else{
-					if(word.isA(LexicalCategory.COMPLEMENTISER)) {
-						subject.addPreModifier(word);
-					} else {
-						if(word.isA(LexicalCategory.PRONOUN)) {
-							if(subject.getHead() != null) {
-								word.setCategory(LexicalCategory.DETERMINER);
-								subject.setDeterminer(word);
-							}else {
-								subject.setNoun(word);
-							}
-						} else{ 
-							if (word.isA(LexicalCategory.NOUN)) {
-								aux= subject.getHead();
-								if(aux!=null) {
-									aux.setCategory(LexicalCategory.DETERMINER);
-									subject.setDeterminer(aux.getAllFeatures().get("feminine_singular"));
-									}
-								subject.setNoun(word);
-							}else { 
-								if(word.isA(LexicalCategory.ADVERB)) 
-									subject.addPostModifier(word);	
-								else 
-									subject.addComplement(word);
-							}
-			
-						}
+					//subject.setDeterminer(word);
+				} else if(word.isA(LexicalCategory.COMPLEMENTISER)) {
+					subject.addPreModifier(word);
+				} else if(word.isA(LexicalCategory.PRONOUN)) {
+					if(existNoun) {
+						word.setCategory(LexicalCategory.COMPLEMENTISER);
+						subject.setDeterminer(word);
+					}else {
+						subject.setNoun(word);
 					}
+				} else if (word.isA(LexicalCategory.NOUN)){
+					subject.setNoun(word);
+				} else if(word.isA(LexicalCategory.ADVERB)) {
+					subject.addPostModifier(word);	
+				}else {
+					subject.addComplement(word);
 				}
 			}
-			
-			if (subject.getDeterminer().size() == 0) {
+
+			if (existNoun && !existDeterminerOrPronoun) {
 				subject.setDeterminer("el");
 			}
-	
+			
 			subject.setPlural(isPlural);
 			subject.setFeature(LexicalFeature.GENDER, isFeminine);
 
-		}else {
+		} else {
 			subject.setHead("yo");
 			subject.setFeature(Feature.PERSON, Person.FIRST);
 		}
@@ -246,7 +242,7 @@ public class NLG {
 				object.setDeterminer(word.getAllFeatures().get("feminine_plural"));
 				// object.setDeterminer(word);
 			} else if (word.isA(LexicalCategory.PRONOUN)) {
-				word.setCategory(LexicalCategory.DETERMINER);
+				word.setCategory(LexicalCategory.COMPLEMENTISER);
 				object.setDeterminer(word);	
 			} else if (word.isA(LexicalCategory.COMPLEMENTISER)) {
 				object.addPreModifier(word);
