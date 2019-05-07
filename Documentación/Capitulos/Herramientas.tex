@@ -75,6 +75,17 @@ La segunda alternativa fue la opción de introducir JQuery, esta segunda opción t
 La última opción y al final la escogida fue la de implantar dentro de nuestro trabajo Angular, ya que era la alternativa que más funcionalidades aportaba y de las analizadas la más orientada a gestionar diferentes servicios en una misma página.
 Además la herramienta está formado por diferentes módulos distintos unos de otros y estos a su vez están formados por diferentes componentes, ofreciendo una división automática del código para que los usuarios solo carguen aquellas componentes que necesitan nuestro proyecto se han creado dos totalmente independientes como puede ser el buscador de pictogramas o el componente de traductor de pictogramas, estos dos módulos se podrían integrar por separado en cualquier otra aplicación.
 
+Por último, otro punto importante a favor de angular es su capacidad de proporcionar una actualización automática de la información, es decir, si se modifica algún almacén de datos Angular realiza automáticamente dichos cambios. 
+Sin embargo, esto conlleva un coste bastante elevado en cuánto al rendimiento y para solucionar este problema fue por lo que se usó un patrón llamado ``Observable'' \footnote{\url{https://desarrolloweb.com/articulos/introduccion-teorica-observables-angular.html}}. 
+
+El patrón Observable es un modo de implementación de la programación reactiva, esta programación es aquella que se encarga de los flujos de datos asíncronos. Esto quiere decir, que es el encargado de producir y distribuir el flujo de los distintos eventos o llamadas y consumirlos. Las componentes principales de este patrón son:
+\begin{itemize}
+    \item \textbf{Observable}. Es aquello que el programador desea observar, un observable puede ser un formulario creado por un usuario, una llamada HTTP, un almacén de datos, etc. Además permite la modificación de aquello que se esta observando.  
+    \item \textbf{Observer}. Es el que se dedica a observar, principalmente está basado en un colección de funciones callback, que permiten escuchar los eventos o llamadas emitidos por un observable.
+    \item \textbf{Subject}. Se trata del emisor de los eventos o llamadas, es el encargado de crear los flujos cuando el observable realiza algún cambio, y comunicarlos al observer. 
+\end{itemize} 
+Es importante mencionar, que la librería que usa Angular para utilizar este patrón es la RxJS, la cuál es una librería de Microsoft que se utiliza para la programación reactiva, creando aplicaciones que usan el patrón observer para gestionar operaciones asíncronas. 
+
  
 
 
