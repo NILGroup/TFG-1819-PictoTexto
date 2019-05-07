@@ -129,6 +129,9 @@ public class NLG {
 				aux.setPlural(words[i].getAttrs().getNumber());
 				aux.setFeature("feminine_singular", words[i].getkeyword());
 				break;
+			case ("CCONJ"):
+				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.CONJUNCTION);
+				break;
 			}
 			wordsList.add(aux);
 		}
