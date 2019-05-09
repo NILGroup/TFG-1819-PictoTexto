@@ -1,0 +1,151 @@
+% !TeX encoding = ISO-8859-1
+
+\chapter{Evaluación}
+\label{cap:evaluacion}
+
+Cuando se finalizó tanto la implementación de los servicios como de la aplicación web se realizó un estudio sobre el comportamiento de las traducciones de nuestra aplicación.  
+En este capítulo explicaremos los tipos de ejemplos utilizados para realizar la evaluación de nuestro trabajo, así como un análisis pormenorizado de los resultados extraídos del mismo.
+
+\section{Diseño}
+%-------------------------------------------------------------
+\label{cap5:sec:Diseño}
+Para comenzar, es importante recordar que el público objetivo de nuestro traductor son aquellas personas que en general, utilicen la aplicación para comunicarse habitualmente, mediante el uso de frases simples. Por este motivo decidimos utilizar como ejemplos o corpus para la evaluación a aquellos que estén formados principalmente por este tipo de frases, descartando cuentos, corpus con oraciones compuestas, etc.\\
+Otro segundo punto que tuvimos en cuenta para elegir los ejemplos correctos fue el tipo de pictogramas utilizados en nuestra aplicación procedentes de la API de Arasaac, decidimos buscar los corpus que ellos ofrecían en su propia página web y así evitar lo máximo posible un problema de correlación entre los pictogramas de los ejemplos y los que utiliza el buscador de nuestro trabajo. Por ello todos los ejemplos de pictogramas utilizados son sacados de Arasaac en la sección de materiales.\\
+Una vez se han elegido los ejemplos que se van a estudiar en la evaluación, hay que mencionar que hemos decidido realizar dichas pruebas a mano, introduciendo todos los ejemplos en nuestra aplicación y analizando caso por caso el resultado obtenido.\\  
+Por todos estos motivos expuestos en el párrafo anterior, son 3 los corpus utilizados para evaluar nuestra aplicación, analizando entre los 3 corpus más de 150 frases, dichos corpus se explicarán a continuación:
+
+\subsection{Corpus: Frases con fotos y pictogramas}     
+Fuente: \url{http://www.arasaac.org/materiales.php?id_material=474}\\
+
+Como se puede intuir de su propio título, este corpus es ideal para evaluar el comportamiento del traductor, ya que está compuesto sobre todo por frases simples como las que entendemos que se van a traducir.\\
+El número total de frases que forman este conjunto de ejemplos son 34 ,un pequeño fragmento de las frases que podemos encontrar son:
+\begin{itemize}
+    \item La niña duerme.
+    \item La niña salta.
+    \item El niño lee un cuento.
+    \item La niña se peina el pelo.
+    \item El perro juega con el hueso.
+    \item La niña monta en el triciclo.
+    \item Los niños juegan al fútbol.
+    \item El niño corta la tarta.
+    \item Los niños hacen bolas de nieve.
+    \item Las niñas saltan a la comba.
+\end{itemize}
+ 
+\subsection{Corpus: Frases verdad o mentira}
+Fuente: \url{http://www.arasaac.org/materiales.php?id_material=691}
+\\
+
+Aunque este corpus está más orientado para que las personas puedan distinguir frases que sean verdad con otras que sean mentira, hemos elegido este esquema de ejemplos porque cumplía por un lado estar formado principalmente por frases simples y por otro lado es un conjuntos muy restrictivo ya que las frases vienen acompañadas con el pictograma a utilizar para cada palabra, como se puede observar en la figura \ref{fig:corpusVerMen}. 
+\clearpage
+\figura{Bitmap/Evaluacion/corpusVerMen}{width=10cm}{fig:corpusVerMen}{Ejemplo de frases del corpus verdad o mentira.} 
+
+Este segundo corpus está formado por un total de 115 frases, un pequeño fragmento de las frases que encontramos son:
+\begin{itemize}
+    \item El niño come un bocadillo.
+    \item El niño le da un regalo a su padre.
+    \item Los niños pintan un dibujo en la clase.
+    \item La hierba es naranja.
+    \item El abuelo echa leche en la taza.
+    \item La niña se pone zapatos en los pies.
+    \item Yo quiero la pelota.
+    \item La fresa y la pera son fruta .
+    \item El médico cura al enfermo.
+    \item La niña oye la música.
+\end{itemize}
+
+\subsection{Corpus: Oraciones coordinadas}
+Fuente: \url{http://www.arasaac.org/materiales.php?id_material=1978}
+\\
+
+Este tercer cuerpo aunque está formado cada oración por dos frases simples unidas por la conjunción ``y'', así pues, nuestra forma de analizar estas frases ha sido coger cada una por separado, además este corpus es muy parecido al anterior en cuanto a que cada frase viene con los pictogramas a introducir en el traductor, como podemos observar en la Figura \ref{fig:corpusCoor}. 
+\clearpage
+\figura{Bitmap/Evaluacion/corpusCoor}{width=11cm}{fig:corpusCoor}{Ejemplo de frases del corpus oraciones coordinadas.}
+
+Este último corpus esta formado por un total de 28 frases, un fragmento de las frases de este cuerpo es:    
+\begin{itemize}
+    \item El niño come patatas.
+    \item El gato huele el pescado.
+    \item La niña juega con el coche.
+    \item El niño barre el suelo.
+    \item El bebé juega con los animales.
+    \item La abuela come un helado de chocolate.
+    \item La niña bebe zumo de naranja.
+    \item El bebé juega con los cubos.
+    \item La niña limpia el espejo con un trapo.
+    \item El niño se seca con la toalla.
+\end{itemize}
+
+\section{Resultado y Análisis}
+%-------------------------------------------------------------
+\label{cap5:sec:Resultado y Análisis}
+El siguiente paso en la evaluación una vez identificados y elegidos los corpus de ejemplos que se iban a estudiar, se lleva a cabo un análisis cuidadoso de todas las frases y se observan los resultados obtenidos.
+
+En la siguiente tabla se muestra los resultados sacados en la evaluación de los tres corpus, obteniendo la cantidad de frases correctas, el número total de frases procesadas y el porcentaje que corresponde al número total de frases correctas. 
+\clearpage
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+CORPUS & ACIERTOS/FRASES & PORCENTAJE \\
+\hline \hline
+Frases con fotos y pictos & 14/34 & 41\% \\ \hline
+Frases verdad o mentira & 23/115 & 20\% \\ \hline
+Oraciones coordinadas & 11/28 & 40\% \\ \hline
+\end{tabular}
+\caption{Tabla con los resultados de la evaluación.}
+\label{tabla:resultados}
+\end{center}
+\end{table}
+
+\subsection{Análisis de errores}
+Tras realizar la evaluación, analizamos los errores que hemos detectado en la aplicación y que se podrían arreglar en el futuro, para hacer una traducción más completa de los pictogramas.\\
+
+\begin{itemize}
+    \item \textbf{Pictogramas no encontrados}. Este tipo de error se ha producido sobre todo en el corpus de verdad o mentira, donde en el 45\% de las frases ocurría dicho error, esto es a causa de tener que reproducir exactamente igual la secuencia de pictogramas, por ejemplo en frases como:
+    \begin{itemize}
+     \item ``el tren va \textbf{por la vía} ''.
+     \item ``el papá barre el suelo \textbf{con la escoba}''.
+     \item ``los niños pintan un dibujo \textbf{en la clase}''.
+     \end{itemize} 
+Al tener que traducir las palabras resaltadas en un solo pictograma, como observamos en la Figura \ref{fig:ejemploUnPicto}, nuestro buscador no encontraba dicho pictograma. 
+\figura{Bitmap/Evaluacion/ejemploUnPicto}{width=8cm}{fig:ejemploUnPicto}{Ejemplo de frase con traducción de picto errónea.}  
+    \item \textbf{Frases reflexivas}. En esta primera fase de la aplicación estuvo enfocada principalmente a la traducción de frases simples, por tanto estas frases con más nivel de complejidad no fue contemplada su implementación, pero si se podrían llevar a cabo en una siguiente fase de la aplicación, para ello se tendría que conseguir la forma reflexiva para cada persona y traducirla junto con la palabra a la que hiciera referencia unos ejemplos de frases reflexivas encontradas en estos corpus son:
+\begin{itemize}
+     \item ``El niño \textbf{le} da un regalo a su padre ''.
+     \item ``la niña \textbf{se} lava las manos''.
+     \item ``la niña \textbf{se} pone zapatos en los pies''.
+\end{itemize}
+	\item \textbf{Más de un verbo en la oración}. Al igual que pasaba con las frases reflexivas, en esta primera etapa de desarrollo de la aplicación no se contempló el análisis y traducción de dos verbos en la misma oración, podría ser otra nueva implementación a realizar.\\
+Para llevarla a cabo habría que estudiar si los dos verbos se encuentran en un posición consecutiva en la frase, de ser así, se estudiaría en que forma verbal vendría el primero de ellos para así saber en que forma verbal traducir el segundo. Si por el contrario,  vienen por separado habría que observar cual es el verbo principal de la frase  con el fin de encontrar el sujeto, verbo y predicado, y después realizar la traducción pertinente. Un pequeño ejemplo de las frases encontradas en los corpus con dos verbos podrían ser:
+\begin{itemize}
+	\item ``Yo quiero ver la televisión''.
+	\item ``Yo quiero ir al baño''.
+	\item ``Yo quiero jugar al ordenador''.	
+\end{itemize}
+	\item \textbf{Más de un sustantivo en el sujeto}. Como en los dos errores anteriormente comentados, en esta primera fase no se contempló que en el sujeto pudiera haber más de un sustantivo.\\ Este error se podría solventar con la implementación de este problema en el código. Para ello se tendrían que clasificar a ambos sustantivos como parte principal del sujeto para que ninguno pudiera borrar la información del otro al ser los dos sustantivos y una vez hecho esto asignarles sus determinantes adecuados. Algunos ejemplos en los cuerpos de evaluación realizados son:
+\begin{itemize}
+	\item ``El libro y el estuche están dentro de la mochila''.
+	\item ``La fresa y la pera son fruta''.
+\end{itemize}
+\clearpage
+    \item \textbf{Errores del analizador del lenguaje}. No hay que olvidar que spacy es un analizador del lenguaje que está pensado principalmente para palabras en inglés, por este motivo es lógico que para algunas palabras no consiga realizar un lenguaje correcto al castellano.\\
+Una solución que podría resolver, estudiando si en el futuro habría algún analizador más idóneo para el castellano. Entre las palabras que no traduce correctamente destacan:
+\begin{itemize}
+     \item ``La niña \textbf{sopla} las velas''. Para spacy esta palabra es un adjetivo y no un verbo.
+     \item ``El profesor lee un \textbf{cuento} a los niños''. Para el analizador esta palabra es un verbo en vez de un sustantivo.
+     \item ``Mamá cose un \textbf{vestido} azul'' donde su tipo de palabra es un adjetivo en lugar de un nombre.
+\end{itemize}  
+
+    \item La abuela come un helado de chocolate.
+    \item La niña bebe zumo de naranja.
+    \item El bebé juega con los cubos.
+    \item La niña limpia el espejo con un trapo.
+    \item El niño se seca con la toalla.
+\end{itemize}
+
+
+
+
+
