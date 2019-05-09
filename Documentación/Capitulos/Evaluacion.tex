@@ -103,7 +103,7 @@ Oraciones coordinadas & 11/28 & 40\% \\ \hline
 Tras realizar la evaluación, analizamos los errores que hemos detectado en la aplicación y que se podrían arreglar en el futuro, para hacer una traducción más completa de los pictogramas.\\
 
 \begin{itemize}
-    \item \textbf{Pictogramas no encontrados}. Este tipo de error se ha producido sobre todo en el corpus de verdad o mentira, donde en el 45\% de las frases ocurría dicho error, esto es a causa de tener que reproducir exactamente igual la secuencia de pictogramas, por ejemplo en frases como:
+    \item \textbf{Pictogramas no encontrados}. Este tipo de error se ha producido sobre todo en el corpus de verdad o mentira, donde en el 45\% de las frases ocurría dicha problemática, esto es a causa de tener que reproducir exactamente igual la secuencia de pictogramas, por ejemplo en frases como:
     \begin{itemize}
      \item ``el tren va \textbf{por la vía} ''.
      \item ``el papá barre el suelo \textbf{con la escoba}''.
@@ -111,7 +111,7 @@ Tras realizar la evaluación, analizamos los errores que hemos detectado en la ap
      \end{itemize} 
 Al tener que traducir las palabras resaltadas en un solo pictograma, como observamos en la Figura \ref{fig:ejemploUnPicto}, nuestro buscador no encontraba dicho pictograma. 
 \figura{Bitmap/Evaluacion/ejemploUnPicto}{width=8cm}{fig:ejemploUnPicto}{Ejemplo de frase con traducción de picto errónea.}  
-    \item \textbf{Frases reflexivas}. En esta primera fase de la aplicación estuvo enfocada principalmente a la traducción de frases simples, por tanto estas frases con más nivel de complejidad no fue contemplada su implementación, pero si se podrían llevar a cabo en una siguiente fase de la aplicación, para ello se tendría que conseguir la forma reflexiva para cada persona y traducirla junto con la palabra a la que hiciera referencia unos ejemplos de frases reflexivas encontradas en estos corpus son:
+    \item \textbf{Frases reflexivas}. Esta primera fase de la aplicación estuvo enfocada principalmente a la traducción de frases simples, por tanto estas frases con un nivel de complejidad mayor no fueron contempladas para su implementación, pero si se podrían llevar a cabo en una siguiente fase, para ello se tendría que conseguir la forma reflexiva de cada sustantivo o pronombre y traducirla junto con la palabra a la que hiciera referencia unos ejemplos de frases reflexivas encontradas en estos corpus son:
 \begin{itemize}
      \item ``El niño \textbf{le} da un regalo a su padre ''.
      \item ``la niña \textbf{se} lava las manos''.
@@ -131,21 +131,30 @@ Para llevarla a cabo habría que estudiar si los dos verbos se encuentran en un p
 \end{itemize}
 \clearpage
     \item \textbf{Errores del analizador del lenguaje}. No hay que olvidar que spacy es un analizador del lenguaje que está pensado principalmente para palabras en inglés, por este motivo es lógico que para algunas palabras no consiga realizar un lenguaje correcto al castellano.\\
-Una solución que podría resolver, estudiando si en el futuro habría algún analizador más idóneo para el castellano. Entre las palabras que no traduce correctamente destacan:
+Una solución que podría resolver el problema, sería estudiar si en el futuro existe algún analizador más idóneo para el castellano. Entre las palabras que no traduce correctamente destacan:
 \begin{itemize}
      \item ``La niña \textbf{sopla} las velas''. Para spacy esta palabra es un adjetivo y no un verbo.
      \item ``El profesor lee un \textbf{cuento} a los niños''. Para el analizador esta palabra es un verbo en vez de un sustantivo.
      \item ``Mamá cose un \textbf{vestido} azul'' donde su tipo de palabra es un adjetivo en lugar de un nombre.
 \end{itemize}  
 
-    \item La abuela come un helado de chocolate.
-    \item La niña bebe zumo de naranja.
-    \item El bebé juega con los cubos.
-    \item La niña limpia el espejo con un trapo.
-    \item El niño se seca con la toalla.
+    \item \textbf{Correlación de determinantes y sustantivos}. Como existe la posibilidad de que las personas a las que va dirigida nuestra aplicación no añadiesen un determinante delante del sustantivo al que acompañan, se decidió añadir automáticamente al sustantivo que se fuera a traducir, los determinantes el, la, los, las si el sustantivo estaba en el sujeto, dependiendo del género y número del propio sustantivo. Y un, una, unos, unas si el sustantivo se encontraba en el predicado. Siempre y cuando no apareciese un determinante implícito acompañándolo en la traducción.\\ 
+Una posible solución sería añadir siempre el determinante que se desea, u otra opción sería estudiar si se puede obtener si dicho sustantivo es contable o incontable, acompañando a los contables con los determinantes un,una..., y a los incontables con el, la...\\
+Algunos ejemplos encontrados en los corpus con esta problemática son:
+\begin{itemize}
+     \item ``Mamá conduce \textbf{el} coche''.Si no se añade el determinante antes del sustantivo nuestro traductor pone: \textbf{la} mamá y \textbf{un} coche.
+     \item ``El niño bebe agua''. En la traducción añade \textbf{una} agua .
+     \item ``La niña come pollo'' En la traducción añade \textbf{un} pollo.
+\end{itemize}  
+    \item \textbf{Correlación entre preposición y determinante}.En nuestra aplicación después de una preposición hay que añadir el pictograma de un determinante si se desea que este aparezca. Si sucede esto, el determinante para SimpleNLG tiene más importancia que la preposición haciendo que se traduzca antes dicho determinante y después la preposición correspondiente. Para solucionar este problema se podría implementar que si hay una preposición en la frase, traducir toda la frase como un complemento y que así mantenga el orden de la traducción. Unos ejemplos donde nos ha ocurrido esta problemática son:
+\begin{itemize}
+     \item ``El niño juega \textbf{con} el oso''.Esta frase se traduce por: ``El niño juega el con oso'' .
+     \item ``Los niños juegan \textbf{con} la pelota''. En este caso, la frase traducida es: ``Los niños juegan la con pelota'' .
+     \item ``El bebé juega \textbf{con} los cubos''. La traducción resultante es: ``El bebé juega los con cubos''.
+\end{itemize}  
 \end{itemize}
 
-
+Una vez analizados los datos obtenidos de la evaluación y encontrados algunos de los fallos y su posible solución en un futuro, que han mostrado estos resultados. No hay que olvidar que no se ha encontrado nada que haga para lo que se pensó esta aplicación, realizar una traducción de pictograma a lenguaje natural. Por todo ello no encontramos ante unos resultados bastante alentadores que demuestran que se ha creado una aplicación con una buena base sobre la que seguir desarrollando para en un futuro completarla y mejorarla. 
 
 
 
