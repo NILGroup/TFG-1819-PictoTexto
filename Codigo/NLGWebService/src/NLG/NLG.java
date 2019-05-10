@@ -129,6 +129,9 @@ public class NLG {
 				aux.setPlural(words[i].getAttrs().getNumber());
 				aux.setFeature("feminine_singular", words[i].getkeyword());
 				break;
+			case ("CCONJ"):
+				aux = factory.createWord(words[i].getkeyword(), LexicalCategory.CONJUNCTION);
+				break;
 			}
 			wordsList.add(aux);
 		}
@@ -211,7 +214,7 @@ public class NLG {
 
 	public NPPhraseSpec createObject(List<NLGElement> objectWords, boolean subjectIsPlural, Gender subjectIsFeminine) {
 		NPPhraseSpec object = factory.createNounPhrase();
-		boolean existNoun = false, addedNoun = false, isPlural = false;
+		boolean existNoun = false, addedNoun = false, isPlural = false, existPrep = false;
 		Gender isFeminine = Gender.MASCULINE;
 		
 		for (NLGElement word : objectWords) {
@@ -241,11 +244,19 @@ public class NLG {
 			} else if (word.isA(LexicalCategory.DETERMINER)) {
 				object.setDeterminer(word.getAllFeatures().get("feminine_plural"));
 				// object.setDeterminer(word);
+
 			} else if (word.isA(LexicalCategory.PRONOUN)) {
 				word.setCategory(LexicalCategory.COMPLEMENTISER);
 				object.setDeterminer(word);	
 			} else if (word.isA(LexicalCategory.COMPLEMENTISER)) {
 				object.addPreModifier(word);
+			} else if (word.isA(LexicalCategory.PREPOSITION)) {
+				if (!addedNoun) {
+				object.addPreModifier(word);
+				existPrep = true;
+				}else {
+				object.addComplement(word);
+				}
 			} else {
 				object.addComplement(word);
 			}
@@ -254,9 +265,10 @@ public class NLG {
 		object.setPlural(isPlural);
 		object.setFeature(LexicalFeature.GENDER, isFeminine);
 		
-		if (object.getDeterminer().size() == 0 && existNoun)
-			object.setDeterminer("un");
-		 
+		if(!existPrep) {
+			if (object.getDeterminer().size() == 0 && existNoun)
+				object.setDeterminer("un");
+		}
 
 		return object;
 	}
