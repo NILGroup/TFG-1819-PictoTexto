@@ -3,9 +3,9 @@
             <label>
                   <h3>Pictogramas</h3>
             </label>
-            <div cdkDropList cdkDropListOrientation="horizontal" class="example-list scrolling-wrapper"
+            <div cdkDropList cdkDropListOrientation="horizontal" class="example-list scrolling-wrapper  scrollForMov"
                   (cdkDropListDropped)="drop($event)">
-                  <div class="example-box dragElement" *ngFor="let img of pictoPhrase; index as i" cdkDrag>
+                  <div class=" dragElement" *ngFor="let img of pictoPhrase; index as i" cdkDrag>
                         <button type="button" class="close" aria-label="Close" (click)="remove(i)">
                               <span aria-hidden="true">&times;</span>
                         </button>

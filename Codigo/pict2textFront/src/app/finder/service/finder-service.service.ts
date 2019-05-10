@@ -11,7 +11,7 @@ export class FinderService {
 
   getPictByName(name:string) {
     return new Promise((resolve, reject) => {
-      this.proxyService.getByName(name, AppConstants.pictoFinderURl).subscribe(getPictoSuccess.bind(this),getPictoError)
+      this.proxyService.getByName(name.toLowerCase(), AppConstants.pictoFinderURl).subscribe(getPictoSuccess.bind(this),getPictoError)
       
       function getPictoSuccess(data){
         //LLAMADA AL TRANSFORMER

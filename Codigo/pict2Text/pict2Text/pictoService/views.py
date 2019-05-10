@@ -23,7 +23,6 @@ def getPicto(request):
             }
         else:
             response={'status':'false','message': ''}
-        print(json.dumps(response, indent=4, sort_keys=True))
         return JsonResponse(response,status=r.status_code)
     else:
         return JsonResponse("405 Method Not Allowed", status=405)
@@ -50,4 +49,4 @@ def getPictoTranslate(request):
 
 def clearString(cadena):
     s = ''.join((c for c in unicodedata.normalize('NFD',cadena) if unicodedata.category(c) != 'Mn'))
-    return s
+    return s.lower()
