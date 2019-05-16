@@ -267,7 +267,7 @@ Existen diferentes tipos de arquitectura de sistemas de GLN \citep{CarlosGarcia2
 	\item Basada  en revisión: la información fluye de forma cíclica entre los módulos hasta alcanzar un estado óptimo.
 \end{enumerate}
 
-Durante la generación de lenguaje se hace uso de un diccionario de palabras, por cada palabra se suele hacer uso de la misma estructura:
+Durante las diferentes fases de la generación de lenguaje se hace uso de un diccionario de palabras, como apoyo para el proceso sobretodo en la fase de lexicalización para las diferentes formas de las palabras como por ejemplo puede ser genero o número y preprocesado, donde se analizan las diferentes palabras de la entrada. Por cada palabra del diccionario se suele hacer uso de la misma estructura:
 
 \begin{itemize}
 \item Forma base de la palabra.
@@ -275,7 +275,7 @@ Durante la generación de lenguaje se hace uso de un diccionario de palabras, por
 \item Genero: diferenciación entre masculino, femenino o indeterminado.
 \item Numero: singular o plural.
 \end{itemize}
-Dependiendo de que tipo de palabra sea pueden aparecer otras caracteristicas, en caso de que la palabra sea un verbo el diccionario también tiene las diferentes conjugaciones para los tiempos verbales, presente, pasado, futuro, imperativo..., los diferentes conjugaciones verbales dependerá del diccionario que use el generador de lenguaje.
+Dependiendo de que tipo de palabra sea pueden aparecer otras características, en caso de que la palabra sea un verbo el diccionario también tiene las diferentes conjugaciones para los tiempos verbales, presente, pasado, futuro, imperativo..., los diferentes conjugaciones verbales dependerá del diccionario que use el generador de lenguaje.
 En caso de palabras como nombres, determinantes o adjetivos, se añaden además las siguientes entradas al diccionario:
 \begin{itemize}
 \item Palabra en singular.
@@ -300,7 +300,7 @@ El WC3 (World Wide Web Consortium) define un Servicio Web como\footnote{https://
 	Un Servicio Web es un componente accesible mediante peticiones Web estándar tales como GET o POST. Normalmente se denomina servicio web a una colección de procedimientos accesibles desde Internet. La gran ventaja de los servicios web es que al acceder desde el navegador a un servicio web este nos devuelve el contenido con un formato estándar como puede ser XML.	
 
 Estos servicios web se empezaron a desarrollar para solucionar el problema de la interoperabilidad entre las distintas aplicaciones. En la década de los 90, el objetivo principal era poder integrar diferentes aplicaciones dentro del mismo servicio. Estas aplicaciones estaban desarrolladas en muchos lenguajes de programación como: C++, Java, etc. Y podían ejecutarse tanto en Unix, en un PC, o un computador mainframe.
-Por todas  estas diferencias, era muy difícil y costoso comunicar todas las aplicaciones entre sí. Gracias al desarrollo de XML, se consiguió poder compartir datos entre ellas a través de la red, o de Internet. 
+Por todas  estas diferencias, era muy difícil y costoso comunicar las aplicaciones entre sí. Gracias al desarrollo de XML, se consiguió poder compartir datos entre ellas a través de la red, o de Internet. 
 \figura{Bitmap/EstadoDeLaCuestion/serviciosWeb}{width=300px}{fig:servicioWeb}{Estructura servicios Web, Fuente: https://sites.google.com/site/preyectodetics/home/servicios-web.}
 
 A nivel técnico, los servicios web más usados suelen ser de dos tipos.
