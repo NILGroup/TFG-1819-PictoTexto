@@ -22,41 +22,48 @@ El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footn
 \begin{itemize}
 \item Principio Open/Closed. Este principio busca que los programas estén abiertos para la extensión y cerrados a la modificación. Esto es que no haga falta modificar el código de nuestras clases para extender su funcionalidad. Esto permite depurar de una manera más eficiente el código y ampliar su funcionalidad con otros métodos. Esto lo podemos ver en el uso de diferentes servicios web, que aportan funcionalidad individualmente evitando el uso de un solo servicio web que implemente toda la funcionalidad, además del proceso de generación de lenguaje donde las clases implementan pequeños métodos que encadenados aportan funcionalidad a la traducción.
    
-\item Principio de segregación de la interfaz. Este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es como hemos implementado en el Front-End, la parte de las llamadas a los Servicios Web del Back-End: todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
+\item Principio de segregación de la interfaz. Este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es como hemos implementado en el Front-End, la parte de las llamadas a los servicios web del Back-End: todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
 
-\item Principio de inversión de dependencias. Consiste en evitar dependencias externas dentro del código, y que el código central de las aplicaciones no dependa de frameworks, de bases de datos o del como se conecten los diferentes servicios entre ellos. Normalmente se habla de que las clases de alto nivel no deben de depender de las clases de bajo nivel\footnote{https://devexperto.com/principio-de-inversión-de-dependencias/}. Un ejemplo de esto en nuestra aplicación es el uso de Servicios Web, que reciben tipos básicos para que estos no estén acoplados a estructuras de datos, puedan ser reutilizados por otras aplicaciones por otros desarrolladores.
+\item Principio de inversión de dependencias. Consiste en evitar dependencias externas dentro del código, y que el código central de las aplicaciones no dependa de frameworks, de bases de datos o del como se conecten los diferentes servicios entre ellos. Normalmente se habla de que las clases de alto nivel no deben de depender de las clases de bajo nivel\footnote{https://devexperto.com/principio-de-inversión-de-dependencias/}. Un ejemplo de esto en nuestra aplicación es el uso de servicios web, que reciben tipos básicos para que estos no estén acoplados a estructuras de datos, puedan ser reutilizados por otras aplicaciones por otros desarrolladores.
 
 \end{itemize}
 
 Estos principios tienen como finalidad crear un producto software de calidad y robusto, gracias al desarrollo de un código ordenado y limpio, otorgando además una gran flexibilidad. Gracias a esto se consigue un producto reutilizable y fácil de mantener gracias al bajo acoplamiento que se obtiene.
 
 
+En nuestra aplicación por tanto hay dos grandes partes diferenciadas tal y como se puede ver en la Figura \ref{fig:ServiciosWebDiagrama} : 
+\begin{itemize}
+\item Back-End: Conjunto de servicios web implementados en Java y Python que dotan de funcionalidad a la aplicación.
+\item Front-End: aplicación web basada en componentes usando Angular.
+\end{itemize}
+
+En las próximas secciones explicaremos en detalle cada una de estas partes.
 %------------------------------------------------------------------
 \section{Back-End}
 %-------------------------------------------------------------------
 \label{cap5:sec:backEnd}
-A lo largo de está sección presentaremos los diferentes servicios web desarrollados en el TFG, los cuales hemos decidido agrupar en dos grupos, dependiendo de la finalidad de los mismos. Servicios Web para la Generación de Frases, donde están agrupados todos los servicios web dedicados a la generación de lenguaje y procesamiento del lenguaje y los Servicios Web para la Gestión de Pictogramas donde están englobados aquellos servicios web encargados del uso de la API de ARAASAC, para el tratamiento de los pictogramas.
+A lo largo de está sección presentaremos los diferentes servicios web desarrollados en el TFG, los cuales hemos decidido agrupar en dos grupos, dependiendo de la finalidad de los mismos: servicios web para PLN ( Procesamiento de Lenguaje Natural), donde están agrupados todos los servicios web dedicados a la generación de lenguaje y análisis del lenguaje y los servicios web para la Gestión de Pictogramas donde están englobados aquellos servicios que tratan con pictogramas.
 
 %------------------------------------------------------------------
-\subsection{Servicios Web para la Generación de Frases}
+\subsection{Servicios web para PLN}
 %-------------------------------------------------------------------
 
-Dentro de está subsección hablaremos de los servicios web encargados de la generación de lenguaje natural y procesamiento de lenguaje natural. Dentro del grupo de Servicios Web para la Generación de Frases, están englobados tres servicios web:
+Dentro de está subsección hablaremos de los servicios web encargados del Procesamiento de Lenguaje Natural(PLN). Dentro de este grupo están englobados tres servicios web:
 \begin{itemize}
-\item Servicio Web de Clasificación de Palabras, encargado del procesamiento de lenguaje natural de las palabras.
-\item Servicio Web de Detección de Tiempo Verbal, es el encargado de definir el tiempo verbal de la frase resultante.
-\item Servicio Web de Generación de Frases en Lenguaje Natural, este servicio web tiene como finalidad la generación de lenguaje natural.
+\item Servicio Web de Clasificación de Palabras\footnote{https://holstein.fdi.ucm.es/tfg-pict2text/translate/getWordAttrs}: encargado de obtener la categoría léxica de un conjunto de palabras.
+\item Servicio Web de Detección del Tiempo Verbal\footnote{https://holstein.fdi.ucm.es/tfg-pict2text/translate/getTypePhrase}: encargado de definir el tiempo verbal de un conjunto de palabras.
+\item Servicio Web de Generación de Frases \footnote{https://holstein.fdi.ucm.es/tfg-pict2text/NLGWebService/createPhrase}: encargado de la generación de una frase en lenguaje natural a partir de un conjunto de palabras.
 \end{itemize}
 %------------------------------------------------------------------
 \subsubsection{Servicio Web de Clasificación de Palabras}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioClasificaciónDePalabras}
 
-El servicio web de clasificación de palabras, se encarga de dada una palabra o un array de palabras devolver la categoría léxica (verbo, nombre, adverbio, determinante, adjetivo...) y todos los atributos ( genero, numero, tiempo verbal...) de cada una de las palabras recibidas.
-Una vez se tiene la entrada se llama a la  función Tokenizer\footnote{https://spacy.io/api/tokenizer} de la librería Spacy, cabe destacar que esta llamada se hará por cada una de las palabras que se reciba. Para obtener la categorización léxica de la palabra y los atributos de la mismas, los diferentes resultados de este servicio web están reflejados en las tablas \ref{tabla:clasificacion}.
+El servicio web de clasificación de palabras, se encarga de dada una palabra o un array de palabras devolver su categoría léxica (verbo, nombre, adverbio, determinante, adjetivo, pronombre, números, conjunciones) y todos sus atributos de cada una de las palabras recibidas.
+
+Una vez se tiene la entrada se llama a la clase Tokenizer\footnote{https://spacy.io/api/tokenizer} de la librería Spacy. Para cada palabra ademas de la categoría léxica obtenemos los atributos mostrados en la tabla \ref{tabla:clasificacion}, según la categoría léxica de la palabra los atributos obtenidos pueden variar.
 
 \begin{table}[htbp]
-\begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
 Categoría Léxica & Atributos \\
@@ -70,14 +77,13 @@ Adverbio & -\\ \hline
 Preposiciones & Tipo de preposiciones\\ \hline
 Conjunciones & -\\ \hline
 \end{tabular}
-\caption{Tabla de características devueltas por el servicio según la categoría léxica.}
+\caption{Tabla de atributos devueltos por el servicio según la categoría léxica de la palabra.}
 \label{tabla:clasificacion}
-\end{center}
 \end{table}
 \figura{Bitmap/ServiciosWeb/attrsResponsePost}{height=18cm, width=7cm}{fig:attrsResponsePost}{Respuesta del servicio web de clasificación de palabras para la entrada [corredor, despistado, perder, zapatillas, ayer].}
 \figura{Bitmap/ServiciosWeb/caracPal}{height=10cm}{fig:caracPal}{Flujo del servicio web de clasificación de palabras} 
 
-La salida de la función tokenizer sera procesada para generar el JSON que sera la salida de nuestro sistema. En la Figura \ref{fig:attrsResponsePost}, podemos ver la respuesta del servicio web para la entrada [corredor, despistado, perder, zapatillas, ayer].
+La salida de la clase Tokenizer sera procesada para generar el JSON que sera la salida de nuestro sistema. En la Figura \ref{fig:attrsResponsePost}, podemos ver la respuesta del servicio web para la entrada [corredor, despistado, perder, zapatillas, ayer].
 En la Figura \ref{fig:caracPal}, podemos ver un resumen del flujo que sigue este servicio.
 
 
@@ -86,30 +92,29 @@ En la Figura \ref{fig:caracPal}, podemos ver un resumen del flujo que sigue este
 %-------------------------------------------------------------------
 \label{cap5:sec:ServiciodeDeteccióndeTiempoVerbal}
 
-Este servicio web, tiene como finalidad determinar el tiempo verbal de una frase dado la lista de palabras que conforman la frase. Este servicio busca las palabras temporales, ayer, hoy o mañana en el array de palabras recibido como entrada. Si encuentra alguna de estas palabras devuelve el tiempo verbal correspondiente, pasado si encontró ayer, presente si encontró hoy y futuro si encontró mañana. En caso de no encontrar ninguna de las 3 palabras devuelve presente por defecto. 
+Este servicio web, tiene como finalidad determinar el tiempo verbal de una frase dado la lista de palabras que conforman la frase. Este servicio busca las palabras temporales, ayer, hoy o mañana en el array de palabras recibido como entrada y si encuentra alguna devuelve el tiempo verbal que corresponda a la palabra temporal encontrada, pasado si encontró ayer, presente si encontró hoy y futuro si encontró mañana. En caso de no encontrar ninguna de las 3 palabras devuelve presente por defecto. 
 \figura{Bitmap/ServiciosWeb/deteccionTiempoVerbal}{width=100px}{fig:deteccionTiempoVerbal}{Flujo del servicio web de detección del tiempo verbal} 
-\figura{Bitmap/ServiciosWeb/timeDeteccion}{width=100px}{fig:timeDeteccion}{respuesta del servicio web de detección del tiempo verbal para la entrada [corredor, despistado, perder, zapatillas, ayer]} 
-En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio y en las Figura \ref{fig:timeDeteccion} podemos ver un ejemplo de salida para la entrada [corredor, despistado, perder, zapatillas, ayer].
+\figura{Bitmap/ServiciosWeb/timeDeteccion}{width=100px}{fig:timeDeteccion}{JSON de salida del servicio web de detección del tiempo verbal para la entrada [corredor, despistado, perder, zapatillas, ayer]} En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio y en las Figura \ref{fig:timeDeteccion} podemos ver un ejemplo de salida para la entrada [corredor, despistado, perder, zapatillas, ayer].
 
 %------------------------------------------------------------------
-\subsubsection{Servicio Web de Generación de Frases en Lenguaje Natural}
+\subsubsection{Servicio Web de Generación de Frases}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioGLN}
 
-Este servicio web recibe un array de strings y devuelve una frase creada a partir de las palabras recibidas en la llamada. Los pasos seguidos por el servicio para crear la frase de salida son los siguiente:
+Este servicio web recibe un array de palabras y devuelve una frase creada a partir de las palabras recibidas en la llamada. Los pasos seguidos por el servicio para crear la frase de salida son los siguiente:
 
 \begin{enumerate}
 
-\item Obtención de la categoría léxica de cada una de las palabras: Se llama al Servicio Web de Clasificación de Palabras explicado en la sección \ref{cap5:sec:ServicioClasificaciónDePalabras}, utilizando el metodo POST que permite enviar todo el array de palabras, para obtener las características y la categoría léxica de cada palabra.
+\item Obtención de la categoría léxica de cada una de las palabras: Se llama al Servicio Web de Clasificación de Palabras explicado en la sección \ref{cap5:sec:ServicioClasificaciónDePalabras}, pansandole todo el array de palabras recibido como entrada, para obtener las características y la categoría léxica de cada palabra.
 
 \item División de palabras en sintagma nominal y en sintagma verbal: una vez conocemos la categoría léxica de las palabras, buscamos el verbo dentro del array de palabras. Todas las palabras anteriores al verbo formaran el sintagma nominal y todas las posteriores el sintagma verbal.
 
-\item Una vez identificadas las palabras que forman parte del sujeto se pasa a procesar el sujeto de la frase.
+\item Una vez identificadas las palabras que forman parte del sintagma nominal se pasa a crear esta parte de la frase para ello se hace lo siguiente:
 
 \begin{itemize}
-\item Creación del objeto sujeto: gracias a la función \textbf{createNounPhrase()} de la librería SimpleNLG, creamos el sintagma nominal que sera el objeto contenedor de todas las palabras que formaran el sujeto.
+\item Creamos el sintagma nominal que sera el objeto contenedor de todas las palabras que formaran el sujeto llamando la función \textbf{createNounPhrase()} de la librería SimpleNLG.
  
-\item Selección del determinante: En este proceso se establecerá el determinante del sujeto, utilizando la función \textbf{setDeterminer(``determinante'')} de SimpleNLG, sobre el objeto creado anteriormente. En caso de que la lista de palabras que formaran el sujeto, no contenga un pronombre o un determinante, se añade el determinante por defecto(``el''). En caso contrario la se añadirá el determinante o pronombre, en lugar del determinante de por defecto.
+\item Se establece el determinante del sujeto utilizando la función \textbf{setDeterminer} de SimpleNLG, sobre el objeto creado anteriormente. En caso de que la lista de palabras que forman el sujeto, no contenga un pronombre o un determinante, se añade el determinante por defecto ``el''. En caso contrario se añadirá el determinante o pronombre, en lugar del determinante de por defecto.
 
 \item Genero y número: una vez se encuentra una palabra de categoría lexica nombre, se establece como palabra principal del sujeto utilizando el método textbf{setFeature(``nombre''))} además se obtiene su genero y numero y se aplica al sujeto usando las funciones \textbf{setFeature(LexicalFeature.GENDER, Gender.FEMININE)} y \textbf {setPlural(``esPlural'')} respectivamente. Cabe destacar que por defecto el genero y numero de cualquier frase nominal es masculino singular, y solo se establecerá el genero del sujeto en caso de que deba ser femenino. Al establecer el genero y numero del sujeto todas las palabras que lo conforman utilizaran ese genero y numero,  por ejemplo  ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''. Dado que todos los pictogramas no existen en femenino, hemos desarrollado una lógica que en caso de existir un determinante con genero, el sujeto tendrá ese genero.
 
@@ -154,11 +159,11 @@ La, corredor, rápido, perder, zapatillas, nuevo & La corredora rápida ayer perdi
 \end{table}
 
 %------------------------------------------------------------------
-\subsection{Servicios Web para la Gestión de Pictogramas} %-------------------------------------------------------------------
+\subsection{Servicios web para la Gestión de Pictogramas} %-------------------------------------------------------------------
 \label{cap5:sec:ServiciosParaPictos}
 
 En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. En estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}. 
-\figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{width=200px}{fig:serviciosAPIARAASAC}{Flujo de los Servicios Web Para Pictogramas } 
+\figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{width=200px}{fig:serviciosAPIARAASAC}{Flujo de los servicios web Para Pictogramas } 
 
 \subsubsection{Servicio Web de Búsqueda del Pictogramas Asociados a una Palabra}
 \label{cap5:sec:ServiciosParaPictosPalabra}
@@ -204,7 +209,7 @@ Ademas hemos tenido en cuenta que la aplicación sea responsive y diseñado la vis
 \figura{Bitmap/Arquitectura/appMo}{height=15cm}{fig:appMo}{Pict2Text versión para dispositivos moviles}
 \subsection{Servicio Proxy}
 
-El servicio proxy de la aplicación Angular sirve para abstraer las diferentes llamadas HTTP del resto de la aplicación, este componente es necesario ya que sirve de punto de acceso a los Servicios Web explicados en la sección Back-End \ref{cap5:sec:backEnd}, de este capitulo. Los  métodos: \textbf{getByName()} y \textbf{postByName()} se encargan de emitir las peticiones HTTP GET y POST respectivamente, esperar la respuesta del servicio web y devolverla al servicio de aplicación. La ventaja principal de usar un servicio proxy es que abstrae la logica de acceso del resto de la aplicación, de manera que si los datos pasaran a estar en una base de datos habría que cambiar mucho menos lógica y además permite la reutilización del código de las llamadas HTTP en toda la aplicación.
+El servicio proxy de la aplicación Angular sirve para abstraer las diferentes llamadas HTTP del resto de la aplicación, este componente es necesario ya que sirve de punto de acceso a los servicios web explicados en la sección Back-End \ref{cap5:sec:backEnd}, de este capitulo. Los  métodos: \textbf{getByName()} y \textbf{postByName()} se encargan de emitir las peticiones HTTP GET y POST respectivamente, esperar la respuesta del servicio web y devolverla al servicio de aplicación. La ventaja principal de usar un servicio proxy es que abstrae la logica de acceso del resto de la aplicación, de manera que si los datos pasaran a estar en una base de datos habría que cambiar mucho menos lógica y además permite la reutilización del código de las llamadas HTTP en toda la aplicación.
 Cuando un servicio de aplicación de la aplicación llama a un método del servicio proxy, se convierte en un subscriptor de dicho método. Gracias a la suscripción cuando el Servicio Proxy reciba la respuesta de la llamada HTTP, se encargara de avisar a sus suscriptores de que ya ha recibido la respuesta y entregarla. Esto es gracias al patrón Observer que implementa Angular en las llamadas HTTP. En caso de que la respuesta de la llamada fuera un error, el servicio proxy reintentará la llamada hasta cinco veces, si la ultima llamada falla, devuelve el error a los suscriptores. En la Figura \ref{fig:proxyClassDiagram} podemos ver los métodos disponibles en la clase ProxyService.
 \figura{Bitmap/Arquitectura/proxyService}{width=200px}{fig:proxyClassDiagram}{Diagrama de clase del Servicio Proxy}
 
