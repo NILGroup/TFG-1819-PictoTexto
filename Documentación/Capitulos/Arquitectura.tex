@@ -3,7 +3,7 @@
 \chapter{Pict2Text}
 \label{cap:Pict2Text}
 A lo largo de este capitulo expondremos la aplicación, Pict2Text que hemos desarrollado para este proyecto. Pict2Text, ver en la Figura \ref{fig:pict2Text}, es una aplicación que permite la traducción de pictogramas a lenguaje natural. Pict2Text posee un buscador de pictogramas, que sirve para obtener los pictogramas con los que construir el mensaje que se desea traducir. El buscador permite hacer búsquedas de los pictogramas de ARAASAC asociados a  una determinada palabra. En la Figura \ref{fig:buscadorPictogramas}, se puede ver el buscador de nuestra aplicación. Cabe destacar que lo ideal sería poder implementar algún tipo de funcionalidad que cargara el mensaje en pictogramas en vez de construirlo, pero dado que el foco de este TFG es la  traducción se decidió implementar un buscador.
-\figura{Bitmap/ServiciosWeb/pict2Text}{width=12cm}{fig:pict2Text}{Pict2Text}
+\figura{Bitmap/ServiciosWeb/pict2Text}{height=13cm, width=13cm}{fig:pict2Text}{Pict2Text}
 
 A lo largo de este capitulo mostraremos la arquitectura de nuestra aplicación (sección \ref{cap5:sec:Arquitectura})
 
@@ -17,7 +17,7 @@ Y detallaremos los diferentes servicios web implementados en la parte Back-End, 
 %-------------------------------------------------------------------
 \label{cap5:sec:Arquitectura}
 
-El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad   funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debíamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte Back-End, y a componentes en la parte Front-end. En ambas casos, hemos seguido los siguientes principios \citep{martin2013agile}: 
+El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad   funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debíamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte Back-End, y a componentes en la parte Front-End. En ambas casos, hemos seguido los siguientes principios \citep{martin2013agile}: 
 
 \begin{itemize}
 \item Principio Open/Closed. Este principio busca que los programas estén abiertos para la extensión y cerrados a la modificación. Esto es que no haga falta modificar el código de nuestras clases para extender su funcionalidad. Esto permite depurar de una manera más eficiente el código y ampliar su funcionalidad con otros métodos. Esto lo podemos ver en el uso de diferentes servicios web, que aportan funcionalidad individualmente evitando el uso de un solo servicio web que implemente toda la funcionalidad, además del proceso de generación de lenguaje donde las clases implementan pequeños métodos que encadenados aportan funcionalidad a la traducción.
@@ -69,10 +69,10 @@ Una vez se tiene la entrada se llama a la clase Tokenizer\footnote{https://spacy
 Categoría Léxica & Atributos \\
 \hline \hline
 Verbo & Forma verbal  \\ \hline
-Nombre & Genero, número  \\ \hline
-Determinante & Género, numero, tipo de determinante, determinante definido o indefinido \\ \hline
-Adjetivo & Género, numero\\ \hline
-Pronombre & Género, numero, persona, tipo de pronombre\\ \hline
+Nombre & Género, número  \\ \hline
+Determinante & Género, número, tipo de determinante, determinante definido o indefinido \\ \hline
+Adjetivo & Género, número\\ \hline
+Pronombre & Género, número, persona, tipo de pronombre\\ \hline
 Adverbio & -\\ \hline
 Preposiciones & Tipo de preposiciones\\ \hline
 Conjunciones & -\\ \hline
@@ -93,8 +93,8 @@ En la Figura \ref{fig:caracPal}, podemos ver un resumen del flujo que sigue este
 \label{cap5:sec:ServiciodeDeteccióndeTiempoVerbal}
 
 Este servicio web, tiene como finalidad determinar el tiempo verbal de una frase dado la lista de palabras que conforman la frase. Este servicio busca las palabras temporales, ayer, hoy o mañana en el array de palabras recibido como entrada y si encuentra alguna devuelve el tiempo verbal que corresponda a la palabra temporal encontrada, pasado si encontró ayer, presente si encontró hoy y futuro si encontró mañana. En caso de no encontrar ninguna de las 3 palabras devuelve presente por defecto. 
-\figura{Bitmap/ServiciosWeb/deteccionTiempoVerbal}{width=100px}{fig:deteccionTiempoVerbal}{Flujo del servicio web de detección del tiempo verbal} 
-\figura{Bitmap/ServiciosWeb/timeDeteccion}{width=100px}{fig:timeDeteccion}{JSON de salida del servicio web de detección del tiempo verbal para la entrada [corredor, despistado, perder, zapatillas, ayer]} En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio y en las Figura \ref{fig:timeDeteccion} podemos ver un ejemplo de salida para la entrada [corredor, despistado, perder, zapatillas, ayer].
+\figura{Bitmap/ServiciosWeb/deteccionTiempoVerbal}{height=9cm}{fig:deteccionTiempoVerbal}{Flujo del servicio web de detección del tiempo verbal} 
+\figura{Bitmap/ServiciosWeb/timeDeteccion}{height=2cm}{fig:timeDeteccion}{JSON de salida del servicio web de detección del tiempo verbal para la entrada [corredor, despistado, perder, zapatillas, ayer]} En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio y en las Figura \ref{fig:timeDeteccion} podemos ver un ejemplo de salida para la entrada [corredor, despistado, perder, zapatillas, ayer].
 
 %------------------------------------------------------------------
 \subsubsection{Servicio Web de Generación de Frases}
@@ -114,24 +114,30 @@ Este servicio web recibe un array de palabras y devuelve una frase creada a part
 \begin{itemize}
 \item Creamos el sintagma nominal que sera el objeto contenedor de todas las palabras que formaran el sujeto llamando la función \textbf{createNounPhrase()} de la librería SimpleNLG.
  
-\item Se establece el determinante del sujeto utilizando la función \textbf{setDeterminer} de SimpleNLG, sobre el objeto creado anteriormente. En caso de que la lista de palabras que forman el sujeto, no contenga un pronombre o un determinante, se añade el determinante por defecto ``el''. En caso contrario se añadirá el determinante o pronombre, en lugar del determinante de por defecto.
+\item Se establece el determinante del sujeto utilizando la función \textbf{setDeterminer} de SimpleNLG, sobre el objeto creado anteriormente. En caso de que la lista de palabras que forman el sujeto, no contenga un pronombre o un determinante se añade el determinante por defecto ``el'', dado que SimpleNLG no añade ningún determinante. En caso contrario se añadirá el determinante o pronombre de la lista de palabras dado que solo permite tener un determinante o pronombre por cada objeto creado por la función \textbf{createNounPhrase()}, de manera que si la entrada es ``perro'', la salida sería ``el perro'' y si la entrada es ``nuestro, perro'' la salida sera ``nuestro perro''.
 
-\item Genero y número: una vez se encuentra una palabra de categoría lexica nombre, se establece como palabra principal del sujeto utilizando el método textbf{setFeature(``nombre''))} además se obtiene su genero y numero y se aplica al sujeto usando las funciones \textbf{setFeature(LexicalFeature.GENDER, Gender.FEMININE)} y \textbf {setPlural(``esPlural'')} respectivamente. Cabe destacar que por defecto el genero y numero de cualquier frase nominal es masculino singular, y solo se establecerá el genero del sujeto en caso de que deba ser femenino. Al establecer el genero y numero del sujeto todas las palabras que lo conforman utilizaran ese genero y numero,  por ejemplo  ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''. Dado que todos los pictogramas no existen en femenino, hemos desarrollado una lógica que en caso de existir un determinante con genero, el sujeto tendrá ese genero.
+\item Se establece como palabra principal del sujeto la palabra con categoría léxica \textbf{NOUN}, utilizando el método \textbf{setFeature())}. Además se obtiene el género y número de la palabra principal del sujeto y usando las funciones \textbf{setFeature()} y \textbf {setPlural()}, se establecen como género y número del sintagma nominal. Cabe destacar que por defecto el género y número de cualquier frase nominal es masculino singular, y solo se establecerá el género del sujeto en caso de que deba ser femenino o plural. Al establecer el género y número del sujeto todas las palabras que lo conforman utilizaran ese género y número,  por ejemplo  ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''. Dado que no todas las palabras tienen pictogramas asociados para los diferentes géneros o número, en caso de existir un determinante con género o número,se establecerá dicho género para todo el sintagma.
 
-\item En caso de encontrar un adverbio dentro del array de palabras se fuerza su posición dentro del sujeto al final del sujeto. Por ejemplo, para la entrada [``ayer, profesora, despistada, comer, galletas, duro''] se generara la frase ``La profesora despistada ayer comió galletas duras''
+\item En caso de encontrar un adverbio dentro del array de palabras del sintagma nominal se fuerza su posición dentro del sintagma nominal al final. Por ejemplo, para la entrada [ayer, profesora, despistada, comer, galletas] se generara la frase ``La profesora despistada ayer comió galletas''
 \end{itemize}
 
-\item De la misma manera que con el sujeto, se genera un objeto que sera el sintagma verbal. Se recorren todas las palabras que formaran el predicado y se aplica la misma lógica para seleccionar el determinante que en el sujeto, con la diferencia de que el determinante por defecto es ``un'', y solo se añadirá en caso de que exista una palabra con categoría léxica nombre. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera ``unas galletas duras''. Además si existe un nombre se aplicara su genero y numero al sintagma verbal. 
-Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras que conformaran la frase final contienen ``profesora, comer, ayer, galletas, duro'', la frase resultante sera ``La profesora comió galletas duras ayer''. 
+\item De la misma manera que con el sujeto, existe una lógica para la creación del sintagma verbal.
+\begin{itemize}
+\item Se genera un objeto que sera el sintagma verbal, con la función \textbf{createNounPhrase()}.
+\item Se añade el determinante con una lógica parecida al sujeto, con la diferencia de que el determinante por defecto es ``un'', y solo se añadirá en caso de que exista una palabra con categoría léxica \textbf{NOUN}. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera ``unas galletas duras''.
+\item En caso de existir una palabra con categoría léxica \textbf{NOUN}, se aplicara su género y número al sintagma verbal, en caso de no existir se aplicara el género y número del sintagma nominal.
+\item Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras que conformaran la frase final contienen ``profesora, comer, ayer, galletas, duro'', la frase resultante sera ``La profesora comió galletas duras ayer''. 
+\end{itemize}
 
-\item A continuación se hace una llamada al Servicio Web de Detección de Tiempo Verbal, para obtener el tiempo verbal el que se debe conjugar la frase resultante.
 
-\item Para terminar creamos un objeto frase de la biblioteca simpleNLG con \textbf{SPhraseSpec(``phraseFactory'')}. Utilizando la función \textbf{.setSubject(``subject'')}, añadimos el sujeto creado previamente. En caso de tener verbo lo añadiremos utilizando \textbf{setVerbPhrase.(``verb'')} y seleccionaremos el tiempo verbal de la frase, en caso de que no sea presente usaremos las funciones \textbf{setFeature(Feature.TENSE, Tense.FUTURE) o setFeature(Feature.TENSE, Tense.PAST)}, para definir el tiempo verbal en futuro o pasado respectivamente. Una vez tenemos todos la frase formada se pasa a la realización de la misma, utilizando el objeto \textbf{Realiser} de SimpleNlG, y se guardara en una variable el resultado.
-Esta variable sera la respuesta de este servicio web.
+\item Se hace una llamada al Servicio Web de Detección de Tiempo Verbal con todas las palabras que formaran la frase final, para obtener el tiempo verbal el que se debe conjugar la frase resultante, y guardaremos el resultado para el ultimo paso.
 
+\item Para terminar creamos un objeto frase de la biblioteca simpleNLG con \textbf{SPhraseSpec}. Utilizando la función \textbf{.setSubject}, añadimos el sujeto creado previamente. En caso de tener verbo lo añadiremos utilizando \textbf{setVerbPhrase} y seleccionaremos el tiempo verbal de la frase, en caso de que no sea presente usaremos las funciones \textbf{setFeature(Feature.TENSE, Tense.FUTURE) o setFeature(Feature.TENSE, Tense.PAST)}, para definir el tiempo verbal en futuro o pasado respectivamente.
+
+\item Una vez tenemos todos la frase formada se pasa a la realización de la misma. Este proceso de realización utiliza el objeto \textbf{Realiser} de SimpleNlG para devolver un string que contendra una frase construida utilizando los datos del punto. El resultado se guardara en una variable la cual sera la respuesta de este servicio web.
 \end{enumerate}
-En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue este servicio.
-\figura{Bitmap/ServiciosWeb/NLGService}{width=350px}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural} y en la tabla \ref{tabla:tiempoVerbal} podemos varios ejemplos de entradas y salidas del servicio.
+
+\figura{Bitmap/ServiciosWeb/NLGService}{height=18cm}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural}
 
 \begin{table}[htbp]
 \begin{tabular}{p{4cm}p{8cm}}
@@ -158,54 +164,55 @@ La, corredor, rápido, perder, zapatillas, nuevo & La corredora rápida ayer perdi
 \label{tabla:tiempoVerbal}
 \end{table}
 
+En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue este servicio y en la tabla \ref{tabla:tiempoVerbal} podemos varios ejemplos de entradas y salidas del servicio.
 %------------------------------------------------------------------
 \subsection{Servicios web para la Gestión de Pictogramas} %-------------------------------------------------------------------
 \label{cap5:sec:ServiciosParaPictos}
 
 En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. En estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}. 
-\figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{width=200px}{fig:serviciosAPIARAASAC}{Flujo de los servicios web Para Pictogramas } 
+\figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{height=12cm}{fig:serviciosAPIARAASAC}{Flujo de los servicios web Para Pictogramas } 
 
 \subsubsection{Servicio Web de Búsqueda del Pictogramas Asociados a una Palabra}
 \label{cap5:sec:ServiciosParaPictosPalabra}
-Este servicio web, recibe una palabra a través de una petición GET y devuelve un objeto en formato JSON, con un array con los diferentes pictogramas asociados a la palabra recibida.
-Este servicio lanza una petición GET con la palabra recibida, al buscador de pictogramas de la API de ARAASAC\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'}, el cual devuelve una lista de todos los pictogramas, que tienen asociada la palabra introducida.
-La respuesta devuelta por la API de ARAASAC es procesada por nuestro servicio, eliminando los resultados que no son deseados, escogiendo aquellos pictogramas que tienen asociados exclusivamente la palabra introducida, por ejemplo si se realiza la búsqueda huevo, la API de ARAASAC devolverá tres pictogramas: huevo, huevo frito, huevo roto, por lo que los dos últimos se excluirán. Por cada pictograma se devuelven los siguientes atributos:
+Este servicio web, recibe una palabra a través de una petición GET y devuelve un objeto en formato JSON, que contiene un array con los diferentes pictogramas asociados a la palabra recibida.
+Este servicio lanza una petición GET con la palabra recibida al buscador de pictogramas de la API de ARAASAC\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'}, el cual devuelve una lista de todos los pictogramas, que tienen asociada la palabra introducida.
+La respuesta devuelta por la API de ARAASAC es procesada por nuestro servicio, escogiendo aquellos pictogramas que tienen asociados exclusivamente la palabra introducida. Por ejemplo si se realiza la búsqueda de la palabra huevo, la API de ARAASAC devolverá tres pictogramas uno para huevo, otro para huevo frito, y otro para huevo roto. Nuestro servicio se quedara solo con el primero, por cada pictograma nuestro servicio devuelve los siguientes atributos:
 \begin{itemize}
 \item Identificador del pictograma.
-\item URL externa a la imagen del pictograma.
-\item El significado del pictograma.
+\item La palabra asociada al pictograma.
+\item URL a la imagen del pictograma.
 \end{itemize}
-\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{height=15cm,width=12cm}{fig:pictoFinderResponse}{Respuesta del servicio web de búsqueda del pictogramas asociados a una palabra}
-Cada objeto se añade a una lista que sera devuelta en el resultado de este servicio web tal y como podemos ver en la Figura \ref{fig:pictoFinderResponse}, para la entrada ``huevo''.
- 
+\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{height=16cm,width=12cm}{fig:pictoFinderResponse}{Respuesta del servicio web de búsqueda del pictogramas asociados a una palabra}
+Cada pictograma con sus atributos se añade a una lista que sera devuelta en el resultado de este servicio web tal y como podemos ver en la Figura \ref{fig:pictoFinderResponse}, donde podemos ver el resultado devuelto por nuestro servicio para la entrada ``cortar'', esta palabra tiene varios pictogramas asociados, los cuales podemos ver en la Figura \ref{fig:pictosCortar}.
+\figura{Bitmap/ServiciosWeb/cortarPictos}{height=9cm}{fig:pictosCortar}{Diferentes pictogramas asociados a la palabra cortar}
+
 
 \subsubsection{Servicio Web de Traducción de Pictogramas a Texto}
+\figura{Bitmap/ServiciosWeb/finderIDAPI}{height=16cm}{fig:finderIDAPI}{Respuesta del buscador por id de la API de ARAASAC} 
 
-Este servicio web recibe un identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma.
-Este servicio lanza una petición GET con el identificador recibido, lanza una petición al buscador de pictogramas por id de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823.
+Este servicio web recibe el identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma, ya que un solo pictograma puede tener varios pictogramas.En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823, que posee dos significados profesor y profesor de educación física.
+Este servicio lanza una petición con el identificador recibido, al buscador de pictogramas por id de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823.
 
-\figura{Bitmap/ServiciosWeb/finderIDAPI}{width=300px}{fig:finderIDAPI}{Respuesta del buscador por id de la API de ARAASAC} 
+Con la respuesta de la API, se accede al atributo ``Keywords'', se encapsula dentro de un objeto, que sera la respuesta de este servicio tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
 
-Con la respuesta de la API, se accede a su atributo ``Keywords'', se encapsula dentro de un objeto, que sera la respuesta de este servicio tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
+\figura{Bitmap/ServiciosWeb/responseTranslatePictoService}{height=2cm}{fig:responseTranslatePictoService}{Respuesta del buscador por id de la API de ARAASAC} 
 
-\figura{Bitmap/ServiciosWeb/responseTranslatePictoService}{width=300px}{fig:responseTranslatePictoService}{Respuesta del buscador por id de la API de ARAASAC} 
 
 %------------------------------------------------------------------
-\section{Front-end}
+\section{Front-End}
 %-------------------------------------------------------------------
 \label{cap5:sec:ComponentesAngular}
 
-En esta sección introduciremos los diferentes servicios y componentes Angular desarrollados para la parte Front-End de la aplicación, la cual podemos ver en la \ref{fig:appEscritorio}. Hemos implementado diferentes componentes:
+En esta sección introduciremos los diferentes servicios y componentes Angular desarrollados para la parte Front-End de la aplicación, la cual podemos ver en la Figura \ref{fig:appEscritorio}. Hemos implementado dos componentes:
 \begin{itemize}
 \item Buscador de pictogramas: el cual podemos ver en la Figura \ref{fig:buscadorPictogramas}, este componente sirve como entrada de pictogramas a la aplicación, en el podemos ver los diferentes pictogramas asociados a la palabra introducida además del identificador de dicho pictograma.
-\figura{Bitmap/Arquitectura/buscadorPictogramas}{width=8cm}{fig:buscadorPictogramas}{Componente buscador de pictogramas}
 \item Traductor de pictogramas a lenguaje natural: podemos ver este componente en la Figura  \ref{fig:traductorPictogramas}
 \figura{Bitmap/Arquitectura/traductorPictogramas}{width=9cm}{fig:traductorPictogramas}{Componente buscador de pictogramas}, este componente es el encargado de manejar los pictogramas que se van a traducir, dentro de el podemos ver los pictogramas que formaran la frase, ordenarlos o borrar aquellos que no se desean.
 \end{itemize}
 un buscador de pictogramas, un traductor de pictograma por id, y el componente traductor de pictogramas, que sirve de contenedor para los diferentes pictogramas que vamos a traducir. Cabe destacar que cada uno de estos componentes posee un html, controlador y servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de útiles, como un archivo de constantes, para almacenar las diferentes direcciones de los servicios web, un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo otro servicio de ventanas modales para el tratamiento de errores.
 Ademas hemos tenido en cuenta que la aplicación sea responsive y diseñado la vista para tener una versión móvil la cual se puede ver en la Figura \ref{fig:appMo}.
 
-\figura{Bitmap/Arquitectura/appEscritorio}{width=430px}{fig:appEscritorio}{Pict2Text}
+\figura{Bitmap/Arquitectura/appEscritorio}{height=11cm, width=13cm}{fig:appEscritorio}{Pict2Text}
 \figura{Bitmap/Arquitectura/appMo}{height=15cm}{fig:appMo}{Pict2Text versión para dispositivos moviles}
 \subsection{Servicio Proxy}
 
