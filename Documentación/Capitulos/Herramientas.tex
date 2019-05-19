@@ -55,9 +55,10 @@ Por último, es importante destacar que SimpleNLG nos permite introducir negacion
 Una vez que transformamos los pictogramas en palabras, se necesita conocer la categoría lexica de cada una de esas palabras (sustantivo, verbo, adjetivo...) así como su género y número para poder generar una frase gramatical correcta. Para esta función de análisis usamos la librería Spacy.\\
 Esta elección se basó en que es la herramienta que posee una mayor precisión en la traducción, como se puede observar en la Figura \ref{fig:precisionSpacy} .\\
 
-\figura{Bitmap/Herramientas/precisionSpacy}{width=200px}{fig:precisionSpacy}{Benchmark de diferentes procesadores del lenguaje, Fuente https://spacy.io/.}
+\figura{Bitmap/Herramientas/precisionSpacy}{width=12cm, height=4cm}{fig:precisionSpacy}{Benchmark de diferentes procesadores del lenguaje, Fuente https://spacy.io/.}
 
-Spacy es una biblioteca escrita en Python diseñada para el procesamiento avanzado de lenguaje natural\footnote{\url{https://medium.com/datos-y-ciencia/comenzando-con-spacy-para-procesamiento-de-lenguaje-natural-e8cf24a18a5a}}.\\
+Spacy es una biblioteca escrita en Python diseñada para el procesamiento avanzado de lenguaje natural\footnote{https://medium.com/datos-y-ciencia/comenzando-con-spacy-para-procesamiento-de-lenguaje-natural-e8cf24a18a5a}.
+
 La clase Tokenizer de Spacy es la encargada de dividir el mensaje recibido en palabras y de informarnos de la categoría (sustantivo, adjetivo, pronombre, verbo, determinante, adverbio, preposiciones, conjunciones o complementos) de cada palabra, junto con las siguientes características según la categoría:   
 \begin{itemize}
     \item \textbf{Sustantivos} y \textbf{Adjetivos}. Género, número, sinónimos.
@@ -75,7 +76,7 @@ En la Figura \ref{fig:palabrasSpacy}, podemos observar un ejemplo del análisis q
 %-------------------------------------------------------------
 \label{cap3:sec:Django}  
 Cada funcionalidad que se utiliza en este TFG ha sido implementada como un servicio web, por ello se decidió utilizar un framework que ayudase a los programadores a crear, e implementar de una manera más fácil y eficiente dichos servicios web. Además estos servicios  están escritos en Python ya que es el lenguaje de programación más usado para el Procesamiento de Lenguaje Natural (PLN) por lo que es aconsejable que dicho framework estuviera también desarrollado en Python. 
-Con estas restricciones en mente se eligió la herramienta Django, la cuál nos permite desarrollar aplicaciones web\footnote{https://openwebinars.net/blog/que-es-django-y-por-que-usarlo/} de código abierto y gratuitas escritas en Python. Django proporciona: un manejador para los archivos estáticos de las rutas, un host sobre el que se puede acceder a los servicios, plantillas en las que basarnos para crear la aplicación. Además respeta el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C), por lo que fomenta el desarrollo rápido y un diseño limpio y pragmático.
+Con estas restricciones en mente se eligió la herramienta Django, la cuál nos permite desarrollar aplicaciones web\footnote{\url{https://openwebinars.net/blog/que-es-django-y-por-que-usarlo/}} de código abierto y gratuitas escritas en Python. Django proporciona: un manejador para los archivos estáticos de las rutas, un host sobre el que se puede acceder a los servicios, plantillas en las que basarnos para crear la aplicación. Además respeta el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C), por lo que fomenta el desarrollo rápido y un diseño limpio y pragmático.
     
 \section{Angular}
 %-------------------------------------------------------------
@@ -84,20 +85,22 @@ Angular se ha usado para gestionar toda la parte Front-End de nuestra aplicación
 Angular es un framework de desarrollo creado y mantenido por Google, cuya finalidad consiste en el desarrollo de aplicaciones web SPA (Single-Page Applications), es decir, interacción web con una sola página, lo que provoca que la aplicación sea más rápida, dinámica y fluida. 
   
 Para realizar la parte Front-End de nuestra aplicación se estudiaron diferentes herramientas. En un primer momento se pensó en extender la herramienta Django para la parte del cliente, pero dicha herramienta está pensada principalmente para la gestión de la parte Back-End y por tanto se descartó esta idea.
-La segunda alternativa fue introducir JQuery, esta segunda opción tampoco era la más idónea ya que se trata de una librería orientada a acceder y modificar los elementos de la página y no para gestionar el uso de diferentes servicios, algo esencial en este proyecto.
-La última opción y al final la escogida fue usar Angular, ya que era la alternativa que más funcionalidades aportaba y de las analizadas la más orientada a gestionar diferentes servicios en una misma página.
-Además, Angular nos permitía crear nuestra aplicación con módulos formados por componentes, ofreciendo así una división automática del código para que los usuarios solo carguen aquellos componentes que necesitan. Además, con Angular los módulos serán completamente reutilizables, permitiendo así cumplir uno de los objetivos que nos planteamos: poder hacer nuestro trabajo lo más independiente y reutilizable posible.
+La segunda alternativa fue introducir JQuery, esta segunda opción tampoco era la más idónea ya que se trata de una librería orientada a acceder y modificar los elementos de la página, pero carece de la facilidad que otorga Angular al utilizar componentes, aplicar patrones de arquitectura y sobretodo la rapidez y facilidad de Angular para el tratamiento de llamadas asíncronas.
+Por estos motivos decidimos usar Angular, ya que era la alternativa que más funcionalidad, rapidez y escalibilidad, aporta de las herramientas analizadas.
 
-Otro punto importante a favor del uso de Angular es su capacidad de proporcionar una actualización automática de la información, es decir, si se modifica algún almacén de datos Angular realiza automáticamente dichos cambios. Estos cambios suelen realizarse mediante la programación reactiva, esta programación es aquella que se encarga de los flujos de datos asíncronos.\\
-El problema que conlleva este tipo de servicios asíncronos es que no sigue un orden definido en el tiempo de respuesta de cada llamada, la solución que realizó angular con este problema fue implantar el patrón `Observer''\footnote{\url{https://desarrolloweb.com/articulos/introduccion-teorica-observables-angular.html}}.   
+Además, Angular nos permitía crear nuestra aplicación por componentes\footnote{\url{https://angular.io/guide/architecture-components}}, ofreciendo así una división del código. Los componentes tienen la ventaja de ser completamente independientes unos de otros y ser reutilizables, esta independencia que poseen los componentes otorgan una gran flexibilidad a la hora de construir aplicaciones, aumentan la escalabilidad y facilitan el mantenimiento.
 
-El patrón Observable es un modo de implementación pensado para la programación reactiva. Esto quiere decir, que es el encargado de producir y distribuir el flujo de los distintos eventos o llamadas y consumirlos. Las componentes principales de este patrón son:
+Otro punto importante a favor del uso de Angular es su capacidad de proporcionar una actualización automática de la información, es decir, los datos mostrados en la vista están actualizados gracias al uso del modelo\footnote{\url{https://angular.io/guide/displaying-data}}. 
+
+El problema que conlleva este tipo de servicios asíncronos es que no sigue un orden definido en el tiempo de respuesta de cada llamada, la solución que realizó angular con este problema fue implantar el patrón `Observer''\footnote{\url{https://desarrolloweb.com/articulos/introduccion-teorica-observables-angular.html}}.
+
+El patrón Observable es un patron de programación reactiva, utilizado para la resolución de llamadas asíncronas como puedan ser llamadas HTTP. Esto quiere decir, que es el encargado de producir y distribuir el flujo de los distintos eventos o llamadas y consumirlos. Las componentes principales de este patrón son:
 \begin{itemize}
     \item \textbf{Observable}. Es aquello que el programador desea observar, un observable puede ser un formulario creado por un usuario, una llamada HTTP, un almacén de datos, etc. Además permite la modificación de aquello que se esta observando.  
     \item \textbf{Observer}. Es el que se dedica a observar, principalmente está basado en un colección de funciones callback, que permiten escuchar los eventos o llamadas emitidos por un observable.
     \item \textbf{Subject}. Se trata del emisor de los eventos o llamadas, es el encargado de crear los flujos cuando el observable realiza algún cambio, y comunicarlos al observer. 
 \end{itemize} 
-Es importante mencionar, que la librería que usa Angular para utilizar este patrón es la RxJS, la cuál es una librería de Microsoft que se utiliza para la programación reactiva, creando aplicaciones que usan el patrón observer para gestionar operaciones asíncronas. 
+Es importante mencionar, que la librería que usa Angular para utilizar este patrón es la RxJS(Reactive Extensions for JavaScript)\footnote{https://angular.io/guide/rx-library}, una librería centrada en el paradigma de la programación reactiva, la cual otorga diferentes ayudas para la resolución de llamadas asíncronas.
 
  
 
