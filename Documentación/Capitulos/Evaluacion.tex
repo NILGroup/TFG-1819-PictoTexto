@@ -62,42 +62,28 @@ Como podemos observar en la tabla de resultados, los 2 corpus que están formados
 Tras un análisis exhaustivo de las frases traducidas incorrectamente hemos detectado que los errores principales se deben a las siguientes causas: 
 
 \begin{itemize}
-    \item \textbf{Fallo traducción del pictograma}. Este tipo de error se ha producido al intentar traducir , esto es a causa de tener que reproducir exactamente igual la secuencia de pictogramas, por ejemplo en frases como:
-    \begin{itemize}
-     \item ``el tren va \textbf{por la vía} ''.
-     \item ``el papá barre el suelo \textbf{con la escoba}''.
-     \item ``los niños pintan un dibujo \textbf{en la clase}''.
-     \end{itemize} 
-Al tener que traducir las palabras resaltadas en un solo pictograma, como observamos en la Figura \ref{fig:ejemploUnPicto}, nuestro buscador no encontraba dicho pictograma. 
-\figura{Bitmap/Evaluacion/ejemploUnPicto}{width=8cm}{fig:ejemploUnPicto}{Ejemplo de frase con traducción de picto errónea.}  
-    \item \textbf{Frases reflexivas}. Nuestra aplicación no contempla la traducción de frases reflexivas como ``El niño le da un regalo a su padre '', ``la niña se lava las manos'' o ``la niña se pone zapatos en los pies''. Por tanto, las frases con pictogramas que se deberían traducir usando una frase reflexiva no han obtenido un resultado correcto. 
-       
-Pero si se podrían llevar a cabo en una siguiente fase, para ello se tendría que conseguir la forma reflexiva de cada sustantivo o pronombre y traducirla junto con la palabra a la que hiciera referencia.
-	\item \textbf{Más de un verbo en la oración}. Al igual que pasaba con las frases reflexivas, en esta primera etapa de desarrollo de la aplicación no se contempló el análisis y traducción de dos verbos en la misma oración, así que frases como ``Yo quiero ver la televisión'', ``Yo quiero ir al baño'' o ``Yo quiero jugar al ordenador'', no podrán ser traducidas de forma correcta en la aplicación.\\
-	
-Para llevarla a cabo habría que estudiar si los dos verbos se encuentran en un posición consecutiva en la frase, de ser así, se estudiaría en que forma verbal vendría el primero de ellos para así saber en que forma verbal traducir el segundo. Si por el contrario,  vienen por separado habría que observar cual es el verbo principal de la frase  con el fin de encontrar el sujeto, verbo y predicado, y después realizar la traducción pertinente.
-	\item \textbf{Más de un sustantivo en el sujeto}. Igual que en el caso anterior cuando una frase contenía varios sustantivos en el sujeto como ``El libro y el estuche están dentro de la mochila'' o ``La fresa y la pera son fruta'' la traducción fallaba.\\
-	 
-Este error se podría solventar con la implementación de este problema en el código. Para ello se tendrían que clasificar a ambos sustantivos como parte principal del sujeto para que ninguno pudiera borrar la información del otro al ser los dos sustantivos y una vez hecho esto asignarles sus determinantes adecuados. Algunos ejemplos en los cuerpos de evaluación realizados son:
-    \item \textbf{Errores del analizador del lenguaje}. Spacy no tiene una precisión del 100\% tal y como se comentó en el capitulo \ref{cap3:sec:Spacy}, así pues la categoría léxica o los atributos devueltos por Spacy para una palabra puede que no sean correctos, por este motivo la traducción de nuestra aplicación falla en ejemplos como ``La niña \textbf{sopla} las velas''. Ya que para spacy esta palabra es un adjetivo y no un verbo, ``El profesor lee un \textbf{cuento} a los niños''. El analizador devuelve esta palabra como verbo en vez de un sustantivo o ``Mamá cose un \textbf{vestido} azul'' el tipo de palabra es un adjetivo en lugar de un nombre.\\
-    
-Una solución que podría resolver el problema, sería estudiar si en el futuro existe algún analizador más idóneo para el castellano. Entre las palabras que no traduce correctamente destacan:
+    \item \textbf{Fallo traducción del pictograma}. En la lógica pensada para nuestra aplicación los pictogramas de sustantivos que aparezcan en el predicado solo van acompañados automáticamente por los determinantes (un, una, unos, unas).\\
+Por tanto en frases como: ``el tren va \textbf{por la vía} '', ``el papá barre el suelo \textbf{con la escoba}'' o ``los niños pintan un dibujo \textbf{en la clase}''. Donde las palabras resaltadas tienen que traducirse con un solo pictograma no están contempladas para su traducción.
+  
+    \item \textbf{Frases reflexivas}. Nuestra aplicación no contempla la traducción de frases reflexivas como: ``El niño le da un regalo a su padre '', ``la niña se lava las manos'' o ``la niña se pone zapatos en los pies''. Por tanto, las frases con pictogramas que se deberían traducir usando una frase reflexiva no han obtenido un resultado correcto. 
 
-    \item \textbf{Correlación de determinantes y sustantivos}. Para la traducción de nuestras frases se decidió que la aplicación añadiría automáticamente a un sustantivo en el sujeto el determinante (el, la, los, las) concordando en género y número con el sustantivo, mientras que si el sustantivo aparecía en el sujeto se le añadiría el determinante (un, una, unos, unas), a no ser que se pusiera un determinante concreto.\\
-Por tanto en frases que se tiene que añadir el determinante al sustantivo que acompaña como ``Mamá conduce el coche'', ``El niño bebe agua'' o ``La niña come pollo''. Su traducción no es correcta al fallar la traducción en algún determinante que acompaña al sustantivo.\\ 
-    
-Una posible solución sería añadir siempre el determinante que se desea, u otra opción sería estudiar si se puede obtener si dicho sustantivo es contable o incontable, acompañando a los contables con los determinantes un,una..., y a los incontables con el, la...\\
-Algunos ejemplos encontrados en los corpus con esta problemática son:
+	\item \textbf{Más de un verbo en la oración}. Al igual que pasaba con las frases reflexivas, en esta primera etapa de desarrollo de la aplicación no se contempló el análisis y traducción de dos verbos en la misma oración, así que frases como: ``Yo quiero ver la televisión'', ``Yo quiero ir al baño'' o ``Yo quiero jugar al ordenador'', no podrán ser traducidas de forma correcta en la aplicación.
+	
+	\item \textbf{Más de un sustantivo en el sujeto}. Igual que en el caso anterior cuando una frase contenía varios sustantivos en el sujeto como ``El libro y el estuche están dentro de la mochila'' o ``La fresa y la pera son fruta'' la traducción fallaba.
+	 
+    \item \textbf{Errores del analizador del lenguaje}. Spacy no tiene una precisión del 100\% tal y como se comentó en el capitulo \ref{cap3:sec:Spacy}, así pues la categoría léxica o los atributos devueltos por Spacy para una palabra puede que no sean correctos, por este motivo la traducción de nuestra aplicación falla en ejemplos como: ``La niña \textbf{sopla} las velas''. Ya que para spacy esta palabra es un adjetivo y no un verbo, ``El profesor lee un \textbf{cuento} a los niños''. El analizador devuelve esta palabra como verbo en vez de un sustantivo o ``Mamá cose un \textbf{vestido} azul'' el tipo de palabra es un adjetivo en lugar de un nombre.
+
+    \item \textbf{Correlación de determinantes y sustantivos}. Para la traducción de las frases se decidió que la aplicación añadiría automáticamente a un sustantivo en el sujeto, el determinante (el, la, los, las) concordando en género y número con el sustantivo, mientras que si el sustantivo aparecía en el predicado, se le añadiría el determinante (un, una, unos, unas), a no ser que se pusiera un pictograma con el determinante concreto.\\
+Por tanto en frases donde se tienen que añadir el determinante al sustantivo que acompaña como por ejemplo: ``Mamá conduce el coche'', ``El niño bebe agua'' o ``La niña come pollo''. Su resultado no es correcto al fallar la traducción en algún determinante que acompaña al sustantivo.
   
     \item \textbf{Correlación entre preposición y determinante}. Según la lógica pensada para la aplicación, las preposiciones hay que ponerlas explicitamente para que se traduzcan, si después de la preposición queremos traducir un determinante acompañando a un sustantivo, dicho determinante también tiene que ser puesto explicitamente en la traducción.
 Además para SimpleNLG el determinante es la palabra que va en primer lugar en la frase, por lo que traduce en primero el determinante y después la preposición intercambiando el orden lógico de las palabras en lenguaje natural.\\
-Así que en frases como ``El niño juega con el oso'', `Los niños juegan con la pelota'' o ``El bebé juega con los cubos''.\\
+Así que en frases como: ``El niño juega con el oso'', ``Los niños juegan con la pelota'' o ``El bebé juega con los cubos''.\\
 La traducción produce un fallo ya que el orden de traducción de la frase varía traduciendo el determinante antes de la preposición.
-
-Para solucionar este problema se podría implementar que si hay una preposición en la frase, traducir toda la frase como un complemento y que así mantenga el orden de la traducción.  
+ 
 \end{itemize}
 
-Una vez analizados los datos obtenidos de la evaluación y encontrados algunos de los fallos y su posible solución en un futuro. Y sin olvidar que no se ha encontrado una aplicación que haga algo parecido para lo que se pensó esta aplicación, realizar una traducción de pictograma a lenguaje natural.Nos encontramos ante unos resultados bastante alentadores que demuestran que se ha creado una aplicación con una buena base sólida para seguir desarrollándola con el fin de completarla y mejorarla. 
+Con los datos obtenidos de la evaluación, analizados los fallos más comunes encontrados en nuestra aplicación y teniendo presente que no se ha encontrado otra aplicación que haga traducciones de pictogramas a lenguaje natural. Podemos concluir que los resultados obtenidos son bastante alentadores, ya que demuestran que se ha creado una aplicación con una buena base sólida para seguir desarrollándola con el fin de completarla y mejorarla en el futuro. 
 
 
 
