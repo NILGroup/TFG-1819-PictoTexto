@@ -4,12 +4,12 @@
 \label{cap:evaluacion}
 
 Cuando se finalizó tanto la implementación de los servicios como de la aplicación web se realizó una evaluación de las traducciones realizadas por nuestra aplicación.  
-En este capítulo explicaremos el diseño de la evaluación en la Sección \ref{cap5:sec:Diseño de la Evaluación}, y un análisis de los resultados obtenidos de esta evaluación, (Sección \ref{cap5:sec:Análisis de los resultados}).
+En este capítulo explicaremos el diseño de la evaluación en la Sección \ref{cap5:sec:Diseño de la Evaluación}, los resultados obtenidos en dicha evaluación (Sección \ref{cap5:sec:Resultados de la Evaluación}),  y un análisis de estos resultados obtenidos, (Sección \ref{cap5:sec:Análisis de los Resultados}).
 
 \section{Diseño de la Evaluación}
 %-------------------------------------------------------------
 \label{cap5:sec:Diseño de la Evaluación}
-Para comenzar, es importante recordar que el público objetivo de nuestro traductor son aquellas personas que necesitan el apoyo de los pictogramas para comunicarse. Los pictogrmas permiten desde un nivel de comunicación muy básico (frases con pocos elementos, sin artículos, sin adverbios, sin complementos...) hasta un nivel de comunicación muy rico y avanzado (complementos, artículos, adverbios, preposiciones...) pero nunca tan completo y flexible como el que se puede lograr a través del lenguaje natural. En este trabajo hemos restringido el ámbito a traducir de frases con pictogramas que van desde las frases más sencillas hasta frases algo más complejas con algún artículo, preposición, complementos... Por este motivo como corpus para la evaluación hemos utilizado corpus formados pos frases, descartando cuentos, corpus con oraciones compuestas, etc.\\
+Para comenzar, es importante recordar que el público objetivo de nuestro traductor son aquellas personas que necesitan el apoyo de los pictogramas para comunicarse. Los pictogrmas permiten desde un nivel de comunicación muy básico (frases con pocos elementos, sin artículos, sin adverbios, sin complementos...) hasta un nivel de comunicación muy rico y avanzado (complementos, artículos, adverbios, preposiciones...) pero nunca tan completo y flexible como el que se puede lograr a través del lenguaje natural. En este trabajo hemos restringido el ámbito de traducción de las frases con pictogramas que van desde las frases más sencillas hasta frases algo más complejas con algún artículo, preposición, complementos... Por este motivo como corpus para la evaluación hemos utilizado corpus formados pos frases, descartando cuentos, corpus con oraciones compuestas, etc.\\
 Decidimos buscar los corpus que ellos ofrecían en su propia página web y así evitar lo máximo posible un problema de correlación entre los pictogramas del corpus y los que utiliza nuestra aplicación. Por eso los corpus de la evaluación debían de ser los pictogramas de Arasaac ya que son los que funcionan con nuestra aplicación.\\
 La evaluación se hizo de manera manual, introduciendo todos los ejemplos en nuestra aplicación y analizando caso por caso el resultado obtenido. Finalmente seleccionamos 3 corpus con 177 frases en total.
 
@@ -59,7 +59,32 @@ Total & 177 & 48 & 27\% \\ \hline
 %-------------------------------------------------------------
 \label{cap5:sec:Análisis de los Resultados}
 Como podemos observar en la tabla de resultados, los 2 corpus que están formados por más frases sencillas (corpus de fotos y pictogramas y corpus de oraciones coordinadas), el resultado obtenido se aproxima al 50\% de aciertos, mientras que el otro corpus al estar compuesto por frases con un nivel mayor de complejidad su porcentaje de acierto es más bajo que el de los anteriores.\\
-Tras un análisis exhaustivo de las frases traducidas incorrectamente hemos detectado que los errores principales se deben a las siguientes causas: 
+Tras un análisis exhaustivo en los resultados de las frases traducidas incorrectamente, como podemos ver en la Tabla \ref{tabla:errores}.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+TIPOS DE FALLOS & NºFALLOS/TOTAL FALLOS & \% FALLO \\
+\hline \hline
+Fallo traducción pictograma & 49/132 & 37\% \\ \hline
+Frases reflexivas & 18/132 & 13,5\% \\ \hline
+Más de un verbo en la oración & 3/132 & 2,2\% \\ \hline
+Más de un sustantivo en el sujeto & 2/132 & 1,5\% \\ \hline
+Errores analizador del lenguaje & 14/132 & 10,6\% \\ \hline
+Relación determinante y sustantivo & 26/132 & 19,6\% \\ \hline
+Relación preposición y determinante & 20/132 & 15\% \\ \hline
+Total de Fallos & 132/132 & 100\% \\ \hline 
+\end{tabular}
+\caption{Tabla con los tipos de fallos.}
+\label{tabla:errores}
+\end{center}
+\end{table}
+
+Es importante mencionar que en algunas frases se daban más de un tipo de fallo, por eso el número de errores es un poco mayor en esta Tabla \ref{tabla:errores}.
+\clearpage
+
+Hemos detectado que los errores principales se deben a las siguientes causas: 
 
 \begin{itemize}
     \item \textbf{Fallo traducción del pictograma}. En la lógica pensada para nuestra aplicación los pictogramas de sustantivos que aparezcan en el predicado solo van acompañados automáticamente por los determinantes (un, una, unos, unas).\\
@@ -73,10 +98,10 @@ Por tanto en frases como: ``el tren va \textbf{por la vía} '', ``el papá barre e
 	 
     \item \textbf{Errores del analizador del lenguaje}. Spacy no tiene una precisión del 100\% tal y como se comentó en el capitulo \ref{cap3:sec:Spacy}, así pues la categoría léxica o los atributos devueltos por Spacy para una palabra puede que no sean correctos, por este motivo la traducción de nuestra aplicación falla en ejemplos como: ``La niña \textbf{sopla} las velas''. Ya que para spacy esta palabra es un adjetivo y no un verbo, ``El profesor lee un \textbf{cuento} a los niños''. El analizador devuelve esta palabra como verbo en vez de un sustantivo o ``Mamá cose un \textbf{vestido} azul'' el tipo de palabra es un adjetivo en lugar de un nombre.
 
-    \item \textbf{Correlación de determinantes y sustantivos}. Para la traducción de las frases se decidió que la aplicación añadiría automáticamente a un sustantivo en el sujeto, el determinante (el, la, los, las) concordando en género y número con el sustantivo, mientras que si el sustantivo aparecía en el predicado, se le añadiría el determinante (un, una, unos, unas), a no ser que se pusiera un pictograma con el determinante concreto.\\
+    \item \textbf{Relación entre determinantes y sustantivos}. Para la traducción de las frases se decidió que la aplicación añadiría automáticamente a un sustantivo en el sujeto, el determinante (el, la, los, las) concordando en género y número con el sustantivo, mientras que si el sustantivo aparecía en el predicado, se le añadiría el determinante (un, una, unos, unas), a no ser que se pusiera un pictograma con el determinante concreto.\\
 Por tanto en frases donde se tienen que añadir el determinante al sustantivo que acompaña como por ejemplo: ``Mamá conduce el coche'', ``El niño bebe agua'' o ``La niña come pollo''. Su resultado no es correcto al fallar la traducción en algún determinante que acompaña al sustantivo.
   
-    \item \textbf{Correlación entre preposición y determinante}. Según la lógica pensada para la aplicación, las preposiciones hay que ponerlas explicitamente para que se traduzcan, si después de la preposición queremos traducir un determinante acompañando a un sustantivo, dicho determinante también tiene que ser puesto explicitamente en la traducción.
+    \item \textbf{Relación entre preposición y determinante}. Según la lógica pensada para la aplicación, las preposiciones hay que ponerlas explicitamente para que se traduzcan, si después de la preposición queremos traducir un determinante acompañando a un sustantivo, dicho determinante también tiene que ser puesto explicitamente en la traducción.
 Además para SimpleNLG el determinante es la palabra que va en primer lugar en la frase, por lo que traduce en primero el determinante y después la preposición intercambiando el orden lógico de las palabras en lenguaje natural.\\
 Así que en frases como: ``El niño juega con el oso'', ``Los niños juegan con la pelota'' o ``El bebé juega con los cubos''.\\
 La traducción produce un fallo ya que el orden de traducción de la frase varía traduciendo el determinante antes de la preposición.
