@@ -3,107 +3,66 @@
 \chapter{Evaluación}
 \label{cap:evaluacion}
 
-Cuando se finalizó tanto la implementación de los servicios como de la aplicación web se realizó un estudio sobre el comportamiento de las traducciones de nuestra aplicación.  
-En este capítulo explicaremos los tipos de ejemplos utilizados para realizar la evaluación de nuestro trabajo, así como un análisis pormenorizado de los resultados extraídos del mismo.
+Cuando se finalizó tanto la implementación de los servicios como de la aplicación web se realizó una evaluación de las traducciones realizadas por nuestra aplicación.  
+En este capítulo explicaremos el diseño de la evaluación en la Sección \ref{cap5:sec:Diseño de la Evaluación}, y un análisis de los resultados obtenidos de esta evaluación, (Sección \ref{cap5:sec:Análisis de los resultados}).
 
-\section{Diseño}
+\section{Diseño de la Evaluación}
 %-------------------------------------------------------------
-\label{cap5:sec:Diseño}
-Para comenzar, es importante recordar que el público objetivo de nuestro traductor son aquellas personas que en general, utilicen la aplicación para comunicarse habitualmente, mediante el uso de frases simples. Por este motivo decidimos utilizar como ejemplos o corpus para la evaluación a aquellos que estén formados principalmente por este tipo de frases, descartando cuentos, corpus con oraciones compuestas, etc.\\
-Otro segundo punto que tuvimos en cuenta para elegir los ejemplos correctos fue el tipo de pictogramas utilizados en nuestra aplicación procedentes de la API de Arasaac, decidimos buscar los corpus que ellos ofrecían en su propia página web y así evitar lo máximo posible un problema de correlación entre los pictogramas de los ejemplos y los que utiliza el buscador de nuestro trabajo. Por ello todos los ejemplos de pictogramas utilizados son sacados de Arasaac en la sección de materiales.\\
-Una vez se han elegido los ejemplos que se van a estudiar en la evaluación, hay que mencionar que hemos decidido realizar dichas pruebas a mano, introduciendo todos los ejemplos en nuestra aplicación y analizando caso por caso el resultado obtenido.\\  
-Por todos estos motivos expuestos en el párrafo anterior, son 3 los corpus utilizados para evaluar nuestra aplicación, analizando entre los 3 corpus más de 150 frases, dichos corpus se explicarán a continuación:
+\label{cap5:sec:Diseño de la Evaluación}
+Para comenzar, es importante recordar que el público objetivo de nuestro traductor son aquellas personas que necesitan el apoyo de los pictogramas para comunicarse. Los pictogrmas permiten desde un nivel de comunicación muy básico (frases con pocos elementos, sin artículos, sin adverbios, sin complementos...) hasta un nivel de comunicación muy rico y avanzado (complementos, artículos, adverbios, preposiciones...) pero nunca tan completo y flexible como el que se puede lograr a través del lenguaje natural. En este trabajo hemos restringido el ámbito a traducir de frases con pictogramas que van desde las frases más sencillas hasta frases algo más complejas con algún artículo, preposición, complementos... Por este motivo como corpus para la evaluación hemos utilizado corpus formados pos frases, descartando cuentos, corpus con oraciones compuestas, etc.\\
+Decidimos buscar los corpus que ellos ofrecían en su propia página web y así evitar lo máximo posible un problema de correlación entre los pictogramas del corpus y los que utiliza nuestra aplicación. Por eso los corpus de la evaluación debían de ser los pictogramas de Arasaac ya que son los que funcionan con nuestra aplicación.\\
+La evaluación se hizo de manera manual, introduciendo todos los ejemplos en nuestra aplicación y analizando caso por caso el resultado obtenido. Finalmente seleccionamos 3 corpus con 177 frases en total.
 
-\subsection{Corpus: Frases con fotos y pictogramas}     
-Fuente: \url{http://www.arasaac.org/materiales.php?id_material=474}\\
+\begin{enumerate}
+	\item \textbf{Corpus de frases con fotos y pictogramas}.\\ 
+Fuente: \url{http://www.arasaac.org/materiales.php?id_material=474}.\\
+Frases con pictogramas sencillas y sin nexos de unión, solamente las palabras principales de la oración. En total este corpus lo componen 34 frases. En la Figura \ref{fig:cEjemFotos} se pueden ver 3 frases de ejemplo del corpus.
 
-Como se puede intuir de su propio título, este corpus es ideal para evaluar el comportamiento del traductor, ya que está compuesto sobre todo por frases simples como las que entendemos que se van a traducir.\\
-El número total de frases que forman este conjunto de ejemplos son 34 ,un pequeño fragmento de las frases que podemos encontrar son:
-\begin{itemize}
-    \item La niña duerme.
-    \item La niña salta.
-    \item El niño lee un cuento.
-    \item La niña se peina el pelo.
-    \item El perro juega con el hueso.
-    \item La niña monta en el triciclo.
-    \item Los niños juegan al fútbol.
-    \item El niño corta la tarta.
-    \item Los niños hacen bolas de nieve.
-    \item Las niñas saltan a la comba.
-\end{itemize}
- 
-\subsection{Corpus: Frases verdad o mentira}
-Fuente: \url{http://www.arasaac.org/materiales.php?id_material=691}
-\\
+\figura{Bitmap/Evaluacion/cEjemFotos}{width=10cm}{fig:cEjemFotos}{Ejemplo del corpus fotos y pictogramas.}
 
-Aunque este corpus está más orientado para que las personas puedan distinguir frases que sean verdad con otras que sean mentira, hemos elegido este esquema de ejemplos porque cumplía por un lado estar formado principalmente por frases simples y por otro lado es un conjuntos muy restrictivo ya que las frases vienen acompañadas con el pictograma a utilizar para cada palabra, como se puede observar en la figura \ref{fig:corpusVerMen}. 
+\item \textbf{Corpus de frases verdad o mentira}.\\ 
+Fuente: \url{http://www.arasaac.org/materiales.php?id_material=691}.\\
+Este corpus está compuesto por frases sencillas junto a otras con un nivel más complejo, entre los que destacan frases con nexo de unión o frases con más de un sustantivo en el predicado. En total este corpus está formado por un total de 115 frases. En el ejemplo de la Figura \ref{fig:cEjemMentiras} podemos ver algunos de estos ejemplos. 
 \clearpage
-\figura{Bitmap/Evaluacion/corpusVerMen}{width=10cm}{fig:corpusVerMen}{Ejemplo de frases del corpus verdad o mentira.} 
 
-Este segundo corpus está formado por un total de 115 frases, un pequeño fragmento de las frases que encontramos son:
-\begin{itemize}
-    \item El niño come un bocadillo.
-    \item El niño le da un regalo a su padre.
-    \item Los niños pintan un dibujo en la clase.
-    \item La hierba es naranja.
-    \item El abuelo echa leche en la taza.
-    \item La niña se pone zapatos en los pies.
-    \item Yo quiero la pelota.
-    \item La fresa y la pera son fruta .
-    \item El médico cura al enfermo.
-    \item La niña oye la música.
-\end{itemize}
+\figura{Bitmap/Evaluacion/cEjemMentiras}{width=10cm}{fig:cEjemMentiras}{Ejemplo del corpus verdad o mentira.}
 
-\subsection{Corpus: Oraciones coordinadas}
-Fuente: \url{http://www.arasaac.org/materiales.php?id_material=1978}
-\\
+\item \textbf{Corpus de oraciones coordinadas}.\\ 
+Fuente: \url{http://www.arasaac.org/materiales.php?id_material=1978}.\\
+En este tercer corpus hemos analizado cada frase obviando que están unidas por una conjunción ``y'', analizando cada una por separado. En total este corpus está formado por un total de 28 frases. En la Figura \ref{fig:cEjemCoor} podemos ver algunos de los ejemplos en este corpus. 
 
-Este tercer cuerpo aunque está formado cada oración por dos frases simples unidas por la conjunción ``y'', así pues, nuestra forma de analizar estas frases ha sido coger cada una por separado, además este corpus es muy parecido al anterior en cuanto a que cada frase viene con los pictogramas a introducir en el traductor, como podemos observar en la Figura \ref{fig:corpusCoor}. 
-\clearpage
-\figura{Bitmap/Evaluacion/corpusCoor}{width=11cm}{fig:corpusCoor}{Ejemplo de frases del corpus oraciones coordinadas.}
+\figura{Bitmap/Evaluacion/cEjemCoor}{width=10cm}{fig:cEjemCoor}{Ejemplo del corpus oraciones coordinadas.}
+\end{enumerate}
 
-Este último corpus esta formado por un total de 28 frases, un fragmento de las frases de este cuerpo es:    
-\begin{itemize}
-    \item El niño come patatas.
-    \item El gato huele el pescado.
-    \item La niña juega con el coche.
-    \item El niño barre el suelo.
-    \item El bebé juega con los animales.
-    \item La abuela come un helado de chocolate.
-    \item La niña bebe zumo de naranja.
-    \item El bebé juega con los cubos.
-    \item La niña limpia el espejo con un trapo.
-    \item El niño se seca con la toalla.
-\end{itemize}
-
-\section{Resultado y Análisis}
+\section{Resultados de la Evaluación}
 %-------------------------------------------------------------
-\label{cap5:sec:Resultado y Análisis}
-El siguiente paso en la evaluación una vez identificados y elegidos los corpus de ejemplos que se iban a estudiar, se lleva a cabo un análisis cuidadoso de todas las frases y se observan los resultados obtenidos.
-
-En la siguiente tabla se muestra los resultados sacados en la evaluación de los tres corpus, obteniendo la cantidad de frases correctas, el número total de frases procesadas y el porcentaje que corresponde al número total de frases correctas. 
-\clearpage
+\label{cap5:sec:Resultados de la Evaluación}
+En la Tabla \ref{tabla:resultados} se muestran los resultados sacados de la evaluación de los tres corpus, obteniendo la cantidad de frases correctas, el número total de frases procesadas y el porcentaje que corresponde al número total de frases correctas. 
 
 \begin{table}[htbp]
 \begin{center}
-\begin{tabular}{|l|c|c|}
+\begin{tabular}{|l|c|c|c|}
 \hline
-CORPUS & ACIERTOS/FRASES & PORCENTAJE \\
+CORPUS & NºFRASES & FRASES CORRECTAS & \% ACIERTO \\
 \hline \hline
-Frases con fotos y pictos & 14/34 & 41\% \\ \hline
-Frases verdad o mentira & 23/115 & 20\% \\ \hline
-Oraciones coordinadas & 11/28 & 40\% \\ \hline
+Frases con fotos y pictos & 34 & 14 & 41\% \\ \hline
+Frases verdad o mentira & 115 & 23 & 20\% \\ \hline
+Oraciones coordinadas & 28 & 11 & 40\% \\ \hline
+Total & 177 & 48 & 27\% \\ \hline 
 \end{tabular}
 \caption{Tabla con los resultados de la evaluación.}
 \label{tabla:resultados}
 \end{center}
 \end{table}
 
-\subsection{Análisis de errores}
-Tras realizar la evaluación, analizamos los errores que hemos detectado en la aplicación y que se podrían arreglar en el futuro, para hacer una traducción más completa de los pictogramas.\\
+\section{Análisis de los Resultados}
+%-------------------------------------------------------------
+\label{cap5:sec:Análisis de los Resultados}
+Como podemos observar en la tabla de resultados, los 2 corpus que están formados por más frases sencillas (corpus de fotos y pictogramas y corpus de oraciones coordinadas), el resultado obtenido se aproxima al 50\% de aciertos, mientras que el otro corpus al estar compuesto por frases con un nivel mayor de complejidad su porcentaje de acierto es más bajo que el de los anteriores.\\
+Tras un análisis exhaustivo de las frases traducidas incorrectamente hemos detectado que los errores principales se deben a las siguientes causas: 
 
 \begin{itemize}
-    \item \textbf{Pictogramas no encontrados}. Este tipo de error se ha producido sobre todo en el corpus de verdad o mentira, donde en el 45\% de las frases ocurría dicha problemática, esto es a causa de tener que reproducir exactamente igual la secuencia de pictogramas, por ejemplo en frases como:
+    \item \textbf{Fallo traducción del pictograma}. Este tipo de error se ha producido al intentar traducir , esto es a causa de tener que reproducir exactamente igual la secuencia de pictogramas, por ejemplo en frases como:
     \begin{itemize}
      \item ``el tren va \textbf{por la vía} ''.
      \item ``el papá barre el suelo \textbf{con la escoba}''.
@@ -111,47 +70,31 @@ Tras realizar la evaluación, analizamos los errores que hemos detectado en la ap
      \end{itemize} 
 Al tener que traducir las palabras resaltadas en un solo pictograma, como observamos en la Figura \ref{fig:ejemploUnPicto}, nuestro buscador no encontraba dicho pictograma. 
 \figura{Bitmap/Evaluacion/ejemploUnPicto}{width=8cm}{fig:ejemploUnPicto}{Ejemplo de frase con traducción de picto errónea.}  
-    \item \textbf{Frases reflexivas}. Esta primera fase de la aplicación estuvo enfocada principalmente a la traducción de frases simples, por tanto estas frases con un nivel de complejidad mayor no fueron contempladas para su implementación, pero si se podrían llevar a cabo en una siguiente fase, para ello se tendría que conseguir la forma reflexiva de cada sustantivo o pronombre y traducirla junto con la palabra a la que hiciera referencia unos ejemplos de frases reflexivas encontradas en estos corpus son:
-\begin{itemize}
-     \item ``El niño \textbf{le} da un regalo a su padre ''.
-     \item ``la niña \textbf{se} lava las manos''.
-     \item ``la niña \textbf{se} pone zapatos en los pies''.
-\end{itemize}
-	\item \textbf{Más de un verbo en la oración}. Al igual que pasaba con las frases reflexivas, en esta primera etapa de desarrollo de la aplicación no se contempló el análisis y traducción de dos verbos en la misma oración, podría ser otra nueva implementación a realizar.\\
-Para llevarla a cabo habría que estudiar si los dos verbos se encuentran en un posición consecutiva en la frase, de ser así, se estudiaría en que forma verbal vendría el primero de ellos para así saber en que forma verbal traducir el segundo. Si por el contrario,  vienen por separado habría que observar cual es el verbo principal de la frase  con el fin de encontrar el sujeto, verbo y predicado, y después realizar la traducción pertinente. Un pequeño ejemplo de las frases encontradas en los corpus con dos verbos podrían ser:
-\begin{itemize}
-	\item ``Yo quiero ver la televisión''.
-	\item ``Yo quiero ir al baño''.
-	\item ``Yo quiero jugar al ordenador''.	
-\end{itemize}
-	\item \textbf{Más de un sustantivo en el sujeto}. Como en los dos errores anteriormente comentados, en esta primera fase no se contempló que en el sujeto pudiera haber más de un sustantivo.\\ Este error se podría solventar con la implementación de este problema en el código. Para ello se tendrían que clasificar a ambos sustantivos como parte principal del sujeto para que ninguno pudiera borrar la información del otro al ser los dos sustantivos y una vez hecho esto asignarles sus determinantes adecuados. Algunos ejemplos en los cuerpos de evaluación realizados son:
-\begin{itemize}
-	\item ``El libro y el estuche están dentro de la mochila''.
-	\item ``La fresa y la pera son fruta''.
-\end{itemize}
-\clearpage
-    \item \textbf{Errores del analizador del lenguaje}. No hay que olvidar que spacy es un analizador del lenguaje que está pensado principalmente para palabras en inglés, por este motivo es lógico que para algunas palabras no consiga realizar un lenguaje correcto al castellano.\\
+    \item \textbf{Frases reflexivas}. Nuestra aplicación no contempla la traducción de frases reflexivas como ``El niño le da un regalo a su padre '', ``la niña se lava las manos'' o ``la niña se pone zapatos en los pies''. Por tanto, las frases con pictogramas que se deberían traducir usando una frase reflexiva no han obtenido un resultado correcto. 
+       
+Pero si se podrían llevar a cabo en una siguiente fase, para ello se tendría que conseguir la forma reflexiva de cada sustantivo o pronombre y traducirla junto con la palabra a la que hiciera referencia.
+	\item \textbf{Más de un verbo en la oración}. Al igual que pasaba con las frases reflexivas, en esta primera etapa de desarrollo de la aplicación no se contempló el análisis y traducción de dos verbos en la misma oración, así que frases como ``Yo quiero ver la televisión'', ``Yo quiero ir al baño'' o ``Yo quiero jugar al ordenador'', no podrán ser traducidas de forma correcta en la aplicación.\\
+	
+Para llevarla a cabo habría que estudiar si los dos verbos se encuentran en un posición consecutiva en la frase, de ser así, se estudiaría en que forma verbal vendría el primero de ellos para así saber en que forma verbal traducir el segundo. Si por el contrario,  vienen por separado habría que observar cual es el verbo principal de la frase  con el fin de encontrar el sujeto, verbo y predicado, y después realizar la traducción pertinente.
+	\item \textbf{Más de un sustantivo en el sujeto}. Igual que en el caso anterior cuando una frase contenía varios sustantivos en el sujeto como ``El libro y el estuche están dentro de la mochila'' o ``La fresa y la pera son fruta'' la traducción fallaba.\\
+	 
+Este error se podría solventar con la implementación de este problema en el código. Para ello se tendrían que clasificar a ambos sustantivos como parte principal del sujeto para que ninguno pudiera borrar la información del otro al ser los dos sustantivos y una vez hecho esto asignarles sus determinantes adecuados. Algunos ejemplos en los cuerpos de evaluación realizados son:
+    \item \textbf{Errores del analizador del lenguaje}. Spacy no tiene una precisión del 100\% tal y como se comentó en el capitulo \ref{cap3:sec:Spacy}, así pues la categoría léxica o los atributos devueltos por Spacy para una palabra puede que no sean correctos, por este motivo la traducción de nuestra aplicación falla en ejemplos como ``La niña \textbf{sopla} las velas''. Ya que para spacy esta palabra es un adjetivo y no un verbo, ``El profesor lee un \textbf{cuento} a los niños''. El analizador devuelve esta palabra como verbo en vez de un sustantivo o ``Mamá cose un \textbf{vestido} azul'' el tipo de palabra es un adjetivo en lugar de un nombre.\\
+    
 Una solución que podría resolver el problema, sería estudiar si en el futuro existe algún analizador más idóneo para el castellano. Entre las palabras que no traduce correctamente destacan:
-\begin{itemize}
-     \item ``La niña \textbf{sopla} las velas''. Para spacy esta palabra es un adjetivo y no un verbo.
-     \item ``El profesor lee un \textbf{cuento} a los niños''. Para el analizador esta palabra es un verbo en vez de un sustantivo.
-     \item ``Mamá cose un \textbf{vestido} azul'' donde su tipo de palabra es un adjetivo en lugar de un nombre.
-\end{itemize}  
 
-    \item \textbf{Correlación de determinantes y sustantivos}. Como existe la posibilidad de que las personas a las que va dirigida nuestra aplicación no añadiesen un determinante delante del sustantivo al que acompañan, se decidió añadir automáticamente al sustantivo que se fuera a traducir, los determinantes el, la, los, las si el sustantivo estaba en el sujeto, dependiendo del género y número del propio sustantivo. Y un, una, unos, unas si el sustantivo se encontraba en el predicado. Siempre y cuando no apareciese un determinante implícito acompañándolo en la traducción.\\ 
+    \item \textbf{Correlación de determinantes y sustantivos}. Para la traducción de nuestras frases se decidió que la aplicación añadiría automáticamente a un sustantivo en el sujeto el determinante (el, la, los, las) concordando en género y número con el sustantivo, mientras que si el sustantivo aparecía en el sujeto se le añadiría el determinante (un, una, unos, unas), a no ser que se pusiera un determinante concreto.\\
+Por tanto en frases que se tiene que añadir el determinante al sustantivo que acompaña como ``Mamá conduce el coche'', ``El niño bebe agua'' o ``La niña come pollo''. Su traducción no es correcta al fallar la traducción en algún determinante que acompaña al sustantivo.\\ 
+    
 Una posible solución sería añadir siempre el determinante que se desea, u otra opción sería estudiar si se puede obtener si dicho sustantivo es contable o incontable, acompañando a los contables con los determinantes un,una..., y a los incontables con el, la...\\
 Algunos ejemplos encontrados en los corpus con esta problemática son:
-\begin{itemize}
-     \item ``Mamá conduce \textbf{el} coche''.Si no se añade el determinante antes del sustantivo nuestro traductor pone: \textbf{la} mamá y \textbf{un} coche.
-     \item ``El niño bebe agua''. En la traducción añade \textbf{una} agua .
-     \item ``La niña come pollo'' En la traducción añade \textbf{un} pollo.
-\end{itemize}  
-    \item \textbf{Correlación entre preposición y determinante}.En nuestra aplicación después de una preposición hay que añadir el pictograma de un determinante si se desea que este aparezca. Si sucede esto, el determinante para SimpleNLG tiene más importancia que la preposición haciendo que se traduzca antes dicho determinante y después la preposición correspondiente. Para solucionar este problema se podría implementar que si hay una preposición en la frase, traducir toda la frase como un complemento y que así mantenga el orden de la traducción. Unos ejemplos donde nos ha ocurrido esta problemática son:
-\begin{itemize}
-     \item ``El niño juega \textbf{con} el oso''.Esta frase se traduce por: ``El niño juega el con oso'' .
-     \item ``Los niños juegan \textbf{con} la pelota''. En este caso, la frase traducida es: ``Los niños juegan la con pelota'' .
-     \item ``El bebé juega \textbf{con} los cubos''. La traducción resultante es: ``El bebé juega los con cubos''.
-\end{itemize}  
+  
+    \item \textbf{Correlación entre preposición y determinante}. Según la lógica pensada para la aplicación, las preposiciones hay que ponerlas explicitamente para que se traduzcan, si después de la preposición queremos traducir un determinante acompañando a un sustantivo, dicho determinante también tiene que ser puesto explicitamente en la traducción.
+Además para SimpleNLG el determinante es la palabra que va en primer lugar en la frase, por lo que traduce en primero el determinante y después la preposición intercambiando el orden lógico de las palabras en lenguaje natural.\\
+Así que en frases como ``El niño juega con el oso'', `Los niños juegan con la pelota'' o ``El bebé juega con los cubos''.\\
+La traducción produce un fallo ya que el orden de traducción de la frase varía traduciendo el determinante antes de la preposición.
+
+Para solucionar este problema se podría implementar que si hay una preposición en la frase, traducir toda la frase como un complemento y que así mantenga el orden de la traducción.  
 \end{itemize}
 
 Una vez analizados los datos obtenidos de la evaluación y encontrados algunos de los fallos y su posible solución en un futuro. Y sin olvidar que no se ha encontrado una aplicación que haga algo parecido para lo que se pensó esta aplicación, realizar una traducción de pictograma a lenguaje natural.Nos encontramos ante unos resultados bastante alentadores que demuestran que se ha creado una aplicación con una buena base sólida para seguir desarrollándola con el fin de completarla y mejorarla. 
