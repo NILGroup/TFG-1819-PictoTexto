@@ -22,7 +22,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/pictoService/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="122">
@@ -30,6 +30,15 @@
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/landingPage/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
@@ -73,7 +82,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/prototype/app/views.py" />
         <option value="$PROJECT_DIR$/prototype/manage.py" />
         <option value="$PROJECT_DIR$/prototype/prototype/urls.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -124,14 +132,15 @@
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/settings.py" />
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/pictoTranslateService/views.py" />
         <option value="$PROJECT_DIR$/pict2Text/pict2Text/pictoService/views.py" />
+        <option value="$PROJECT_DIR$/pict2Text/pict2Text/landingPage/templates/index.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1368" />
-    <option name="y" value="-8" />
-    <option name="width" value="677" />
-    <option name="height" value="1047" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="13" />
+    <option name="y" value="-19" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -173,6 +182,21 @@
               <item name="Codigo" type="462c0819:PsiDirectoryNode" />
               <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
               <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Codigo" type="462c0819:PsiDirectoryNode" />
+              <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
+              <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
+              <item name="landingPage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Codigo" type="462c0819:PsiDirectoryNode" />
+              <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
+              <item name="pict2Text" type="462c0819:PsiDirectoryNode" />
+              <item name="landingPage" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
@@ -321,9 +345,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49729145" visible="true" weight="0.24973656" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49729145" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" sideWeight="0.50270855" side_tool="true" weight="0.14963119" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -334,7 +358,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49894625" visible="true" weight="0.30010834" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49894625" visible="true" weight="0.30010834" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50105375" side_tool="true" weight="0.329718" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -441,13 +465,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/spacy/util.py" />
-    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/landingPage/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pict2Text/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -594,6 +611,13 @@
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pict2Text/pict2Text/landingPage/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
