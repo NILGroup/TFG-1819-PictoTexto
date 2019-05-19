@@ -41,7 +41,27 @@ Con el objetivo de mejorar y completar algunas funcionalidades de cara a obtener
     \item \textbf{Reconocimiento de pictogramas}. Implementar otras alternativas en la aplicación aparte del buscador de pictogramas, para crear mensajes con pictogramas. Una nueva alternativa podría ser: la posibilidad de cargar directamente en nuestra aplicación un mensaje con pictogramas.
     \item \textbf{Evaluación de la usabilidad}. Realizar un diagnostico sobre si la aplicación creada es simple, intuitiva y amigable con el usuario, para ello se podría llevar dicha aplicación a personas que utilizan los pictogramas y analizar que les gusta, que no y como de usable ven nuestra aplicación.
     \item \textbf{Mejora en la lectura de los pictogramas}. Estudiar la posibilidad de cargar las imágenes de los pictogramas de una manera alternativa sin hacer peticiones a la API de Arasaac, como pudiera ser mediante el uso de una base de datos que posea la aplicación para así proporcionar más velocidad cuando se busquen los pictogramas.
-    \item \textbf{Incremento en la complejidad de las frases a traducir}. Actualmente nuestra aplicación realiza un estudio correcto de las frases simples, aquellas que son un sustantivo con un determinante como sujeto, un verbo y algunos complementos en el predicado. Se podría implementar que el sujeto esté formado por varios sustantivos, así como poder realizar traducciones de más de un verbo, en el predicado mejorar las traducciones con preposiciones y estudiar la posibilidad de añadir más complementos.
+    \item \textbf{Implementación de los fallos analizados en nuestra evaluación}. Con los resultados recogidos en la evaluación, hemos estudiado una serie de posibles actualizaciones o modificaciones de los errores encontrados.
+\begin{itemize}
+	\item Fallo traducción del pictograma. Se tiene que observar el sentido de la frase que se quiere traducir, para poder diferenciar entre aquellos sustantivos que necesiten añadir automáticamente en la traducción de su pictograma, más palabras como son: preposiciones, conjunciones, más tipos de determinantes... O los que solo necesiten el tipo de determinante que traduce actualmente.\\
+Así se conseguiría traducir frases como: ``el tren va por la vía '' y ``el papá barre el suelo con la escoba''.
+	 
+	\item Frases reflexivas. Si se consigue obtener la forma reflexiva de cada sustantivo o pronombre, se puede traducirla junto con la palabra a la que hiciera referencia, en el ejemplo `` La niña se lava las manos'', al ser el sustantivo la niña y ser un sustantivo en tercera persona su forma reflexiva sería ``se''.
+	
+	\item Más de un verbo en la oración. Para llevar a cabo esta solución habría que estudiar si los dos verbos se encuentran en un posición consecutiva en la frase, de ser así, se estudiaría en que forma verbal vendría el primero de ellos para así saber en que forma verbal traducir el segundo. Si por el contrario,  vienen por separado habría que observar cual es el verbo principal de la frase  con el fin de encontrar el sujeto, verbo y predicado, y después realizar la traducción pertinente.\\ 
+Así se traducirían frases como: ``Yo quiero ver la televisión'' y ``Yo quiero ir al baño''.
+
+	\item Más de un sustantivo en el sujeto. Este error se podría solventar con la implementación de esta solución en el código. Para ello se tendrían que clasificar a ambos sustantivos como parte principal del sujeto para que ninguno pudiera borrar la información del otro al ser los dos sustantivos y una vez hecho esto asignarles sus determinantes adecuados.\\
+Con esta implementación se traducirían frases del tipo: ``El libro y el estuche están dentro de la mochila'' o ``La fresa y la pera son fruta''.	
+	
+	\item Errores del analizador del lenguaje. Una solución que podría resolver el problema, sería estudiar si en el futuro existe algún analizador más idóneo para el castellano.
+	
+	\item Correlación de determinantes y sustantivos. Una posible solución sería añadir siempre el determinante que se desea, u otra opción sería estudiar obtener si dicho sustantivo es contable o incontable, acompañando a los contables con los determinantes un,una..., y a los incontables con el, la...\\
+Así se lograría traducir: ``Mamá conduce el coche'' o ``La niña come pollo''.
+	
+	\item Correlación entre preposición y determinante. Para arreglar este problema se podría implementar la opción de si hay una preposición en la frase, traducir toda la frase como un complemento y que así mantenga el orden de la traducción. Y se lograrían obtener frases como:\\
+``Los niños juegan con la pelota'' o ``El bebé juega con los cubos''. 
+\end{itemize} 
 \end{itemize}
 
 El factor principal por el que no se han podido realizar las funcionalidades comentadas no ha sido otro que la falta de tiempo. Nos gustaría en un futuro poder seguir mejorando nuestra aplicación con el fin de completarla lo máximo posible y así poder ayudar a las personas que lo necesiten. 
