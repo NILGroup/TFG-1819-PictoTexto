@@ -225,38 +225,46 @@ La ventaja principal de usar un servicio proxy es que abstrae la lógica de acces
 Cuando el servicio de aplicación de algún componente hace uso de alguno de los métodos del servicio proxy, se convierte en un subscriptor de dicho método. Gracias a la suscripción cuando el Servicio Proxy reciba la respuesta de la llamada HTTP, se encargara de avisar a sus suscriptores de que ya ha recibido la respuesta y entregarla. Esto es gracias al patrón Observer que implementa Angular en las llamadas HTTP. En caso de que la respuesta de la llamada fuera un error, el servicio proxy reintentará la llamada hasta cinco veces, si la ultima llamada falla, devuelve el error a los suscriptores. 
 
 En la Figura \ref{fig:proxyClassDiagram} podemos ver los métodos disponibles en la clase ProxyService.
-\figura{Bitmap/Arquitectura/proxyService}{height=5cm, width=7cm}{fig:proxyClassDiagram}{Diagrama de clase del Servicio Proxy}
+\figura{Bitmap/Arquitectura/proxyService}{height=4cm, width=8cm}{fig:proxyClassDiagram}{Diagrama de clase del Servicio Proxy}
 
 \subsection{Servicio de Ventanas Modales}  
 
-Este servicio tiene como finalidad mostrar los errores que hayan podido surgir a lo largo del flujo de la aplicación. El servicio de ventanas modales, es un servicio reutilizable que se inyecta en los componentes, esto nos permite abstraer toda la lógica necesaria para mostrar los errores en un solo servicio, el cual hacen uso todos los controladores de la aplicación Front-End. 
-Su utilidad principal es construir y mostrar una ventana modal genérica, dado un error especifico, con el fin de dar al usuario feedback de los errores que puedan darse. 
+Este servicio tiene como finalidad mostrar los errores que hayan podido surgir a lo largo del flujo de la aplicación. El servicio de ventanas modales el cual hacen uso todos los controladores de la aplicación Front-End, es un servicio reutilizable, esto nos permite abstraer toda la lógica necesaria para mostrar los errores en un solo servicio. 
+Su utilidad principal es construir y mostrar una ventana modal genérica, dado un error especifico, con el fin de dar al usuario feedback de los errores que puedan darse, esto nos permite tener un solo diseño de ventana modal para toda la aplicación. 
 
-Este servicio sigue el patrón Factory, es decir es capaz de crear objetos concretos, gracias a sus datos de entrada, utilizando una plantilla genérica, tal y como podemos ver en la figura \ref{fig:modalsError}.
-\figura{Bitmap/Arquitectura/proxyService}{width=200px}{fig:proxyClassDiagram}{Diagrama de clase del Servicio Proxy}
-Además de esto hemos utilizado la librería NGBoostrap\footnote{https://ng-bootstrap.github.io/} para la implementación de este servicio de ventanas modales, esta librería hace uso del patrón Singleton para las ventanas modales, y ademas abstrae toda la funcionalidad relacionada con el uso de ventanas modales, como pueda ser la lógica de abrir o cerrar la ventana. Además de la funcionalidad tiene estilos CSS propios, que ayudan a definir el tamaño de la ventana modal, el fondo que se pone sobre el body de la pagina, etc. 
-Este servicio tiene dos variables de entrada el código de error y el texto asociado al error, ambos obtenidos del error devuelto por el servicio. En la Figura \ref{fig:modalErrorServiceClass}, podemos ver un diagrama que resume los métodos de la clase ErrorModalService, y muestra su dependencia con la plantilla Error-Modal.html, la cual es usada para generar las ventanas modales.
-\figura{Bitmap/Arquitectura/modalErrorServiceClass}{width=200px}{fig:modalErrorServiceClass}{Diagrama del servicio de modales}
+Este servicio sigue el patrón Factory, es decir es capaz de crear objetos concretos, gracias a sus datos de entrada, utilizando una plantilla genérica, tal y como podemos ver en la figura \ref{fig:modalsError}, donde podemos ver que lo único que cambia es el contenido de lo que muestra la ventana modal.
+\figura{Bitmap/Arquitectura/modalErrorServiceExample}{height=12cm}{fig:proxyClassDiagram}{Ejemplo de diferentes ventanas modales}
+
+Además de esto hemos utilizado la librería NGBoostrap\footnote{https://ng-bootstrap.github.io/}, esta librería hace uso del patrón Singleton para las ventanas modales, y ademas abstrae toda la funcionalidad relacionada con el uso de ventanas modales, como pueda ser la lógica de abrir o cerrar la ventana. Además de la funcionalidad tiene estilos CSS propios, que ayudan a definir el tamaño de la ventana modal, el fondo que se pone sobre el body de la pagina, etc. 
+
+Este servicio tiene dos variables de entrada el código de error y el texto asociado al error. 
+
+En la Figura \ref{fig:modalErrorServiceClass}, podemos ver un diagrama que resume los métodos de la clase ErrorModalService, y muestra su dependencia con la plantilla Error-Modal.html, la cual es usada para generar las ventanas modales.
+\figura{Bitmap/Arquitectura/modalErrorServiceClass}{height=4cm, width=10cm}{fig:modalErrorServiceClass}{Diagrama del servicio de modales}
 
 \subsection{Buscador de Pictogramas}
-La utilidad principal del buscador de pictogramas es ser el punto de entrada de los pictogramas a la aplicación, dado que no existe ningún otro punto de acceso, como pueda ser un archivo con diferentes pictogramas. El componente esta formado por un input donde introducir la palabra para la que se desea buscar el pictograma y un carrusel de pictogramas que permanece oculto hasta que se busca un pictograma y que nos permite mostrar todos los pictogramas asociados con la palabra introducida .El carrusel ha sido implementado con la librería NGBoostrap.
-Este componente posee un controlador, un servicio de aplicación propios y un transformer.
+La utilidad principal del buscador de pictogramas es ser el punto de entrada de los pictogramas a la aplicación, dado que no existe ningún otro punto de acceso, como pueda ser un archivo con el mensaje escrito con pictogramas. 
 
-El controlador es el encargado de conectar el HTML de la vista, con el resto de la aplicación Angular. Tiene sirve para obtener la palabra para la que se desea buscar un pictograma que se desea buscar y enviarlo al servicio de aplicación y además añadir los pictogramas al componente traductor de pictogramas usando el botón añadir.
+El componente esta formado por un input donde introducir la palabra para la que se desea buscar el pictograma y un carrusel de pictogramas que permanece oculto hasta que se busca un pictograma y que nos permite mostrar todos los pictogramas asociados con la palabra introducida. El carrusel ha sido implementado con la librería NGBoostrap.
+Este componente posee un controlador, un servicio de aplicación y un transformer:
+
+El controlador es el encargado de conectar el HTML de la vista, con el resto de la aplicación. Sirve para obtener la palabra para la que se desea buscar un pictograma y enviarlo al servicio de aplicación. Además añadir los pictogramas al componente traductor de pictogramas usando el botón añadir.
  
-El servicio de aplicación creara la URL para hacer la llamada al servicio web de búsqueda del pictogramas asociados a una palabra (visto en la sección \ref{cap5:sec:ServiciosParaPictosPalabra}) usando el archivo de constantes. Con la URL generada llamara al Servicio Proxy, que se encargara de enviar y recibir la respuesta del servicio web. Si la respuesta es correcta el servicio de aplicación hará uso del transformer para generar un objeto para el controlador, en caso de error devolverá el error al controlador para que muestre el mensaje de error.
+El servicio de aplicación creara la url para hacer la llamada al servicio web de búsqueda del pictogramas asociados a una palabra (visto en la sección \ref{cap5:sec:ServiciosParaPictosPalabra}) usando el archivo de constantes. Con la url generada llamara al Servicio Proxy, que se encargara de enviar y recibir la respuesta del servicio web. Si la respuesta es correcta el servicio de aplicación hará uso del transformer para generar un objeto para el controlador. En caso de error devolverá el error al controlador para que muestre el mensaje de error.
 Podemos ver el diagrama del componente buscador de pictogramas en la Figura \ref{fig:finderClass}.    
-\figura{Bitmap/Arquitectura/finderClass}{width=300px}{fig:finderClass}{Diagrama del componente buscador de pictogramas}
+\figura{Bitmap/Arquitectura/finderClass}{height= 11cm, width=14cm}{fig:finderClass}{Diagrama del componente buscador de pictogramas}
 
 \subsection{Traductor de Pictogramas a Lenguaje Natural} 
 
-Este componente sirve de contenedor del array de pictogramas que después traduciremos y para lanzar la traducción, podemos ver este componente en la Figura \ref{fig:traductorPictogramas}.
-En el HTML el componente implementa un contenedor para los pictogramas, donde se muestran la frase de pictogramas, este contenedor se ha implementado usando la biblioteca Material de Angular\footnote{https://material.angular.io/}. Además el componente tiene un botón para lanzar la traducción y la sección donde se mostrara el resultado de la traducción. 
+Este componente sirve de contenedor del array de pictogramas que después traduciremos y para lanzar la traducción.
+En el HTML el componente implementa un contenedor para los pictogramas, donde se muestran la frase con pictogramas, este contenedor se ha implementado usando la biblioteca Material de Angular\footnote{https://material.angular.io/}. Además el componente tiene un botón para lanzar la traducción y la sección donde se mostrara el resultado de la traducción. 
 Este componente tiene un controlador y un servicio de aplicación propio.
 El controlador se encarga de manejar la logica drag and drop que posee el contenedor de pictogramas, y la lógica de borrado de los pictogramas.
-\figura{Bitmap/Arquitectura/translatorComponent}{width=300px}{fig:translatorComponent}{Diagrama del Traductor de Pictogramas a Lenguaje Natural}
+
 En la Figura \ref{fig:translatorComponent}, podemos ver un diagrama que muestras las clases que forman este componente así como los archivos HTML que contienen el código de la vista.
 
-El servicio de aplicación, tiene como parametro de entrada el array de strings que formara el cuerpo de la petición POST, además obtiene la URL del Servicio de Generación de Lenguaje del archivo de constantes, y usando estos datos llamara al servicio proxy, el cual sera encargado de lanzar la petición POST y devolver la respuesta del servicio. Una vez se obtiene la respuesta del servicio se devuelve la respuesta al controlador del componente, el cual ya sera el encargado de mostrar la traducción o mostrar la ventana de la modal de error en caso de error en la respuesta del servicio.
+\figura{Bitmap/Arquitectura/translatorComponent}{height= 11cm, width=14cm}{fig:translatorComponent}{Diagrama del Traductor de Pictogramas a Lenguaje Natural}
+
+El servicio de aplicación, tiene como parametro de entrada el array de strings que formara el cuerpo de la petición post, además obtiene la url del Servicio de Generación de Lenguaje del archivo de constantes, y usando estos datos llamara al servicio proxy, el cual sera encargado de lanzar la petición post y devolver la respuesta del servicio. Una vez se obtiene la respuesta del servicio se devuelve la respuesta al controlador del componente, el cual ya sera el encargado de mostrar la traducción o mostrar la ventana de la modal de error en caso de error en la respuesta del servicio.
 
 
