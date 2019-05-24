@@ -4,9 +4,9 @@
 \chapter{Herramientas}
 \label{cap:Herramientas}
 
-A lo largo de este capítulo analizaremos las diferentes herramientas utilizadas para el desarrollo de este TFG. Para implementar todas las funcionalidades de la aplicación vamos a utilizar servicios web.
-Lo primero es conseguir las palabras asociadas a cada pictograma del mensaje de entrada para ello haremos uso de la API de Arasaac, que explicaremos en la Sección \ref{cap3:sec:API-Arasaac}. Para generar frases gramaticalmente correctas a partir de las palabras asociadas a los pictogramas vamos a necesitar un generador de lenguaje natural como es SimpleNLG, (Sección \ref{cap3:sec:SimpleNLG}) y un analizador sintáctico como Spacy, (sección \ref{cap3:sec:Spacy}).
-Una vez obtenidas las herramientas necesarias para la generación de las frases, necesitamos un espacio donde facilitar la conexión entre los diferentes servicios web, para ello utilizamos Django, que será explicado en la Sección \ref{cap3:sec:Django}. Por último, para agilizar tanto el tiempo de respuesta de los servidores como el proceso de comunicación de los diferentes servicios web de nuestro trabajo se ha elegido la herramienta Angular para implementar el Front-End de nuestra aplicación, presentado en la Sección \ref{cap3:sec:Angular}.
+A lo largo de este capítulo analizaremos las diferentes herramientas utilizadas para el desarrollo de este TFG. Para implementar todas las funcionalidades de la aplicación vamos a utilizar servicios web para traducir un texto escrito con pictogramas a lenguaje natural,
+lo primero es conseguir las palabras asociadas a cada pictograma del mensaje de entrada para ello haremos uso de la API de Arasaac, que explicaremos en la Sección \ref{cap3:sec:API-Arasaac}. Para generar frases gramaticalmente correctas a partir de las palabras asociadas a los pictogramas vamos a necesitar un generador de lenguaje natural como es SimpleNLG (Sección \ref{cap3:sec:SimpleNLG}) y un analizador sintáctico como Spacy (Sección \ref{cap3:sec:Spacy}).
+También, necesitamos un espacio donde conectar los diferentes servicios web, para ello utilizamos Django, que será explicado en la Sección \ref{cap3:sec:Django}. Por último, para agilizar tanto el tiempo de respuesta de los servidores como el proceso de comunicación de los diferentes servicios web se ha elegido la herramienta Angular (Sección \ref{cap3:sec:Angular}) para implementar el Front-End de nuestra aplicación.
 
 %-------------------------------------------------------------  
 \section{API-Arasaac}
@@ -19,63 +19,63 @@ En nuestra aplicación los pictogramas son fundamentales y necesitábamos una herr
     \item Obtener la palabra o palabras asociadas a un pictograma.
 \end{itemize}
 Para ello hemos empleado la API de Arasaac\footnote{https://beta.arasaac.org/developers/api}, ya que de todos los sistemas pictográficos vistos en la Sección \ref{cap2:sec:Pictogramas}, los pictogramas de Arasaac son los más utilizados en los países hispanohablantes.
-Además, Arasaac ofrece multitud de herramientas gratuitas.\\
+Además, Arasaac ofrece multitud de herramientas gratuitas.
+
 De todos los métodos ofrecidos por la API de Arasaac hemos usado los siguientes:
 \begin{itemize}
-    \item SearchText\footnote{/pictograms/search/searchText}: Dada una palabra devuelve todos los pictogramas asociados a ella.Por ejemplo, dada la palabra nos devuelve el JSON. Dicho JSON contiene toda la información relevante a dicha palabra, tipo de palabra, significado, sinónimos, plurales y keyword o palabra por la que se traduce, mostrado en la Figura \ref{fig:jsonPerro}.
-\figura{Bitmap/Herramientas/jsonPerro}{width=12cm}{fig:jsonPerro}{JSON devuelto por el método SearchText para la palabra perro, Fuente https://beta.arasaac.org/developers/api.}
+    \item SearchText\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/search/searchText}}: Dada una palabra devuelve todos los pictogramas asociados a ella.Por ejemplo, dada la palabra ``perro'' nos devuelve el JSON, mostrado en la Figura \ref{fig:jsonPerro}. Dicho JSON contiene toda la información relevante a dicha palabra, tipo de palabra, significado, sinónimos, plurales y keyword o palabra por la que se traduce, además de proporcionarnos sus diferentes ``idPictogram'' con los que obtendremos los pictogramas.
+\figura{Bitmap/Herramientas/jsonPerro}{width=12cm}{fig:jsonPerro}{JSON devuelto por el método SearchText para la palabra perro. Fuente: https://beta.arasaac.org/developers/api.}
 
-    \item idPictogram\footnote{/pictograms/idPictogram}: Dado un identificador de un pictograma devuelve un JSON con toda la información asociada a la palabra la cuál se identifica con dicho id, por ejemplo con el id 2549, se obtiene un JSON con la información de \textit{reloj}, tal y como se muestra en la Figura \ref{fig:jsonReloj}
-\figura{Bitmap/Herramientas/jsonReloj}{width=12cm}{fig:jsonReloj}{JSON devuelto por el método IdPictogram para el identificador 2549, Fuente https://beta.arasaac.org/developers/api.}
+    \item idPictogram\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/idPictogram}}: Dado un identificador de un pictograma devuelve un JSON con toda la información asociada a la palabra la cuál se identifica con dicho id, por ejemplo con el id 2549, se obtiene un JSON con la información de \textit{reloj}, tal y como se muestra en la Figura \ref{fig:jsonReloj}
+\clearpage
+\figura{Bitmap/Herramientas/jsonReloj}{width=12cm}{fig:jsonReloj}{JSON devuelto por el método idPictogram para el identificador 2549. Fuente: https://beta.arasaac.org/developers/api.}
 \end{itemize} 
 
-La API de Arasaac es gratuita con fines no comerciales, siempre que en la aplicación se mencione explícitamente a Arasaac y se cumpla la licencia CC (Creative Commons) RY-NC-SA \footnote{https://creativecommons.org/licenses/by-nc-sa/3.0/es/}.
+La API de Arasaac es gratuita con fines no comerciales, siempre que en la aplicación se mencione explícitamente a Arasaac y se cumpla la licencia CC (Creative Commons) RY-NC-SA\footnote{https://creativecommons.org/licenses/by-nc-sa/3.0/es/}.
 
 \section{SimpleNLG}
 %-------------------------------------------------------------
 \label{cap3:sec:SimpleNLG}
 Para la aplicación se necesitaba un generador de frases gramaticalmente correctas en castellano. La única herramienta que cumplía con estos requisitos era SimpleNLG, una biblioteca hecha en Java que permite la generación de lenguaje natural \citep{Trzpis2015}.
-Simple-NLG permite crear frases simples y dentro de estas se pueden crear tanto oraciones nominales, como por ejemplo: ``la casa azul'' u  oraciones verbales, como: ``mi perro es negro''. Dependiendo del tipo de frase, la oración se forma de una u otra forma:
+Simple-NLG permite crear frases simples y dentro de estas se pueden crear tanto oraciones nominales, como por ejemplo ``la casa azul'' u  oraciones verbales, como ``El perro era negro''. Dependiendo del tipo de frase, la oración se forma de una u otra forma:
 \begin{itemize}
-    \item \textbf{Oraciones nominales}. Cuando la frase no tiene ningún verbo, SimpleNLG comienza generando el sustantivo de la frase y añadiendo a dicho sustantivo el determinante que concuerde con él en género y número. Para ello se le debe proporcionar a SimpleNLG el sustantivo de la oración como dato de entrada y la herramienta añadirá automáticamente el determinante que concuerde en género y número con él. Una vez creado el sustantivo con su determinante correspondiente, la herramienta permite añadirle complementos, como pueden ser: adjetivos, adverbios, etc. Por ejemplo si queremos generar la frase ``La casa azul'', debemos proporcionar a SimplNLG el sustantivo (``casa''), el género (femenino) y el número (singular) y el complemento del sustantivo (``azul'').    
-    \item \textbf{Oraciones verbales}. Estos tipos de oraciones tienen tres partes, el sujeto, el verbo y el predicado:
+    \item \textbf{Oraciones nominales}. Cuando la frase no tiene ningún verbo, SimpleNLG comienza generando el sustantivo de la frase y añadiendo a dicho sustantivo el determinante que concuerde con él en género y número. Para ello se le debe proporcionar a SimpleNLG el sustantivo de la oración como dato de entrada y la herramienta añadirá automáticamente el determinante que concuerde en género y número con él. Una vez creado el sustantivo con su determinante correspondiente, la herramienta permite añadirle complementos, como pueden ser: adjetivos, adverbios, etc. Por ejemplo, si queremos generar la frase ``La casa azul'' debemos proporcionar a SimpleNLG el sustantivo (``casa''), el género (femenino), el número (singular) y el complemento del sustantivo (``azul'').    
+    \item \textbf{Oraciones verbales}. Estos tipos de oraciones tienen tres partes::
     \begin{itemize}
     \item Sujeto: Se genera de la misma forma que en las frases nominales.
-    \item Verbo: Para generarlo debemos proporcionar a SimpleNLG el verbo en infinitivo y el tiempo verbal al que se refiere (pasado, presente o futuro).
-El género y el número para la conjugación del verbo lo genera de manera automática SimpleNLG a partir de la información del sujeto.
-    \item Complementos. Para generar el predicado debemos proporcionar a SimpleNLG las palabras que lo componen junto con su categoría léxica (sustantivo, adjetivo, adverbio..). Con toda esta información, SimpleNLG genera un predicado gramaticalmente correcto. 
-    Por ejemplo, para generar la frase ``mi perro es negro'', deberíamos proporcionar a SimpleNLG el sujeto (``mi perro''), el verbo (``ser'') y el complemento (``negro''). 
+    \item Verbo: Para generarlo debemos proporcionar a SimpleNLG el verbo en infinitivo y el tiempo verbal en el que hay que conjugar el verbo (pasado, presente o futuro).
+El género y el número para la conjugación del verbo obtendrá automáticamente SimpleNLG a partir de la información del sujeto.
+    \item Complementos. Para generar el predicado debemos proporcionar a SimpleNLG las palabras que lo componen junto con su categoría léxica (sustantivo, adjetivo, adverbio...). Con toda esta información, SimpleNLG genera un predicado gramaticalmente correcto. 
     \end{itemize}
+    Por ejemplo, para generar la frase ``El perro era negro'', deberíamos proporcionar a SimpleNLG el sujeto (``perro''), el verbo (``ser'') con el tiempo verbal (pasado) y el complemento (``negro''). 
 \end{itemize}
 Por último, es importante destacar que SimpleNLG nos permite introducir negaciones en las oraciones junto con otras muchas funcionalidades que quedan fuera del ámbito de nuestro trabajo.
 
 \section{Spacy}
 %-------------------------------------------------------------
 \label{cap3:sec:Spacy}
-Una vez que transformamos los pictogramas en palabras, se necesita conocer la categoría lexica de cada una de esas palabras (sustantivo, verbo, adjetivo...) así como su género y número para poder generar una frase gramatical correcta. Para esta función de análisis usamos la librería Spacy.\\
+Una vez que transformamos los pictogramas en palabras, se necesita conocer la categoría lexica de cada una de esas palabras (sustantivo, verbo, adjetivo...) así como su género y número para poder generar una frase gramatical correcta, ya que como hemos visto en la Sección \ref{cap3:sec:SimpleNLG}, SimpleNLG necesita esta información. Para esta función de análisis usamos la librería Spacy.
 Esta elección se basó en que es la herramienta que posee una mayor precisión en la traducción, como se puede observar en la Figura \ref{fig:precisionSpacy} .\\
 
-\figura{Bitmap/Herramientas/precisionSpacy}{width=12cm, height=4cm}{fig:precisionSpacy}{Benchmark de diferentes procesadores del lenguaje, Fuente https://spacy.io/.}
+\figura{Bitmap/Herramientas/precisionSpacy}{width=12cm, height=4cm}{fig:precisionSpacy}{Benchmark de diferentes procesadores del lenguaje. Fuente: https://spacy.io/.}
 
 Spacy es una biblioteca escrita en Python diseñada para el procesamiento avanzado de lenguaje natural\footnote{https://medium.com/datos-y-ciencia/comenzando-con-spacy-para-procesamiento-de-lenguaje-natural-e8cf24a18a5a}.
-
-La clase Tokenizer de Spacy es la encargada de dividir el mensaje recibido en palabras y de informarnos de la categoría (sustantivo, adjetivo, pronombre, verbo, determinante, adverbio, preposiciones, conjunciones o complementos) de cada palabra, junto con las siguientes características según la categoría:   
+La clase Tokenizer de Spacy es la encargada de dividir el mensaje recibido en palabras y de informarnos de la categoría (sustantivo, adjetivo, pronombre, verbo, determinante, adverbio, preposición, conjunción o complemento) de cada palabra, junto con las siguientes características según la categoría:   
 \begin{itemize}
     \item \textbf{Sustantivos} y \textbf{Adjetivos}. Género, número, sinónimos.
     \item \textbf{Pronombres}. Tipo de pronombre (personal, demostrativo, indefinido, posesivo), número de la persona (si es un pronombre personal o posesivo devuelve el número de la persona a la que hace referencia).
-    \item \textbf{Verbos}.Forma verbal(infinitivo, gerundio o participio), tiempo verbal (pasado, presente o futuro).
+    \item \textbf{Verbos}. Forma verbal (infinitivo, gerundio o participio), tiempo verbal (pasado, presente o futuro).
     \item \textbf{Determinantes}. Tipo de determinante (artículo, posesivo, numeral), género y número.
     \item \textbf{Adverbios}. Tipo de adverbio ( de lugar, de tiempo, de cantidad, de modo). 
-    \item \textbf{Preposiciones}, \textbf{Conjunciones} y \textbf{Complementos}.
-
+\end{itemize}
 En la Figura \ref{fig:palabrasSpacy}, podemos observar un ejemplo del análisis que realiza Spacy de cada palabra.
 \figura{Bitmap/Herramientas/palabrasSpacy}{width=6cm}{fig:palabrasSpacy}{Ejemplo del análisis de cada palabra hecho por Spacy, Fuente https://spacy.io/.} 
-\end{itemize}
+
 
 \section{Django}
 %-------------------------------------------------------------
 \label{cap3:sec:Django}  
-Cada funcionalidad que se utiliza en este TFG ha sido implementada como un servicio web, por ello se decidió utilizar un framework que ayudase a los programadores a crear, e implementar de una manera más fácil y eficiente dichos servicios web. Además estos servicios  están escritos en Python ya que es el lenguaje de programación más usado para el Procesamiento de Lenguaje Natural (PLN) por lo que es aconsejable que dicho framework estuviera también desarrollado en Python. 
+Cada funcionalidad que se utiliza en este TFG ha sido implementada como un servicio web, por ello se decidió utilizar un framework que ayudase a los programadores a crear e implementar de una manera más fácil y eficiente dichos servicios web. Además estos servicios  están escritos en Python ya que es el lenguaje de programación más usado para el Procesamiento de Lenguaje Natural (PLN) por lo que es aconsejable que dicho framework estuviera también desarrollado en Python. 
 Con estas restricciones en mente se eligió la herramienta Django, la cuál nos permite desarrollar aplicaciones web\footnote{\url{https://openwebinars.net/blog/que-es-django-y-por-que-usarlo/}} de código abierto y gratuitas escritas en Python. Django proporciona: un manejador para los archivos estáticos de las rutas, un host sobre el que se puede acceder a los servicios, plantillas en las que basarnos para crear la aplicación. Además respeta el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C), por lo que fomenta el desarrollo rápido y un diseño limpio y pragmático.
     
 \section{Angular}
