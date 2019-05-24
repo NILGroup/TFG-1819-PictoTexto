@@ -117,31 +117,28 @@ Este servicio web recibe un array de palabras y devuelve una frase creada a part
 \begin{itemize}
 \item Creamos el sintagma nominal que sera el objeto contenedor de todas las palabras que formaran el sujeto llamando a la función \textbf{createNounPhrase()} de la librería SimpleNLG.
  
-\item Se establece el determinante del sujeto utilizando la función \textbf{setDeterminer()} de SimpleNLG, sobre el objeto creado anteriormente. A esta función se le pasa el determinante o pronombre de la lista de palabras de entrada dado que solo permite tener un determinante o pronombre por cada objeto creado por la función \textbf{createNounPhrase()}, de manera que si la entrada es ``perro'', la salida sería ``el perro'' y si la entrada es ``nuestro, perro'' la salida sera ``nuestro perro''. En caso de que la lista de palabras que forman el sujeto no contenga un pronombre o un determinante se añade el determinante por defecto ``el'', dado que SimpleNLG no añade ningún determinante.
+\item Se establece el determinante del sujeto utilizando la función \textbf{setDeterminer()} de SimpleNLG, sobre el objeto creado anteriormente. A esta función se le pasa el determinante o pronombre de la lista de palabras de entrada. En caso de que la lista de palabras que forman el sujeto no contenga un pronombre o un determinante se añade el determinante por defecto ``el'', dado que SimpleNLG no añade ningún determinante.
 
-\item Se establece como palabra principal del sujeto la palabra con categoría léxica \textbf{NOUN}, utilizando el método \textbf{setFeature())}. Además se obtiene el género y número de la palabra principal del sujeto y usando las funciones \textbf{setFeature()} y \textbf {setPlural()}, se establecen como género y número del sintagma nominal. Cabe destacar que por defecto el género y número de cualquier frase nominal es masculino singular, y solo se establecerá el género del sujeto en caso de que deba ser femenino o plural. Al establecer el género y número del sujeto todas las palabras que lo conforman utilizaran ese género y número,  por ejemplo  ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''. Dado que no todas las palabras tienen pictogramas asociados para los diferentes géneros o número, en caso de existir un determinante con género o número,se establecerá dicho género para todo el sintagma.
+\item Se establece como palabra principal del sujeto la palabra con categoría léxica \textbf{NOUN}, utilizando el método \textbf{setFeature()}. Además se obtiene el género y número de la palabra principal del sujeto y usando las funciones \textbf{setFeature()} y \textbf{setPlural()} se establecen el género y el número del sintagma nominal. Al establecer el género y número del sujeto todas las palabras que lo conforman utilizaran ese género y número,  por ejemplo  ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''. Dado que no todas las palabras tienen pictogramas asociados para los diferentes géneros o número, en caso de existir un determinante con género o número, se establecerá dicho género para todo el sintagma, por ejemplo palabras como: profesoras o corredora, para las cuales no existen pictogramas asociados.
 
 \item En caso de encontrar un adverbio dentro del array de palabras del sintagma nominal se fuerza su posición dentro del sintagma nominal al final. Por ejemplo, para la entrada [ayer, profesora, despistada, comer, galletas] se generara la frase ``La profesora despistada ayer comió galletas''
 \end{itemize}
 
-\item De la misma manera que con el sujeto, existe una lógica para la creación del sintagma verbal.
+\item Para crear el sintagma verbal se siguen los siguientes pasos:
 \begin{itemize}
 \item Se genera un objeto que sera el sintagma verbal, con la función \textbf{createNounPhrase()}.
-\item Se añade el determinante con una lógica parecida al sujeto, con la diferencia de que el determinante por defecto es ``un'', y solo se añadirá en caso de que exista una palabra con categoría léxica \textbf{NOUN}. De manera que si el array está formado por las palabras ``galletas, duro'' el resultado sera ``unas galletas duras''.
+\item Se añade el determinante con una lógica parecida al sujeto, con la diferencia de que el determinante por defecto es ``un'', y solo se añadirá en caso de que exista una palabra con categoría léxica \textbf{NOUN}. De manera que si el array está formado por las palabras [niño, comer, galletas, duro] el resultado sera ``El niño come unas galletas duras''.
 \item En caso de existir una palabra con categoría léxica \textbf{NOUN}, se aplicara su género y número al sintagma verbal, en caso de no existir se aplicara el género y número del sintagma nominal.
-\item Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras que conformaran la frase final contienen ``profesora, comer, ayer, galletas, duro'', la frase resultante sera ``La profesora comió galletas duras ayer''. 
+\item Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras que conformaran la frase final contienen [profesora, comer, ayer, galletas, duro], la frase resultante sera ``La profesora comió galletas duras ayer''. 
 \end{itemize}
 
 
-\item Se hace una llamada al Servicio Web de Detección de Tiempo Verbal con todas las palabras que formaran la frase final, para obtener el tiempo verbal el que se debe conjugar la frase resultante, y guardaremos el resultado para el ultimo paso.
+\item Se hace una llamada al Servicio Web de Detección de Tiempo Verbal con el array de palabras, para obtener el tiempo verbal para conjugar la frase resultante, y guardaremos el resultado para el ultimo paso.
 
-\item Para terminar creamos un objeto frase de la biblioteca simpleNLG con \textbf{SPhraseSpec}. Utilizando la función \textbf{.setSubject}, añadimos el sujeto creado previamente. En caso de tener verbo lo añadiremos utilizando \textbf{setVerbPhrase} y seleccionaremos el tiempo verbal de la frase, en caso de que no sea presente usaremos las funciones \textbf{setFeature(Feature.TENSE, Tense.FUTURE) o setFeature(Feature.TENSE, Tense.PAST)}, para definir el tiempo verbal en futuro o pasado respectivamente.
+\item Para terminar creamos un objeto frase con \textbf{SPhraseSpec()}. Utilizando la función \textbf{.setSubject()}, añadimos el sujeto creado previamente. En caso de tener verbo lo añadiremos utilizando \textbf{setVerbPhrase()} y seleccionaremos el tiempo verbal de la frase, con la función \textbf{setFeature(Feature.TENSE, Tense.FUTURE) o setFeature(Feature.TENSE, Tense.PAST)}, para definir el tiempo verbal en futuro o pasado respectivamente.
 
-\item Una vez tenemos todos la frase formada se pasa a la realización de la misma. Este proceso de realización utiliza el objeto \textbf{Realiser} de SimpleNlG para devolver un string que contendra una frase construida utilizando los datos del punto. El resultado se guardara en una variable la cual sera la respuesta de este servicio web.
+\item Una vez tenemos todos la frase formada se pasa a la realización de la misma. Este proceso de realización utiliza el objeto \textbf{Realiser} de SimpleNLG para devolver un string que contendrá una frase construida utilizando los datos del punto anterior.
 \end{enumerate}
-
-\figura{Bitmap/ServiciosWeb/NLGService}{height=18cm}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural}
-
 \begin{table}[htbp]
 \begin{tabular}{p{4cm}p{8cm}}
 \hline
@@ -167,7 +164,9 @@ La, corredor, rápido, perder, zapatillas, nuevo & La corredora rápida ayer perdi
 \label{tabla:tiempoVerbal}
 \end{table}
 
-En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue este servicio y en la tabla \ref{tabla:tiempoVerbal} podemos varios ejemplos de entradas y salidas del servicio.
+\figura{Bitmap/ServiciosWeb/NLGService}{height=18cm}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural}
+En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue este servicio y en la Tabla  \ref{tabla:tiempoVerbal} podemos varios ejemplos de entradas y salidas del servicio.
+
 %------------------------------------------------------------------
 \subsection{Servicios web para la Gestión de Pictogramas} %-------------------------------------------------------------------
 \label{cap5:sec:ServiciosParaPictos}
