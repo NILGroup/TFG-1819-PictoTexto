@@ -3,9 +3,8 @@
 \chapter{Estado de la Cuestión}
 \label{cap:estadoDeLaCuestion}
 
-Como  ya se ha explicado en el capitulo \ref{cap:introduccion}, nuestro objetivo es crear una aplicación que permita traducción de pictogramas a lenguaje natural. El primer paso por lo tanto sera entender que son los Sistemas Aumentativos y Alternativos de Comunicación (SAAC) en la sección \ref{cap2:sec:Sistemas Aumentativos y Alternativos de Comunicación}
- , hablaremos de diferentes formas de SAACS. Una vez establecido que son los SAACSS y sus diferentes tipos profundizaremos en los pictogramas en la sección \ref{cap2:sec:Pictogramas}
-  y en como es la comunicación con ellos. Una vez sentadas las bases de la comunicación con pictogramas, en la sección \ref{cap2:sec:SistemasDeTraducción} daremos un breve repaso a los servicios de traducción de texto a pictogramas. A continuación, en la sección \ref{cap2:sec:GeneraciónDeLenguajeNatural} se expondrá la Generación de Lenguaje Natural, que es la rama de la Inteligencia Artificial centrada en la generación del lenguaje, dado que en nuestro trabajo sera necesario para generar texto. Por ultimo hablaremos brevemente sobre los Servicios Web en la sección \ref{cap2:sec:ServiciosWeb}, exponiendo cuales son las ventajas que aportan.
+Como  ya se ha explicado en el Capítulo \ref{cap:introduccion}, nuestro objetivo es crear una aplicación que permita la traducción de un texto escrito con pictogramas a lenguaje natural. El primer paso para conseguir esto sera entender que son los Sistemas Aumentativos y Alternativos de Comunicación (SAAC). En la sección \ref{cap2:sec:Sistemas Aumentativos y Alternativos de Comunicación}
+ explicaremos que son los SAACs y los diferentes tipos. A continuación en la sección \ref{cap2:sec:Pictogramas}, profundizaremos en los pictogramas y en como es la comunicación con ellos. Una vez sentadas las bases de la comunicación con pictogramas, en la sección \ref{cap2:sec:SistemasDeTraducción} daremos un breve repaso a los servicios de traducción de texto a pictogramas existentes. A continuación, en la sección \ref{cap2:sec:GeneraciónDeLenguajeNatural} se explicará que es la Generación de Lenguaje Natural (GLN), dado que en nuestro trabajo sera necesario la GLN para generar el texto traducido. Por ultimo, hablaremos brevemente sobre los servicios web en la sección \ref{cap2:sec:ServiciosWeb}, exponiendo cuales son sus ventajas y desventajas.
   
 %------------------------------------------------------------------
 \section{Sistemas Aumentativos y Alternativos de Comunicación}
@@ -135,7 +134,6 @@ Los pictogramas están clasificados en cinco grandes grupos: pictogramas a color,
 A diferencia de otros sistemas pictograficos, ARASAAC hace distición de genero y numero tal y como se ve en la Figura \ref{fig:generoNumero}, que muestra los distintos pictogramas para la palabra profesor, según el genero y número. 
 \figura{Bitmap/EstadoDeLaCuestion/generoNumero}{width=250px}{fig:generoNumero}{Ejemplo del pictograma profesor con diferente genero y numero}
 
-
 Además, ARASAAC permite añadir un marco al borde del pictograma, dicho marco sirve para clasificar la palabra diferenciando entre sujetos, verbos y objetos tal y como podemos ver en la Figura \ref{fig:bordes}. Los sujetos no llevarían borde, las acciones o verbos tendrán un borde verde y en los objetos o complementos directos el borde sera amarillo.
 
 \figura{Bitmap/EstadoDeLaCuestion/borde}{width=150px}{fig:bordes}{Ejemplo de bordes de color en pictogramas}
@@ -240,12 +238,30 @@ Durante la generación del lenguaje se puede abstraer el proceso y encapsularlo e
 \item Micro planificación. Partiendo de la salida de la macro planificación, se determina que partes formaran el texto resultado, agregando las estructuras que formaran parte de este, el léxico que se utilizara para expresar los conceptos y los hechos recogidos en la primera etapa y la generación de expresiones que aparecerán en el texto. Siguiendo el ejemplo visto en la macro planificación se pueden generar pequeñas frases referenciales como pueden ser ``Viento de las 6:00'' o ``a las 15:00 el viento cambio'', donde el referente común es ``el viento''.
 \item Realización. El objetivo de esta fase es la realización de las oraciones finales que se utilizaran, así como la estructura final que tendrá el texto. La generación o realización del texto se puede dividir en dos partes:
 \begin{itemize}
-\item Realización Lingüística: en esta parte se determina la representación en palabras del texto de salida, es decir, se forman las oraciones.
+\item Realización Lingüística: en esta parte se determina la representación en palabras del texto de salida, es decir, se forman las oraciones. Durante esta fase se hace uso de un diccionario de palabras, para la resolución de las diferentes formas de las palabras como puede ser genero o número. Por cada palabra del diccionario se suele hacer uso de la siguiente estructura:
+\begin{itemize}
+\item Forma base de la palabra.
+\item Categoría Léxica: si es un nombre, adjetivo, verbo, determinante...
+\item Genero: diferenciación entre masculino, femenino o indeterminado.
+\item Numero: singular o plural.
+\end{itemize}
+Dependiendo del tipo de palabra pueden aparecer otras características, en caso de un verbo el diccionario también tiene las diferentes conjugaciones para los tiempos verbales, presente, pasado, futuro, imperativo..., los diferentes conjugaciones verbales dependerá del diccionario que use el generador de lenguaje.
+En caso de palabras como nombres, determinantes o adjetivos, se añaden además las siguientes entradas al diccionario:
+\begin{itemize}
+\item Palabra en singular.
+\item Palabra en plural.
+\item Palabra con genero femenino.
+\item Palabra con genero femenino y en plural.
+\end{itemize}
+
+
 \item Realización de la Estructura: en esta parte se define el formato correcto del texto generado para su visualización en un medio determinado, como puede ser HTML, o un documento Latex, tal y como podemos ver en la Figura \ref{fig:realizacionSalida}.
 \end{itemize}
-\figura{Bitmap/EstadoDeLaCuestion/RealizacionSalida}{width=250px}{fig:realizacionSalida}{Salida de la fase de la realización donde podemos ver la estructura final en HTML a la izquierda y Latex a la derecha.}
 
+
+\figura{Bitmap/EstadoDeLaCuestion/RealizacionSalida}{width=250px}{fig:realizacionSalida}{Salida de la fase de la realización donde podemos ver la estructura final en HTML a la izquierda y Latex a la derecha.}
 \end{enumerate}
+
 Existen diferentes tipos de arquitectura de sistemas de GLN \citep{CarlosGarcia2004}:
 \begin{enumerate}
 	\item Integrada o monolítica: el sistema es un solo bloque sin división clara entre módulos.
@@ -255,25 +271,8 @@ Existen diferentes tipos de arquitectura de sistemas de GLN \citep{CarlosGarcia2
 	\item Basada  en revisión: la información fluye de forma cíclica entre los módulos hasta alcanzar un estado óptimo.
 \end{enumerate}
 
-Durante las diferentes fases de la generación de lenguaje se hace uso de un diccionario de palabras, como apoyo para el proceso sobretodo en la fase de lexicalización para las diferentes formas de las palabras como por ejemplo puede ser genero o número y preprocesado, donde se analizan las diferentes palabras de la entrada. Por cada palabra del diccionario se suele hacer uso de la misma estructura:
-
-\begin{itemize}
-\item Forma base de la palabra.
-\item Categoría Léxica: si es un nombre, adjetivo, verbo, determinante...
-\item Genero: diferenciación entre masculino, femenino o indeterminado.
-\item Numero: singular o plural.
-\end{itemize}
-Dependiendo de que tipo de palabra sea pueden aparecer otras características, en caso de que la palabra sea un verbo el diccionario también tiene las diferentes conjugaciones para los tiempos verbales, presente, pasado, futuro, imperativo..., los diferentes conjugaciones verbales dependerá del diccionario que use el generador de lenguaje.
-En caso de palabras como nombres, determinantes o adjetivos, se añaden además las siguientes entradas al diccionario:
-\begin{itemize}
-\item Palabra en singular.
-\item Palabra en plural.
-\item Palabra con genero femenino.
-\item Palabra con genero femenino y en plural.
-\end{itemize}
-
 %-------------------------------------------------------------
-\section{Servicios Web}
+\section{Servicios web}
 %-------------------------------------------------------------
 \label{cap2:sec:ServiciosWeb}
 
@@ -296,11 +295,11 @@ A nivel técnico, los servicios web más usados suelen ser de dos tipos.
 \begin{itemize}
  \item SOAP. Utilizan el lenguaje XML para poder comunicarse utilizando el protocolo SOAP (Simple Object Access Protocol), este lenguaje es usado tanto para definir la arquitectura como el formato de los mensajes. Estos tipos de servicios deben contener un lenguaje legible para la máquina con la descripción de operaciones ofrecidas por el servicio escrito en WSDL (Web Services Description Language), el cuál está basado también en XML con el fin de definir interfaces sintácticamente.
  
-  \item Restfull (Representational State Transfer Web Services).  Los servicios web Restfull utilizan estándares como: SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura que podríamos llamar ligera, ya que utilizan las herramientas mínimas para formar los servicios. El desarrollo de este tipo de servicios es barato y su adaptación poco costosa. Son más adecuados para integraciones básicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
+  \item Restfull (Representational State Transfer Web Services). Los servicios web Restfull utilizan estándares como: SML, URI, MIME, y sobre todo HTML. Además posee una infraestructura que podríamos llamar ligera, ya que utilizan las herramientas mínimas para formar los servicios. El desarrollo de este tipo de servicios es barato y su adaptación poco costosa. Son más adecuados para integraciones básicas ad-hoc. Estos servicios suelen mezclarse mejor con HTTP que los basados en SOAP, ya que no necesitan mensajes XML ni definiciones WSDL.
    
 \end{itemize}
 
-En una arquitectura de Servicios Web se pueden distinguir tres partes fundamentales para el establecimiento de la comunicación\footnote{http://www.jtech.ua.es/j2ee/publico/servc-web-2012-13/sesion01-apuntes.html}: 
+En una arquitectura de servicios web se pueden distinguir tres partes fundamentales para el establecimiento de la comunicación\footnote{http://www.jtech.ua.es/j2ee/publico/servc-web-2012-13/sesion01-apuntes.html}: 
 
 \begin{itemize}
   \item Proveedor de servicios web. Es el encargado de enviar al publicador del servicio un fichero WSDL con la información básica de dicho servicio.
@@ -308,7 +307,7 @@ En una arquitectura de Servicios Web se pueden distinguir tres partes fundamenta
    \item Proveedor del servicio. Acepta la petición del servicio y envía los datos estructurados en formato XML usando SOAP, si fuese un servicio REST los datos enviados serían de tipo JSON.  
 \end{itemize}
 
-\subsection{Ventajas de los servicios Web}
+\subsection{Ventajas de los servicios web}
 Las tres principales ventajas de usar servicios web son\footnote{https://sites.google.com/site/preyectodetics/home/servicios-web}:
 \begin{itemize}
   \item Ayudan a mejorar la conexión y operabilidad entre dos aplicaciones software sin importar sus propiedades o sino comparten plataforma de instalación.
@@ -316,7 +315,7 @@ Las tres principales ventajas de usar servicios web son\footnote{https://sites.g
   \item Permiten y facilitan que software y servicios de diferentes compañías se puedan combinar formando un servicio funcional.      
 \end{itemize}
 
-\subsection{Desventajas de los servicios Web}
+\subsection{Desventajas de los servicios web}
 Las tres principales desventajas de los servicios web son\footnote{http://fabioalfarocc.blogspot.com/}:
 \begin{itemize}
   \item Las transacciones que llevan consigo estos servicios están mucho menos desarrolladas que otros estándares abiertos.
