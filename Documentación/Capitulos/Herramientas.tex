@@ -81,26 +81,19 @@ Con estas restricciones en mente se eligió la herramienta Django, la cuál nos pe
 \section{Angular}
 %-------------------------------------------------------------
 \label{cap3:sec:Angular}
-Angular se ha usado para gestionar toda la parte Front-End de nuestra aplicación haciendo cada parte de la página web independiente.\\ 
+Angular se ha usado para gestionar toda la parte Front-End de nuestra aplicación haciendo cada parte de la página web independiente. 
 Angular es un framework de desarrollo creado y mantenido por Google, cuya finalidad consiste en el desarrollo de aplicaciones web SPA (Single-Page Applications), es decir, interacción web con una sola página, lo que provoca que la aplicación sea más rápida, dinámica y fluida. 
   
-Para realizar la parte Front-End de nuestra aplicación se estudiaron diferentes herramientas. En un primer momento se pensó en extender la herramienta Django para la parte del cliente, pero dicha herramienta está pensada principalmente para la gestión de la parte Back-End y por tanto se descartó esta idea.
-La segunda alternativa fue introducir JQuery, esta segunda opción tampoco era la más idónea ya que se trata de una librería orientada a acceder y modificar los elementos de la página, pero carece de la facilidad que otorga Angular al utilizar componentes, aplicar patrones de arquitectura y sobretodo la rapidez y facilidad de Angular para el tratamiento de llamadas asíncronas.
+Para realizar la parte Front-End de nuestra aplicación se estudiaron diferentes herramientas. En un primer momento se pensó en extender la herramienta Django para la parte del cliente, pero dicha herramienta está pensada principalmente para la gestión de la parte Back-End y por tanto se descartó esta idea.\\
+La segunda alternativa fue introducir JQuery, esta segunda opción tampoco era la más idónea ya que se trata de una librería orientada a acceder y modificar los elementos de la página, pero carece de la facilidad que otorga Angular al utilizar componentes, aplicar patrones de arquitectura y sobretodo la rapidez y facilidad de Angular para el tratamiento de llamadas asíncronas.\\
 Por estos motivos decidimos usar Angular, ya que era la alternativa que más funcionalidad, rapidez y escalibilidad, aporta de las herramientas analizadas.
 
-Además, Angular nos permitía crear nuestra aplicación por componentes\footnote{\url{https://angular.io/guide/architecture-components}}, ofreciendo así una división del código. Los componentes tienen la ventaja de ser completamente independientes unos de otros y ser reutilizables, esta independencia que poseen los componentes otorgan una gran flexibilidad a la hora de construir aplicaciones, aumentan la escalabilidad y facilitan el mantenimiento.
+Además, Angular nos permitía crear nuestra aplicación por componentes\footnote{\url{https://angular.io/guide/architecture-components}}, ofreciendo así una división del código por funcionalidades también en la parte del Front-End. Los componentes tienen la ventaja de ser completamente independientes unos de otros y ser reutilizables, esta independencia que poseen los componentes otorgan una gran flexibilidad a la hora de construir aplicaciones, aumentan la escalabilidad y facilitan el mantenimiento.
 
-Otro punto importante a favor del uso de Angular es su capacidad de proporcionar una actualización automática de la información, es decir, los datos mostrados en la vista están actualizados gracias al uso del modelo\footnote{\url{https://angular.io/guide/displaying-data}}. 
+Otro punto importante a favor del uso de Angular es su capacidad de proporcionar una actualización automática de la información, es decir, los datos mostrados en la vista están actualizados gracias al uso del modelo que proporciona Angular\footnote{\url{https://angular.io/guide/displaying-data}}. 
 
-El problema que conlleva este tipo de servicios asíncronos es que no sigue un orden definido en el tiempo de respuesta de cada llamada, la solución que realizó angular con este problema fue implantar el patrón `Observer''\footnote{\url{https://desarrolloweb.com/articulos/introduccion-teorica-observables-angular.html}}.
-
-El patrón Observable es un patron de programación reactiva, utilizado para la resolución de llamadas asíncronas como puedan ser llamadas HTTP. Esto quiere decir, que es el encargado de producir y distribuir el flujo de los distintos eventos o llamadas y consumirlos. Las componentes principales de este patrón son:
-\begin{itemize}
-    \item \textbf{Observable}. Es aquello que el programador desea observar, un observable puede ser un formulario creado por un usuario, una llamada HTTP, un almacén de datos, etc. Además permite la modificación de aquello que se esta observando.  
-    \item \textbf{Observer}. Es el que se dedica a observar, principalmente está basado en un colección de funciones callback, que permiten escuchar los eventos o llamadas emitidos por un observable.
-    \item \textbf{Subject}. Se trata del emisor de los eventos o llamadas, es el encargado de crear los flujos cuando el observable realiza algún cambio, y comunicarlos al observer. 
-\end{itemize} 
-Es importante mencionar, que la librería que usa Angular para utilizar este patrón es la RxJS(Reactive Extensions for JavaScript)\footnote{https://angular.io/guide/rx-library}, una librería centrada en el paradigma de la programación reactiva, la cual otorga diferentes ayudas para la resolución de llamadas asíncronas.
+El problema que conlleva el uso de servicios asíncronos como los proporciona Angular es que no siguen un orden definido en el tiempo de respuesta de cada llamada. Angular resuelve este problema implantando el patrón `Observer''\footnote{\url{https://desarrolloweb.com/articulos/introduccion-teorica-observables-angular.html}}. 
+La librería que usa Angular para utilizar este patrón es la RxJS (Reactive Extensions for JavaScript)\footnote{https://angular.io/guide/rx-library}, una librería centrada en el paradigma de la programación reactiva, la cual otorga diferentes ayudas para la resolución de llamadas asíncronas.
 
  
 
