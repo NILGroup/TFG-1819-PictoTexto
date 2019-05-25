@@ -9,19 +9,19 @@ lo primero es conseguir las palabras asociadas a cada pictograma del mensaje de 
 También, necesitamos un espacio donde conectar los diferentes servicios web, para ello utilizamos Django, que será explicado en la Sección \ref{cap3:sec:Django}. Por último, para agilizar tanto el tiempo de respuesta de los servidores como el proceso de comunicación de los diferentes servicios web se ha elegido la herramienta Angular (Sección \ref{cap3:sec:Angular}) para implementar el Front-End de nuestra aplicación.
 
 %-------------------------------------------------------------  
-\section{API-Arasaac}
+\section{API-ARASAAC}
 %-------------------------------------------------------------
-\label{cap3:sec:API-Arasaac}
+\label{cap3:sec:API-ARASAAC}
 
 En nuestra aplicación los pictogramas son fundamentales y necesitábamos una herramienta que nos permitiese:
 \begin{itemize}
     \item Obtener los pictogramas asociados a una determinada palabra.
     \item Obtener la palabra o palabras asociadas a un pictograma.
 \end{itemize}
-Para ello hemos empleado la API de Arasaac\footnote{https://beta.arasaac.org/developers/api}, ya que de todos los sistemas pictográficos vistos en la Sección \ref{cap2:sec:Pictogramas}, los pictogramas de Arasaac son los más utilizados en los países hispanohablantes.
+Para ello hemos empleado la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}, ya que de todos los sistemas pictográficos vistos en la Sección \ref{cap2:sec:Pictogramas}, los pictogramas de Arasaac son los más utilizados en los países hispanohablantes.
 Además, Arasaac ofrece multitud de herramientas gratuitas.
 
-De todos los métodos ofrecidos por la API de Arasaac hemos usado los siguientes:
+De todos los métodos ofrecidos por la API de ARASAAC hemos usado los siguientes:
 \begin{itemize}
     \item SearchText\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/search/searchText}}: Dada una palabra devuelve un JSON con el tipo de palabra, su significado, sus plurales y el identificador del pictograma que tiene asociado, tal y como se puede ver en la Figura \ref{fig:jsonPerro} con la palabra ``perro''. Si una misma palabra tiene distintos significados o distintos pictogramas asociados, en el JSON devuelto aparecerán todas las diferentes opciones, tanto si tiene varios pictogramas asociados como si tiene distintos significados, como podemos ver en la Figura \ref{fig:jsonPerro2}     
 \figura{Bitmap/Herramientas/jsonPerro}{width=14cm}{fig:jsonPerro}{JSON devuelto por el método SearchText para la palabra perro. Fuente: https://beta.arasaac.org/developers/api.}
@@ -33,7 +33,7 @@ De todos los métodos ofrecidos por la API de Arasaac hemos usado los siguientes:
 \figura{Bitmap/Herramientas/jsonReloj}{width=14cm}{fig:jsonReloj}{JSON devuelto por el método idPictogram para el identificador 2549. Fuente: https://beta.arasaac.org/developers/api.}
 \end{itemize} 
 
-La API de Arasaac es gratuita con fines no comerciales, siempre que en la aplicación se mencione explícitamente a Arasaac y se cumpla la licencia CC (Creative Commons) RY-NC-SA\footnote{https://creativecommons.org/licenses/by-nc-sa/3.0/es/}.
+La API de ARASAAC es gratuita con fines no comerciales, siempre que en la aplicación se mencione explícitamente a ARASAAC y se cumpla la licencia CC (Creative Commons) RY-NC-SA\footnote{https://creativecommons.org/licenses/by-nc-sa/3.0/es/}.
 
 \section{SimpleNLG}
 %-------------------------------------------------------------
