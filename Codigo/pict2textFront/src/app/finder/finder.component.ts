@@ -19,7 +19,11 @@ export class FinderComponent {
   myPicto:Picto[];
   @Input() pictoPhrase:Picto[];
   
-  
+  ngOnInit(){
+    var result:Picto[] = JSON.parse(localStorage.getItem('finderResult'));
+    if(result)
+      this.myPicto=result;
+  }
   constructor( private pictoService : FinderService, config: NgbCarouselConfig, private modalService: NgbModal) {
     config.interval=0;
   }
@@ -28,8 +32,9 @@ export class FinderComponent {
     this.pictoService.getPictByName(name).then(this.getPictoSucces.bind(this), this.getPictoError.bind(this));
   }
 
-   getPictoSucces(data){
+   getPictoSucces(data:Picto[]){
     this.myPicto=data;
+    localStorage.setItem('finderResult', JSON.stringify(data));
   }
 
     addPicto(picto : Picto){

@@ -38,13 +38,8 @@ export class ProxyService {
   }
 
   public postElement(url, object) {
-    return this.http.post(url, JSON.stringify(object),this.httpOptions)
-            .pipe(catchError(this.handleError));
-  }
-
-  public postElementWithOutCors(url, object) {
     return this.http.post(url, JSON.stringify(object))
-            .pipe(catchError(this.handleError));
+    .pipe(catchError(this.handleError));
   }
 
 

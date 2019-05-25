@@ -14,7 +14,7 @@ export class TranslatorService {
 
     return new Promise((resolve, reject) => {
     
-    this.proxyService.postElementWithOutCors(AppConstants.translatorPhraseURL, words).subscribe(getTranslateSuccess, getTranslateError);
+    this.proxyService.postElement(AppConstants.translatorPhraseURL, words).subscribe(getTranslateSuccess, getTranslateError);
 
     function getTranslateSuccess(data) {
       // LLAMADA AL TRANSFORMER
