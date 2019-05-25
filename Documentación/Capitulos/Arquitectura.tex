@@ -81,7 +81,7 @@ Conjunciones & -\\ \hline
 \end{center}
 
 \figura{Bitmap/ServiciosWeb/attrsResponsePost}{height=16cm, width=7cm}{fig:attrsResponsePost}{Respuesta del servicio web de clasificación de palabras para la entrada [corredor, despistado, perder, zapatillas, ayer].}
-\figura{Bitmap/ServiciosWeb/caracPal}{height=10cm}{fig:caracPal}{Flujo del servicio web de clasificación de palabras} 
+\figura{Bitmap/ServiciosWeb/caracPala}{height=10cm}{fig:caracPal}{Flujo del servicio web de clasificación de palabras} 
 
 En la Figura \ref{fig:attrsResponsePost}, podemos ver la respuesta del servicio web para la entrada [corredor, despistado, perder, zapatillas, ayer].
 
@@ -108,7 +108,7 @@ Este servicio web recibe un array de palabras y devuelve una frase creada a part
 
 \begin{enumerate}
 
-\item Obtención de la categoría léxica de cada una de las palabras. Se llama al Servicio Web de Clasificación de Palabras explicado en la sección \ref{cap5:sec:ServicioClasificaciónDePalabras}, pasandole todo el array de palabras recibido como entrada. Así se obtienen las características y la categoría léxica de cada palabra.
+\item Obtención de la categoría léxica de cada una de las palabras. Se llama al Servicio Web de Clasificación de Palabras explicado en la Sección \ref{cap5:sec:ServicioClasificaciónDePalabras}, pasandole todo el array de palabras recibido como entrada. Así se obtienen las características y la categoría léxica de cada palabra.
 
 \item División de palabras en sintagma nominal y en sintagma verbal. Una vez conocemos la categoría léxica de las palabras, buscamos el verbo dentro del array de palabras. Todas las palabras anteriores al verbo formaran el sintagma nominal y todas las palabras posteriores formaran el sintagma verbal.
 
@@ -171,33 +171,34 @@ En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue es
 \subsection{Servicios web para la Gestión de Pictogramas} %-------------------------------------------------------------------
 \label{cap5:sec:ServiciosParaPictos}
 
-En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. En estos servicios hemos utilizando la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}. Ambos servicios  siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}. 
-\figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{height=12cm}{fig:serviciosAPIARAASAC}{Flujo de los servicios web Para Pictogramas } 
+En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. En estos servicios hemos utilizando la API de ARASAAC\footnote{\url{https://beta.arasaac.org/developers/api}}, un servicio para la obtención de pictograma dados una palabra\footnote{\url{https://holstein.fdi.ucm.es/tfg-pict2text/picto/getPicto?pictoName=`PalabraRelacionada'}} y otro que dado el identificador de un pictograma devuelve las palabras asociadas a el\footnote{\url{https://holstein.fdi.ucm.es/tfg-pict2text/picto/getPictoTranslate?pictoId=`IdPictograma'}}. Ambos servicios siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}, primero leen la entrada, después hacen la llamada a la API de ARAASAC y dependiendo de si el resultado es un error o no, se creara una respuesta del servicio con el error o con el resultado del servicio.
+\figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{height=12cm}{fig:serviciosAPIARAASAC}{Flujo de los servicios web Para Pictogramas} 
 
-\subsubsection{Servicio Web de Búsqueda del Pictogramas Asociados a una Palabra}
+\subsubsection{Servicio Web de Búsqueda del Pictograma Asociado a una Palabra}
 \label{cap5:sec:ServiciosParaPictosPalabra}
 Este servicio web, recibe una palabra a través de una petición GET y devuelve un objeto en formato JSON, que contiene un array con los diferentes pictogramas asociados a la palabra recibida.
-Este servicio lanza una petición GET con la palabra recibida al buscador de pictogramas de la API de ARAASAC\footnote{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/'Nombre'}, el cual devuelve una lista de todos los pictogramas, que tienen asociada la palabra introducida.
-La respuesta devuelta por la API de ARAASAC es procesada por nuestro servicio, escogiendo aquellos pictogramas que tienen asociados exclusivamente la palabra introducida. Por ejemplo si se realiza la búsqueda de la palabra huevo, la API de ARAASAC devolverá tres pictogramas uno para huevo, otro para huevo frito, y otro para huevo roto. Nuestro servicio se quedara solo con el primero, por cada pictograma nuestro servicio devuelve los siguientes atributos:
+Este servicio lanza una petición GET con la palabra recibida al buscador de pictogramas de la API de ARAASAC\footnote{\url{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/`Nombre'}}, el cual devuelve una lista de todos los pictogramas asociados a la palabra introducida.
+La respuesta devuelta por la API de ARAASAC es procesada por nuestro servicio, escogiendo aquellos pictogramas que tienen asociados la palabra introducida tal cual. Por ejemplo, si se realiza la búsqueda de la palabra huevo, la API de ARAASAC devolverá tres pictogramas uno para huevo, otro para huevo frito, y otro para huevo roto. Nuestro servicio se quedara solo con el primero. Por cada pictograma nuestro servicio devuelve los siguientes atributos:
 \begin{itemize}
 \item Identificador del pictograma.
-\item La palabra asociada al pictograma.
+\item Palabra asociada al pictograma.
 \item URL a la imagen del pictograma.
 \end{itemize}
-\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{height=16cm,width=12cm}{fig:pictoFinderResponse}{Respuesta del servicio web de búsqueda del pictogramas asociados a una palabra}
-Cada pictograma con sus atributos se añade a una lista que sera devuelta en el resultado de este servicio web tal y como podemos ver en la Figura \ref{fig:pictoFinderResponse}, donde podemos ver el resultado devuelto por nuestro servicio para la entrada ``cortar'', esta palabra tiene varios pictogramas asociados, los cuales podemos ver en la Figura \ref{fig:pictosCortar}.
-\figura{Bitmap/ServiciosWeb/cortarPictos}{height=9cm}{fig:pictosCortar}{Diferentes pictogramas asociados a la palabra cortar}
+\figura{Bitmap/ServiciosWeb/pictoFinderResponse}{height=16cm,width=12cm}{fig:pictoFinderResponse}{Respuesta del servicio web de búsqueda del pictogramas asociados a una palabra, para la palabra cortar
+}
+Cada pictograma con sus atributos se añade a una lista que sera devuelta en el resultado de este servicio web. En la Figura \ref{fig:pictoFinderResponse} podemos ver el resultado devuelto por nuestro servicio para la entrada ``cortar'', esta palabra tiene varios pictogramas asociados, los cuales podemos ver en la Figura \ref{fig:pictosCortar}.
+\figura{Bitmap/ServiciosWeb/cortarPictos}{height=9cm}{fig:pictosCortar}{Pictogramas asociados a la palabra cortar}
 
 
 \subsubsection{Servicio Web de Traducción de Pictogramas a Texto}
-\figura{Bitmap/ServiciosWeb/finderIDAPI}{height=16cm}{fig:finderIDAPI}{Respuesta del buscador por id de la API de ARAASAC} 
+\figura{Bitmap/ServiciosWeb/finderIDAPI}{height=16cm}{fig:finderIDAPI}{Respuesta del buscador por id de la API de ARAASAC, para el id 7823} 
 
-Este servicio web recibe el identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma, ya que un solo pictograma puede tener varios pictogramas.En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823, que posee dos significados profesor y profesor de educación física.
-Este servicio lanza una petición con el identificador recibido, al buscador de pictogramas por id de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el Identificador 7823.
+Este servicio web recibe el identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma, ya que un solo pictograma puede tener varias palabras asociadas. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el identificador 7823, que tiene dos palabras asociadas profesor y profesor de educación física.
+Este servicio lanza una petición con el identificador recibido, al buscador de pictogramas por id de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. 
 
-Con la respuesta de la API, se accede al atributo ``Keywords'', se encapsula dentro de un objeto, que sera la respuesta de este servicio tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
+Después, en la respuesta de la API de ARAASAC, se accede al atributo ``Keywords'' y se encapsula dentro de un objeto el cual contiene un objecto que con un array de significados, que sera la respuesta de este servicio tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
 
-\figura{Bitmap/ServiciosWeb/responseTranslatePictoService}{height=2cm}{fig:responseTranslatePictoService}{Respuesta del buscador por id de la API de ARAASAC} 
+\figura{Bitmap/ServiciosWeb/responseTranslatePictoService}{height=2cm}{fig:responseTranslatePictoService}{Respuesta del servicio web de traducción de pictogramas a texto} 
 
 
 %------------------------------------------------------------------
@@ -207,19 +208,18 @@ Con la respuesta de la API, se accede al atributo ``Keywords'', se encapsula den
 
 En esta sección introduciremos los diferentes servicios y componentes Angular desarrollados para la parte Front-End de la aplicación, la cual podemos ver en la Figura \ref{fig:appEscritorio}. Hemos implementado dos componentes:
 \begin{itemize}
-\item Buscador de pictogramas: el cual podemos ver en la Figura \ref{fig:buscadorPictogramas}, este componente sirve como entrada de pictogramas a la aplicación, en el podemos ver los diferentes pictogramas asociados a la palabra introducida además del identificador de dicho pictograma.
-\item Traductor de pictogramas a lenguaje natural: podemos ver este componente en la Figura  \ref{fig:traductorPictogramas}
-\figura{Bitmap/Arquitectura/traductorPictogramas}{width=9cm}{fig:traductorPictogramas}{Componente buscador de pictogramas}, este componente es el encargado de manejar los pictogramas que se van a traducir. Dentro de el podemos ver los pictogramas que formaran la frase, ordenarlos o borrar aquellos que no se desean y traducirlos a lenguaje natural.
+\item Buscador de pictogramas. Este componente sirve para buscar los pictogramas con los que se va a componer el mensaje que se desea traducir. El usuario introducirá el nombre para el que desea un pictograma pulsará buscar y seleccionará uno de los resultados devueltos y pulsará en el botón de añadir para pasar el pictograma al espacio reservado para el mensaje a traducir.
+\item Traductor de pictogramas a lenguaje natural: Este componente es el encargado de manejar el mensaje con pictogramas que se va a traducir. Los pictogramas del mensaje se pueden ordenar o borrar. Una vez se tenga listo el mensaje con pictogramas que se desea traducir, se pulsara el botón de Traducir y debajo aparecerá el mensaje en lenguaje natural traducido.
 \end{itemize}
 
-Cabe destacar que cada uno de estos componentes posee un HTML, un controlador y un servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de útiles, como un archivo de constantes (para almacenar las diferentes direcciones de los servicios web), un servicio proxy que permite abstraer las peticiones HTTP, y por ultimo otro servicio de ventanas modales para el tratamiento de errores. Cada uno de estos servicios se explicara en detalle en las siguientes secciones.
-Ademas hemos tenido en cuenta que la aplicación sea responsive y diseñado la vista para tener una versión móvil la cual se puede ver en la Figura \ref{fig:appMo}.
+Cabe destacar que cada uno de estos componentes posee un HTML, un controlador y un servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de útiles, como un archivo de constantes (para almacenar las diferentes direcciones de los servicios web), un servicio proxy que permite abstraer las peticiones HTTP, y un servicio de ventanas modales para el tratamiento de errores. Cada uno de estos servicios se explicara en detalle en las siguientes secciones.
+Ademas hemos tenido en cuenta que la aplicación sea responsive y hemos diseñado la vista para tener una versión móvil la cual se puede ver en la Figura \ref{fig:appMo}.
 
 \figura{Bitmap/Arquitectura/appEscritorio}{height=11cm, width=13cm}{fig:appEscritorio}{Pict2Text}
 \figura{Bitmap/Arquitectura/appMo}{height=15cm}{fig:appMo}{Pict2Text versión para dispositivos moviles}
 \subsection{Servicio Proxy}
 
-El servicio proxy de la aplicación sirve para abstraer las diferentes llamadas HTTP del resto de la aplicación. Este componente es necesario ya que sirve de punto de acceso a los servicios web explicados en la sección \ref{cap5:sec:backEnd}, de este capitulo. Los  métodos: \textbf{getByName()} y \textbf{postByName()} se encargan de emitir las peticiones HTTP, get y post respectivamente, esperar la respuesta del servicio web y devolverla al servicio de aplicación, al tener toda esta lógica en un solo servicio del cual hace uso toda la aplicación, aumenta la reusabilidad y el mantenimiento. 
+El servicio proxy de la aplicación sirve para abstraer las diferentes llamadas HTTP del resto de la aplicación. Este componente sirve de punto de acceso a los servicios web explicados en la Sección \ref{cap5:sec:backEnd}, de este capitulo. Los  métodos: \textbf{getByName()} y \textbf{postByName()} se encargan de emitir las peticiones HTTP, get y post respectivamente, esperar la respuesta del servicio web y devolverla al servicio de aplicación, al tener toda esta lógica en un solo servicio del cual hace uso toda la aplicación, aumenta la reusabilidad y el mantenimiento. 
 
 La ventaja principal de usar un servicio proxy es que abstrae la lógica de acceso del resto de la aplicación, de manera que si los datos pasaran a estar en una base de datos habría que cambiar mucho menos lógica y además permite la  reutilización del código de las llamadas HTTP en toda la aplicación.
 Cuando el servicio de aplicación de algún componente hace uso de alguno de los métodos del servicio proxy, se convierte en un subscriptor de dicho método. Gracias a la suscripción cuando el Servicio Proxy reciba la respuesta de la llamada HTTP, se encargara de avisar a sus suscriptores de que ya ha recibido la respuesta y entregarla. Esto es gracias al patrón Observer que implementa Angular en las llamadas HTTP. En caso de que la respuesta de la llamada fuera un error, el servicio proxy reintentará la llamada hasta cinco veces, si la ultima llamada falla, devuelve el error a los suscriptores. 
@@ -250,7 +250,7 @@ Este componente posee un controlador, un servicio de aplicación y un transformer
 
 El controlador es el encargado de conectar el HTML de la vista, con el resto de la aplicación. Sirve para obtener la palabra para la que se desea buscar un pictograma y enviarlo al servicio de aplicación. Además añadir los pictogramas al componente traductor de pictogramas usando el botón añadir.
  
-El servicio de aplicación creara la url para hacer la llamada al servicio web de búsqueda del pictogramas asociados a una palabra (visto en la sección \ref{cap5:sec:ServiciosParaPictosPalabra}) usando el archivo de constantes. Con la url generada llamara al Servicio Proxy, que se encargara de enviar y recibir la respuesta del servicio web. Si la respuesta es correcta el servicio de aplicación hará uso del transformer para generar un objeto para el controlador. En caso de error devolverá el error al controlador para que muestre el mensaje de error.
+El servicio de aplicación creara la url para hacer la llamada al servicio web de búsqueda del pictogramas asociados a una palabra (visto en la Sección \ref{cap5:sec:ServiciosParaPictosPalabra}) usando el archivo de constantes. Con la url generada llamara al Servicio Proxy, que se encargara de enviar y recibir la respuesta del servicio web. Si la respuesta es correcta el servicio de aplicación hará uso del transformer para generar un objeto para el controlador. En caso de error devolverá el error al controlador para que muestre el mensaje de error.
 Podemos ver el diagrama del componente buscador de pictogramas en la Figura \ref{fig:finderClass}.    
 \figura{Bitmap/Arquitectura/finderClass}{height= 11cm, width=14cm}{fig:finderClass}{Diagrama del componente buscador de pictogramas}
 
