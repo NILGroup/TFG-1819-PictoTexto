@@ -23,12 +23,14 @@ Además, Arasaac ofrece multitud de herramientas gratuitas.
 
 De todos los métodos ofrecidos por la API de Arasaac hemos usado los siguientes:
 \begin{itemize}
-    \item SearchText\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/search/searchText}}: Dada una palabra devuelve todos los pictogramas asociados a ella.Por ejemplo, dada la palabra ``perro'' nos devuelve el JSON, mostrado en la Figura \ref{fig:jsonPerro}. Dicho JSON contiene toda la información relevante a dicha palabra, tipo de palabra, significado, sinónimos, plurales y keyword o palabra por la que se traduce, además de proporcionarnos sus diferentes ``idPictogram'' con los que obtendremos los pictogramas.
-\figura{Bitmap/Herramientas/jsonPerro}{width=12cm}{fig:jsonPerro}{JSON devuelto por el método SearchText para la palabra perro. Fuente: https://beta.arasaac.org/developers/api.}
+    \item SearchText\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/search/searchText}}: Dada una palabra devuelve un JSON con el tipo de palabra, su significado, sus plurales y el identificador del pictograma que tiene asociado, tal y como se puede ver en la Figura \ref{fig:jsonPerro} con la palabra ``perro''. Si una misma palabra tiene distintos significados o distintos pictogramas asociados, en el JSON devuelto aparecerán todas las diferentes opciones, tanto si tiene varios pictogramas asociados como si tiene distintos significados, como podemos ver en la Figura \ref{fig:jsonPerro2}     
+\figura{Bitmap/Herramientas/jsonPerro}{width=14cm}{fig:jsonPerro}{JSON devuelto por el método SearchText para la palabra perro. Fuente: https://beta.arasaac.org/developers/api.}
+
+\figura{Bitmap/Herramientas/jsonPerro2}{width=14cm}{fig:jsonPerro2}{JSON devuelto por el método SearchText para la palabra perro con dos pictogramas asociados. Fuente: https://beta.arasaac.org/developers/api.}
 
     \item idPictogram\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/idPictogram}}: Dado un identificador de un pictograma devuelve un JSON con toda la información asociada a la palabra la cuál se identifica con dicho id, por ejemplo con el id 2549, se obtiene un JSON con la información de \textit{reloj}, tal y como se muestra en la Figura \ref{fig:jsonReloj}
-\clearpage
-\figura{Bitmap/Herramientas/jsonReloj}{width=12cm}{fig:jsonReloj}{JSON devuelto por el método idPictogram para el identificador 2549. Fuente: https://beta.arasaac.org/developers/api.}
+
+\figura{Bitmap/Herramientas/jsonReloj}{width=14cm}{fig:jsonReloj}{JSON devuelto por el método idPictogram para el identificador 2549. Fuente: https://beta.arasaac.org/developers/api.}
 \end{itemize} 
 
 La API de Arasaac es gratuita con fines no comerciales, siempre que en la aplicación se mencione explícitamente a Arasaac y se cumpla la licencia CC (Creative Commons) RY-NC-SA\footnote{https://creativecommons.org/licenses/by-nc-sa/3.0/es/}.
