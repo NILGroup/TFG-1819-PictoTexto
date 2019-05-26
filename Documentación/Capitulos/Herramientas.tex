@@ -76,9 +76,18 @@ En la Figura \ref{fig:palabrasSpacy}, podemos observar un ejemplo del análisis q
 
 \section{Django}
 %-------------------------------------------------------------
-\label{cap3:sec:Django}  
-Cada funcionalidad que se utiliza en este TFG ha sido implementada como un servicio web, por ello se decidió utilizar un framework que ayudase a los programadores a crear e implementar de una manera más fácil y eficiente dichos servicios web. Además estos servicios  están escritos en Python ya que es el lenguaje de programación más usado para el Procesamiento de Lenguaje Natural (PLN) por lo que es aconsejable que dicho framework estuviera también desarrollado en Python. 
-Con estas restricciones en mente se eligió la herramienta Django, la cuál nos permite desarrollar aplicaciones web\footnote{\url{https://openwebinars.net/blog/que-es-django-y-por-que-usarlo/}} de código abierto y gratuitas escritas en Python. Django proporciona: un manejador para los archivos estáticos de las rutas, un host sobre el que se puede acceder a los servicios, plantillas en las que basarnos para crear la aplicación. Además respeta el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C), por lo que fomenta el desarrollo rápido y un diseño limpio y pragmático.
+\label{cap3:sec:Django}
+
+Dado que uno de los objetivos de este TFG era el desarrollo usando servicios web, y la cantidad de herramientas para Procesamiento de Lenguaje Natural(PLN), decidimos utilizar servicios web en python.
+
+Django es un framework de código abierto desarrollado en python que permite la creación de aplicaciones web. Este framework permite el desarrollo de aplicaciones web, usando el patrón Modelo-Vista-Template\footnote{https://docs.hektorprofe.net/django/web-personal/patron-mvt-modelo-vista-template/}, el cual permite el uso de plantillas para la generación de vistas. Este patrón presenta el problema de que reduce la flexibilidad de acciones del lado del lado del cliente. Además Django se puede utilizar para la creación de servicios web a través de objectos JSON\footnote{https://docs.djangoproject.com/en/2.2/ref/request-response/}.
+
+Django se puede instalar utilizando el gestor de paquetes de python pip\footnote{https://docs.python.org/3/installing/index.html}, una vez instalado permite mediante el uso de la linea de comandos\footnote{https://www.python.org/shell/}, crear una aplicación Django\footnote{https://docs.djangoproject.com/en/2.2/intro/tutorial01/} y servicios web utilizando comandos.
+
+Estas ventajas sumadas, a la comunidad de desarrolladores y la gran versatilidad de configuración que otorga Django como por ejemplo poder utilizar diferentes métodos de seguridad, manejar las rutas de los diferentes servicios web de una manera muy simple, manejar los diferentes archivos estáticos de la aplicación como puedan ser los scripts o las imágenes, han sido factores fundamentales para escoger Django para la implementación de servicios web en este TFG.
+
+%Cada funcionalidad que se utiliza en este TFG ha sido implementada como un servicio web, por ello se decidió utilizar un framework que ayudase a los programadores a crear e implementar de una manera más fácil y eficiente dichos servicios web. Además estos servicios  están escritos en Python ya que es el lenguaje de programación más usado para el por lo que es aconsejable que dicho framework estuviera también desarrollado en Python. 
+%Con estas restricciones en mente se eligió la herramienta Django, la cuál nos permite desarrollar aplicaciones web\footnote{\url{https://openwebinars.net/blog/que-es-django-y-por-que-usarlo/}} de código abierto y gratuitas escritas en Python. Django proporciona: un manejador para los archivos estáticos de las rutas, un host sobre el que se puede acceder a los servicios, plantillas en las que basarnos para crear la aplicación. Además respeta el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C), por lo que fomenta el desarrollo rápido y un diseño limpio y pragmático.
     
 \section{Angular}
 %-------------------------------------------------------------
@@ -96,7 +105,4 @@ Otro punto importante a favor del uso de Angular es su capacidad de proporcionar
 
 El problema que conlleva el uso de servicios asíncronos como los proporciona Angular es que no siguen un orden definido en el tiempo de respuesta de cada llamada. Angular resuelve este problema implantando el patrón `Observer''\footnote{\url{https://desarrolloweb.com/articulos/introduccion-teorica-observables-angular.html}}. 
 La librería que usa Angular para utilizar este patrón es la RxJS (Reactive Extensions for JavaScript)\footnote{https://angular.io/guide/rx-library}, una librería centrada en el paradigma de la programación reactiva, la cual otorga diferentes ayudas para la resolución de llamadas asíncronas.
-
- 
-
 
