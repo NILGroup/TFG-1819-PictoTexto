@@ -40,7 +40,7 @@ CORPUS & NºFRASES & FRASES CORRECTAS & \% ACIERTO \\
 \hline \hline
 Frases con fotos y pictos & 34 & 14 & 41\% \\ \hline
 Frases verdad o mentira & 115 & 23 & 20\% \\ \hline
-Total & 149 & 48 & 27\% \\ \hline 
+Total & 149 & 37 & 25\% \\ \hline 
 \end{tabular}
 \caption{Resultados de la evaluación.}
 \label{tabla:resultados}
@@ -58,11 +58,11 @@ Tras un análisis exhaustivo de los resultados de las frases traducidas incorrect
     \item \textbf{Fallo al añadir complementos a un pictograma}. En la lógica pensada para nuestra aplicación, no se contempla que al pictograma de un sustantivo se añadan automáticamente en su traducción palabras diferentes a los determinantes el, la, los, las si se encuentra el sustantivo en el sujeto o un, una, unos, unas si se encuentra en el predicado.
 Por tanto en la frase: ``el tren va \textbf{por la vía} '', donde las palabras resaltadas tienen que traducirse con un solo pictograma, Pict2Text devuelve la frase ``El tren va una vía''.
   
-    \item \textbf{Frases reflexivas}. Nuestra aplicación no contempla la traducción de frases reflexivas como: ``la niña se lava las manos'', en este caso Pict2Text devuelve (...) Por tanto, las frases reflexivas no han obtenido un resultado correcto. 
+    \item \textbf{Frases reflexivas}. Nuestra aplicación no contempla la traducción de frases reflexivas como: ``la niña se lava las manos'', en este caso Pict2Text devuelve ``El niño lava unas manos''. Por tanto, las frases reflexivas no han obtenido un resultado correcto. 
 
-	\item \textbf{Más de un verbo en la oración}. En esta primera etapa de desarrollo de la aplicación no se contempló la traducción de dos verbos en la misma oración, así que frases como: ``Yo quiero ver la televisión'', ``Yo quiero ir al baño'', son traducidas por Pict2Text como: .
+	\item \textbf{Más de un verbo en la oración}. En esta primera etapa de desarrollo de la aplicación no se contempló la traducción de dos verbos en la misma oración, así que frases como: ``Yo quiero ver la televisión'' o ``Yo quiero ir al baño'', son traducidas por Pict2Text como: ``Yo quiero un baño va'' o ``Yo quiero una televisión ve''.
 	
-	\item \textbf{Más de un sustantivo en el sujeto}. De nuevo, Pict2Text no contempla la opción de tener más de un sustantivo en el sujeto. Cuando una frase contiene varios sustantivos en el sujeto como ``El libro y el estuche están dentro de la mochila'' o ``La fresa y la pera son fruta'' la traducción de Pict2Text devuelve (...).
+	\item \textbf{Más de un sustantivo en el sujeto}. De nuevo, Pict2Text no contempla la opción de tener más de un sustantivo en el sujeto. Cuando una frase contiene varios sustantivos en el sujeto como ``El libro y el estuche están dentro de la mochila'' o ``La fresa y la pera son fruta'' la traducción de Pict2Text devuelve ``El estuche está una mochila dentro'' o ``La pera es una fruta''.
 	 
     \item \textbf{Errores del analizador del lenguaje}. Spacy no tiene una precisión del 100\% tal y como se comentó en la Sección \ref{cap3:sec:Spacy}, así que la categoría léxica o los atributos devueltos por Spacy para una palabra pueden no ser correctos. Por este motivo la traducción realizada por nuestra aplicación falla en ejemplos como: ``La niña \textbf{sopla} las velas'', ya que para spacy sopla es un adjetivo y no un verbo.
 
@@ -78,23 +78,24 @@ Por tanto en frases como: ``Mamá conduce el coche'', Pict2text devuelve ``La mam
 \hline
 TIPOS DE FALLOS & NºFALLOS/TOTAL FALLOS & \% FALLO \\
 \hline \hline
-Fallo traducción pictograma & 49/132 & 37\% \\ \hline
-Frases reflexivas & 18/132 & 13,5\% \\ \hline
-Más de un verbo en la oración & 3/132 & 2,2\% \\ \hline
-Más de un sustantivo en el sujeto & 2/132 & 1,5\% \\ \hline
-Errores analizador del lenguaje & 14/132 & 10,6\% \\ \hline
-Relación determinante y sustantivo & 26/132 & 19,6\% \\ \hline
-Relación preposición y determinante & 20/132 & 15\% \\ \hline
-Total de Fallos & 132/132 & 100\% \\ \hline 
+Fallo complementos un pictograma & 49/114 & 42,29\% \\ \hline
+Frases reflexivas & 16/114 & 14\% \\ \hline
+Más de un verbo en la oración & 3/114 & 2,6\% \\ \hline
+Más de un sustantivo en el sujeto & 2/114 & 1,7\% \\ \hline
+Errores analizador del lenguaje & 11/114 & 9,6\% \\ \hline
+Relación determinante y sustantivo & 22/114 & 19,3\% \\ \hline
+Relación preposición y determinante & 11/114 & 9,6\% \\ \hline
+Total de Fallos & 114/114 & 100\% \\ \hline 
 \end{tabular}
 \caption{Frases traducidas incorrectamente por cada tipo de error.}
 \label{tabla:errores}
 \end{center}
 \end{table}
 
-En la Tabla\ref{tabla:errores} se presenta el número de frases traducidas incorrectamente debido a cada uno de los errores detectados.
+En la Tabla \ref{tabla:errores} se presenta el número de frases traducidas incorrectamente debido a cada uno de los errores detectados.
 
-Con los datos obtenidos de la evaluación, analizados los fallos más comunes encontrados en nuestra aplicación y teniendo presente que no se ha encontrado otra aplicación que haga traducciones de pictogramas a lenguaje natural. Podemos concluir que los resultados obtenidos son bastante alentadores, ya que demuestran que se ha creado una aplicación con una buena base sólida para seguir desarrollándola con el fin de completarla y mejorarla en el futuro. 
+
+Los datos obtenidos de la evaluación han sido muy beneficiosos, ya que nos han ayudado a encontrar los tipos de traducciones a mejorar y actualizar con el fin de obtener una aplicación más completa. Además teniendo en cuenta que no se ha encontrado otra aplicación que haga traducciones parecidas a las que hace Pict2Text. Podemos calificar estos resultados como bastante alentadores, ya que nos muestran que se ha realizado una aplicación con una buena base sólida con mucho margen de mejora en el futuro.
 
 
 

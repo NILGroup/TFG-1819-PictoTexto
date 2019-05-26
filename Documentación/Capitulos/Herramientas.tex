@@ -26,7 +26,8 @@ De todos los métodos ofrecidos por la API de ARASAAC hemos usado los siguientes:
     \item SearchText\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/search/searchText}}: Dada una palabra devuelve un JSON con el tipo de palabra, su significado, sus plurales y el identificador del pictograma que tiene asociado, tal y como se puede ver en la Figura \ref{fig:jsonPerro} con la palabra ``perro''. Si una misma palabra tiene distintos significados o distintos pictogramas asociados, en el JSON devuelto aparecerán todas las diferentes opciones, tanto si tiene varios pictogramas asociados como si tiene distintos significados, como podemos ver en la Figura \ref{fig:jsonPerro2}     
 \figura{Bitmap/Herramientas/jsonPerro}{width=14cm}{fig:jsonPerro}{JSON devuelto por el método SearchText para la palabra perro. Fuente: https://beta.arasaac.org/developers/api.}
 
-\figura{Bitmap/Herramientas/jsonPerro2}{width=14cm}{fig:jsonPerro2}{JSON devuelto por el método SearchText para la palabra perro con dos pictogramas asociados. Fuente: https://beta.arasaac.org/developers/api.}
+\figura{Bitmap/Herramientas/jsonPerro2}{width=14cm}{fig:jsonPerro2}{JSON devuelto por el método SearchText para la palabra 
+perro con dos pictogramas asociados. Fuente: \url{ https://beta.arasaac.org/developers/api}} 
 
     \item idPictogram\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/idPictogram}}: Dado un identificador de un pictograma devuelve un JSON con toda la información asociada a la palabra la cuál se identifica con dicho id, por ejemplo con el id 2549, se obtiene un JSON con la información de \textit{reloj}, tal y como se muestra en la Figura \ref{fig:jsonReloj}
 
@@ -70,8 +71,24 @@ La clase Tokenizer de Spacy es la encargada de dividir el mensaje recibido en pa
     \item \textbf{Determinantes}. Tipo de determinante (artículo, posesivo, numeral), género y número.
     \item \textbf{Adverbios}. Tipo de adverbio ( de lugar, de tiempo, de cantidad, de modo). 
 \end{itemize}
-En la Figura \ref{fig:palabrasSpacy}, podemos observar un ejemplo del análisis que realiza Spacy de cada palabra.
-\figura{Bitmap/Herramientas/palabrasSpacy}{width=6cm}{fig:palabrasSpacy}{Ejemplo del análisis de cada palabra hecho por Spacy, Fuente https://spacy.io/.} 
+En la Tabla \ref{tabla:spacy}, podemos observar un ejemplo del análisis que realiza Spacy para la frase ``Yo veo un perro rápido''.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|p{8cm}|}
+\hline
+PALABRA & CAT. LÉXICA & ATRIBUTOS \\
+\hline \hline
+Yo & Preposición & TipoPron: Personal, Person: Primera, Núm: Singular \\ \hline
+veo & Verbo & FormV: Infinit., Modo: Indicativo, TiempoV: Presente, Person: Primera, Núm: Singular  \\ \hline
+un & Determinante & TipoDet: Artículo, Gen: Masculino, Núm: Singular \\ \hline
+perro & Sustantivo & Gen: Masculino, Núm: Singular \\ \hline
+rápido & Adjetivo & Gen: Masculino, Núm: Singular \\ \hline 
+\end{tabular}
+\caption{Ejemplo del análisis hecho por Spacy para la frase ``Yo veo un perro rápido''.}
+\label{tabla:spacy}
+\end{center}
+\end{table}
 
 
 \section{Django}
