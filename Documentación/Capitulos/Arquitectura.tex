@@ -18,7 +18,7 @@ En la Sección \ref{cap5:sec:Arquitectura} mostraremos la arquitectura de nuestra
 El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad   funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debíamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte Back-End, y a componentes en la parte Front-End. En ambas casos, hemos seguido los siguientes principios \citep{martin2013agile}: 
 
 \begin{itemize}
-\item Principio Open/Closed. Este principio busca que los programas estén abiertos para la extensión y cerrados a la modificación. Es decir que no haga falta modificar el código de nuestras clases para extender su funcionalidad. Lo que permite depurar de una manera más eficiente el código y ampliar su funcionalidad con otros métodos. Esto lo podemos ver en el uso de diferentes servicios web, que aportan funcionalidad individualmente evitando el uso de un solo servicio web que implemente toda la funcionalidad, además del proceso de generación de lenguaje donde las clases implementan pequeños métodos que encadenados aportan funcionalidad a la traducción. En las próximas secciones explicaremos en detalle cada una de estas partes.
+\item Principio Open/Closed. Este principio busca que los programas estén abiertos para la extensión y cerrados a la modificación. Es decir que no haga falta modificar el código de nuestras clases para extender su funcionalidad. Lo que permite depurar de una manera más eficiente el código y ampliar su funcionalidad con otros métodos. Esto lo podemos ver en el uso de diferentes servicios web, que aportan funcionalidad individualmente evitando el uso de un solo servicio web que implemente toda la funcionalidad, además del proceso de generación de lenguaje donde las clases implementan pequeños métodos que encadenados aportan funcionalidad a la traducción.
    
 \item Principio de segregación de la interfaz. Este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es como hemos implementado en el Front-End la parte de las llamadas a los servicios web del Back-End: todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
 
@@ -121,7 +121,7 @@ Este servicio web recibe un array de palabras y devuelve una frase creada a part
 
 \item Se establece como palabra principal del sujeto la palabra con categoría léxica \textbf{NOUN}, utilizando el método \textbf{setFeature()}. Además se obtiene el género y número de la palabra principal del sujeto y usando las funciones \textbf{setFeature()} y \textbf{setPlural()} se establecen el género y el número del sintagma nominal. Al establecer el género y número del sujeto todas las palabras que lo conforman utilizaran ese género y número,  por ejemplo  ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''. Dado que no todas las palabras tienen pictogramas asociados para los diferentes géneros o número, en caso de existir un determinante con género o número, se establecerá dicho género para todo el sintagma, por ejemplo palabras como: profesoras o corredora, para las cuales no existen pictogramas asociados.
 
-\item En caso de encontrar un adverbio dentro del array de palabras del sintagma nominal se fuerza su posición dentro del sintagma nominal al principio. Por ejemplo, para la entrada [ profesora, despistada, ayer, comer, galletas] se generara la frase ``Ayer la profesora despistada comió galletas''
+\item En caso de encontrar un adverbio dentro del array de palabras del sintagma nominal se fuerza su posición dentro del sintagma nominal al final. Por ejemplo, para la entrada [ayer, profesora, despistada, comer, galletas] se generara la frase ``La profesora despistada ayer comió galletas''
 \end{itemize}
 
 \item Para crear el sintagma verbal se siguen los siguientes pasos:
@@ -146,19 +146,18 @@ Entrada & Salida \\
 \hline \hline
 Corredor, perder, zapatillas & El corredor pierde unas zapatillas\\ \hline
 Corredor, rápido, perder, zapatillas & El corredor rápido pierde unas zapatillas\\ \hline
-Corredor, ayer, perder, zapatillas & Ayer el corredor perdió unas zapatillas.\\ \hline
-Corredor, mañana, perder, zapatillas & Mañana el corredor perderá unas zapatillas.\\ \hline
-Corredor, perder, zapatillas, mañana & El corredor perderá unas zapatillas mañana.\\ \hline
-Corredor, rápido, perder, zapatillas, ayer & El corredor rápido perdió unas zapatillas ayer.\\ \hline
+Corredor, ayer, perder, zapatillas & El corredor ayer perdió unas zapatillas.\\ \hline
+Corredor, mañana, perder, zapatillas & El corredor mañana perderá unas zapatillas.\\ \hline
+Corredor, rápido, ayer, perder, zapatillas & El corredor rápido ayer perdió unas zapatillas.\\ \hline
 Corredor, perder, zapatillas, nuevo & El corredor pierde unas zapatillas nuevas\\ \hline
 Corredor, rápido, perder, zapatillas, nuevo & El corredor rápido pierde unas zapatillas nuevas\\ \hline
-Corredor, rápido, ayer, perder, zapatillas, nuevo & Ayer el corredor rápido perdió unas zapatillas nuevas.
+Corredor, rápido, ayer, perder, zapatillas, nuevo & El corredor rápido ayer perdió unas zapatillas nuevas.
 \\ \hline
 Corredor, rápido. perder, zapatillas, nuevo, ayer & El corredor rápido perdió unas zapatillas nuevas ayer.
 \\ \hline
-Ayer, este, corredor, rápido, perder, zapatillas, nuevo & Ayer este corredor rápido perdió unas zapatillas nuevas.
+Este, corredor, rápido, perder, zapatillas, nuevo & Este corredor rápido ayer perdió unas zapatillas nuevas.
 \\ \hline
-Ayer, la, corredor, rápido, perder, zapatillas, nuevo & Ayer la corredora rápida perdió unas zapatillas nuevas.
+La, corredor, rápido, perder, zapatillas, nuevo & La corredora rápida ayer perdió unas zapatillas nuevas.
 \\ \hline
 \end{tabular} 
 \caption{Tabla con diferentes entradas y salidas del Servicio Web de Generación de Frases en Lenguaje Natural.}
