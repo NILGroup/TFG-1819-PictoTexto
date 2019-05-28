@@ -3,42 +3,72 @@
 \chapter{Conclusiones y Trabajo Futuro}
 \label{cap:conclusiones}
 
-A lo largo de este capítulo se presentarán las conclusiones obtenidas de este TFG y el trabajo futuro que se podría realizar si se continuara el desarrollo de este proyecto.
+A lo largo de este capítulo se presentarán las conclusiones principales de este TFG y el trabajo futuro que se podría realizar si se continuara el desarrollo del proyecto.
 
 %------------------------------------------------------------------
 \section{Conclusiones}
 %-------------------------------------------------------------------
-\label{cap9:sec:Conclusiones}
-En la actualidad la comunicación es un elemento indispensable para cualquier ser humano, ninguno de nosotros sería capaz de imaginarse su vida sin poder relacionarse con otras personas mediante el uso de la palabra. Sin embargo en nuestra sociedad hay personas con ciertas diversidades funcionales que les impiden poder tener una comunicación efectiva, por más simple que pudiera llegar a ser lo que quieren decir.
-Gracias a la aparición de diferentes alternativas de comunicación, como pueden ser los pictogramas. Se ha ayudado a estas personas a lograr que puedan entender aquello que otra persona le está queriendo transmitir. Aunque este tipo de comunicación sigue siendo muy limitada e incluso a veces reduciéndose dicha comunicación a personas que poseen el mismo tipo de diversidad.\\
-Por todo ello, es necesario desarrollar una herramienta que facilite a los usuarios de los pictogramas la comunicación con las personas de su alrededor. \\  
+\label{cap7:sec:Conclusiones}
+En la actualidad la comunicación es un elemento indispensable para cualquier ser humano, ninguno de nosotros sería capaz de imaginarse su vida sin poder comunicarse con otras personas. Sin embargo, en nuestra sociedad hay personas con ciertas diversidades funcionales que les impiden poder tener una comunicación efectiva.
+Los sistemas aumentativos y alternativos de comunicación, como los pictogramas, ayudan a estas personas a mejorar su comunicación. A pesar de ello la comunicación con pictogramas continua siendo una comunicación reducida al entorno más cercano o a personas con el mismo tipo de diversidad. Esto es debido a que en la actualidad la comunicación con pictogramas no es universal ni comprensible para cualquier persona.
+Por todo ello, vimos necesario desarrollar una herramienta que facilitase la comunicación de las personas que necesitan los pictogramas para comunicarse con otras personas que no comprenden los pictogramas. 
 
-El objetivo principal en este TFG era desarrollar una serie de servicios web que permitiesen traducir dichos pictogramas a texto con el fin de ayudar a aquellas personas con dificultades para comunicarse mediante el lenguaje natural. La idea fundamental era  mediante el uso de una sucesión de pictogramas formar frases u oraciones que se pudieran traducir a lenguaje coloquial. Para ello contábamos con una base de datos sacada de la API de Arasaac, gracias a la cual podíamos obtener los pictogramas con los que construir la secuencia de imágenes.\\ 
-En un primer momento se decidió empezar con secuencias de pictogramas que hicieran referencia a frases lo más simple posibles, como pueden ser frases nominales que son aquellas que no tienen verbo. Hasta llegar a secuencias que hacían referencia a frases más complejas, en las cuales se incluía no solo el verbo sino también aquellas que están formadas por un sujeto y su predicado, además de contemplar el tiempo al que hace referencia dicha secuencia, es decir, al traducir a lenguaje natural nos dice si la secuencia se desarrolla en el presente, pasado o futuro.\\   
+El objetivo principal en este TFG era desarrollar una aplicación web que permitiese traducir frases escritas con pictogramas a lenguaje natural con el fin de ayudar a aquellas personas que necesitan los pictogramas para comunicarse. En este TFG hemos desarrollado la aplicación web Pict2Text. A pesar de que la aplicación no traduce correctamente todo tipo de frases, sirve para traducir principalmente frases simples, como por ejemplo oraciones nominales ``el niño rápido'' u oraciones verbales con un complemento ``las niñas altas quieren pan'', además en las oraciones verbales, se puede traducir como complemento una preposición seguido de un nombre siempre y cuando se utilice el pictograma de la preposición y el pictograma del nombre ``el niño va al colegio'', también hemos añadido relación entre determinantes y sustantivos, esto quiere decir que si se quiere traducir el determinante ``estas'' nuestra aplicación sabe que el sustantivo al que acompañe este determinante tiene que ir en plural ``estas patatas'', es importante destacar que hemos conseguido realizar traducciones dependiendo del tiempo verbal de la frase ``la niña era feliz ayer''. 
 
-Una vez se desarrollaron los servicios web decidimos integrarlos en un API para que así fueran más accesibles a cualquiera que los necesitará. El siguiente paso fue crear una aplicación web para que pudiera ser utilizada por cualquier persona. Esta web presenta un buscador en donde el usuario puede encontrar el pictograma al que hace referencia una palabra, cuando encuentra el pictograma que quiere lo arrastra hacia el tablero de pictogramas. En este tablero se van colocando dichos pictogramas en forma de secuencia, es decir, uno detrás de otro. Hasta formar la secuencia que el usuario desee, por último pulsando el botón de generar se le traducirá la secuencia de pictogramas a la frase u oración correspondiente.     
+Pero hay algunos tipos de frases  para los que no se obtiene una traducción correcta, por ejemplo usando solo el pictograma de vía obtener la traducción ``el tren va por la vía'', tampoco hemos conseguido traducir oraciones reflexivas, oraciones con dos sustantivos en el sujeto, oraciones con dos verbos. 
 
-Este proyecto ha supuesto un gran reto y una gran oportunidad para nosotros, donde  nos ha permitido poder aplicar todos los conocimientos adquiridos en las distintas asignaturas cursadas durante nuestra carrera a un proyecto grande y con una utilidad más allá del ámbito académico, entre las asignaturas hay destacar:
+Cabe destacar que al comienzo de este TFG no encontramos ninguna aplicación que realizara traducciones de pictogramas a texto, podemos afirmar que aun sin ser perfecto el resultado de este trabajo establece unas bases solidas para la traducción de pictogramas a lenguaje natural.
+
+Uno de los objetivos era que la aplicación desarrollada fuera lo más cómoda, intuitiva y accesible posible a fin de poder llegar a la mayor cantidad de personas. Si bien estos objetivos están cumplidos, el tener que usar un buscador de palabras para formar la frase con pictogramas, limita el número de personas que pueden usar la aplicación. 
+
+Otro objetivo de este trabajo era implementar las funcionalidades de la aplicación usando servicios web para que se pudieran usar en de otras aplicaciones. Lo cual se ha conseguido, desarrollando los servicios web utilizando como entrada tipos de datos básicos para que puedan ser usados por otro desarrollador.
+
+Además hemos desarrollado una aplicación Front-End basada en componentes de Angular, que son también reutilizables en otras aplicaciones, que utilicen Angular como framework. Implementado dos grandes componentes un buscador de pictogramas y el traductor de pictogramas a lenguaje natural donde el usuario podrá poner una secuencia de pictogramas y mover dichos pictogramas o borrarlos a su antojo.         
+
+Este proyecto además nos ha permitido aplicar muchos de los conocimientos adquiridos en las asignaturas cursadas durante el grado a un proyecto grande y con una utilidad más allá del ámbito académico. Entre las asignaturas que más nos han ayudado en este TFG cabe destacar las siguientes:
 \begin{itemize}
-    \item \textbf{Ingeniería del Software}, \textbf{Modelado del Software} y \textbf{Gestión de Proyectos Software}. Donde nos enseñaron a tener la capacidad de gestionar proyectos software de una manera correcta y eficaz.
-    \item \textbf{Fundamentos de la programación} y \textbf{Gestión de Información en la Web}. Donde nos enseñaron dos de los principales lenguajes utilizados en este TFG como son: Java y Python.
-    \item \textbf{Aplicaciones Web}. Donde nos enseñaron los conocimientos necesarios de HTML, CSS y Javascript usados en el desarrollo de nuestra aplicación web.
-    \item Y por último, aunque no menos importante \textbf{Ética, Legislación y Profesión}. En la cuál nos informaron sobre el uso de las licencias, con las que proteger nuestro trabajo así como aprender a utilizar de una manera correcta el software libre. 
+    \item \textbf{Ingeniería del Software}, \textbf{Modelado del Software} y \textbf{Gestión de Proyectos Software}. Donde nos enseñaron a tener la capacidad de gestionar proyectos software de una manera correcta y eficaz. Adoptando algunas de las características propias de las metodologías ágiles, además de una metodología adaptativa a las necesidades del trabajo. Además del uso de diferentes patrones y principios de arquitectura software.
+    \item \textbf{Tecnología de la programación} y \textbf{Gestión de Información en la Web}. Donde nos enseñaron dos de los principales lenguajes utilizados en este TFG: Java y Python.
+    \item \textbf{Aplicaciones Web}. En esta asignatura nos enseñaron los conocimientos sobre HTML, CSS y Javascript usados en el desarrollo de nuestra aplicación web.
+    \item \textbf{Prácticas en empresa}. En la empresa donde se realizaron las practicas se utilizaba la herramienta Angular, por lo que hemos decidido integrarla al proyecto para la parte Front-End.   
+    \item \textbf{Ética, Legislación y Profesión}. En esta asignatura nos informaron sobre el uso de las licencias, con las que proteger nuestro trabajo así como aprender a utilizar de una manera correcta el software libre en nuestro trabajo y así respetar la licencia de la API de ARASAAC.
+    \item \textbf{Redes}. Donde obtuvimos algunos de los conocimientos básicos que hemos necesitado para el manejo de servicios web y la conexión entre los mismos.
 \end{itemize}
 
-Para finalizar, estamos muy contentos con nuestra trabajo realizado en este proyecto y creo que hemos cumplido con las expectativas que nos marcamos al empezar este TFG.
+Además este TFG también nos ha aportado muchos conocimientos nuevos, entre los que destacan: creación de servicios web en diferentes lenguajes de programación, despliegue de aplicaciones web, el uso de Latex, y un acercamiento a herramientas de procesamiento de lenguaje natural como son Spacy y SimpleNLG-ES.  
+
 
 %------------------------------------------------------------------
 \section{Trabajo Futuro}
 %-------------------------------------------------------------------
-\label{cap9:sec:Trabajo Futuro}
-Con el objetivo de mejorar y completar algunas funcionalidades de cara a obtener una aplicación más completa, pensamos que se podrían marcar como trabajo de futuro la realización de algunas características que se quedaron sin implementar en este proyecto.
+\label{cap7:sec:Trabajo Futuro}
+Con el objetivo de mejorar y completar algunas funcionalidades de cara a obtener una aplicación más completa y que ofrezca una mayor cobertura, pensamos que se podrían marcar como trabajo futuro lo siguiente:
 
 \begin{itemize}
-    \item \textbf{Reconocimiento de pictogramas}. Sería un paso adelante en nuestra aplicación la implementación de un método que reconociese los pictogramas sin necesidad de utilizar el buscador, para ello el método a crear podría recibir de un documento externo la secuencia de pictogramas que se desea traducir.
-    \item \textbf{Eliminación del buscador de pictogramas}. Si se ha llevado a cabo la implementación mencionada en el punto primero, el buscador ya no sería necesario pudiendo eliminarlo de la aplicación y dotando a la misma un toque más estético, donde aparecería la secuencia de pictogramas y su traducción.
-    \item \textbf{Mejora en la lectura de los pictogramas}.
-    \item \textbf{Incremento en la complejidad de las frases a traducir}. Aunque la complejidad que ahora mismo traduce este TFG es correcta, pensamos que en un futuro se puede introducir más complejidad a las secuencias de pictogramas a traducir para cada vez tener un traductor más completo.
-\end{itemize}
+    \item \textbf{Reconocimiento de pictogramas}. Implementar otras alternativas en la aplicación aparte del buscador de pictogramas, para crear mensajes con pictogramas. Una nueva alternativa podría ser: la posibilidad de cargar directamente en nuestra aplicación un mensaje con pictogramas desde un archivo o poder hacer una foto a un mensaje escrito con pictogramas.
+    \item \textbf{Evaluación de la usabilidad con expertos}. Realizar un diagnostico sobre si la aplicación creada es simple, intuitiva y útil para usuario con diversidad funcional que utilicen pictogramas, para ello realizaríamos un estudio colaborativo con expertos que nos puedan orientar y ver posibles mejoras.
+    \item \textbf{Introducción de nuevos elementos en la traducción}. 
+Actualmente la traducción de nuestra aplicación no contempla que con el pictograma de un sustantivo se añada automáticamente en su traducción palabras diferentes a los determinantes el,la,los,las o un, una,unos, unas como pueden ser: preposiciones, conjunciones, adjetivos... Frases como la mostrada en la Figura \ref{fig:ejemploUnPicto} son traducidas por nuestra aplicación como ``El tren va una vía''. Deberíamos buscar la forma de diferenciar cuando un sustantivo necesita ir acompañado de una preposición, un determinante o cualquier otro tipo de palabra. Y una vez detectada ese diferencia añadir al sustantivo los complementos que necesite para dotar de sentido a la frases. 
+\figura{Bitmap/Conclusion/ejemploUnPicto}{width=10cm}{fig:ejemploUnPicto}{Ejemplo de la frase ``El tren va por la vía''.}
 
-El factor principal por el que no se han podido realizar las funcionalidades comentadas no ha sido otro que la falta de tiempo. Nos gustaría en un futuro poder seguir mejorando nuestra aplicación con el fin de completarla lo máximo posible y así poder ayudar a las personas que lo necesiten. 
+Traducción de frases reflexivas. Hay que detectar si hace falta poner un pronombre reflexivo en la oración. Para ello podríamos crear un servicio web que reconozca los pronombres me, te, se, nos, os, y devuelva que es una frase reflexiva, otra opción sería mejorar el servicio web de detección de tiempo verbal para que también reconozca este tipo de frases.
+
+Tener en cuenta que puede haber más de un verbo en la oración. Para llevar a cabo esta solución habría que estudiar si los dos verbos se encuentran en un posición consecutiva en la frase, de ser como el pictograma del verbo siempre nos viene dado en infinitivo, el primer verbo sería el que se conjugaría en presente, pasado o futuro, traduciendo el segundo en infinitivo. Si por el contrario,  vienen por separado habría que observar cual es el verbo principal de la frase  con el fin de encontrar el sujeto, verbo y predicado, y después realizar la traducción pertinente.\\ 
+Así se traducirían frases como: ``Yo quiero ver la televisión'' y ``Yo quiero ir al baño''.
+
+Tener en cuenta que puede haber más de un sustantivo en el sujeto. Habrá que clasificar a ambos sustantivos como parte principal del sujeto para que ninguno pudiera borrar la información del otro al ser los dos sustantivos y una vez hecho esto asignarles sus determinantes adecuados.
+Con esta implementación se traducirían frases del tipo: ``El libro y el estuche están dentro de la mochila'' o ``La fresa y la pera son fruta''.	
+
+Relación de determinantes y sustantivos. Nuestra aplicación actualmente solo traduce diferentes tipos de determinantes si se le añade explícitamente el pictograma del determinante deseado, sin embargo si se desea añadir automáticamente al sustantivo algún determinante, nuestra traducción solo añade (el,la,los,las) si el sustantivo está en el sujeto y (un, una, unos, unas) si está en el predicado.
+Habría que estudiar la posibilidad de obtener si dicho sustantivo es contable o incontable, y así acompañar a los sustantivos contables con los determinantes un,una..., y a los incontables con el, la...\\
+Logrando traducir: ``Mamá conduce el coche'' o ``La niña come pollo''.
+
+Relación entre preposición y determinante. La aplicación solo traduce preposiciones si ponemos su pictograma, sin embargo si después de esa preposición viene un determinante, la traducción que hace queda de la siguiente forma ``Los niños juegan la con pelota''.
+Para arreglar este problema habría que estudiar previamente si en la frase a traducir hay una preposición, si es así, se traduciría toda la frase como un complemento consiguiendo mantener el orden correcto de la traducción. Y se lograrían obtener frases como:
+``Los niños juegan con la pelota'' o ``El bebé juega con los cubos''. 
+
+\item \textbf{Ampliar la cobertura del servicio de detección del tiempo verbal de la frase}. Añadir nuevas palabras o expresiones, para el reconocimiento del tiempo verbal de la frase.
+\figura{Bitmap/Conclusion/pasearAlPerro}{height=4cm}{fig:pasearlAlPerro}{Pictograma de ``Pasear al perro''.}
+\item \textbf{Reconocimiento de pictogramas que representan expresiones.} Algunos pictogramas como el pictograma mostrado en la Figura \ref{fig:pasearlAlPerro} que significa ``Pasear al perro''. Estos pictogramas necesitan de un procesamiento especial que separe la expresión en sus diferentes palabras para poder ser procesadas una a una.
+
+\end{itemize}

@@ -2,14 +2,60 @@
 
 \chapter{Introduction}
 \label{cap:introduction}
+ 
+In this chapter will be presented, the motivation behind this project, the objectives that we set ourselves at the beginning of the final degree project and the development methodology that we have followed, throughout the work. Also, at the end of this chapter we indicate the structure of this document.
 
-Introduction to the subject area.
+\section{Motivation}
+
+Communication is a fundamental part of social and human growth, but some people with functional diversity find many obstacles to achieve effective communication. The appearance of different communication channels, such as pictograms, which are graphic images that relate to some object or concept, these have been a great advance for communication in this group. But the reality is that communication is still very limited and sometimes it is limited to people with the same type of functional diversity and specialists trained in this area. This is the case of the people whose way of communication are the pictograms, because many people do not know the meaning of the pictograms, this reason make the communication with this people is notably reduced or in many cases impossible. 
+
+For that reasons, there is a need to create a tool that facilitated the communication of those people who use pictograms with their environment, a software capable of translating pictograms into language. There are currently multiple tools that allow the translation of natural language pictograms but not natural language pictograms. This software tool will allow to break down barriers and help the social inclusion of people whose functional diversity is at risk of exclusion.
 
 
+The main beneficiaries of this tool will be users with problems to communicate through natural language and who need to rely on the pictograms, such as people with cerebral palsy, autism or any other type of cognitive disability.
+Also, this work is designed to help these people to be able to communicate in any daily situation such as being able to order a refreshment in a bar, expressing their desire to eat macaroni, or expressing activities they have done or will be doing in the future, such as go on a excursion. Something so simple that unfortunately for these people it is not so much.
+
+\section{Objectives}
+
+The main objective of this work is the creation of a natural language pictogram translator. The translator must generate a grammatically correct text in Spanish and not just translate each pictogram to the word it represents.
+
+At the time of designing the application, its user friendly will be sought through a comfortable, accessible and intuitive interface, in order to reach the maximum possible public.
+
+Also, to develop each of the functionalities of our application, we will use web services with the final purpose to create different and independent modules  that can be integrated into other applications. This will be very useful for other developers who are doing similar applications because they can integrate those functionalities developed in our work that interests them.
+
+With this work also we look for consolidate the knowledge acquired in the Software Engineering Degree that we have studied in recent years. Also, cquiring new skills before leaving to work as university graduates.
 
 
+%------------------------------------------------------------------
+\section {Work Methodology}
+%-------------------------------------------------------------------
+
+During this TFG we have followed a methodology that follows some of the typical characteristics of agile methodologies.We needed an adaptive methodology, given that at the beginning of the project 
+We did not know the viability of the project, the scope and how to develop it.
+
+The communication with the tutors and between us has been constant since the beginning of the project with the final purpose to guarantee the quality of the product and obtain advice. We have been in contact through the mail to answer questions and, in addition, every two or three weeksthere was a meeting to review the work done and to establish the priorities of the remaining work and select what would be done until the next meeting.
+
+To try to secure the correct resolution of the project in every moment,  constant deliveries have been made both of memory and of code. Two o three times at month, the memory and a functional version of the aplication were revised for our tutors, checking that way if we were going to right way.
+
+We have used a Kanban board to represent the status of the project in every moment. This has also helped the organization, because there were limitations such as not working in the same place, or with the same schedule and we needed a board that would allow us in a quick way to know the status of the work in every moment. The priority of the work to be done was always based on the value that these defects granted to the final product. The Kanban board as been an information radiator for all the team, because at a glance each person could know the status of the project and each of the tasks. The columns of the board has been:
+
+\begin{itemize}
+\item To Do: In this column are listed those tasks that are about to do. The tasks are ordered by priority so that at the beginning always appear the most prioritized and develop. After each meeting we added new tasks and readjusted the priorities.
+
+\item In Progress: Tasks that are being developed. Each task in this column must be assigned to one of the members of the work team and the same person can not have more than one task assigned in this column, por then the WIP(Work In Progress)\footnote{https://kanbanize.com/es/recursos-de-kanban/primeros-pasos/que-es-limite-wip/} of this column in our work is two. 
+\item Test: All tasks completed by a team member pass to this column to be reviewed by the other.
+\item Revision: Tasks that the tutors are reviewing, to validate their correction before the next meeting.
+\item Done: Tasks that after the review process they are given as done.
+\end{itemize}
+
+We have worked for sprints of two or three weeks. At the end of our meetings with our tutors we established the duration of the next sprint and what the tasks to do in it would be. 
+
+The system for the version control chosen has been GitHub, using the NIL group account\footnote{https://github.com/NILGroup/TFG-1819-PictoTexto}. Using this account allowed us to have a private project and only the members of the project had access. Once this TFG was finalized, we made the account public so that anyone could consult the project. 
+
+%------------------------------------------------------------------
+\section{Document structure}
+%-------------------------------------------------------------------
 
 
-
-
-
+This document is structured as follows. In Chapter \ref{cap:estadoDeLaCuestion} \textbf {(Estado de la cuestión)}, we will talk about all the important aspects for the Generation of Natural Language, of the Augmentative and Alternative Communication Systems, and more specifically the pictograms, and the different pictographic systems currently available, and also we will introduce web services. In Chapter \ref{cap:Herramientas} \textbf {(Herramientas)}, will be where the different tools used for the preparation of this work are described. In this chapter we will present Django, Angular, Simple-NLG, the Arasaac API used to obtain the necessary information about the pictograms, and Spacy. In the Chapter \ref{cap:Pict2Text} \textbf {(Pict2Text)}, the application developed in this TFG will be presented in detail. In the Chapter \ref{cap:evaluacion} \textbf {(Evaluación)}, the results of the evaluation carried out will be presented. In the Chapter \ref{cap:trabajoInd} \textbf {(Trabajo individual)}, 
+the individual work carried out by each of the authors of this work will be exposed. Finally in the Chapter \ref{cap:conclusiones} \textbf{Conclusiones y Trabajo Futuro}, We will present the conclusions we have at the end of this final degree work, and what would be the next steps to improve the application.

@@ -1,8 +1,6 @@
 from django.http import JsonResponse
 
-import requests
 import json
-import pict2Text.Utils.constants as constants
 import pict2Text.Utils.SpacyModel as spacyimp
 
 # Create your views here.

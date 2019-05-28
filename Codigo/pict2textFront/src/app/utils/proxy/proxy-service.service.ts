@@ -30,13 +30,6 @@ export class ProxyService {
               catchError(this.handleError));
   }
 
-  public getAll(url) {
-    return this.http.get(url)
-            .pipe(
-              retry(5),
-              catchError(this.handleError));
-  }
-
   public postElement(url, object) {
     return this.http.post(url, JSON.stringify(object))
     .pipe(catchError(this.handleError));

@@ -1,0 +1,101 @@
+% !TeX encoding = ISO-8859-1
+
+\chapter{Evaluación}
+\label{cap:evaluacion}
+
+Cuando se finalizó la implementación de la aplicación web se realizó una evaluación de la corrección de las traducciones realizadas por nuestra aplicación, para comprobar la cobertura y precisión de nuestro traductor.  
+En este capítulo explicaremos el diseño de la evaluación en la (Sección \ref{cap5:sec:Diseño de la Evaluación}), los resultados obtenidos en dicha evaluación (Sección \ref{cap5:sec:Resultados de la Evaluación}),  y un análisis de estos resultados obtenidos, (Sección \ref{cap5:sec:Análisis de los Resultados}).
+
+\section{Diseño de la Evaluación}
+%-------------------------------------------------------------
+\label{cap5:sec:Diseño de la Evaluación}
+Para comenzar, es importante recordar que el público objetivo de nuestro traductor son aquellas personas que necesitan el apoyo de los pictogramas para comunicarse. Los pictogrmas permiten desde un nivel de comunicación muy básico (frases con pocos elementos, sin artículos, sin adverbios, sin complementos...) hasta un nivel de comunicación muy rico y avanzado (complementos, artículos, adverbios, preposiciones...) pero nunca tan completo y flexible como el que se puede lograr a través del lenguaje natural. En este trabajo hemos restringido el ámbito a la traducción de frases con pictogramas que van desde las frases más sencillas hasta frases algo más complejas con algún artículo, preposición, complementos... Por este motivo como corpus para la evaluación hemos utilizado corpus formados pos frases, descartando cuentos, corpus con oraciones compuestas, etc.\\
+Otra cuestión que se tuvo en cuenta a la hora de seleccionar los corpus para la evaluación fue el tipo de pictogramas utilizado. Nuestra aplicación está diseñada para trabajar con los pictogramas de ARASAAC por lo que los corpus para la evaluación debían este tipo de pictogramas. Y por eso, decidimos buscar en los corpus que ofrecía ARASAAC en su propia página web y así evitar lo máximo posible un problema de correlación entre los pictogramas del corpus y los que utiliza nuestra aplicación.\\
+La evaluación se hizo de manera manual, introduciendo todos los ejemplos en nuestra aplicación y analizando caso por caso el resultado obtenido. Finalmente seleccionamos 2 corpus con 149 frases en total.
+
+\begin{enumerate}
+	\item \textbf{Corpus de frases con fotos y pictogramas}\footnote{\url{http://www.arasaac.org/materiales.php?id_material=474}}. 
+Frases con pictogramas sencillas y sin nexos de unión, las frases solamente contienen las palabras principales de la oración. En total este corpus lo componen 34 frases. En la Figura \ref{fig:cEjemFotos} se pueden ver 3 frases de ejemplo del corpus. En el Apéndice A se puede consultar el corpus completo.
+
+\figura{Bitmap/Evaluacion/cEjemFotos}{width=10cm}{fig:cEjemFotos}{Frases del corpus fotos y pictogramas.}
+
+\item \textbf{Corpus de frases verdad o mentira}\footnote{\url{http://www.arasaac.org/materiales.php?id_material=691}}. 
+Este corpus está compuesto por frases sencillas junto a otras con un nivel más complejo, entre los que destacan frases con nexo de unión o frases con más de un sustantivo en el predicado. En total este corpus está formado por un total de 115 frases. En el ejemplo de la Figura \ref{fig:cEjemMentiras} podemos ver algunas de las frases contenidas en este corpus. En el Apéndice B se puede consultar el corpus completo. 
+\clearpage
+
+\figura{Bitmap/Evaluacion/cEjemMentiras}{width=10cm}{fig:cEjemMentiras}{Ejemplo del corpus verdad o mentira.}
+
+\end{enumerate}
+
+\section{Resultados de la Evaluación}
+%-------------------------------------------------------------
+\label{cap5:sec:Resultados de la Evaluación}
+En la Tabla \ref{tabla:resultados} se muestran los resultados de la evaluación de los 2 corpus: número total de frases procesadas, número de frases correctas y porcentaje de frases correctas. 
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+CORPUS & NºFRASES & FRASES CORRECTAS & \% ACIERTO \\
+\hline \hline
+Frases con fotos y pictos & 34 & 14 & 41\% \\ \hline
+Frases verdad o mentira & 115 & 23 & 20\% \\ \hline
+Total & 149 & 37 & 25\% \\ \hline 
+\end{tabular}
+\caption{Resultados de la evaluación.}
+\label{tabla:resultados}
+\end{center}
+\end{table}
+
+Como podemos observar en la tabla de resultados, el corpus con frases más sencillas (corpus de fotos y pictogramas) el porcentaje de acierto es del 41\%, mientras que el otro corpus, al estar compuesto por frases con un nivel mayor de complejidad, el porcentaje de acierto es más bajo, un 20\%.
+
+\section{Análisis de los Resultados}
+%-------------------------------------------------------------
+\label{cap5:sec:Análisis de los Resultados}
+Tras un análisis exhaustivo de los resultados de las frases traducidas incorrectamente, Hemos detectado que los errores principales se deben a las siguientes causas:
+
+\begin{itemize}
+    \item \textbf{Fallo al añadir complementos a un pictograma}. En la lógica pensada para nuestra aplicación, no se contempla que al pictograma de un sustantivo se añadan automáticamente en su traducción palabras diferentes a los determinantes el, la, los, las si se encuentra el sustantivo en el sujeto o un, una, unos, unas si se encuentra en el predicado.
+Por tanto en la frase: ``el tren va \textbf{por la vía} '', donde las palabras resaltadas tienen que traducirse con un solo pictograma, Pict2Text devuelve la frase ``El tren va una vía''.
+  
+    \item \textbf{Frases reflexivas}. Nuestra aplicación no contempla la traducción de frases reflexivas como: ``la niña se lava las manos'', en este caso Pict2Text devuelve ``El niño lava unas manos''. Por tanto, las frases reflexivas no han obtenido un resultado correcto. 
+
+	\item \textbf{Más de un verbo en la oración}. En esta primera etapa de desarrollo de la aplicación no se contempló la traducción de dos verbos en la misma oración, así que frases como: ``Yo quiero ver la televisión'' o ``Yo quiero ir al baño'', son traducidas por Pict2Text como: ``Yo quiero un baño va'' o ``Yo quiero una televisión ve''.
+	
+	\item \textbf{Más de un sustantivo en el sujeto}. De nuevo, Pict2Text no contempla la opción de tener más de un sustantivo en el sujeto. Cuando una frase contiene varios sustantivos en el sujeto como ``El libro y el estuche están dentro de la mochila'' o ``La fresa y la pera son fruta'' la traducción de Pict2Text devuelve ``El estuche está una mochila dentro'' o ``La pera es una fruta''.
+	 
+    \item \textbf{Errores del analizador del lenguaje}. Spacy no tiene una precisión del 100\% tal y como se comentó en la Sección \ref{cap3:sec:Spacy}, así que la categoría léxica o los atributos devueltos por Spacy para una palabra pueden no ser correctos. Por este motivo la traducción realizada por nuestra aplicación falla en ejemplos como: ``La niña \textbf{sopla} las velas'', ya que para spacy sopla es un adjetivo y no un verbo.
+
+    \item \textbf{Relación entre determinantes y sustantivos}. Para la traducción de las frases se decidió que la aplicación añadiría automáticamente a los sustantivos en el sujeto, el determinante el, la, los, las concordando en género y número del sustantivo. Si el sustantivo aparecía en el predicado Pict2Text añade el determinante un, una, unos, unas, a no ser que aparezca en la frase un pictograma con el determinante explícito.
+Por tanto en frases como: ``Mamá conduce el coche'', Pict2text devuelve ``La mamá conduce un coche''.
+  
+    \item \textbf{Relación entre preposición y determinante}. Actualmente la aplicación solo traduce las preposiciones si ponemos su pictograma explícitamente. Sin embargo,  si después de la preposición viene un determinante acompañando a un sustantivo, la traducción da un resultado incorrecto. Ya que nuestro generador de lenguaje natural traduce antes el determinante que la preposición, así que en frases como: ``El niño juega con el oso'' o ``Los niños juegan con la pelota'', Pict2Text traduce dichas frases como: ``El niño juega el con oso'' o ``Los niños juegan la con pelota''. 
+\end{itemize}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+TIPOS DE FALLOS & NºFALLOS/TOTAL FALLOS & \% FALLO \\
+\hline \hline
+Fallo complementos un pictograma & 49/114 & 42,29\% \\ \hline
+Frases reflexivas & 16/114 & 14\% \\ \hline
+Más de un verbo en la oración & 3/114 & 2,6\% \\ \hline
+Más de un sustantivo en el sujeto & 2/114 & 1,7\% \\ \hline
+Errores analizador del lenguaje & 11/114 & 9,6\% \\ \hline
+Relación determinante y sustantivo & 22/114 & 19,3\% \\ \hline
+Relación preposición y determinante & 11/114 & 9,6\% \\ \hline
+Total de Fallos & 114/114 & 100\% \\ \hline 
+\end{tabular}
+\caption{Frases traducidas incorrectamente por cada tipo de error.}
+\label{tabla:errores}
+\end{center}
+\end{table}
+
+En la Tabla \ref{tabla:errores} se presenta el número de frases traducidas incorrectamente debido a cada uno de los errores detectados.
+
+
+Los datos obtenidos de la evaluación han sido muy beneficiosos, ya que nos han ayudado a encontrar los tipos de traducciones a mejorar y actualizar con el fin de obtener una aplicación más completa. Además teniendo en cuenta que no se ha encontrado otra aplicación que haga traducciones parecidas a las que hace Pict2Text. Podemos calificar estos resultados como bastante alentadores, ya que nos muestran que se ha realizado una aplicación con una buena base sólida con mucho margen de mejora en el futuro.
+
+
+

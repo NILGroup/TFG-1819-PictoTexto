@@ -9,46 +9,55 @@ A lo largo de este capitulo hablaremos del trabajo realizado por cada uno de los
 %-------------------------------------------------------------------
 \label{cap6:sec:Jose Maria}
 
-Lo primero que realice fue un estudio de los SAACS, poniendo especial atención en los pictogramas, y de los servicios web. 
+Lo primero que realicé fue un estudio de los SAACS, poniendo especial atención en los pictogramas, y de los servicios web. En la búsqueda de información sobre los SAACS, analicé los sistemas pictográficos más extendidos y la comunicación a través de  pictogramas, además me puse en contacto con ARAASAC para obtener información sobre herramientas que nos permitieran usar los pictogramas de ARAASAC en nuestro trabajo, y así conseguimos acceso a su API.
 
-En la búsqueda de información sobre los SAACS, analice los sistemas pictograficos más extendidos y la comunicación a través de  pictogramas, además me puse en contacto con ARAASAC para obtener información sobre herramientas que nos permitieran usar los pictogramas de ARAASAC en nuestro trabajo, y así conseguimos acceso a su API.
+Uno de los requisitos indispensables de este proyecto, era la necesidad de incluir la aplicación dentro de un servicio web, por lo cual investigué sobre cuáles eran las diferentes opciones para crear un Servicio Web en Python. Además desarrollé un prototipo tecnológico, para aprender a crear servicios web con Python.
 
-Uno de los requisitos indispensables de este proyecto, era la necesidad de incluir la aplicación dentro de un servicio web, por lo cual investigue sobre cuales eran las diferentes opciones para crear un Servicio Web en Python. Además desarrolle una prototipo tecnológico, para aprender a crear servicios web con Python.
+A continuación, pensamos en la metodología de trabajo que seguiríamos y la documenté  en la memoria, en la Sección \ref{cap1:sec:Metodologia}.
 
-A continuación, pensamos en la metodología de trabajo que seguiríamos y la documente  en la memoria, en el capitulo \ref{cap4:MetodologiaDeTrabajo}.
+El siguiente paso necesario, era un estudio sobre los diferentes sistemas de generación de lenguaje natural parte fundamental del proyecto. Investigué y documenté la base teórica de la generación de lenguaje natural y una vez terminé esto pase a la búsqueda de diferentes frameworks de generación de lenguaje natural en español, tras la cual encontré el framework SimpleNLG-ES. Una vez presentados los resultados de mi investigación en la memoria, desarrollé un prototipo tecnológico utilizando dicho framework. Este prototipo muy simple permitía crear una frase a partir de un sujeto, un verbo y un complemento directo.
+Para generar este servicio web, analicé diferentes vías de servicios web en Java, y realice dos prototipos uno con WildFly\footnote{http://www.wildfly.org/} y otro con Apache Tomcat\footnote{http://tomcat.apache.org/}, y teniendo en cuenta diferente factores como rendimiento o la comunidad que había detrás, decidí implementar Tomcat.
 
-El siguiente paso necesario, era un estudio sobre los diferentes sistemas de generación de lenguaje natural parte fundamental del proyecto. Investigue y documente la base teórica de la generación de lenguaje natural, una vez termine esto pase a la búsqueda de diferentes frameworks de generación de lenguaje natural en español, tras la cual encontré el framework SimpleNLG-ES. Una vez presentados los resultados de mi investigación en la memoria, desarrolle un prototipo tecnológico utilizando dicho framework. Este prototipo muy simple permitía enviarle un sujeto, un verbo y un complemento directo y este devolvía una frase en lenguaje natural con dichos elementos.
-Para generar este servicio web, analice diferentes vías de servicios web en Java, y realice dos prototipos uno con WildFly\footnote{http://www.wildfly.org/} y otro con Apache Tomcat\footnote{http://tomcat.apache.org/}, y teniendo en cuenta diferente factores como rendimiento o la comunidad decidí implementar Tomcat. Durante el desarrollo de este prototipo surgieron diferentes necesidades, como la entrada de los servcios web Java, que suplí utilizando la librería GSON. Una vez tenía la base de la aplicación, desarrolle el Servicio Web de búsqueda del pictogramas asociados a una palabra y cree una pequeña aplicación para poder probar la integración de este servicio, con el servicio de generación de lenguaje.
+Una vez tenía la base de la aplicación, desarrollé el servicio web de búsqueda de pictogramas asociados a una palabra y cree una pequeña aplicación para poder probar la integración de este servicio, con el servicio de generación de lenguaje. Una vez terminé el trabajo de implementación, documenté los servicios web, en la memoria.
 
-Una vez termine el trabajo de implementación, documente los servicios web, en la memoria.
+Dado el límite del framework Django para la gestión de aplicaciones web desde el lado del cliente, desarrollé una aplicación web Front-End en Angular, que después integre con la aplicación Django, para de esta manera obtener mayor funcionalidad, flexibilidad y descargar parte del trabajo en el cliente. Una vez terminada la implementación documenté la aplicación y la arquitectura en la memoria.
 
-Dado el limite del framework Django para la gestión de aplicaciones web desde el lado del cliente, desarrolle una aplicación web Front-End en Angular, que después integre con la aplicación Django, para de esta manera obtener mayor funcionalidad, flexibilidad y descargar parte del trabajo en el cliente. Una vez terminada la implementación documente la aplicación y la arquitectura en la memoria.
+Después realice un estudio sobre los diferentes analizadores de lenguaje natural para el castellano y decidimos usar Spacy. A continuación, desarrollé el servicio web de detección de palabras y posteriormente documenté su funcionamiento. 
 
-Después realice un estudio sobre los diferentes analizadores de lenguaje natural para el castellano y decidimos usar Spacy. A continuación de investigar su uso, desarrolle el servicio web de detección de palabras y posteriormente documente su funcionamiento.  Además de este servicio decidimos que era necesario, crear un servicio web que detectara el tiempo verbal en el que se debería conjugar la frase, que también desarrolle.
-Para el  servicio de generación de lenguaje tuve que hacer una refactorización del servicio ya creado, ya que la complejidad del servicio es mayor, gracias a esto el servicio web es más fácil de mantener y hacer cambios. Una  vez terminado todo el desarrollo documente el servicio web y el flujo de su ejecución.
+Además de este servicio decidimos que era necesario, crear un servicio web que detectara el tiempo verbal en el que se debería conjugar la frase, que también desarrollé.
 
-Para terminar desarrolle un diseño vista final que añadía a la aplicación que ya había desarrollado una cabecera y un footer, con el logo de la aplicación y el logotipo de ARAASAC y la licencia Creative Commons.
+Para el  servicio de generación de lenguaje tuve que hacer una refactorización del servicio ya creado, ya que la complejidad del servicio debía ser mucho mayor. Gracias a esta refactorización conseguí un servicio web más fácil de mantener y  de modificar. Una  vez terminado todo el desarrollo documenté el servicio web y el flujo de su ejecución.
+
+Para terminar con el desarrollo, desarrolle un diseño vista final que añadía a la aplicación que ya había desarrollado una cabecera y un footer, con el logo de la aplicación y el logotipo de ARAASAC y la licencia Creative Commons. Y hice junto con mi compañero el despliegue de la aplicación.
+
+Lo último que realice fue el despliegue de la aplicación en el servidor\footnote{https://holstein.fdi.ucm.es/tfg-pict2text/}, realice algunas de las ultimas correcciones en la memoria y complete la documentación de las herramientas Angular y Django y el tema de trabajo futuro. Por ultimo traduje la introducción y el resumen al inglés. 
+
+\clearpage
 
 %------------------------------------------------------------------
 \section{Trabajo Individual de Salvador}
 
 %------------------------------------------------------------------
 \label{cap6:sec:Salvador}
-Cuando comenzamos a realizar este trabajo fin de grado, mi cometido principal junto con mi compañero José María fue realizar un estudio sobre aquellos aspectos básicos que debíamos conocer para fundamentar las bases de nuestro proyecto. Realizando un estudio sobre los pictogramas y los sistemas pictográficos existentes en la actualidad.
+Cuando comenzamos a realizar este Trabajo Fin de Grado mi cometido principal junto con mi compañero José María fue realizar un estudio sobre los aspectos básicos en los que fundamentar las bases de nuestro proyecto. Entre estos aspectos destacan, saber que son los pictogramas, que función cumplen, público objetivo de nuestra aplicación, etc. A continuación realicé un estudio sobre los sistemas pictográficos existentes en la actualidad.
 
-Una vez teníamos asentadas las bases sobre las que enfocaríamos nuestro trabajo, tuve que realizar un análisis sobre que tipo servicios web serían los más beneficiosos para nosotros, entendiendo su funcionamiento y todo lo que nos aportaban, como esa independencia funcional entre cada uno de los servicios. Además también empecé a investigar sobre las herramientas que podríamos utilizar para integrar dentro de los mismos, haciendo especial hincapié  en la herramienta Django ya que preveíamos que podría sernos muy útil.
+Una vez teníamos asentadas las bases sobre las que enfocaríamos nuestro trabajo, tuve que realizar un análisis sobre que tipo de servicios web serían mejores para nuestro proyecto, entendiendo su funcionamiento y todo lo que nos aportaban, como esa independencia funcional entre cada uno de los servicios. Al mismo tiempo, empecé a investigar las diferentes herramientas que podríamos utilizar para implementar estos servicios web. Esta primera investigación nos llevo a la herramienta Django ya que preveíamos que podría ser una de las herramientas a utilizar en nuestra aplicación.
 
-El trabajo iba avanzando, y así con la investigación de mi compañero sobre la generación del lenguaje natural y la idoneidad del framework SimpleNLg-ES, mi tarea fue realizar un estudio pormenorizado sobre el funcionamiento de dicho framework, además de testear concienzudamente las aplicaciones basadas en pictogramas que existen actualmente.
+Cuando la investigación de mi compañero sobre Generación del Lenguaje Natural nos dio como resultado la idoneidad de SimpleNLG-ES para esta función, mi tarea se centró en realizar un estudio pormenorizado sobre el funcionamiento de dicho framework.
+Además de testear concienzudamente las aplicaciones basadas en pictogramas que existen actualmente.
 
-Debido a ciertas dificultades que encontramos a la hora de integrar nuestro servicio realizado en Python, en un Servicio Web codificado en Java. Tuve que investigar la librería GSON la cuál nos permitía justamente lo que necesitábamos, consiguiendo así poder solventar ese problema.
+El siguiente paso fue investigar el uso y funcionamiento de los servicios Apache Tomcat, los cuáles serían necesarios en nuestra aplicación.
 
-El siguiente paso fue el desarrollo de la demo y sus primeros servicios webs ya implementados y funcionando. Además de investigar el uso y funcionamiento de los servicios Apache Tomcat, los cuáles serían necesarios en nuestra aplicación.
+Dada la limitación para la parte Front-End que presentaba el framework Django, documenté toda la información relevante sobre Angular, que fue la opción más idónea para ayudarnos a solventar dicha limitación.   
 
-Dada la limitación que presentaba el framework Django realicé un estudio sobre aquellas herramientas que nos podían ayudar a completar las limitaciones de Django. Dando como resultado que Angular CLI era la opción más idónea para realizar esa función y documentando esa elección.
+Otro paso muy importante para la realización de nuestro trabajo fue elegir el analizador de lenguaje natural que mejor se adaptaba a nuestras necesidades, cuando observamos que la herramienta Spacy era la mejor opción, mi cometido fue documentar los motivos por los que dicha herramienta era la elección correcta y las características que nos ofrecía.
 
-Otro aspecto muy importante para la realización de nuestro trabajo era elegir el analizador de lenguaje natural que mejor se adaptaba a nuestras necesidades, cuando con el estudio de mi compañero observamos que la herramienta Spacy era la mejor opción, mi objetivo derivó en documentar los motivos por los que dicha herramienta era la elección correcta y las características que nos ofrecía por las que pasaba a ser una de las herramientas indispensables en nuestro TFG. 
+Una vez finalizada la implementación, me encargue de realizar un trabajo de mejora sobre la traducción que realizaba la aplicación, consiguiendo que aumentara su cobertura. Por ejemplo, añadiendo por defecto el pronombre ``yo'' en caso de no introducir ningún sujeto, añadiendo la traducción de más determinantes y pronombres, la posibilidad de traducir números, sustantivos en plural, etc.
 
-Para ir completando la memoria, he sido el encargado de redactar los apartados de agradecimientos y resumen, así como también me he encargado de escribir las conclusiones finales del trabajo y añadir los pasos a seguir con este trabajo para completarlo en un futuro. 
+Cuando se completó la fase de mejoras en la aplicación, fui el encargado de realizar la evaluación, escogiendo los corpus, realizando las traducciones de los ejemplos del corpus y realizando un análisis pormenorizado sobre el rendimiento y las posibles mejoras que se podrían realizar sobre ella. 
+
+Para ir completando la memoria, me encargué de redactar los apartados de agradecimientos y resumen, así como de escribir las conclusiones finales del trabajo, añadir el trabajo futuro y realizar los apéndices con todos los ejemplos que se han estudiado en la evaluación.
+
   
 
      
