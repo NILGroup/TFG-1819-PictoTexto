@@ -5,7 +5,7 @@
 \label{cap:Herramientas}
 
 A lo largo de este capítulo analizaremos las diferentes herramientas utilizadas para el desarrollo de este TFG. Para implementar todas las funcionalidades de la aplicación vamos a utilizar servicios web para traducir un texto escrito con pictogramas a lenguaje natural,
-lo primero es conseguir las palabras asociadas a cada pictograma del mensaje de entrada para ello haremos uso de la API de Arasaac, que explicaremos en la Sección \ref{cap3:sec:API-Arasaac}. Para generar frases gramaticalmente correctas a partir de las palabras asociadas a los pictogramas vamos a necesitar un generador de lenguaje natural como es SimpleNLG (Sección \ref{cap3:sec:SimpleNLG}) y un analizador sintáctico como Spacy (Sección \ref{cap3:sec:Spacy}).
+lo primero es conseguir las palabras asociadas a cada pictograma del mensaje de entrada para ello haremos uso de la API de Arasaac, que explicaremos en la Sección \ref{cap3:sec:API-ARASAAC}. Para generar frases gramaticalmente correctas a partir de las palabras asociadas a los pictogramas vamos a necesitar un generador de lenguaje natural como es SimpleNLG (Sección \ref{cap3:sec:SimpleNLG}) y un analizador sintáctico como Spacy (Sección \ref{cap3:sec:Spacy}).
 También, necesitamos un espacio donde conectar los diferentes servicios web, para ello utilizamos Django, que será explicado en la Sección \ref{cap3:sec:Django}. Por último, para agilizar tanto el tiempo de respuesta de los servidores como el proceso de comunicación de los diferentes servicios web se ha elegido la herramienta Angular (Sección \ref{cap3:sec:Angular}) para implementar el Front-End de nuestra aplicación.
 
 %-------------------------------------------------------------  
@@ -18,18 +18,19 @@ En nuestra aplicación los pictogramas son fundamentales y necesitábamos una herr
     \item Obtener los pictogramas asociados a una determinada palabra.
     \item Obtener la palabra o palabras asociadas a un pictograma.
 \end{itemize}
+
 Para ello hemos empleado la API de ARASAAC\footnote{https://beta.arasaac.org/developers/api}, ya que de todos los sistemas pictográficos vistos en la Sección \ref{cap2:sec:Pictogramas}, los pictogramas de Arasaac son los más utilizados en los países hispanohablantes.
 Además, Arasaac ofrece multitud de herramientas gratuitas.
 
 De todos los métodos ofrecidos por la API de ARASAAC hemos usado los siguientes:
 \begin{itemize}
-    \item SearchText\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/search/searchText}}: Dada una palabra devuelve un JSON con el tipo de palabra, su significado, sus plurales y el identificador del pictograma que tiene asociado, tal y como se puede ver en la Figura \ref{fig:jsonPerro} con la palabra ``perro''. Si una misma palabra tiene distintos significados o distintos pictogramas asociados, en el JSON devuelto aparecerán todas las diferentes opciones, tanto si tiene varios pictogramas asociados como si tiene distintos significados, como podemos ver en la Figura \ref{fig:jsonPerro2}     
+    \item SearchText\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/search/searchText}}: Dada una palabra devuelve un JSON con el tipo de palabra, su significado, sus plurales y el identificador del pictograma que tiene asociado. Tal y como se puede ver en la Figura \ref{fig:jsonPerro} con la palabra ``perro''. Si una misma palabra tiene distintos significados o distintos pictogramas asociados, en el JSON devuelto aparecerán las diferentes opciones, tanto si tiene varios pictogramas asociados como si tiene distintos significados, como podemos ver en la Figura \ref{fig:jsonPerro2}     
 \figura{Bitmap/Herramientas/jsonPerro}{width=14cm}{fig:jsonPerro}{JSON devuelto por el método SearchText para la palabra perro. Fuente: https://beta.arasaac.org/developers/api.}
 
 \figura{Bitmap/Herramientas/jsonPerro2}{width=14cm}{fig:jsonPerro2}{JSON devuelto por el método SearchText para la palabra 
 perro con dos pictogramas asociados. Fuente: \url{ https://beta.arasaac.org/developers/api}} 
 
-    \item idPictogram\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/idPictogram}}: Dado un identificador de un pictograma devuelve un JSON con toda la información asociada a la palabra la cuál se identifica con dicho id, por ejemplo con el id 2549, se obtiene un JSON con la información de \textit{reloj}, tal y como se muestra en la Figura \ref{fig:jsonReloj}
+    \item idPictogram\footnote{\url{https://beta.arasaac.org/developers/api/pictograms/idPictogram}}: Dado un identificador de un pictograma devuelve un JSON con toda la información asociada a la palabra asociada al pictograma con dicho id. Por ejemplo con el id 2549 se obtiene un JSON con la información de la palabra \textit{reloj}, tal y como se muestra en la Figura \ref{fig:jsonReloj}
 
 \figura{Bitmap/Herramientas/jsonReloj}{width=14cm}{fig:jsonReloj}{JSON devuelto por el método idPictogram para el identificador 2549. Fuente: https://beta.arasaac.org/developers/api.}
 \end{itemize} 
@@ -46,9 +47,9 @@ Simple-NLG permite crear frases simples y dentro de estas se pueden crear tanto 
     \item \textbf{Oraciones verbales}. Estos tipos de oraciones tienen tres partes::
     \begin{itemize}
     \item Sujeto: Se genera de la misma forma que en las frases nominales.
-    \item Verbo: Para generarlo debemos proporcionar a SimpleNLG el verbo en infinitivo y el tiempo verbal en el que hay que conjugar el verbo (pasado, presente o futuro).
+    \item Verbo: Para generarlo debemos proporcionar a SimpleNLG el verbo en infinitivo y el tiempo verbal en el que hay que conjugarlo (pasado, presente o futuro).
 El género y el número para la conjugación del verbo obtendrá automáticamente SimpleNLG a partir de la información del sujeto.
-    \item Complementos. Para generar el predicado debemos proporcionar a SimpleNLG las palabras que lo componen junto con su categoría léxica (sustantivo, adjetivo, adverbio...). Con toda esta información, SimpleNLG genera un predicado gramaticalmente correcto. 
+    \item Complementos. Para generar el predicado debemos proporcionar a SimpleNLG las palabras que lo componen junto con su categoría léxica (sustantivo, adjetivo, adverbio...). Con toda esta información SimpleNLG genera un predicado gramaticalmente correcto. 
     \end{itemize}
     Por ejemplo, para generar la frase ``El perro era negro'', deberíamos proporcionar a SimpleNLG el sujeto (``perro''), el verbo (``ser'') con el tiempo verbal (pasado) y el complemento (``negro''). 
 \end{itemize}
@@ -58,16 +59,16 @@ Por último, es importante destacar que SimpleNLG nos permite introducir negacion
 %-------------------------------------------------------------
 \label{cap3:sec:Spacy}
 Una vez que transformamos los pictogramas en palabras, se necesita conocer la categoría lexica de cada una de esas palabras (sustantivo, verbo, adjetivo...) así como su género y número para poder generar una frase gramatical correcta, ya que como hemos visto en la Sección \ref{cap3:sec:SimpleNLG}, SimpleNLG necesita esta información. Para esta función de análisis usamos la librería Spacy.
-Esta elección se basó en que es la herramienta que posee una mayor precisión en la traducción, como se puede observar en la Figura \ref{fig:precisionSpacy} .\\
+Esta elección se basó en que es la herramienta que posee una mayor precisión en la traducción, tal y como se puede observar en la Figura \ref{fig:precisionSpacy}.
 
 \figura{Bitmap/Herramientas/precisionSpacy}{width=12cm, height=4cm}{fig:precisionSpacy}{Benchmark de diferentes procesadores del lenguaje. Fuente: https://spacy.io/.}
 
 Spacy es una biblioteca escrita en Python diseñada para el procesamiento avanzado de lenguaje natural\footnote{https://medium.com/datos-y-ciencia/comenzando-con-spacy-para-procesamiento-de-lenguaje-natural-e8cf24a18a5a}.
 La clase Tokenizer de Spacy es la encargada de dividir el mensaje recibido en palabras y de informarnos de la categoría (sustantivo, adjetivo, pronombre, verbo, determinante, adverbio, preposición, conjunción o complemento) de cada palabra, junto con las siguientes características según la categoría:   
 \begin{itemize}
-    \item \textbf{Sustantivos} y \textbf{Adjetivos}. Género, número, sinónimos.
-    \item \textbf{Pronombres}. Tipo de pronombre (personal, demostrativo, indefinido, posesivo), número de la persona (si es un pronombre personal o posesivo devuelve el número de la persona a la que hace referencia).
-    \item \textbf{Verbos}. Forma verbal (infinitivo, gerundio o participio), tiempo verbal (pasado, presente o futuro).
+    \item \textbf{Sustantivos} y \textbf{Adjetivos}. Género, número y sinónimos.
+    \item \textbf{Pronombres}. Tipo de pronombre (personal, demostrativo, indefinido, posesivo)y número de la persona (si es un pronombre personal o posesivo devuelve el número de la persona a la que hace referencia).
+    \item \textbf{Verbos}. Forma verbal (infinitivo, gerundio o participio)y tiempo verbal (pasado, presente o futuro).
     \item \textbf{Determinantes}. Tipo de determinante (artículo, posesivo, numeral), género y número.
     \item \textbf{Adverbios}. Tipo de adverbio ( de lugar, de tiempo, de cantidad, de modo). 
 \end{itemize}
@@ -95,16 +96,14 @@ rápido & Adjetivo & Gen: Masculino, Núm: Singular \\ \hline
 %-------------------------------------------------------------
 \label{cap3:sec:Django}
 
-Dado que uno de los objetivos de este TFG era el desarrollo usando servicios web, y la cantidad de herramientas para Procesamiento de Lenguaje Natural(PLN), decidimos utilizar servicios web en python.
+Cada funcionalidad que se utiliza en este TFG ha sido implementada como un servicio web, por ello se decidió utilizar un framework que ayudase a los programadores a crear e implementar de una manera más fácil y eficiente dichos servicios web. Además estos servicios  están escritos en Python ya que es el lenguaje de programación más usado para el por lo que es aconsejable que dicho framework estuviera también desarrollado en Python. 
 
-Django es un framework de código abierto desarrollado en python que permite la creación de aplicaciones web. Este framework permite el desarrollo de aplicaciones web, usando el patrón Modelo-Vista-Template\footnote{https://docs.hektorprofe.net/django/web-personal/patron-mvt-modelo-vista-template/}, el cual permite el uso de plantillas para la generación de vistas. Este patrón presenta el problema de que reduce la flexibilidad de acciones del lado del lado del cliente. Además Django se puede utilizar para la creación de servicios web a través de objectos JSON\footnote{https://docs.djangoproject.com/en/2.2/ref/request-response/}.
+Con estas restricciones en mente se eligió la herramienta Django, la cuál nos permite desarrollar aplicaciones web\footnote{\url{https://openwebinars.net/blog/que-es-django-y-por-que-usarlo/}} de código abierto y gratuitas escritas en Python.
 
-Django se puede instalar utilizando el gestor de paquetes de python pip\footnote{https://docs.python.org/3/installing/index.html}, una vez instalado permite mediante el uso de la linea de comandos\footnote{https://www.python.org/shell/}, crear una aplicación Django\footnote{https://docs.djangoproject.com/en/2.2/intro/tutorial01/} y servicios web utilizando comandos.
+Django permite la creación de aplicaciones web. Este framework permite el desarrollo de aplicaciones web, usando el patrón Modelo-Vista-Template\footnote{https://docs.hektorprofe.net/django/web-personal/patron-mvt-modelo-vista-template/}, el cual permite el uso de plantillas para la generación de vistas. Este patrón presenta el problema de que reduce la flexibilidad de acciones del lado del cliente, ya que por ejemplo cualquier modificación de la vista requiere de lanzar una petición al servidor y genere una vista nueva, en vez de modificar la actual. Además Django se puede utilizar para la creación de servicios web a través de objectos JSON\footnote{https://docs.djangoproject.com/en/2.2/ref/request-response/}. Estas ventajas sumadas, a la comunidad de desarrolladores y la gran versatilidad de configuración que otorga Django (por ejemplo poder utilizar diferentes métodos de seguridad, manejar las rutas de los diferentes servicios web de una manera muy simple, manejar los diferentes archivos estáticos de la aplicación como puedan ser los scripts o las imágenes) han sido factores fundamentales para escoger Django en la implementación de nuestra aplicación.
 
-Estas ventajas sumadas, a la comunidad de desarrolladores y la gran versatilidad de configuración que otorga Django como por ejemplo poder utilizar diferentes métodos de seguridad, manejar las rutas de los diferentes servicios web de una manera muy simple, manejar los diferentes archivos estáticos de la aplicación como puedan ser los scripts o las imágenes, han sido factores fundamentales para escoger Django para la implementación de servicios web en este TFG.
+Django se puede instalar utilizando el gestor de paquetes de python pip\footnote{https://docs.python.org/3/installing/index.html}, una vez instalado permite mediante el uso de la linea de comandos\footnote{https://www.python.org/shell/}, crear una aplicación Django\footnote{https://docs.djangoproject.com/en/2.2/intro/tutorial01/} y servicios web utilizando distintos comandos.
 
-%Cada funcionalidad que se utiliza en este TFG ha sido implementada como un servicio web, por ello se decidió utilizar un framework que ayudase a los programadores a crear e implementar de una manera más fácil y eficiente dichos servicios web. Además estos servicios  están escritos en Python ya que es el lenguaje de programación más usado para el por lo que es aconsejable que dicho framework estuviera también desarrollado en Python. 
-%Con estas restricciones en mente se eligió la herramienta Django, la cuál nos permite desarrollar aplicaciones web\footnote{\url{https://openwebinars.net/blog/que-es-django-y-por-que-usarlo/}} de código abierto y gratuitas escritas en Python. Django proporciona: un manejador para los archivos estáticos de las rutas, un host sobre el que se puede acceder a los servicios, plantillas en las que basarnos para crear la aplicación. Además respeta el patrón de diseño conocido como Modelo-Vista-Controlador (M-V-C), por lo que fomenta el desarrollo rápido y un diseño limpio y pragmático.
     
 \section{Angular}
 %-------------------------------------------------------------
@@ -112,14 +111,12 @@ Estas ventajas sumadas, a la comunidad de desarrolladores y la gran versatilidad
 Angular se ha usado para gestionar toda la parte Front-End de nuestra aplicación haciendo cada parte de la página web independiente. 
 Angular es un framework de desarrollo creado y mantenido por Google, cuya finalidad consiste en el desarrollo de aplicaciones web SPA (Single-Page Applications), es decir, interacción web con una sola página, lo que provoca que la aplicación sea más rápida, dinámica y fluida. 
   
-Para realizar la parte Front-End de nuestra aplicación se estudiaron diferentes herramientas. En un primer momento se pensó en extender la herramienta Django para la parte del cliente, pero dicha herramienta está pensada principalmente para la gestión de la parte Back-End y por tanto se descartó esta idea.\\
-La segunda alternativa fue introducir JQuery, esta segunda opción tampoco era la más idónea ya que se trata de una librería orientada a acceder y modificar los elementos de la página, pero carece de la facilidad que otorga Angular al utilizar componentes, aplicar patrones de arquitectura y sobretodo la rapidez y facilidad de Angular para el tratamiento de llamadas asíncronas.\\
-Por estos motivos decidimos usar Angular, ya que era la alternativa que más funcionalidad, rapidez y escalibilidad, aporta de las herramientas analizadas.
+Para realizar la parte Front-End de nuestra aplicación se estudiaron diferentes herramientas. En un primer momento se pensó en extender la herramienta Django para la parte del cliente, pero dicha herramienta está pensada principalmente para la gestión de la parte Back-End y por tanto se descartó esta idea. La segunda alternativa fue introducir JQuery. JQuery es una librería orientada a acceder y modificar los elementos de la página, pero carece de la facilidad que otorga Angular al utilizar componentes, aplicar patrones de arquitectura y sobretodo, carece de la rapidez y la facilidad de Angular para el tratamiento de llamadas asíncronas. Por estos motivos decidimos usar Angular, ya que era la alternativa que más funcionalidad, rapidez y escalibilidad, aportaba de las herramientas analizadas.
 
 Además, Angular nos permitía crear nuestra aplicación por componentes\footnote{\url{https://angular.io/guide/architecture-components}}, ofreciendo así una división del código por funcionalidades también en la parte del Front-End. Los componentes tienen la ventaja de ser completamente independientes unos de otros y ser reutilizables, esta independencia que poseen los componentes otorgan una gran flexibilidad a la hora de construir aplicaciones, aumentan la escalabilidad y facilitan el mantenimiento.
 
-Otro punto importante a favor del uso de Angular es su capacidad de proporcionar una actualización automática de la información, es decir, los datos mostrados en la vista están actualizados gracias al uso del modelo que proporciona Angular\footnote{\url{https://angular.io/guide/displaying-data}}. 
+Otro punto importante a favor del uso de Angular es que proporciona una actualización automática de la información, es decir, los datos mostrados en la vista están actualizados gracias al uso del modelo que proporciona Angular\footnote{\url{https://angular.io/guide/displaying-data}}. 
 
-El problema que conlleva el uso de servicios asíncronos como los proporciona Angular es que no siguen un orden definido en el tiempo de respuesta de cada llamada. Angular resuelve este problema implantando el patrón `Observer''\footnote{\url{https://desarrolloweb.com/articulos/introduccion-teorica-observables-angular.html}}. 
+El problema que conlleva el uso de servicios asíncronos como las llamadas a servicios externos por HTTP es que no siguen un orden definido en el tiempo de respuesta de cada llamada. Angular resuelve este problema implantando el patrón `Observer''\footnote{\url{https://desarrolloweb.com/articulos/introduccion-teorica-observables-angular.html}}. 
 La librería que usa Angular para utilizar este patrón es la RxJS (Reactive Extensions for JavaScript)\footnote{https://angular.io/guide/rx-library}, una librería centrada en el paradigma de la programación reactiva, la cual otorga diferentes ayudas para la resolución de llamadas asíncronas.
 
