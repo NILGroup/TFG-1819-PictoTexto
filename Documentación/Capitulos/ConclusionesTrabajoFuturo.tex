@@ -59,6 +59,8 @@ Así se traducirían frases como: ``Yo quiero ver la televisión'' y ``Yo quiero ir
 Tener en cuenta que puede haber más de un sustantivo en el sujeto. Habrá que clasificar a ambos sustantivos como parte principal del sujeto para que ninguno pudiera borrar la información del otro al ser los dos sustantivos y una vez hecho esto asignarles sus determinantes adecuados.
 Con esta implementación se traducirían frases del tipo: ``El libro y el estuche están dentro de la mochila'' o ``La fresa y la pera son fruta''.	
 
+Utilizar pictogramas tachados que indiquen negación. Para ello primero se debería añadir a la aplicación la posibilidad de tachar un pictograma para indicar una acción negada, y luego traducir la frase con ese pictograma tachado. Así se traducirían frases como: ``El árbol no nada'' o ``La gallina no patina''.  
+
 Relación de determinantes y sustantivos. Nuestra aplicación actualmente solo traduce diferentes tipos de determinantes si se le añade explícitamente el pictograma del determinante deseado, sin embargo si se desea añadir automáticamente al sustantivo algún determinante, nuestra traducción solo añade (el,la,los,las) si el sustantivo está en el sujeto y (un, una, unos, unas) si está en el predicado.
 Habría que estudiar la posibilidad de obtener si dicho sustantivo es contable o incontable, y así acompañar a los sustantivos contables con los determinantes un,una..., y a los incontables con el, la...\\
 Logrando traducir: ``Mamá conduce el coche'' o ``La niña come pollo''.
@@ -68,7 +70,8 @@ Para arreglar este problema habría que estudiar previamente si en la frase a tra
 ``Los niños juegan con la pelota'' o ``El bebé juega con los cubos''. 
 
 \item \textbf{Ampliar la cobertura del servicio de detección del tiempo verbal de la frase}. Añadir nuevas palabras o expresiones, para el reconocimiento del tiempo verbal de la frase.
-\figura{Bitmap/Conclusion/pasearAlPerro}{height=4cm}{fig:pasearlAlPerro}{Pictograma de ``Pasear al perro''.}
-\item \textbf{Reconocimiento de pictogramas que representan expresiones.} Algunos pictogramas como el pictograma mostrado en la Figura \ref{fig:pasearlAlPerro} que significa ``Pasear al perro''. Estos pictogramas necesitan de un procesamiento especial que separe la expresión en sus diferentes palabras para poder ser procesadas una a una.
 
+\item \textbf{Reconocimiento de pictogramas que representan expresiones.} Algunos pictogramas como el pictograma mostrado en la Figura \ref{fig:pasearlAlPerro} que significa ``Pasear al perro''. Estos pictogramas necesitan de un procesamiento especial que separe la expresión en sus diferentes palabras para poder ser procesadas una a una.
+\clearpage
+\figura{Bitmap/Conclusion/pasearAlPerro}{height=4cm}{fig:pasearlAlPerro}{Pictograma de ``Pasear al perro''.}
 \end{itemize}
