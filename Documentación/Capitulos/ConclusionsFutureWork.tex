@@ -3,6 +3,82 @@
 \chapter{Conclusions and Future Work}
 \label{cap:conclusions}
 
-Conclusions and future lines of work.
+Throughout this chapter will be presented the main conclusions of this work and the future work that can be done if the development of the project is continued.
+
+%------------------------------------------------------------------
+\section{Conclusions}
+%-------------------------------------------------------------------
+\label{cap7:sec:Conclusions}
+Nowadays, communication is an essential element for anyone, none of us would be able to imagine his life without without communication with other people. However, in our society there are people with certain functional diversities that prevent them from having an effective communication.
+Augmentative and alternative communication systems, such as pictograms, help these people improve their communication.  In spite of this, communication with pictograms continues to be a reduced communication to the closest environment even the people with the same type of diversity. This is because currently communication with pictograms is not universal or understandable to anyone.
+For all these reasons, we saw the need to develop a tool that facilitates the communication of the people who need the pictograms to communicate with other people who do not understand the pictograms.
+
+The main objective in this work was to develop a web application that would allow to translate sentences written with pictograms into natural language in order to help those people who need the pictograms to communicate. And for this we have developed the web application Pict2Text\footnote{\url{https://holstein.fdi.ucm.es/tfg-pict2text/}}. Pic2Text translates correctly simple verbal sentences with subject, verb and predicate as can be seen in picture \ref{fig:ejemSimple}. If the text with pictograms the Pict2Text articles are not explicitly added, they are added by making the agreement in gender and number with the name that they are accompanying. It shows in Picture \ref{fig:ejemSimple}. 
+\figura{Bitmap/Conclusion/ejemSimple}{width=9cm}{fig:ejemSimple}{Translation example of the phrase ``El perro come unos macarrones''.}
+
+On the other hand, if these elements do appear, Pic2Text also supports them and correctly translates the phrase, as can be seen in Picture \ref{fig:ejemDet}. Pict2Text also allows you to translate phrases that contain adjectives in the subject and the predicate, as can be seen in Picture \ref{fig:ejemAdj}.
+\figura{Bitmap/Conclusion/ejemDet}{width=9cm}{fig:ejemDet}{Translation example of the phrase ``los niños tienen la pelota''.}
+\figura{Bitmap/Conclusion/ejemAdj}{width=9cm}{fig:ejemAdj}{Translation example of the phrase ``las niñas altas quieren una carpeta azul''.}
+
+In addition Pict2Text automatically detects the verb tense in which the phrase must be translated, as can be seen in Picture \ref{fig:ejemVerbo}, where the phrase is conjugated in the past when the pictogram of yesterday is found.
+\figura{Bitmap/Conclusion/ejemVerbo}{width=9cm}{fig:ejemVerbo}{Translation example of the phrase ``la abuela compró un pescado ayer''.}
+
+However, there is still a lot of work to be done. Pict2Text is not able to infer prepositions if there is no pictogram with the preposition explicit shape, as can be seen in Picture \ref{fig:ejemVia}, where the preposition should be included ``por'' before ``una vía''.
+\figura{Bitmap/Conclusion/ejemVia}{width=9cm}{fig:ejemVia}{Translation example of the phrase ``El tren va por una vía''.}
+Neither have we been able to translate reflective sentences, sentences with two nouns in the subject, or with two verbs, copulative sentences ... 
+\clearpage
+It should be noted that at the beginning of this work we did not find any application that made translations of pictograms into text, so we can affirm that even without being perfect, the result of this work establishes solid bases for the translation of text with Pictograms to natural language. 
+
+Another objective was that the application developed was as comfortable, intuitive and accessible as possible in order to reach the largest number of people. The application has not been evaluated in this sense. In order to determine the usability of our application we should have done an evaluation with end users. Still, we believe it is a fairly simple and intuitive application, although the fact that the only way to enter the input message with pictograms is to creating From scratch with the help of the search engine, limits the number of people who can use the application and its flexibility. 
+
+Another objective of this work was to implement the functionalities of the application using web services so that they could be used in other applications. This has been achieved by developing web services using as input basic data types as so that they can be used by other developers.
+In addition, we have developed a Front-End application based on Angular components, which are also reusable in other applications, using Angular as a framework.         
+
+This project has also allowed us to apply many of the knowledge acquired in the subjects studied during the degree to a large project and with a utility beyond the academic field. Among the subjects that have helped us the most in this GFR it is worth highlighting the following: 
+\begin{itemize}
+    \item \textbf{Software Engineering}, \textbf{Modelado software} and \textbf{Software Project Management}. Where we were taught to have the ability to manage software projects in a correct and effective way. Adopting some of the characteristics of agile methodologies, as well as an adaptive methodology to the needs of the work. In addition to the use of different patterns and principles of software architecture. 
+    \item \textbf{Programming Technology} and \textbf{Web Information Management}. Where we were taught two of the main languages used in this work: Java and Python.
+    \item \textbf{ Web aplications}. In this subject we were taught the knowledge about HTML, CSS and Javascript used in the development of our web application. 
+    \item \textbf{Business practices}. In the company where he performed the practices one of the members was used angular, so that what learned during his practices has proved very useful in this project.   
+    \item \textbf{Ethics, Legislation and Profession}. In this subject we were informed about the use of licenses, with which to protect our work as well as learn to use the free software in a correct way in our work and thus respect the license of the API ARASAAC.
+    \item \textbf{Networks}. Where we obtained some of the basic knowledge that we have needed for the management of Web services and the connection between them. 
+\end{itemize}
+
+Furthermore, this work has also provided us with a lot of new knowledge, including: Creation of Web services in different programming languages, Web application deployment, Latex, and an approach to processing tools of Natural language as they are Spacy and SimpleNLG-ES.  
+
+
+%------------------------------------------------------------------
+\section{Future Work}
+%-------------------------------------------------------------------
+\label{cap7:sec:Future Work}
+With the aim of improving and completing some functionalities in order to obtain a more complete application and offering greater coverage, we think that the following could be marked as future work:
+
+\begin{itemize}
+    \item \textbf{Pictograms Recognition}. Implement other alternatives in the application other than the Pictograms Finder, to create messages with pictograms. A new alternative could be: the possibility to directly load in our application a message with pictograms from a file or to make a photo to a message written with pictograms. 
+    \item \textbf{Usability evaluation with experts}. Perform a diagnosis on whether the application created is simple, intuitive and useful for user with functional diversity that use pictograms, for this we would perform a collaborative study with experts who can guide us and see possible improvements. 
+    \item \textbf{Introduction of new elements in the translation}. 
+Currently our application only contemplates the automatic translation of determinants. You would have to add the possibility of automatically generating other elements that do not appear explicitly in the message with pictograms such as: prepositions, conjunctions... Phrases like the one shown in the Picture \ref{fig:ejemploUnPicto} are translated by our application as ``El tren va una vía''. We should look for ways to differentiate when a noun needs to be accompanied by a preposition, for example. 
+\figura{Bitmap/Conclusion/ejemploUnPicto}{width=10cm}{fig:ejemploUnPicto}{Translation example of the phrase ``El tren va por la vía''.}
+
+ \item \textbf{Translation of reflective phrases.} It should be detected if it is necessary to put a reflective pronoun in the sentence. To do this we could create a Web service that recognizes those verbs that are reflective and add the necessary mechanisms to generate this type of phrases. 
+
+\item \textbf{Translation of several verbs}. When there are two pictograms of verbs should be studied if the two verbs are in a consecutive position in the sentence, in that case, the first verb would be the one that would conjugate in present, past or future and the second would go in infinitive. In contrast, they come separately would have to observe which is the principal verb of the sentence in order to find its subject, verb and predicate, and then to carry out the pertinent translation. This would translate phrases like: ``Yo quiero ver la televisión'' and ``Yo quiero ir al baño''.
+
+\item \textbf{Translation of various nouns in the subject}. In case of receiving several pictograms of nouns in the subject it would be necessary to classify both nouns as main part of the subject so that none could erase the information, and then, assigning their determinants.
+With this implementation, phrases of the type would be translated: ``El libro y el estuche están dentro de la mochila'' or ``La fresa y la pera son fruta''.	
+
+\item  \textbf{Translation of the cross out pictograms that indicate denial.} Pict2Text is not ready to receive cross out pictograms that indicate denial. To incorporate this type of pictograms in our application you should add the possibility to cross a pictogram when composing the message, and then translate the phrase with that pictogram crossed out. Thus would be translated phrases like: ``El árbol no nada'' o ``La gallina no patina''.  
+
+\item  \textbf{Deduce determinants automatically}. When the determinant does not appear explicitly in the message with pictograms our application always adds as an automatic determinant ``el, la, los, las'', if the noun is in the subject and ``un, una, unos, unas'', if it is in the predicate. This is not always correct, to add a more appropriate determinant as the case should be obtained if the noun is countable or uncountable, and thus accompanying the nouns with the determinants ``un, una...'', and the uncountables with ``el, la...''
+
+\item \textbf{Place prepositions in the right place}. The application only translates prepositions if we put its pictogram explicitly in the text, however if after that preposition comes a determinant, the translation that makes is in the following way ``Los niños juegan la con pelota''.
+To fix this problem would have to study previously if the sentence to translate there is a preposition, if so, would translate the whole sentence as a complement getting the correct order of translation. This would make it appropriate to translate phrases like:
+``Los niños juegan con la pelota'' o ``El bebé juega con los cubos''. 
+
+\item \textbf{Extend the verbal time detection service coverage of the phrase}. New words or expressions should be added for the recognition of the verbal tense of the phrase, for example, adverbs before or after... 
+
+\item \textbf{Recognition of images representing expressions.} Some pictograms such as the pictogram shown in the Picture \ref{fig:pasearlAlPerro} which means ``Pasear al perro'' need a special processing that separates the expression in its different words in order to be processed one by one by our translator .
+\figura{Bitmap/Conclusion/pasearAlPerro}{height=4cm}{fig:pasearlAlPerro}{Pictogram ``Pasear al perro''.}
+\end{itemize}
 
 
