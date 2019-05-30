@@ -2,23 +2,23 @@
 
 \chapter{Pict2Text}
 \label{cap:Pict2Text}
-A lo largo de este capitulo expondremos la aplicación, Pict2Text que hemos desarrollado para este proyecto. Pict2Text (ver Figura \ref{fig:pict2Text}) es una aplicación que permite la traducción de textos escritos con pictogramas a lenguaje natural. Pict2Text posee un buscador de pictogramas (ver Figura \ref{fig:buscadorPictogramas}), que sirve para obtener los pictogramas con los que construir el mensaje que se desea traducir. El buscador permite buscar los pictogramas de ARAASAC asociados a  una determinada palabra. Cabe destacar que lo ideal sería poder cargar el mensaje en pictogramas, a partir de un archivo o haciendo una foto al mensaje, en vez de construirlo mediante el buscador, pero dado que el foco de este TFG es la  traducción se decidió implementar un buscador y dejar como trabajo futuro otras formas de introducir el texto en pictogramas para la traducción.
+A lo largo de este capitulo expondremos la aplicación Pict2Text que hemos desarrollado para este proyecto. Pict2Text (ver Figura \ref{fig:pict2Text}) es una aplicación que permite la traducción de textos escritos con pictogramas a lenguaje natural. Pict2Text posee un buscador de pictogramas que sirve para obtener los pictogramas con los que construir el mensaje que se desea traducir. El buscador permite buscar los pictogramas de ARAASAC asociados a  una determinada palabra. Cabe destacar que lo ideal sería poder cargar el mensaje en pictogramas a partir de un archivo o haciendo una foto al mensaje, en vez de construirlo mediante el buscador, pero dado que el foco de este TFG es la  traducción se decidió implementar un buscador y dejar como trabajo futuro otras formas de introducir el texto en pictogramas para la traducción.
 \figura{Bitmap/ServiciosWeb/pict2Text}{height=13cm, width=15cm}{fig:pict2Text}{Pict2Text}
-\figura{Bitmap/Arquitectura/buscadorPictogramas}{width=8cm}{fig:buscadorPictogramas}{Buscador de pictogramas de Pict2Text }
 
-En la Sección \ref{cap5:sec:Arquitectura} mostraremos la arquitectura de nuestra aplicación. En la Sección \ref{cap5:sec:backEnd} detallaremos los diferentes servicios web implementados en la parte Back-End, para dotar de funcionalidad a la aplicación. Por ultimo, explicaremos como hemos implementado la parte Front-End de la aplicación con el framework Angular, describiendo los diferentes componentes que la forman y la relación que guardan con la parte Back-End. En la Figura \ref{fig:ServiciosWebDiagrama}, podemos ver un diagrama en el que se muestran las partes Back-End y Fron-End de nuestra aplicación y su relación.
 
-\figura{Bitmap/Arquitectura/ServiciosWebDiagrama}{height=14cm, width=13cm}{fig:ServiciosWebDiagrama}{Visión general de PIct2Text }
+En la Sección \ref{cap5:sec:Arquitectura} mostraremos la arquitectura de nuestra aplicación. En la Sección \ref{cap5:sec:backEnd} detallaremos los diferentes servicios web implementados para dotar de funcionalidad a la aplicación en la parte Back-End. Por ultimo, explicaremos como hemos implementado la parte Front-End de la aplicación con el framework Angular, describiendo los diferentes componentes que la forman y la relación que guardan con la parte Back-End. En la Figura \ref{fig:ServiciosWebDiagrama}, podemos ver un diagrama en el que se muestran las partes Back-End y Fron-End de nuestra aplicación y su relación.
+
+\figura{Bitmap/Arquitectura/ServiciosWebDiagrama}{height=14cm, width=13cm}{fig:ServiciosWebDiagrama}{Visión general de Pict2Text }
 
 %------------------------------------------------------------------
 \section{Arquitectura}
 %-------------------------------------------------------------------
 \label{cap5:sec:Arquitectura}
 
-El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad   funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debíamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte Back-End, y a componentes en la parte Front-End. En ambas casos, hemos seguido los siguientes principios \citep{martin2013agile}: 
+El trabajo de este TFG está englobado dentro del proyecto nacional IDiLyCo\footnote{http://nil.fdi.ucm.es/index.php?q=projects/idilyco}. IDiLyCo es un proyecto que busca facilitar la inclusión digital, de aquellas personas que por diversidad funcional, tienen problemas con el lenguaje natural. Uno de los objetivos del proyecto es desarrollar pequeñas piezas de funcionalidad reutilizables que se combinan en diferentes aplicaciones, es por ello que  debíamos diseñar una arquitectura con muy bajo acoplamiento. Por esa razón hemos decidido utilizar una arquitectura orientada a servicios en la parte Back-End, y a componentes en la parte Front-End. En ambas casos, hemos seguido los siguientes principios \citep{martin2013agile}: 
 
 \begin{itemize}
-\item Principio Open/Closed. Este principio busca que los programas estén abiertos para la extensión y cerrados a la modificación. Es decir que no haga falta modificar el código de nuestras clases para extender su funcionalidad. Lo que permite depurar de una manera más eficiente el código y ampliar su funcionalidad con otros métodos. Esto lo podemos ver en el uso de diferentes servicios web, que aportan funcionalidad individualmente evitando el uso de un solo servicio web que implemente toda la funcionalidad, además del proceso de generación de lenguaje donde las clases implementan pequeños métodos que encadenados aportan funcionalidad a la traducción.
+\item Principio Open/Closed. Este principio busca que los programas estén abiertos para la extensión y cerrados a la modificación. Es decir que no haga falta modificar el código de nuestras clases para extender su funcionalidad. Esto permite depurar de una manera más eficiente el código y ampliar su funcionalidad con otros métodos. Este principio lo podemos ver en nuestra aplicación en el uso de diferentes servicios web que aportan funcionalidad individualmente evitando el uso de un solo servicio web que implemente toda la funcionalidad. También se ve este principio en el proceso de generación de lenguaje donde las clases implementan pequeños métodos que encadenados aportan funcionalidad a la traducción.
    
 \item Principio de segregación de la interfaz. Este principio busca abstraer lo máximo posible las interfaces de todas las clases, para así poder re-aprovecharlas en otras clases. Un ejemplo es como hemos implementado en el Front-End la parte de las llamadas a los servicios web del Back-End: todos los componentes de la aplicación hacen uso de la misma clase para lanzar las peticiones a los servicios web.
 
@@ -40,7 +40,7 @@ En las próximas secciones explicaremos en detalle cada una de estas partes.
 \section{Back-End}
 %-------------------------------------------------------------------
 \label{cap5:sec:backEnd}
-A lo largo de está sección presentaremos los diferentes servicios web desarrollados en el TFG, los cuales hemos decidido agrupar en dos grupos, dependiendo de la finalidad de los mismos: servicios web encargados del Procesamiento de Lenguaje Natural (PLN), donde están agrupados todos los servicios web dedicados a la generación de lenguaje y análisis del lenguaje natural y los servicios web para la gestión de pictogramas donde están englobados aquellos servicios que tratan con pictogramas.
+A lo largo de está sección presentaremos los diferentes servicios web desarrollados, los cuales hemos decidido agrupar dependiendo de la finalidad de los mismos en dos grupo: servicios web encargados del Procesamiento de Lenguaje Natural (PLN), donde están agrupados todos los servicios web dedicados a la generación y análisis de lenguaje y los servicios web para la gestión de pictogramas donde están englobados aquellos servicios que tratan con pictogramas.
 
 %------------------------------------------------------------------
 \subsection{Servicios web para Procesamiento de Lenguaje Natural}
@@ -57,9 +57,10 @@ Dentro de está subsección hablaremos de los servicios web encargados del Procesa
 %-------------------------------------------------------------------
 \label{cap5:sec:ServicioClasificaciónDePalabras}
 
-El servicio web de clasificación de palabras, se encarga de dada una palabra o un array de palabras devolver su categoría léxica (verbo, nombre, adverbio, determinante, adjetivo, pronombre, número o conjunción) y los atributos de cada una de las palabras recibidas, estos atributos están reflejados en la tabla \ref{tabla:clasificacion}.
+El servicio web de clasificación de palabras, se encarga de dada una palabra o un array de palabras devolver su categoría léxica (verbo, nombre, adverbio, determinante, adjetivo, pronombre, número o conjunción) y los atributos de cada una de las palabras recibidas, los atributos devueltos según el tipo de palabra se pueden ver en la Tabla \ref{tabla:clasificacion}.
 
-Una vez se tiene la entrada se llama a la clase Tokenizer\footnote{https://spacy.io/api/tokenizer} de la librería Spacy. La salida de la clase Tokenizer sera procesada para generar el JSON de la salida de nuestro sistema. Para cada palabra ademas de la categoría léxica obtenemos los atributos mostrados en la tabla \ref{tabla:clasificacion}, según la categoría léxica de la palabra los atributos obtenidos pueden variar.
+Una vez se tiene la entrada se llama a la clase Tokenizer\footnote{https://spacy.io/api/tokenizer} de la librería Spacy. La salida de la clase Tokenizer sera procesada para generar el JSON de la salida de nuestro sistema. Para cada palabra ademas de la categoría léxica obtenemos los atributos mostrados en la Tabla \ref{tabla:clasificacion}, según la categoría léxica de la palabra los atributos obtenidos pueden variar. En la Figura \ref{fig:caracPal}, podemos ver un resumen del flujo que sigue este servicio.
+
 \begin{center}
 \begin{table}[htbp]
 \begin{tabular}{|l|l|l|l|}
@@ -85,20 +86,15 @@ Conjunciones & -\\ \hline
 
 En la Figura \ref{fig:attrsResponsePost}, podemos ver la respuesta del servicio web para la entrada [corredor, despistado, perder, zapatillas, ayer].
 
-En la Figura \ref{fig:caracPal}, podemos ver un resumen del flujo que sigue este servicio.
-
 
 %------------------------------------------------------------------
 \subsubsection{Servicio Web de Detección de Tiempo Verbal}
 %-------------------------------------------------------------------
 \label{cap5:sec:ServiciodeDeteccióndeTiempoVerbal}
 
-Este servicio web, tiene como finalidad determinar el tiempo verbal de una frase dada la lista de palabras que conforman la frase. Este servicio busca las palabras temporales: ayer, hoy o mañana en el array de palabras recibido como entrada y si encuentra alguna devuelve el tiempo verbal que corresponda a la palabra temporal encontrada, pasado si encontró ayer, presente si encontró hoy y futuro si encontró mañana. En caso de no encontrar ninguna de las tres palabras devuelve presente por defecto. 
+Este servicio web, tiene como finalidad determinar el tiempo verbal de una frase dada la lista de palabras que conforman la frase. Este servicio busca las palabras temporales: ayer, hoy o mañana en el array de palabras recibido como entrada y si encuentra alguna devuelve el tiempo verbal que corresponda a la palabra temporal encontrada, pasado si encontró ayer, presente si encontró hoy y futuro si encontró mañana. En caso de no encontrar ninguna de las tres palabras devuelve presente por defecto. En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio y en la Figura \ref{fig:timeDeteccion} podemos ver un ejemplo de salida para la entrada [corredor, despistado, perder, zapatillas, ayer].
 \figura{Bitmap/ServiciosWeb/deteccionTiempoVerbal}{height=9cm}{fig:deteccionTiempoVerbal}{Flujo del servicio web de detección del tiempo verbal} 
-\figura{Bitmap/ServiciosWeb/timeDeteccion}{height=2cm}{fig:timeDeteccion}{JSON de salida del servicio web de detección del tiempo verbal para la entrada [corredor, despistado, perder, zapatillas, ayer]} 
-
-En la Figura \ref{fig:deteccionTiempoVerbal}, podemos ver un resumen del flujo que sigue este servicio y en la Figura \ref{fig:timeDeteccion} podemos ver un ejemplo de salida para la entrada [corredor, despistado, perder, zapatillas, ayer].
-
+\figura{Bitmap/ServiciosWeb/timeDeteccion}{height=1.5cm}{fig:timeDeteccion}{JSON de salida del servicio web de detección del tiempo verbal para la entrada [corredor, despistado, perder, zapatillas, ayer]} 
 %------------------------------------------------------------------
 \subsubsection{Servicio Web de Generación de Frases}
 %-------------------------------------------------------------------
@@ -108,7 +104,7 @@ Este servicio web recibe un array de palabras y devuelve una frase creada a part
 
 \begin{enumerate}
 
-\item Obtención de la categoría léxica de cada una de las palabras. Se llama al Servicio Web de Clasificación de Palabras explicado en la Sección \ref{cap5:sec:ServicioClasificaciónDePalabras}, pasandole todo el array de palabras recibido como entrada. Así se obtienen las características y la categoría léxica de cada palabra.
+\item Obtención de la categoría léxica de cada una de las palabras. Se llama al Servicio Web de Clasificación de Palabras explicado en la Sección \ref{cap5:sec:ServicioClasificaciónDePalabras} pasandole todo el array de palabras recibido como entrada. Así se obtienen las características y la categoría léxica de cada palabra.
 
 \item División de palabras en sintagma nominal y en sintagma verbal. Una vez conocemos la categoría léxica de las palabras, buscamos el verbo dentro del array de palabras. Todas las palabras anteriores al verbo formaran el sintagma nominal y todas las palabras posteriores formaran el sintagma verbal.
 
@@ -117,25 +113,30 @@ Este servicio web recibe un array de palabras y devuelve una frase creada a part
 \begin{itemize}
 \item Creamos el sintagma nominal que sera el objeto contenedor de todas las palabras que formaran el sujeto llamando a la función \textbf{createNounPhrase()} de la librería SimpleNLG.
  
-\item Se establece el determinante del sujeto utilizando la función \textbf{setDeterminer()} de SimpleNLG, sobre el objeto creado anteriormente. A esta función se le pasa el determinante o pronombre de la lista de palabras de entrada. En caso de que la lista de palabras que forman el sujeto no contenga un pronombre o un determinante se añade el determinante por defecto ``el'', dado que SimpleNLG no añade ningún determinante.
+\item Se establece el determinante del sujeto utilizando la función \textbf{setDeterminer()} de SimpleNLG sobre el objeto creado anteriormente. A esta función se le pasa el determinante o pronombre de la lista de palabras de entrada. En caso de que la lista de palabras que forman el sujeto no contenga un pronombre o un determinante se añade el determinante por defecto ``el'', dado que SimpleNLG no añade ningún determinante por defecto.
 
-\item Se establece como palabra principal del sujeto la palabra con categoría léxica \textbf{NOUN}, utilizando el método \textbf{setFeature()}. Además se obtiene el género y número de la palabra principal del sujeto y usando las funciones \textbf{setFeature()} y \textbf{setPlural()} se establecen el género y el número del sintagma nominal. Al establecer el género y número del sujeto todas las palabras que lo conforman utilizaran ese género y número,  por ejemplo  ``mujeres, contento'' el sujeto resultante sera ``Las mujeres contentas''. Dado que no todas las palabras tienen pictogramas asociados para los diferentes géneros o número, en caso de existir un determinante con género o número, se establecerá dicho género para todo el sintagma, por ejemplo palabras como: profesoras o corredora, para las cuales no existen pictogramas asociados.
+\item Se establece como palabra principal del sujeto la palabra con categoría léxica \textbf{NOUN} utilizando el método \textbf{setFeature()}. Además, se obtiene el género y número de la palabra principal del sujeto y usando las funciones \textbf{setFeature()} y \textbf{setPlural()} se establecen el género y el número del sintagma nominal. Al establecer el género y el número del sujeto todas las palabras que lo conforman utilizaran ese género y ese número. Por ejemplo si se recibe la entrada [mujeres, contento] el sujeto resultante sera ``Las mujeres contentas''.
 
 \item En caso de encontrar un adverbio dentro del array de palabras del sintagma nominal se fuerza su posición dentro del sintagma nominal al final. Por ejemplo, para la entrada [ayer, profesora, despistada, comer, galletas] se generara la frase ``La profesora despistada ayer comió galletas''
 \end{itemize}
 
 \item Para crear el sintagma verbal se siguen los siguientes pasos:
+
 \begin{itemize}
+
 \item Se genera un objeto que sera el sintagma verbal, con la función \textbf{createNounPhrase()}.
-\item Se añade el determinante con una lógica parecida al sujeto, con la diferencia de que el determinante por defecto es ``un'', y solo se añadirá en caso de que exista una palabra con categoría léxica \textbf{NOUN}. De manera que si el array está formado por las palabras [niño, comer, galletas, duro] el resultado sera ``El niño come unas galletas duras''.
+
+\item Se añade el determinante con una lógica parecida al sujeto, con la diferencia de que el determinante por defecto es ``un'', y solo se añadirá en caso de que exista una palabra con categoría léxica \textbf{NOUN}. Por ejemplo, si el array de entrada está formado por las palabras [niño, comer, galletas, duro] el resultado sera ``El niño come unas galletas duras''.
+
 \item En caso de existir una palabra con categoría léxica \textbf{NOUN}, se aplicara su género y número al sintagma verbal, en caso de no existir se aplicara el género y número del sintagma nominal.
-\item Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras que conformaran la frase final contienen [profesora, comer, ayer, galletas, duro], la frase resultante sera ``La profesora comió galletas duras ayer''. 
+
+\item Si existe un adverbio se fuerza su posición al final de la frase, de manera que si las palabras de la entrada son: [profesora, comer, ayer, galletas, duro], la frase resultante sera ``La profesora comió galletas duras ayer''. 
 \end{itemize}
 
 
-\item Se hace una llamada al Servicio Web de Detección de Tiempo Verbal con el array de palabras, para obtener el tiempo verbal para conjugar la frase resultante, y guardaremos el resultado para el ultimo paso.
+\item Se hace una llamada al Servicio Web de Detección de Tiempo Verbal explicado en la sección \ref{cap5:sec:ServiciodeDeteccióndeTiempoVerbal} con el array de palabras para obtener el tiempo verbal para conjugar la frase, y guardaremos el resultado para el ultimo paso.
 
-\item Para terminar creamos un objeto frase con \textbf{SPhraseSpec()}. Utilizando la función \textbf{.setSubject()}, añadimos el sujeto creado previamente. En caso de tener verbo lo añadiremos utilizando \textbf{setVerbPhrase()} y seleccionaremos el tiempo verbal de la frase, con la función \textbf{setFeature(Feature.TENSE, Tense.FUTURE) o setFeature(Feature.TENSE, Tense.PAST)}, para definir el tiempo verbal en futuro o pasado respectivamente.
+\item Creamos un objeto frase con \textbf{SPhraseSpec()}. A continuación, mediante la función \textbf{.setSubject()} añadimos el sujeto creado previamente. En caso de tener verbo lo añadiremos utilizando \textbf{setVerbPhrase()} y fijaremos el tiempo verbal de la frase, con la función \textbf{setFeature()}.
 
 \item Una vez tenemos todos la frase formada se pasa a la realización de la misma. Este proceso de realización utiliza el objeto \textbf{Realiser} de SimpleNLG para devolver un string que contendrá una frase construida utilizando los datos del punto anterior.
 \end{enumerate}
@@ -165,20 +166,24 @@ La, corredor, rápido, perder, zapatillas, nuevo & La corredora rápida pierde una
 \end{table}
 
 \figura{Bitmap/ServiciosWeb/NLGService}{height=18cm}{fig:NLGService}{Flujo del Servicio Web de Detección de Generación de Frases en Lenguaje Natural}
-En la Figura \ref{fig:NLGService}, podemos ver un resumen del flujo que sigue este servicio y en la Tabla  \ref{tabla:tiempoVerbal} podemos varios ejemplos de entradas y salidas del servicio.
+En la Figura \ref{fig:NLGService} podemos ver un resumen del flujo que sigue este servicio y en la Tabla \ref{tabla:tiempoVerbal} podemos varios ejemplos de entradas y salidas del servicio.
 
 %------------------------------------------------------------------
 \subsection{Servicios web para la Gestión de Pictogramas} %-------------------------------------------------------------------
 \label{cap5:sec:ServiciosParaPictos}
 
-En esta subsección pasaremos a explicar los dos servicios web, que hemos creado para tratar con pictogramas. En estos servicios hemos utilizando la API de ARASAAC\footnote{\url{https://beta.arasaac.org/developers/api}}, un servicio para la obtención de pictograma dados una palabra\footnote{\url{https://holstein.fdi.ucm.es/tfg-pict2text/picto/getPicto?pictoName=`PalabraRelacionada'}} y otro que dado el identificador de un pictograma devuelve las palabras asociadas a el\footnote{\url{https://holstein.fdi.ucm.es/tfg-pict2text/picto/getPictoTranslate?pictoId=`IdPictograma'}}. Ambos servicios siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}, primero leen la entrada, después hacen la llamada a la API de ARAASAC y dependiendo de si el resultado es un error o no, se creara una respuesta del servicio con el error o con el resultado del servicio.
+En esta subsección pasaremos a explicar los dos servicios web que hemos creado para tratar con pictogramas:
+\begin{itemize}
+\item Servicio web para la obtención de pictograma dados una palabra\footnote{\url{https://holstein.fdi.ucm.es/tfg-pict2text/picto/getPicto?pictoName=`PalabraRelacionada'}}.
+\item Servicio web para la busqueda de palabras asociadas a un pictograma dado su identificador\footnote{\url{https://holstein.fdi.ucm.es/tfg-pict2text/picto/getPictoTranslate?pictoId=`IdPictograma'}}.
+\end{itemize}
+Ambos servicios siguen la misma linea de ejecución, la cual se muestra en la Figura \ref{fig:serviciosAPIARAASAC}, primero leen la entrada, después hacen la llamada a la API de ARAASAC y dependiendo de si el resultado es un error o no, se creara una respuesta del servicio con el error o con el resultado del servicio.
 \figura{Bitmap/ServiciosWeb/serviciosAPIARAASAC}{height=12cm}{fig:serviciosAPIARAASAC}{Flujo de los servicios web Para Pictogramas} 
 
 \subsubsection{Servicio Web de Búsqueda del Pictograma Asociado a una Palabra}
 \label{cap5:sec:ServiciosParaPictosPalabra}
 Este servicio web, recibe una palabra a través de una petición GET y devuelve un objeto en formato JSON, que contiene un array con los diferentes pictogramas asociados a la palabra recibida.
-Este servicio lanza una petición GET con la palabra recibida al buscador de pictogramas de la API de ARAASAC\footnote{\url{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/`Nombre'}}, el cual devuelve una lista de todos los pictogramas asociados a la palabra introducida.
-La respuesta devuelta por la API de ARAASAC es procesada por nuestro servicio, escogiendo aquellos pictogramas que tienen asociados la palabra introducida tal cual. Por ejemplo, si se realiza la búsqueda de la palabra huevo, la API de ARAASAC devolverá tres pictogramas uno para huevo, otro para huevo frito, y otro para huevo roto. Nuestro servicio se quedara solo con el primero. Por cada pictograma nuestro servicio devuelve los siguientes atributos:
+Este servicio lanza una petición GET con la palabra recibida al buscador de pictogramas de la API de ARAASAC\footnote{\url{https://api.arasaac.org/api/pictograms/api/pictograms/es/search/`Nombre'}}, el cual devuelve una lista de todos los pictogramas asociados a la palabra introducida. Por cada pictograma nuestro servicio devuelve los siguientes atributos:
 \begin{itemize}
 \item Identificador del pictograma.
 \item Palabra asociada al pictograma.
@@ -186,17 +191,16 @@ La respuesta devuelta por la API de ARAASAC es procesada por nuestro servicio, e
 \end{itemize}
 \figura{Bitmap/ServiciosWeb/pictoFinderResponse}{height=16cm,width=12cm}{fig:pictoFinderResponse}{Respuesta del servicio web de búsqueda del pictogramas asociados a una palabra, para la palabra cortar
 }
-Cada pictograma con sus atributos se añade a una lista que sera devuelta en el resultado de este servicio web. En la Figura \ref{fig:pictoFinderResponse} podemos ver el resultado devuelto por nuestro servicio para la entrada ``cortar'', esta palabra tiene varios pictogramas asociados, los cuales podemos ver en la Figura \ref{fig:pictosCortar}.
+
+Cada pictograma con sus atributos se añade a una lista que sera devuelta en el resultado de este servicio web. En la Figura \ref{fig:pictoFinderResponse} podemos ver el resultado devuelto por el servicio para la entrada ``cortar'', esta palabra tiene varios pictogramas asociados, los cuales podemos ver en la Figura \ref{fig:pictosCortar}.
 \figura{Bitmap/ServiciosWeb/cortarPictos}{height=9cm}{fig:pictosCortar}{Pictogramas asociados a la palabra cortar}
 
 
 \subsubsection{Servicio Web de Traducción de Pictogramas a Texto}
 \figura{Bitmap/ServiciosWeb/finderIDAPI}{height=16cm}{fig:finderIDAPI}{Respuesta del buscador por id de la API de ARAASAC, para el id 7823} 
 
-Este servicio web recibe el identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma, ya que un solo pictograma puede tener varias palabras asociadas. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el identificador 7823, que tiene dos palabras asociadas profesor y profesor de educación física.
-Este servicio lanza una petición con el identificador recibido, al buscador de pictogramas por id de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. 
-
-Después, en la respuesta de la API de ARAASAC, se accede al atributo ``Keywords'' y se encapsula dentro de un objeto el cual contiene un objecto que con un array de significados, que sera la respuesta de este servicio tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
+Este servicio web recibe el identificador de un pictograma y devuelve las diferentes palabras asociadas al pictograma, ya que un solo pictograma puede tener varias palabras asociadas. En la Figura \ref{fig:finderIDAPI} podemos ver la respuesta para el identificador 7823, que tiene dos palabras asociadas:  profesor y profesor de educación física.
+Este servicio lanza una petición con el identificador recibido, al buscador de pictogramas por id de la API de ARASAAC\footnote{https://api.arasaac.org/api/pictograms/es/`idPictograma'}. Después, en la respuesta de la API de ARAASAC se accede al atributo ``Keywords'' y el contenido de este atributo se encapsula dentro de un objeto que contiene un objecto con un array de significados, que sera la respuesta de este servicio tal y como se puede ver en la Figura \ref{fig:responseTranslatePictoService}.
 
 \figura{Bitmap/ServiciosWeb/responseTranslatePictoService}{height=2cm}{fig:responseTranslatePictoService}{Respuesta del servicio web de traducción de pictogramas a texto} 
 
@@ -208,12 +212,12 @@ Después, en la respuesta de la API de ARAASAC, se accede al atributo ``Keywords'
 
 En esta sección introduciremos los diferentes servicios y componentes Angular desarrollados para la parte Front-End de la aplicación, la cual podemos ver en la Figura \ref{fig:appEscritorio}. Hemos implementado dos componentes:
 \begin{itemize}
-\item Buscador de pictogramas. Este componente sirve para buscar los pictogramas con los que se va a componer el mensaje que se desea traducir. El usuario introducirá el nombre para el que desea un pictograma pulsará buscar y seleccionará uno de los resultados devueltos y pulsará en el botón de añadir para pasar el pictograma al espacio reservado para el mensaje a traducir.
-\item Traductor de pictogramas a lenguaje natural: Este componente es el encargado de manejar el mensaje con pictogramas que se va a traducir. Los pictogramas del mensaje se pueden ordenar o borrar. Una vez se tenga listo el mensaje con pictogramas que se desea traducir, se pulsara el botón de Traducir y debajo aparecerá el mensaje en lenguaje natural traducido.
+\item Buscador de pictogramas. Este componente sirve para buscar los pictogramas con los que se va a componer el mensaje que se desea traducir. El usuario introducirá el nombre para el que desea un pictograma pulsará buscar seleccionará uno de los resultados devueltos y pulsará en el botón de añadir para pasar el pictograma al espacio reservado para el mensaje a traducir.
+\item Traductor de pictogramas a lenguaje natural: Este componente es el encargado de manejar el mensaje con pictogramas que se va a traducir. Los pictogramas del mensaje se pueden ordenar o borrar. Una vez se tenga listo el mensaje con pictogramas que se desea traducir se pulsara el botón de Traducir y debajo aparecerá el mensaje en lenguaje natural traducido.
 \end{itemize}
 
 Cabe destacar que cada uno de estos componentes posee un HTML, un controlador y un servicio de aplicación propio.  A parte de estos componentes hemos implementado una serie de útiles, como un archivo de constantes (para almacenar las diferentes direcciones de los servicios web), un servicio proxy que permite abstraer las peticiones HTTP, y un servicio de ventanas modales para el tratamiento de errores. Cada uno de estos servicios se explicara en detalle en las siguientes secciones.
-Ademas hemos tenido en cuenta que la aplicación sea responsive y hemos diseñado la vista para tener una versión móvil la cual se puede ver en la Figura \ref{fig:appMo}.
+Ademas, hemos tenido en cuenta que la aplicación sea responsive y hemos diseñado la vista para tener una versión móvil la cual se puede ver en la Figura \ref{fig:appMo}.
 
 \figura{Bitmap/Arquitectura/appEscritorio}{height=11cm, width=13cm}{fig:appEscritorio}{Pict2Text}
 \figura{Bitmap/Arquitectura/appMo}{height=15cm}{fig:appMo}{Versión de Pict2Text para dispositivos móviles}
@@ -229,22 +233,20 @@ En la Figura \ref{fig:proxyClassDiagram} podemos ver los métodos disponibles en 
 
 \subsection{Servicio de Ventanas Modales}  
 
-Este servicio tiene como finalidad mostrar los errores que hayan podido surgir a lo largo del flujo de la aplicación. El servicio de ventanas modales el cual hace uso todos los controladores de la aplicación Front-End, es un servicio reutilizable, que nos permite abstraer toda la lógica necesaria para mostrar los errores en un solo servicio. Este servicio tiene dos variables de entrada el código de error y el texto asociado al error. 
+Este servicio tiene como finalidad mostrar los errores que hayan podido surgir a lo largo del flujo de la aplicación. El servicio de ventanas modales el cual hace uso todos los controladores de la aplicación Front-End, es un servicio reutilizable, que nos permite abstraer toda la lógica necesaria para mostrar los errores en un solo servicio. Este servicio tiene dos variables de entrada: el código de error y el texto asociado al error. Su utilidad principal es dado un error especifico construir y mostrar una ventana modal genérica para dar al usuario feedback de los errores. Este servicio nos permite tener un solo diseño de ventana modal para toda la aplicación. 
 
-Su utilidad principal es dado un error especifico construir y mostrar una ventana modal genérica para dar al usuario feedback de los errores que puedan darse. Esto nos permite tener un solo diseño de ventana modal para toda la aplicación. 
-
-Este servicio sigue el patrón Factory, es decir, es capaz de crear objetos concretos, gracias a sus datos de entrada, utilizando una plantilla genérica, tal y como podemos ver en la Figura \ref{fig:modalsError}, donde podemos ver que lo único que cambia es el contenido de lo que muestra la ventana modal.
+El Servicio de Ventanas Modales sigue el patrón Factory, es decir, es capaz de crear objetos concretos, gracias a sus datos de entrada, utilizando una plantilla genérica, tal y como podemos ver en la Figura \ref{fig:modalsError}, donde podemos ver que lo único que cambia es el contenido de lo que muestra la ventana modal.
 \figura{Bitmap/Arquitectura/modalErrorServiceExample}{height=12cm}{fig:modalsError}{Ejemplo de diferentes ventanas modales}
 
-Además, hemos utilizado la librería NGBoostrap\footnote{https://ng-bootstrap.github.io/}, esta librería hace uso del patrón Singleton para las ventanas modales, y abstrae funcionalidad relacionada con el uso de ventanas modales, como por ejemplo la lógica de abrir o cerrar la ventana. Además de la funcionalidad tiene estilos CSS propios, que ayudan a definir el tamaño de la ventana modal, el fondo que se pone sobre el body de la pagina, etc. 
+Además, hemos utilizado la librería NGBoostrap\footnote{https://ng-bootstrap.github.io/}, esta librería hace uso del patrón Singleton para las ventanas modales y abstrae funcionalidad relacionada con el uso de ventanas modales, como por ejemplo la lógica de abrir o cerrar la ventana. Además de la funcionalidad tiene estilos CSS propios que ayudan a definir el tamaño de la ventana modal, el fondo que se pone sobre el body de la pagina, etc. 
 
 En la Figura \ref{fig:modalErrorServiceClass}, podemos ver un diagrama que resume los métodos de la clase ErrorModalService, y muestra su dependencia con la plantilla Error-Modal, la cual es usada para generar las ventanas modales.
 \figura{Bitmap/Arquitectura/modalErrorServiceClass}{height=4cm, width=10cm}{fig:modalErrorServiceClass}{Diagrama del servicio de modales}
 
 \subsection{Buscador de Pictogramas}
 La utilidad principal del buscador de pictogramas es ser el punto de entrada de los pictogramas a la aplicación. El componente esta formado por un input donde introducir la palabra para la que se desea buscar el pictograma y un carrusel de pictogramas que nos permite mostrar todos los pictogramas asociados a la palabra introducida. El carrusel ha sido implementado con la librería NGBoostrap.
-Este componente posee un controlador, un servicio de aplicación y un transformer. El controlador es el encargado de conectar el HTML de la vista, con el resto de la aplicación. Sirve para obtener la palabra para la que se desea buscar un pictograma y enviarlo al servicio de aplicación. Además de añadir los pictogramas al componente traductor de pictogramas usando el botón añadir. El servicio de aplicación creara la url para hacer la llamada al servicio web de búsqueda del pictogramas asociados a una palabra (visto en la Sección \ref{cap5:sec:ServiciosParaPictosPalabra}) usando el archivo de constantes. Con la url generada llamara al Servicio Proxy, que se encargara de enviar y recibir la respuesta del servicio web. Si la respuesta es correcta el servicio de aplicación hará uso del transformer para generar un objeto para el controlador. En caso de error devolverá el error al controlador para que muestre el mensaje de error.
-Podemos ver el diagrama del componente buscador de pictogramas en la Figura \ref{fig:finderClass}.    
+Este componente posee un controlador, un servicio de aplicación y un transformer. El controlador es el encargado de conectar el HTML de la vista con el resto de la aplicación. Sirve para obtener la palabra para la que se desea buscar un pictograma y enviarlo al servicio de aplicación. Además de añadir los pictogramas al componente traductor de pictogramas usando el botón añadir. El servicio de aplicación creara la url para hacer la llamada al servicio web de búsqueda del pictogramas asociados a una palabra (visto en la Sección \ref{cap5:sec:ServiciosParaPictosPalabra}) usando el archivo de constantes. Con la url generada llamara al Servicio Proxy, que se encargara de enviar y recibir la respuesta del servicio web. Si la respuesta es correcta el servicio de aplicación hará uso del transformer para generar un objeto para el controlador. En caso de error devolverá el error al controlador para que muestre el mensaje de error.
+Podemos ver el diagrama del componente Buscador de Pictogramas en la Figura \ref{fig:finderClass}.    
 \figura{Bitmap/Arquitectura/finderClass}{height= 11cm, width=14cm}{fig:finderClass}{Diagrama del componente buscador de pictogramas}
 
 \subsection{Traductor de Pictogramas a Lenguaje Natural} 
@@ -258,6 +260,6 @@ En la Figura \ref{fig:translatorComponent}, podemos ver un diagrama que muestra 
 
 \figura{Bitmap/Arquitectura/translatorComponent}{height= 11cm, width=14cm}{fig:translatorComponent}{Diagrama del Traductor de Pictogramas a Lenguaje Natural}
 
-El servicio de aplicación, tiene como parámetro de entrada el array de strings que formara la petición post, además obtiene la url del Servicio Web de Generación de Lenguaje del archivo de constantes y llamara al servicio servicio proxy que sera el encargado de lanzar la petición. Una vez se obtiene la respuesta del servicio se devuelve al controlador del componente, el cual ya sera el encargado de mostrar la traducción o mostrar la ventana de la modal de error en caso de error en la respuesta del servicio.
+El servicio de aplicación tiene como parámetro de entrada el array de strings que formara la petición post, además obtiene la url del Servicio Web de Generación de Lenguaje del archivo de constantes y llamara al Servicio Proxy que sera el encargado de lanzar la petición. Una vez se obtiene la respuesta del Servicio Proxy se devuelve al controlador del componente, el cual ya sera el encargado de mostrar la traducción o mostrar la ventana de la modal en caso de error en la respuesta del servicio.
 
 
